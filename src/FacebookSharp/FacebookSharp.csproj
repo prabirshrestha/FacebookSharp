@@ -46,12 +46,17 @@
     <Compile Include="FacebookExtensions.cs" />
     <Compile Include="FacebookUtils.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Schemas\schemas.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Schemas\facebook.xsd">
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Generator>Xsd2CodeCustomTool</Generator>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Schemas\generate_schemas.bat" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
