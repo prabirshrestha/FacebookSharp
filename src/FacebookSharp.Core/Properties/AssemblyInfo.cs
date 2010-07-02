@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("FacebookSharp")]
+[assembly: AssemblyTitle("FacebookSharp.Core")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Prabir Shrestha")]
-[assembly: AssemblyProduct("FacebookSharp")]
+[assembly: AssemblyProduct("FacebookSharp.Core")]
 [assembly: AssemblyCopyright("Copyright © Prabir Shrestha 2010")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
