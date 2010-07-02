@@ -128,7 +128,7 @@ namespace FacebookSharp
         ///      "description": "This is a longer description of the attachment",
         ///      "picture": "http://www.example.com/thumbnail.jpg"}
         /// </remarks>
-        public static string PutWallPost(Facebook facebook, string message, IDictionary<string, string> parameters)
+        public static string PutWallPost(this Facebook facebook, string message, IDictionary<string, string> parameters)
         {
             if (parameters != null)
                 parameters.Add("message", "message");
