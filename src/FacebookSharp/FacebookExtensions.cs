@@ -143,5 +143,19 @@ namespace FacebookSharp
             return facebook.PutObject(profileId, "feed", parameters);
         }
 
+        /// <summary>
+        /// Writes the given comment on the given post.
+        /// </summary>
+        /// <param name="facebook"></param>
+        /// <param name="objectId">Id of the object.</param>
+        /// <param name="message">Comment Message.</param>
+        /// <returns>Result of the operation.</returns>
+        public static string PutComment(this Facebook facebook, string objectId, string message)
+        {
+            IDictionary<string, string> parameters = new Dictionary<string, string>();
+            parameters.Add("message", message);
+            return facebook.PutObject(objectId, "comments", parameters);
+        }
+
     }
 }
