@@ -5,11 +5,25 @@ namespace FacebookSharp
 {
     public static class FacebookExtensions
     {
+        /// <summary>
+        /// Fetches the give object from the graph.
+        /// </summary>
+        /// <param name="facebook"></param>
+        /// <param name="id">Id of the object to fetch.</param>
+        /// <param name="parameters">List of arguments.</param>
+        /// <returns>The required object</returns>
         public static string GetObject(this Facebook facebook, string id, IDictionary<string, string> parameters)
         {
             return facebook.Request(id, parameters);
         }
 
+        /// <summary>
+        /// Fetches all of the give object from the graph.
+        /// </summary>
+        /// <param name="facebook"></param>
+        /// <param name="parameters">List of arguments.</param>
+        /// <param name="ids">Ids of the objects to return.</param>
+        /// <returns>A map from ID to object. If any of the IDs are invalid, an exception is raised.</returns>
         public static string GetObjects(this Facebook facebook, IDictionary<string, string> parameters, params  string[] ids)
         {
             StringBuilder joinedIds = new StringBuilder();
@@ -28,9 +42,50 @@ namespace FacebookSharp
             return facebook.Request(null, parameters);
         }
 
+        /// <summary>
+        /// Fetches the connections for given object.
+        /// </summary>
+        /// <param name="facebook"></param>
+        /// <param name="id">Id of the object to fetch.</param>
+        /// <param name="connectionName">Name of the connection.</param>
+        /// <param name="parameters">List of arguments.</param>
+        /// <returns>Returns the connections.</returns>
         public static string GetConnections(this Facebook facebook, string id, string connectionName, IDictionary<string, string> parameters)
         {
             return facebook.Request(id + "/" + connectionName, parameters);
         }
+
+        /// <summary>
+        /// Writes the give object to the graph, connected to the give parent.
+        /// </summary>
+        /// <param name="facebook"></param>
+        /// <param name="parentObject">The parent object.</param>
+        /// <param name="connectionName">Name of the connection.</param>
+        /// <param name="parameters">List of arguments.</param>
+        /// <returns>Result of operation</returns>
+        /// <remarks>
+        /// For example,
+        /// 
+        ///     var data = new Dictionary<string, string>();
+        ///     data.Add("message", "Hello, world");
+        ///     facebook.PutObject("me", "feed", data);
+        /// 
+        /// writes "Hello, world" to the active user's wall.
+        /// 
+        /// See http://developers.facebook.com/docs/api#publishing for all of
+        /// the supported writeable objects.
+        /// 
+        /// Most write operations require extended permissions. For example,
+        /// publishing wall posts requires the "publish_stream" permission. See
+        /// http://developers.facebook.com/docs/authentication/ for details about
+        /// extended permissions.
+        /// </remarks>
+        public static string PutObject(this Facebook facebook, string parentObject, string connectionName, IDictionary<string, string> parameters)
+        {
+            if (!facebook.IsSessionValid())
+                throw new FacebookSharpException("AccessToken required.");
+            return facebook.Request(parentObject + "/" + connectionName, parameters, "POST");
+        }
+
     }
 }
