@@ -157,5 +157,16 @@ namespace FacebookSharp
             return facebook.PutObject(objectId, "comments", parameters);
         }
 
+        /// <summary>
+        /// Likes the given post.
+        /// </summary>
+        /// <param name="facebook"></param>
+        /// <param name="objectId">Id of the object to like.</param>
+        /// <returns>Result of the operation.</returns>
+        public static string PutLike(this Facebook facebook, string objectId)
+        {
+            return facebook.PutObject(objectId, "likes", null);
+        }
+
     }
 }
