@@ -27,5 +27,10 @@ namespace FacebookSharp
 
             return facebook.Request(null, parameters);
         }
+
+        public static string GetConnections(this Facebook facebook, string id, string connectionName, IDictionary<string, string> parameters)
+        {
+            return facebook.Request(id + "/" + connectionName, parameters);
+        }
     }
 }
