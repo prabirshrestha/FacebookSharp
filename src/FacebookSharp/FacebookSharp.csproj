@@ -43,6 +43,7 @@
     <Compile Include="Exceptions\_FacebookException.cs" />
     <Compile Include="Exceptions\__FacebookSharpException.cs" />
     <Compile Include="Facebook.cs" />
+    <Compile Include="FacebookExtensions.cs" />
     <Compile Include="FacebookUtils.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
