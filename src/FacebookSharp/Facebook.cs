@@ -5,6 +5,20 @@ namespace FacebookSharp
 {
     public class Facebook
     {
+        public Facebook()
+        {
+
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="accessToken">The Facebook OAuth 2.0 access token for API access.</param>
+        public Facebook(string accessToken)
+        {
+            AccessToken = accessToken;
+        }
+
         public static readonly string Token = "access_token";
         public static readonly string Expires = "expires_in";
 
