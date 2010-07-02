@@ -1,3 +1,24 @@
+// Most of the codes of this FacebookExtensions.cs file is taken from
+// http://hernan.amiune.com/labs/facebook/c-sharp-facebook-graph-api-library.html
+//
+//
+// Copyright 2010 Hernan Amiune (hernan.amiune.com)
+// Licensed under MIT license:
+// http://www.opensource.org/licenses/mit-license.php
+// 
+// Requires Newtonsoft.Json.Linq.JObject
+// http://james.newtonking.com/projects/json-net.aspx
+// Based on the Official Python client library for the Facebook Platform
+// http://github.com/facebook/python-sdk/
+// 
+// C# client library for the Facebook Platform
+// 
+// This client library is designed to support the Graph API and the official
+// Facebook JavaScript SDK, which is the canonical way to implement
+// Facebook authentication. Read more about the Graph API at
+// http://developers.facebook.com/docs/api. You can download the Facebook
+// JavaScript SDK at http://github.com/facebook/connect-js/.
+// 
 using System.Collections.Generic;
 using System.Text;
 
