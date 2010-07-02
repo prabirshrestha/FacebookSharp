@@ -45,6 +45,7 @@
     <Compile Include="Exceptions\__FacebookSharpException.cs" />
     <Compile Include="Facebook.cs" />
     <Compile Include="FacebookUtils.cs" />
+    <Compile Include="IFacebookMembershipProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Schemas\schemas.cs" />
   </ItemGroup>
