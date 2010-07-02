@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
 namespace FacebookSharp
@@ -88,9 +90,15 @@ namespace FacebookSharp
         /// a <see cref="FacebookException"/> is thrown if an error condition is set,
         /// populated with the error message and error type or code if available. 
         /// </remarks>
-        public static JObject ParseJson(string response)
+        public static JToken ParseJson(string response)
         {
-            throw new NotImplementedException();
+            using (StringReader reader = new StringReader(response))
+            {
+                using (JsonTextReader jsonTextReader = new JsonTextReader(reader))
+                {
+                    return JToken.ReadFrom(jsonTextReader);
+                }
+            }
         }
     }
 }
