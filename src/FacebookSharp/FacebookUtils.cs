@@ -218,5 +218,26 @@ namespace FacebookSharp
 
             return json;
         }
+
+        /// <summary>
+        /// Deserializes the specified object to JSON object.
+        /// </summary>
+        /// <typeparam name="T">The type of the object to deserialize.</typeparam>
+        /// <param name="json">The object to deserialize.</param>
+        /// <returns>Deserialized object.</returns>
+        public static T DeserializeObject<T>(string json)
+        {
+            return JsonConvert.DeserializeObject<T>(json);
+        }
+
+        /// <summary>
+        /// Serializes the specified object ot JSON string.
+        /// </summary>
+        /// <param name="obj">Object to serialize.</param>
+        /// <returns>Serialized json string.</returns>
+        public static string SerializeObject(object obj)
+        {
+            return JsonConvert.SerializeObject(obj);
+        }
     }
 }
