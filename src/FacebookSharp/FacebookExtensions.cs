@@ -168,5 +168,18 @@ namespace FacebookSharp
             return facebook.PutObject(objectId, "likes", null);
         }
 
+        /// <summary>
+        /// Deletes the object with the given ID from the graph.
+        /// </summary>
+        /// <param name="facebook"></param>
+        /// <param name="id">Id of the object to delete.</param>
+        /// <returns>Result of the operation.</returns>
+        public static string DeleteObject(this Facebook facebook, string id)
+        {
+            IDictionary<string, string> parameters = new Dictionary<string, string>();
+            parameters.Add("method", "delete");
+            return facebook.Request(id, parameters, "POST");
+        }
+
     }
 }
