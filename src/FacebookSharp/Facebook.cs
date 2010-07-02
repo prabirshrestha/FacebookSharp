@@ -38,7 +38,7 @@ namespace FacebookSharp
         /// </remarks>
         public string Request(string graphPath)
         {
-            throw new NotImplementedException();
+            return Request(graphPath, null, "GET");
         }
 
         /// <summary>
@@ -66,7 +66,7 @@ namespace FacebookSharp
         /// </remarks>
         public string Request(string graphPath, IDictionary<string, string> parameters)
         {
-            throw new NotImplementedException();
+            return Request(graphPath, parameters, "GET");
         }
 
         /// <summary>
@@ -93,7 +93,10 @@ namespace FacebookSharp
         /// </remarks>
         public string Request(String graphPath, IDictionary<string, string> parameters, string httpMethod)
         {
-            throw new NotImplementedException();
+            if (IsSessionValid())
+                parameters.Add(Token, AccessToken);
+            string url = graphPath != null ? GraphBaseUrl + graphPath : RestServerUrl;
+            return FacebookUtils.OpenUrl(url, httpMethod, parameters);
         }
 
         /// <summary>
@@ -102,7 +105,8 @@ namespace FacebookSharp
         /// <returns>Return true if session is valid otherwise false.</returns>
         public bool IsSessionValid()
         {
-            throw new NotImplementedException();
+            // todo: not complete yet.
+            return !string.IsNullOrEmpty(AccessToken);
         }
 
         /// <summary>
