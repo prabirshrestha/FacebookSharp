@@ -87,5 +87,31 @@ namespace FacebookSharp
             return facebook.Request(parentObject + "/" + connectionName, parameters, "POST");
         }
 
+        /// <summary>
+        /// Writes a wall post to current user wall.
+        /// </summary>
+        /// <param name="facebook"></param>
+        /// <param name="message">The message to put on the wall.</param>
+        /// <param name="parameters">Optional parameters for the message.</param>
+        /// <returns>Result of the operation.</returns>
+        /// <remarks>
+        /// Default to writing to the authenticated user's wall if no
+        /// profile_id is specified.
+        /// 
+        /// attachment adds a structured attachment to the status message being
+        /// posted to the Wall. It should be a dictionary of the form:
+        /// 
+        ///     {"name": "Link name"
+        ///      "link": "http://www.example.com/",
+        ///      "caption": "{*actor*} posted a new review",
+        ///      "description": "This is a longer description of the attachment",
+        ///      "picture": "http://www.example.com/thumbnail.jpg"}
+        /// </remarks>
+        public static string PutWallPost(Facebook facebook, string message, IDictionary<string, string> parameters)
+        {
+            if (parameters != null)
+                parameters.Add("message", "message");
+            return facebook.PutObject("me", "feed", parameters);
+        }
     }
 }
