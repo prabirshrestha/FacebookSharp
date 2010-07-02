@@ -60,6 +60,7 @@
   <ItemGroup>
     <None Include="Schemas\enum_flags_generator.rb" />
     <None Include="Schemas\extended_permissions.data" />
+    <None Include="Schemas\extended_permissions.data.dat" />
     <None Include="Schemas\generate_schemas.bat" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
