@@ -46,7 +46,18 @@ namespace FacebookSharp
         /// <returns>Returns a dictionary of keys and values.</returns>
         public static IDictionary<string, string> ParseUrl(string url)
         {
-            throw new NotImplementedException();
+            // hack to prevent MalformedURLException
+            url = url.Replace("fbconnect", "http");
+            try
+            {
+                Uri u = new Uri(url);
+                IDictionary<string, string> b = DecodeUrl(u.Query); // need to test this method.
+                return b;
+            }
+            catch (Exception ex)
+            {   // todo: need to catch the invalid url exception.
+                return new Dictionary<string, string>();
+            }
         }
 
         /// <summary>
