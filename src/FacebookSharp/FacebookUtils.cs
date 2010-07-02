@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
-using Newtonsoft.Json.Linq;
 using System.Text;
+using Newtonsoft.Json.Linq;
 
 namespace FacebookSharp
 {
@@ -26,7 +26,17 @@ namespace FacebookSharp
 
         public static IDictionary<string, string> DecodeUrl(string s)
         {
-            throw new NotImplementedException();
+            IDictionary<string, string> parameters = new Dictionary<string, string>();
+            if (string.IsNullOrEmpty(s))
+                return parameters;
+
+            string[] array = s.Split('&');
+            foreach (string parameter in array)
+            {
+                string[] pair = parameter.Split('=');
+                parameters.Add(pair[0], pair[1]);
+            }
+            return parameters;
         }
 
         /// <summary>
