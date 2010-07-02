@@ -76,7 +76,7 @@ namespace FacebookSharp
         /// (i.e. requests are made as "POST" with method specified in the body).
         /// </remarks>
         public static string OpenUrl(string url, string method, IDictionary<string, string> parameters)
-        {
+        {   // this is the default method signature (same method arguments) as in facebook android sdk.
             return OpenUrl(url, method, parameters, "FacebookSharp", false);
         }
 
@@ -159,13 +159,64 @@ namespace FacebookSharp
         /// </remarks>
         public static JToken ParseJson(string response)
         {
+            return ParseJson(response, true); // this is the default behavior in facebook android sdk.
+        }
+
+        /// <summary>
+        /// Parse a server response into a JSON object.
+        /// </summary>
+        /// <param name="response">String representation of the response.</param>
+        /// <param name="throwException">If set to true, then it converts to FacebookException and throws error, else returns JToken always.</param>
+        /// <returns>Returns the response as a JSON object.</returns>
+        /// <remarks>
+        /// This is a basic implementation using Newtonsoft.JSON.
+        /// 
+        /// The parsed JSON is checked for a variety of error fields and
+        /// a <see cref="FacebookException"/> is thrown if an error condition is set,
+        /// populated with the error message and error type or code if available. 
+        /// </remarks>
+        public static JToken ParseJson(string response, bool throwException)
+        {
+            JToken json;
             using (StringReader reader = new StringReader(response))
             {
                 using (JsonTextReader jsonTextReader = new JsonTextReader(reader))
                 {
-                    return JToken.ReadFrom(jsonTextReader);
+                    json = JToken.ReadFrom(jsonTextReader);
                 }
             }
+
+            if (!throwException) // i think sometimes, it shouldn't throw error,
+                return json;     // rather user should have more control over the behavior.
+
+            // todo: need to create a Facebook Exception Parser and throw more specific exceptions.
+            // edge case: when sending a POST request to /[post_id]/likes
+            // the return value is 'true' or 'false'.
+            // just throw normal FacebookException.
+            if (response.Equals("false", StringComparison.OrdinalIgnoreCase))
+                throw new FacebookException("request failed.");
+            if (response.Equals("true", StringComparison.OrdinalIgnoreCase))
+                response = "{value:true}";
+
+            JToken error = json["error"];
+            if (error != null)
+                throw new FacebookException(error.Value<string>("message"), error.Value<string>("type"), 0);
+
+            JToken errorCode = json["error_code"];
+            JToken errorMsg = json["error_msg"];
+
+            if (errorCode != null && errorMsg != null)
+                throw new FacebookException(errorMsg.Value<string>(), "", int.Parse(errorCode.Value<string>()));
+            if (errorCode != null)
+                throw new FacebookException("request faild", "", int.Parse(errorCode.Value<string>()));
+            if (errorMsg != null)
+                throw new FacebookException(errorMsg.Value<string>());
+
+            JToken errorReason = json["error_reason"];
+            if (errorReason != null)
+                throw new FacebookException(errorReason.Value<string>());
+
+            return json;
         }
     }
 }
