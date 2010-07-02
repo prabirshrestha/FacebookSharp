@@ -1,5 +1,5 @@
 # this ruby script generates the flag values for enums
-# and saves it with .data extension
+# and saves it with .dat extension
 data_path="extended_permissions.data"
 
 counter = 0
