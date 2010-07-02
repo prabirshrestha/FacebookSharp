@@ -29,10 +29,7 @@ namespace FacebookSharp
 
         protected static string _graphBaseUrl = "https://graph.facebook.com/";
         public static string GraphBaseUrl { get { return _graphBaseUrl; } }
-
-        protected static string _restServerUrl = "https://api.facebook.com/restserver.php";
-        public static string RestServerUrl { get { return _restServerUrl; } }
-
+        
         #endregion
 
         /// <summary>
@@ -105,11 +102,11 @@ namespace FacebookSharp
         /// following graph resource:
         /// https://graph.facebook.com/search?q=facebook
         /// </remarks>
-        public string Request(String graphPath, IDictionary<string, string> parameters, string httpMethod)
+        public string Request(string graphPath, IDictionary<string, string> parameters, string httpMethod)
         {
             if (IsSessionValid())
                 parameters.Add(Token, AccessToken);
-            string url = graphPath != null ? GraphBaseUrl + graphPath : RestServerUrl;
+            string url = GraphBaseUrl + graphPath; // note: facebook android sdk uses rest based if graphPath is null. we don't.
             return FacebookUtils.OpenUrl(url, httpMethod, parameters);
         }
 
