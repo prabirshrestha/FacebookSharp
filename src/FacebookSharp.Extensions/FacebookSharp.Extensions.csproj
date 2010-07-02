@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{4E7E4294-219E-457A-B092-D1283A7B28BE}</ProjectGuid>
+    <ProjectGuid>{CEF9D393-79A7-4FFC-9A6E-E415E57FFAEE}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>FacebookSharp</RootNamespace>
-    <AssemblyName>FacebookSharp</AssemblyName>
+    <RootNamespace>FacebookSharp.Extensions</RootNamespace>
+    <AssemblyName>FacebookSharp.Extensions</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile>Client</TargetFrameworkProfile>
@@ -22,7 +22,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>..\..\bin\Debug\FacebookSharp.XML</DocumentationFile>
+    <DocumentationFile>..\..\bin\Debug\FacebookSharp.Extensions.XML</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -31,33 +31,25 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>..\..\bin\Release\FacebookSharp.XML</DocumentationFile>
+    <DocumentationFile>..\..\bin\Release\FacebookSharp.Extensions.XML</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>..\..\libs\Json35r7\Bin\DotNet\Newtonsoft.Json.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Exceptions\_FacebookException.cs" />
-    <Compile Include="Exceptions\__FacebookSharpException.cs" />
-    <Compile Include="Facebook.cs" />
-    <Compile Include="FacebookUtils.cs" />
+    <Compile Include="FacebookExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Schemas\schemas.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Schemas\facebook.xsd">
-      <SubType>Designer</SubType>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <Generator>Xsd2CodeCustomTool</Generator>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Schemas\generate_schemas.bat" />
+    <ProjectReference Include="..\FacebookSharp\FacebookSharp.csproj">
+      <Project>{4E7E4294-219E-457A-B092-D1283A7B28BE}</Project>
+      <Name>FacebookSharp</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

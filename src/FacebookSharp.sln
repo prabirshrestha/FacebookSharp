@@ -3,6 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FacebookSharp", "FacebookSharp\FacebookSharp.csproj", "{4E7E4294-219E-457A-B092-D1283A7B28BE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FacebookSharp.Extensions", "FacebookSharp.Extensions\FacebookSharp.Extensions.csproj", "{CEF9D393-79A7-4FFC-9A6E-E415E57FFAEE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -13,6 +15,10 @@ Global
 		{4E7E4294-219E-457A-B092-D1283A7B28BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4E7E4294-219E-457A-B092-D1283A7B28BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4E7E4294-219E-457A-B092-D1283A7B28BE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CEF9D393-79A7-4FFC-9A6E-E415E57FFAEE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CEF9D393-79A7-4FFC-9A6E-E415E57FFAEE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CEF9D393-79A7-4FFC-9A6E-E415E57FFAEE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CEF9D393-79A7-4FFC-9A6E-E415E57FFAEE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

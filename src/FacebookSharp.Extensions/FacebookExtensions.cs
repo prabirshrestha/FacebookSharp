@@ -22,7 +22,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace FacebookSharp
+namespace FacebookSharp.Extensions
 {
     public static class FacebookExtensions
     {
