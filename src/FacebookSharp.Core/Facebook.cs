@@ -24,8 +24,8 @@ namespace FacebookSharp
 
         #region Facebook Server endpoints.
         // May be modified in a subclass for testing.
-        private static readonly string _oatuhEndpoint = "https://graph.facebook.com/oauth/authorize";
-        public static string OatuhEndpoint { get { return _oatuhEndpoint; } }
+        private static readonly string _oauthEndpoint = "https://graph.facebook.com/oauth/authorize";
+        public static string OauthEndpoint { get { return _oauthEndpoint; } }
 
         protected static string _graphBaseUrl = "https://graph.facebook.com/";
         public static string GraphBaseUrl { get { return _graphBaseUrl; } }
