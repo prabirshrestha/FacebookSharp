@@ -8,7 +8,7 @@ using Newtonsoft.Json.Linq;
 
 namespace FacebookSharp
 {
-    public static class FacebookUtils
+    public static partial class FacebookUtils
     {
         public static string EncodeUrl(IDictionary<string, string> parameters)
         {
