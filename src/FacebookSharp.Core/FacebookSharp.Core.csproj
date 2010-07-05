@@ -49,7 +49,7 @@
     <Compile Include="GraphObjects\Album.cs" />
     <Compile Include="GraphObjects\_CategorizedGraphObject.cs" />
     <Compile Include="GraphObjects\Comment.cs" />
-    <Compile Include="GraphObjects\CommentFrom.cs" />
+    <Compile Include="GraphObjects\From.cs" />
     <Compile Include="GraphObjects\Event.cs" />
     <Compile Include="GraphObjects\EventOwner.cs" />
     <Compile Include="GraphObjects\HomeTownLocation.cs" />

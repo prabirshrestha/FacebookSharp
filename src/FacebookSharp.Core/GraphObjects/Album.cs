@@ -5,7 +5,7 @@ namespace FacebookSharp
     /// </summary>
     public class Album : NamedGraphObject
     {
-        public CategorizedGraphObject From { get; set; }
+        public From From { get; set; }
 
         /// <summary>
         /// Gets or sets the description of the album.
