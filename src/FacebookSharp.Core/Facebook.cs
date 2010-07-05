@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Net;
 using System.Text;
 
 namespace FacebookSharp
@@ -272,6 +273,25 @@ namespace FacebookSharp
         {
             return string.Format(GraphBaseUrl + "oauth/authorize?client_id={0}&redirect_uri={1}&scope={2}",
                                  facebookApplicationId, redirectUri, extendedPermissions);
+        }
+
+        public string ExchangeAccessTokenForCode(string code)
+        {
+            if (string.IsNullOrEmpty(Settings.ApplicationID))
+                throw new FacebookSharpException("Settings.ApplicationID missing.");
+            if (string.IsNullOrEmpty(Settings.ApplicationSecret))
+                throw new FacebookSharpException("Settings.ApplicationSecret missing.");
+            if (string.IsNullOrEmpty(Settings.PostAuthorizeUrl))
+                throw new FacebookSharpException("Settings.PostAuthorizeUrl missing.");
+
+            string url =
+                string.Format(
+                    "https://graph.facebook.com/oauth/access_token?client_id={0}&redirect_uri={1}&client_secret={2}&code={3}",
+                    Settings.ApplicationID, Settings.PostAuthorizeUrl, Settings.ApplicationSecret, code);
+
+            var wc = new WebClient();
+            string result = wc.DownloadString(url);
+            return result.Replace("access_token=", "");
         }
 
     }
