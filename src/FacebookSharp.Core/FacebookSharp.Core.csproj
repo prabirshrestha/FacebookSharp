@@ -46,6 +46,10 @@
     <Compile Include="Facebook.cs" />
     <Compile Include="FacebookSettings.cs" />
     <Compile Include="FacebookUtils\_FacebookUtils.cs" />
+    <Compile Include="GraphObjects\HomeTownLocation.cs" />
+    <Compile Include="GraphObjects\Location.cs" />
+    <Compile Include="GraphObjects\User.cs" />
+    <Compile Include="GraphObjects\Work.cs" />
     <Compile Include="GraphObjects\_Connection.cs" />
     <Compile Include="GraphObjects\Friend.cs" />
     <Compile Include="GraphObjects\Feed.cs" />
