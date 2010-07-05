@@ -157,6 +157,7 @@ namespace FacebookSharp
         /// a <see cref="FacebookException"/> is thrown if an error condition is set,
         /// populated with the error message and error type or code if available. 
         /// </remarks>
+        [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         public static JToken ParseJson(string response)
         {
             return ParseJson(response, true); // this is the default behavior in facebook android sdk.
@@ -175,6 +176,7 @@ namespace FacebookSharp
         /// a <see cref="FacebookException"/> is thrown if an error condition is set,
         /// populated with the error message and error type or code if available. 
         /// </remarks>
+        [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         public static JToken ParseJson(string response, bool throwException)
         {
             JToken json;

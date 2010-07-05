@@ -6,9 +6,16 @@ namespace FacebookSharp
 {
     public class Facebook
     {
-        public Facebook()
+        private FacebookSettings _settings;
+        public FacebookSettings Settings
         {
+            get { return _settings; }
+        }
 
+
+        public Facebook()
+            : this((FacebookSettings)null)
+        {
         }
 
         /// <summary>
@@ -16,8 +23,13 @@ namespace FacebookSharp
         /// </summary>
         /// <param name="accessToken">The Facebook OAuth 2.0 access token for API access.</param>
         public Facebook(string accessToken)
+            : this(new FacebookSettings { AccessToken = accessToken })
         {
-            AccessToken = accessToken;
+        }
+
+        public Facebook(FacebookSettings facebookSettings)
+        {
+            _settings = facebookSettings ?? (_settings = new FacebookSettings());
         }
 
         public static readonly string Token = "access_token";
@@ -26,6 +38,7 @@ namespace FacebookSharp
         #region Facebook Server endpoints.
         // May be modified in a subclass for testing.
         private static readonly string _oauthEndpoint = "https://graph.facebook.com/oauth/authorize";
+
         public static string OauthEndpoint { get { return _oauthEndpoint; } }
 
         protected static string _graphBaseUrl = "https://graph.facebook.com/";
@@ -203,18 +216,19 @@ namespace FacebookSharp
         }
 
         /// <summary>
-        /// Gets or sets the OAuth 2.0 access token for API access: treat with care.
+        /// Gets the OAuth 2.0 access token for API access: treat with care.
         /// </summary>
         /// <remarks>
         /// Returns null if no session exists.
         /// </remarks>
-        public string AccessToken { get; set; }
+        public string AccessToken { get { return Settings.AccessToken; } }
 
         /// <summary>
         /// Gets or sets the current session's expiration time (in milliseconds since Unix epoch),
         /// or 0 if the session doen't expire or doesn't exist.
         /// </summary>
-        public long AccessExpires { get; set; }
+        [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
+        public long AccessExpires { get { return Settings.AccessExpires; } }
 
         /// <summary>
         /// Set the current session's duration (in seconds since Unix epoch).
@@ -235,16 +249,16 @@ namespace FacebookSharp
         public static string GenerateFacebookAuthorizeUrl(string facebookApplicationId, string redirectUri, string[] extendedPermissions)
         {
             StringBuilder sb = new StringBuilder();
-            if (extendedPermissions != null)
+            if (extendedPermissions != null && extendedPermissions.Length > 0)
             {
-                for (int i = 0; i < sb.Length; i++)
+                foreach (string extendedPermission in extendedPermissions)
                 {
-                    sb.Append(extendedPermissions[i]);
-                    if (i < sb.Length - 1)
-                        sb.Append(",");
+                    sb.Append(extendedPermission);
+                    sb.Append(",");
                 }
+                sb = sb.Remove(sb.Length - 1, 1); // remove the last comma.
             }
-            return string.Format(facebookApplicationId, redirectUri, sb);
+            return GenerateFacebookAuthorizeUrl(facebookApplicationId, redirectUri, sb.ToString());
         }
 
         /// <summary>
