@@ -56,7 +56,15 @@ namespace FacebookSharp.MySqlProvider
 
         public bool IsFacebookUserLinked(string facebookId)
         {
-            throw new NotImplementedException();
+            using (MySqlConnection cn = new MySqlConnection(_connectionString))
+            {
+                MySqlCommand cmd =
+                    new MySqlCommand(string.Format("SELECT COUNT(*) FROM {0} WHERE facebook_id=@facebook_id", _tableName));
+                cmd.Parameters.AddWithValue("@facebook_id", facebookId);
+                cn.Open();
+
+                return (long)cmd.ExecuteScalar() == 1;
+            }
         }
 
         public void LinkFacebook(string membershipUsername, string facebookId, string accessToken)
