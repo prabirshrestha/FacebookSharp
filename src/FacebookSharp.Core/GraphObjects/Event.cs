@@ -2,7 +2,6 @@ namespace FacebookSharp
 {
     public class Event : GraphObject
     {
-        public long ID { get; set; }
         public EventOwner Owner { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }

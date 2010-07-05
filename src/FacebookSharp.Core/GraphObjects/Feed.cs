@@ -2,8 +2,6 @@ namespace FacebookSharp
 {
     public class Feed : GraphObject
     {
-        public string ID { get; set; }
-
         public Friend From { get; set; }
 
         public string Message { get; set; }
