@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Text;
 
 namespace FacebookSharp
 {
@@ -223,5 +224,41 @@ namespace FacebookSharp
         {
             throw new NotImplementedException();
         }
+
+        /// <summary>
+        /// Returns the url to authenticate with Facebook.
+        /// </summary>
+        /// <param name="facebookApplicationId"></param>
+        /// <param name="redirectUri"></param>
+        /// <param name="extendedPermissions"></param>
+        /// <returns></returns>
+        public static string GenerateFacebookAuthorizeUrl(string facebookApplicationId, string redirectUri, string[] extendedPermissions)
+        {
+            StringBuilder sb = new StringBuilder();
+            if (extendedPermissions != null)
+            {
+                for (int i = 0; i < sb.Length; i++)
+                {
+                    sb.Append(extendedPermissions[i]);
+                    if (i < sb.Length - 1)
+                        sb.Append(",");
+                }
+            }
+            return string.Format(facebookApplicationId, redirectUri, sb);
+        }
+
+        /// <summary>
+        /// Returns the url to authenticate with Facebook.
+        /// </summary>
+        /// <param name="facebookApplicationId"></param>
+        /// <param name="redirectUri"></param>
+        /// <param name="extendedPermissions"></param>
+        /// <returns></returns>
+        public static string GenerateFacebookAuthorizeUrl(string facebookApplicationId, string redirectUri, string extendedPermissions)
+        {
+            return string.Format(GraphBaseUrl + "oauth/authorize?client_id={0}&redirect_uri={1}&scope={2}",
+                                 facebookApplicationId, redirectUri, extendedPermissions);
+        }
+
     }
 }
