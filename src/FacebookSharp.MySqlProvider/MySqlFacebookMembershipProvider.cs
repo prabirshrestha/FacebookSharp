@@ -118,7 +118,15 @@ namespace FacebookSharp.MySqlProvider
 
         public void UnlinkFacebookByFacebookId(string facebookId)
         {
-            throw new NotImplementedException();
+            using (MySqlConnection cn = new MySqlConnection(_connectionString))
+            {
+                MySqlCommand cmd = new MySqlCommand(
+                    string.Format("DELETE FROM {0} WHERE facebook_id=@facebook_id", _tableName), cn);
+                cmd.Parameters.AddWithValue("@facebook_id", facebookId);
+
+                cn.Open();
+                cmd.ExecuteNonQuery();
+            }
         }
 
         public string GetFacebookAccessToken(string membershipUsername)
