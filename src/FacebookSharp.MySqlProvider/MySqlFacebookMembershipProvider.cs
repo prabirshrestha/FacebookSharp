@@ -1,7 +1,20 @@
 ﻿using System;
+using MySql.Data.MySqlClient;
+using System.Web.Security;
 
 namespace FacebookSharp.MySqlProvider
 {
+
+    /// <remarks>
+    /// 
+    /// Table structure for MySqlFacebookMembershipProvider
+    ///     CREATE TABLE `facebook_users` (
+    ///		  `user_name` VARCHAR(60), -- membershipUsername, primary key already enforced as unique and not null
+    ///		  `facebook_id` VARCHAR(50) NOT NULL UNIQUE,
+    ///		  `access_token` VARCHAR(256),
+    ///		  PRIMARY KEY (`user_name`)
+    ///		);
+    /// </remarks>
     public class MySqlFacebookMembershipProvider : IFacebookMembershipProvider
     {
         private readonly string _tableName;
@@ -22,12 +35,23 @@ namespace FacebookSharp.MySqlProvider
 
         public bool HasLinkedFacebook(string membershipUsername)
         {
-            throw new NotImplementedException();
+            using (MySqlConnection cn = new MySqlConnection(_connectionString))
+            {
+                MySqlCommand cmd =
+                    new MySqlCommand(string.Format("SELECT COUNT(*) FROM {0} WHERE user_name=@user_name", _tableName));
+                cmd.Parameters.AddWithValue("@user_name", membershipUsername);
+                cn.Open();
+
+                return (long)cmd.ExecuteScalar() == 1;
+            }
         }
 
         public bool HasLinkedFacebook(object membershipProviderUserKey)
         {
-            throw new NotImplementedException();
+            var user = Membership.GetUser(membershipProviderUserKey);
+            if (user == null)
+                return false;
+            return HasLinkedFacebook(user.UserName);
         }
 
         public bool IsFacebookUserLinked(string facebookId)
