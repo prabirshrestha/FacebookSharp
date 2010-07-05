@@ -131,17 +131,40 @@ namespace FacebookSharp.MySqlProvider
 
         public string GetFacebookAccessToken(string membershipUsername)
         {
-            throw new NotImplementedException();
+            using (MySqlConnection cn = new MySqlConnection(_connectionString))
+            {
+                MySqlCommand cmd =
+                    new MySqlCommand(
+                        string.Format("SELECT access_token FROM {0} WHERE user_name=@user_name", _tableName), cn);
+                cmd.Parameters.AddWithValue("@user_name", membershipUsername);
+
+                cn.Open();
+                var result = cmd.ExecuteScalar();
+                return result == null ? "" : result.ToString();
+            }
         }
 
         public string GetFacebookAccessToken(object membershipProviderUserKey)
         {
-            throw new NotImplementedException();
+            MembershipUser user = Membership.GetUser(membershipProviderUserKey);
+            if (user == null)
+                throw new FacebookSharpException("User with given membershipProviderUserKey not found.");
+            return GetFacebookAccessToken(user.UserName);
         }
 
         public string GetFacebookAccessTokenByFacebookId(string facebookId)
         {
-            throw new NotImplementedException();
+            using (MySqlConnection cn = new MySqlConnection(_connectionString))
+            {
+                MySqlCommand cmd =
+                    new MySqlCommand(
+                        string.Format("SELECT access_token FROM {0} WHERE facebookId=@facebookId", _tableName), cn);
+                cmd.Parameters.AddWithValue("@facebookId", facebookId);
+
+                cn.Open();
+                var result = cmd.ExecuteScalar();
+                return result == null ? "" : result.ToString();
+            }
         }
 
         public string GetFacebookId(string membershipUsername)
