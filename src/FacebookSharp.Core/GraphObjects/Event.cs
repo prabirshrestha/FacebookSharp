@@ -3,14 +3,12 @@ namespace FacebookSharp
     /// <summary>
     /// Represents the Facebook Event Graph API type.
     /// </summary>
-    public class Event : GraphObject
+    public class Event : NamedGraphObject
     {
         /// <summary>
         /// Gets or sets the name and ID of the user who owns the event.
         /// </summary>
         public EventOwner Owner { get; set; }
-
-        public string Name { get; set; }
         /// <summary>
         /// Gets or sets the long-form HTML description of the event.
         /// </summary>
