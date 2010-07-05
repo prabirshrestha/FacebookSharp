@@ -1,6 +1,5 @@
-﻿using System;
+﻿using System.Web.Security;
 using MySql.Data.MySqlClient;
-using System.Web.Security;
 
 namespace FacebookSharp.MySqlProvider
 {
@@ -169,12 +168,24 @@ namespace FacebookSharp.MySqlProvider
 
         public string GetFacebookId(string membershipUsername)
         {
-            throw new NotImplementedException();
+            using (MySqlConnection cn = new MySqlConnection(_connectionString))
+            {
+                MySqlCommand cmd =
+                    new MySqlCommand(
+                        string.Format("SELECT facebook_id FROM {0} WHERE user_name=@user_name", _tableName), cn);
+                cmd.Parameters.AddWithValue("@user_name", membershipUsername);
+
+                cn.Open();
+                return cmd.ExecuteScalar().ToString();
+            }
         }
 
         public string GetFacebookId(object membershipProviderUserKey)
         {
-            throw new NotImplementedException();
+            MembershipUser user = Membership.GetUser(membershipProviderUserKey);
+            if (user == null)
+                throw new FacebookSharpException("User with given membershipProviderUserKey not found.");
+            return GetFacebookId(user.UserName);
         }
 
         #endregion
