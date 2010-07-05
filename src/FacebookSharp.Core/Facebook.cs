@@ -172,8 +172,13 @@ namespace FacebookSharp
         public string Request(string graphPath, IDictionary<string, string> parameters, string httpMethod)
         {
             if (IsSessionValid())
-                parameters.Add(Token, AccessToken);
-            string url = GraphBaseUrl + graphPath; // note: facebook android sdk uses rest based if graphPath is null. we don't.
+            {
+                if (parameters == null)
+                    parameters = new Dictionary<string, string>();
+                if (!string.IsNullOrEmpty(Settings.AccessToken))
+                    parameters.Add(Token, AccessToken);
+            }
+            string url = GraphBaseUrl + graphPath; // note: facebook android sdk uses rest based if graphPath is null. we don't. all is graph in ours.
             return FacebookUtils.OpenUrl(url, httpMethod, parameters);
         }
 

@@ -77,7 +77,7 @@ namespace FacebookSharp
         /// </remarks>
         public static string OpenUrl(string url, string method, IDictionary<string, string> parameters)
         {   // this is the default method signature (same method arguments) as in facebook android sdk.
-            return OpenUrl(url, method, parameters, "FacebookSharp", false);
+            return OpenUrl(url, method, parameters, "FacebookSharp", true);
         }
 
         /// <summary>

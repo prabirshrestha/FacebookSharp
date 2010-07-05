@@ -37,7 +37,7 @@ namespace FacebookSharp.MySqlProvider
             using (MySqlConnection cn = new MySqlConnection(_connectionString))
             {
                 MySqlCommand cmd =
-                    new MySqlCommand(string.Format("SELECT COUNT(*) FROM {0} WHERE user_name=@user_name", _tableName));
+                    new MySqlCommand(string.Format("SELECT COUNT(*) FROM {0} WHERE user_name=@user_name", _tableName), cn);
                 cmd.Parameters.AddWithValue("@user_name", membershipUsername);
                 cn.Open();
 
@@ -58,7 +58,7 @@ namespace FacebookSharp.MySqlProvider
             using (MySqlConnection cn = new MySqlConnection(_connectionString))
             {
                 MySqlCommand cmd =
-                    new MySqlCommand(string.Format("SELECT COUNT(*) FROM {0} WHERE facebook_id=@facebook_id", _tableName));
+                    new MySqlCommand(string.Format("SELECT COUNT(*) FROM {0} WHERE facebook_id=@facebook_id", _tableName), cn);
                 cmd.Parameters.AddWithValue("@facebook_id", facebookId);
                 cn.Open();
 
