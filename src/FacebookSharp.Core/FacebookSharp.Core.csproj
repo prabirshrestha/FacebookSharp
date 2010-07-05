@@ -46,6 +46,9 @@
     <Compile Include="Facebook.cs" />
     <Compile Include="FacebookSettings.cs" />
     <Compile Include="FacebookUtils\_FacebookUtils.cs" />
+    <Compile Include="GraphObjects\_Connections.cs" />
+    <Compile Include="GraphObjects\_Metadata.cs" />
+    <Compile Include="GraphObjects\_GraphObject.cs" />
     <Compile Include="IFacebookMembershipProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Schemas\extended_permissions.cs" />
