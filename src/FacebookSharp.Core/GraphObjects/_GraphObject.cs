@@ -7,7 +7,7 @@ namespace FacebookSharp
     public abstract class GraphObject
     {
         /// <summary>
-        /// Gets or sets the object's unique Facebook ID.
+        /// Gets or sets the object's unique Facebook 'id'.
         /// </summary>
         public string ID { get; set; }
 
