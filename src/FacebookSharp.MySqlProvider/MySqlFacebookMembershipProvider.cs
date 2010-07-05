@@ -48,9 +48,9 @@ namespace FacebookSharp.MySqlProvider
 
         public bool HasLinkedFacebook(object membershipProviderUserKey)
         {
-            var user = Membership.GetUser(membershipProviderUserKey);
+            MembershipUser user = Membership.GetUser(membershipProviderUserKey);
             if (user == null)
-                return false;
+                throw new FacebookSharpException("User with given membershipProviderUserKey not found.");
             return HasLinkedFacebook(user.UserName);
         }
 
@@ -69,12 +69,29 @@ namespace FacebookSharp.MySqlProvider
 
         public void LinkFacebook(string membershipUsername, string facebookId, string accessToken)
         {
-            throw new NotImplementedException();
+            using (MySqlConnection cn = new MySqlConnection(_connectionString))
+            {
+                MySqlCommand cmd =
+                    new MySqlCommand(
+                        string.Format(
+                            "INSERT INTO {0} (user_name,facebook_id,access_token) VALUES (@user_name,@facebook_id,@access_token)",
+                            _tableName), cn);
+                cmd.Parameters.AddWithValue("@user_name", membershipUsername);
+                cmd.Parameters.AddWithValue("@facebook_id", facebookId);
+                cmd.Parameters.AddWithValue("@access_token", accessToken);
+
+                cn.Open();
+                cmd.ExecuteNonQuery();
+            }
         }
 
         public void LinkFacebook(object membershipProviderUserKey, string facebookId, string accessToken)
         {
-            throw new NotImplementedException();
+            MembershipUser user = Membership.GetUser(membershipProviderUserKey);
+            if (user == null)
+                throw new FacebookSharpException("User with given membershipProviderUserKey not found.");
+
+            LinkFacebook(user.UserName, facebookId, accessToken);
         }
 
         public void UnlinkFacebook(string membershipUsername)
