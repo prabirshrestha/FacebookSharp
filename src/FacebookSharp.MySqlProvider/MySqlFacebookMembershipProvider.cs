@@ -4,6 +4,20 @@ namespace FacebookSharp.MySqlProvider
 {
     public class MySqlFacebookMembershipProvider : IFacebookMembershipProvider
     {
+        private readonly string _tableName;
+        private readonly string _connectionString;
+
+        public MySqlFacebookMembershipProvider(string connectionString)
+            : this(connectionString, "facebook_users")
+        {
+        }
+
+        public MySqlFacebookMembershipProvider(string connectionString, string tableName)
+        {
+            _connectionString = connectionString;
+            _tableName = tableName;
+        }
+
         #region Implementation of IFacebookMembershipProvider
 
         public bool HasLinkedFacebook(string membershipUsername)
