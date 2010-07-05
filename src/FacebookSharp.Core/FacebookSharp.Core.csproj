@@ -46,8 +46,9 @@
     <Compile Include="Facebook.cs" />
     <Compile Include="FacebookSettings.cs" />
     <Compile Include="FacebookUtils\_FacebookUtils.cs" />
+    <Compile Include="GraphObjects\_Connection.cs" />
     <Compile Include="GraphObjects\Friend.cs" />
-    <Compile Include="GraphObjects\Post.cs" />
+    <Compile Include="GraphObjects\Feed.cs" />
     <Compile Include="GraphObjects\_Connections.cs" />
     <Compile Include="GraphObjects\_Metadata.cs" />
     <Compile Include="GraphObjects\_GraphObject.cs" />

@@ -1,9 +1,10 @@
-
 namespace FacebookSharp
 {
     public class Feed : GraphObject
     {
-        public Friend Author { get; set; }
+        public string ID { get; set; }
+
+        public Friend From { get; set; }
 
         public string Message { get; set; }
 
@@ -28,6 +29,7 @@ namespace FacebookSharp
         public string Created_Time { get; set; }
 
         public string Updated_Time { get; set; }
-
     }
+
+    public class FeedCollection : Connection<Feed> { }
 }
