@@ -47,6 +47,7 @@
     <Compile Include="FacebookSettings.cs" />
     <Compile Include="FacebookUtils\_FacebookUtils.cs" />
     <Compile Include="GraphObjects\Album.cs" />
+    <Compile Include="GraphObjects\Privacy.cs" />
     <Compile Include="GraphObjects\_CategorizedGraphObject.cs" />
     <Compile Include="GraphObjects\Comment.cs" />
     <Compile Include="GraphObjects\From.cs" />
