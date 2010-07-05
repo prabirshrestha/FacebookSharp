@@ -96,12 +96,24 @@ namespace FacebookSharp.MySqlProvider
 
         public void UnlinkFacebook(string membershipUsername)
         {
-            throw new NotImplementedException();
+            using (MySqlConnection cn = new MySqlConnection(_connectionString))
+            {
+                MySqlCommand cmd = new MySqlCommand(
+                    string.Format("DELETE FROM {0} WHERE user_name=@user_name", _tableName), cn);
+                cmd.Parameters.AddWithValue("@user_name", membershipUsername);
+
+                cn.Open();
+                cmd.ExecuteNonQuery();
+            }
         }
 
         public void UnlinkFacebook(object membershipProviderUserKey)
         {
-            throw new NotImplementedException();
+            MembershipUser user = Membership.GetUser(membershipProviderUserKey);
+            if (user == null)
+                throw new FacebookSharpException("User with given membershipProviderUserKey not found.");
+
+            UnlinkFacebook(user.UserName);
         }
 
         public void UnlinkFacebookByFacebookId(string facebookId)
