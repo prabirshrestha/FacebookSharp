@@ -1,8 +1,7 @@
-﻿using System.Web.Security;
-using MySql.Data.MySqlClient;
-
-namespace FacebookSharp.MySqlProvider
+﻿namespace FacebookSharp.MySqlProvider
 {
+    using System.Web.Security;
+    using MySql.Data.MySqlClient;
 
     /// <remarks>
     /// 

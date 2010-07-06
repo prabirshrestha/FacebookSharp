@@ -18,12 +18,12 @@
 // Facebook authentication. Read more about the Graph API at
 // http://developers.facebook.com/docs/api. You can download the Facebook
 // JavaScript SDK at http://github.com/facebook/connect-js/.
-// 
-using System.Collections.Generic;
-using System.Text;
 
 namespace FacebookSharp.Extensions
 {
+    using System.Collections.Generic;
+    using System.Text;
+
     public static class FacebookExtensions
     {
         /// <summary>

@@ -1,10 +1,10 @@
-using System;
-using System.Collections.Generic;
-using System.Net;
-using System.Text;
-
 namespace FacebookSharp
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Net;
+    using System.Text;
+
     public class Facebook
     {
         private FacebookSettings _settings;
