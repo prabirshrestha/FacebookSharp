@@ -54,6 +54,7 @@
     <Compile Include="Schemas\GraphObjects\Page.cs" />
     <Compile Include="Schemas\GraphObjects\Photo.cs" />
     <Compile Include="Schemas\GraphObjects\Privacy.cs" />
+    <Compile Include="Schemas\GraphObjects\Tag.cs" />
     <Compile Include="Schemas\GraphObjects\_CategorizedGraphObject.cs" />
     <Compile Include="Schemas\GraphObjects\Comment.cs" />
     <Compile Include="Schemas\GraphObjects\From.cs" />
