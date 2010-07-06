@@ -37,7 +37,7 @@ namespace FacebookSharp.Schemas.Graph
         //[DataMember(Name = "educations")]
         //public List<Education> Educations { get; set; }
 
-        [DataMember(Name = "last_name")]
+        [DataMember(Name = "gender")]
         public string Gender { get; set; }
 
         [DataMember(Name = "relationship_status")]

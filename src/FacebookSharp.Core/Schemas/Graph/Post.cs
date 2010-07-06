@@ -96,11 +96,17 @@
         [DataMember(Name = "to")]
         public List<To> To { get; set; }
 
+        private CommentCollection _comments;
+
         /// <summary>
         /// Gets or sets the comments for this post.
         /// </summary>
         [DataMember(Name = "comments")]
-        public List<Comment> Comments { get; set; }
+        public CommentCollection Comments
+        {
+            get { return _comments ?? (_comments = new CommentCollection()); }
+            set { _comments = value; }
+        }
 
         //todo action
     }

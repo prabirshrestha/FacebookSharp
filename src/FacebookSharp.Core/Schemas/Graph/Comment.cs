@@ -24,7 +24,7 @@ namespace FacebookSharp.Schemas.Graph
         /// Gets or sets the date on which the comment was created.
         /// </summary>
         [DataMember(Name = "created_time")]
-        public string Created_Time { get; set; }
+        public string CreatedTime { get; set; }
     }
 
     public class CommentCollection : Connection<Comment>
