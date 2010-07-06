@@ -58,6 +58,7 @@
     <Compile Include="Schemas\Graph\Tag.cs" />
     <Compile Include="Schemas\Graph\To.cs" />
     <Compile Include="Schemas\Graph\Url.cs" />
+    <Compile Include="Schemas\Graph\Video.cs" />
     <Compile Include="Schemas\Graph\_CategorizedGraphObject.cs" />
     <Compile Include="Schemas\Graph\Comment.cs" />
     <Compile Include="Schemas\Graph\From.cs" />
