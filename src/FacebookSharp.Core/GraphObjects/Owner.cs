@@ -1,6 +1,6 @@
 namespace FacebookSharp
 {
-    public class EventOwner : NamedGraphObject
+    public class Owner : NamedGraphObject
     {
         
     }

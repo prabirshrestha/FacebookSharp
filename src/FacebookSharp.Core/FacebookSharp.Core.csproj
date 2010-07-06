@@ -47,12 +47,13 @@
     <Compile Include="FacebookSettings.cs" />
     <Compile Include="FacebookUtils\_FacebookUtils.cs" />
     <Compile Include="GraphObjects\Album.cs" />
+    <Compile Include="GraphObjects\Group.cs" />
     <Compile Include="GraphObjects\Privacy.cs" />
     <Compile Include="GraphObjects\_CategorizedGraphObject.cs" />
     <Compile Include="GraphObjects\Comment.cs" />
     <Compile Include="GraphObjects\From.cs" />
     <Compile Include="GraphObjects\Event.cs" />
-    <Compile Include="GraphObjects\EventOwner.cs" />
+    <Compile Include="GraphObjects\Owner.cs" />
     <Compile Include="GraphObjects\HomeTownLocation.cs" />
     <Compile Include="GraphObjects\Location.cs" />
     <Compile Include="GraphObjects\User.cs" />
