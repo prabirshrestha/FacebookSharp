@@ -50,6 +50,7 @@
     <Compile Include="GraphObjects\Album.cs" />
     <Compile Include="GraphObjects\Group.cs" />
     <Compile Include="GraphObjects\Link.cs" />
+    <Compile Include="GraphObjects\Note.cs" />
     <Compile Include="GraphObjects\Privacy.cs" />
     <Compile Include="GraphObjects\_CategorizedGraphObject.cs" />
     <Compile Include="GraphObjects\Comment.cs" />
