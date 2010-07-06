@@ -1,42 +1,19 @@
-using System.Runtime.Serialization;
-
 namespace FacebookSharp.Schemas.Graph
 {
+    using System.Collections.Generic;
+    using System.Runtime.Serialization;
+
     /// <summary>
-    /// Represents the Facebook Tag Graph API.
+    /// Represents the Facebook Photo Graph API.
     /// </summary>
     [DataContract]
-    public class Tag : NamedGraphObject
+    public class Photo : NamedGraphObject
     {
         /// <summary>
-        /// Gets or sets X coordinate (as a percentage of distance from left vs width).
-        /// </summary>
-        [DataMember(Name = "x")]
-        public int X { get; set; }
-
-        /// <summary>
-        /// Gets or sets Y coordinate (as a percentage of distance from top vs height).
-        /// </summary>
-        [DataMember(Name = "y")]
-        public int Y { get; set; }
-
-        /// <summary>
-        /// Gets or sets the time the photo was initially published.
-        /// </summary>
-        [DataMember(Name = "created_time")]
-        public string CreatedTime { get; set; }
-
-        /// <summary>
-        /// Gets or sets the last time the photo or its caption was updated.
-        /// </summary>
-        [DataMember(Name = "updated_time")]
-        public string UpdatedTime { get; set; }
-
-        /// <summary>
-        /// Gets or sets an object containing the name and ID of the user who posted the photo.
+        /// Gets or sets an object containing the name and id of the user who posted the photo.
         /// </summary>
         [DataMember(Name = "from")]
-        public From From { get; set; }
+        public CategorizedGraphObject From { get; set; }
 
         /// <summary>
         /// Gets or sets the album-sized view of the photo.
@@ -54,13 +31,13 @@ namespace FacebookSharp.Schemas.Graph
         /// Gets or sets the height of the photo, in pixels.
         /// </summary>
         [DataMember(Name = "height")]
-        public int Height { get; set; }
+        public string Height { get; set; }
 
         /// <summary>
         /// Gets or sets the width of the photo, in pixels.
         /// </summary>
         [DataMember(Name = "width")]
-        public int Width { get; set; }
+        public string Width { get; set; }
 
         /// <summary>
         /// Gets or sets the link to the photo on Facebook.
@@ -73,5 +50,23 @@ namespace FacebookSharp.Schemas.Graph
         /// </summary>
         [DataMember(Name = "icon")]
         public string Icon { get; set; }
+
+        /// <summary>
+        /// Gets or sets the time the photo was initally published.
+        /// </summary>
+        [DataMember(Name = "created_time")]
+        public string CreatedTime { get; set; }
+
+        /// <summary>
+        /// Gets or sets the last time the photo or its caption was updated.
+        /// </summary>
+        [DataMember(Name = "updated_time")]
+        public string UpdatedTime { get; set; }
+
+        /// <summary>
+        /// Gets or sets the users and their positions in the photo.
+        /// </summary>
+        [DataMember(Name = "tags")]
+        public List<Tag> Tags { get; set; }
     }
 }

@@ -1,7 +1,7 @@
-using System.Runtime.Serialization;
-
 namespace FacebookSharp.Schemas.Graph
 {
+    using System.Runtime.Serialization;
+
     /// <summary>
     /// Represents the Facebook Link Graph API type.
     /// </summary>
@@ -13,26 +13,31 @@ namespace FacebookSharp.Schemas.Graph
         /// </summary>
         [DataMember(Name = "from")]
         public From From { get; set; }
+        
         /// <summary>
         /// Gets or sets the link message content.
         /// </summary>
         [DataMember(Name = "message")]
         public string Message { get; set; }
+        
         /// <summary>
         /// Gets or sets te picture associated with the link.
         /// </summary>
         [DataMember(Name = "picture")]
         public string Picture { get; set; }
+        
         /// <summary>
         /// Gets or sets the actual URL that was shared.
         /// </summary>
         [DataMember(Name = "link")]
         public string Url { get; set; }
+        
         /// <summary>
         /// Gets or sets the link description
         /// </summary>
         [DataMember(Name = "description")]
         public string Description { get; set; }
+        
         /// <summary>
         /// Gets or sets the link icon.
         /// </summary>
