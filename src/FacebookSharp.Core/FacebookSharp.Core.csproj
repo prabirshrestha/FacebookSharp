@@ -53,8 +53,10 @@
     <Compile Include="Schemas\Graph\Note.cs" />
     <Compile Include="Schemas\Graph\Page.cs" />
     <Compile Include="Schemas\Graph\Photo.cs" />
+    <Compile Include="Schemas\Graph\Post.cs" />
     <Compile Include="Schemas\Graph\Privacy.cs" />
     <Compile Include="Schemas\Graph\Tag.cs" />
+    <Compile Include="Schemas\Graph\To.cs" />
     <Compile Include="Schemas\Graph\_CategorizedGraphObject.cs" />
     <Compile Include="Schemas\Graph\Comment.cs" />
     <Compile Include="Schemas\Graph\From.cs" />
@@ -66,7 +68,6 @@
     <Compile Include="Schemas\Graph\Work.cs" />
     <Compile Include="Schemas\Graph\_Connection.cs" />
     <Compile Include="Schemas\Graph\Friend.cs" />
-    <Compile Include="Schemas\Graph\Feed.cs" />
     <Compile Include="Schemas\Graph\_Connections.cs" />
     <Compile Include="Schemas\Graph\_Metadata.cs" />
     <Compile Include="Schemas\Graph\_GraphObject.cs" />
