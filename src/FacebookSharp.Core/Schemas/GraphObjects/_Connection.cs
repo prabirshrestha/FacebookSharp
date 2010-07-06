@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace FacebookSharp
+namespace FacebookSharp.Schemas.Graph
 {
     public abstract class Connection<T> : GraphObject
         where T : GraphObject

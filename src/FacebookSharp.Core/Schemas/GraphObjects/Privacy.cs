@@ -1,4 +1,4 @@
-namespace FacebookSharp
+namespace FacebookSharp.Schemas.Graph
 {
     public enum Privacy
     {

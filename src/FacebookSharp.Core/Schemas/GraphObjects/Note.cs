@@ -1,6 +1,6 @@
 using System.Runtime.Serialization;
 
-namespace FacebookSharp
+namespace FacebookSharp.Schemas.Graph
 {
     /// <summary>
     /// Represents the facebook Note Graph API type.

@@ -1,4 +1,4 @@
-namespace FacebookSharp
+namespace FacebookSharp.Schemas.Graph
 {
     /// <summary>
     /// Represents the Facebook Event Graph API type.

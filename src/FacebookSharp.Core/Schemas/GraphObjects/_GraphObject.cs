@@ -1,5 +1,5 @@
 
-namespace FacebookSharp
+namespace FacebookSharp.Schemas.Graph
 {
     /// <summary>
     /// Base class which encapsulates behavior and properties common to most Facebook Graph API types.

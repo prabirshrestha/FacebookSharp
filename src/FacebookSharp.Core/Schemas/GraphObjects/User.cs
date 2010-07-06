@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace FacebookSharp
+namespace FacebookSharp.Schemas.Graph
 {
     public class User : GraphObject
     {

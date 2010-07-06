@@ -1,4 +1,4 @@
-namespace FacebookSharp
+namespace FacebookSharp.Schemas.Graph
 {
     /// <summary>
     /// Base class for Facebook Graph API types that include a 'category' field.
