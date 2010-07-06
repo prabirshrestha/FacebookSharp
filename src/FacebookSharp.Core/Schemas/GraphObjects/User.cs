@@ -1,11 +1,16 @@
 using System.Collections.Generic;
+using System.Runtime.Serialization;
 
 namespace FacebookSharp.Schemas.Graph
 {
+    [DataContract]
     public class User : GraphObject
     {
-        public string First_Name { get; set; }
-        public string Last_Name { get; set; }
+        [DataMember(Name = "first_name")]
+        public string FirstName { get; set; }
+
+        [DataMember(Name = "last_name")]
+        public string LastName { get; set; }
         public string Name { get; set; }
         public string Link { get; set; }
         public string About { get; set; }
@@ -13,7 +18,7 @@ namespace FacebookSharp.Schemas.Graph
         public HomeTownLocation HomeTown { get; set; }
         public Location Location { get; set; }
         public List<Work> Work { get; set; }
-        
+
         // todo: education
 
         public string Gender { get; set; }

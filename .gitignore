@@ -21,3 +21,6 @@ _ReSharper.*/
 # Misc Ignores
 Thumbs.db
 !libs/*/Bin/
+
+# StyleCop Cache ignores
+*StyleCop.Cache
