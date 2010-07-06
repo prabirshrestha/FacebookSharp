@@ -46,6 +46,7 @@
     <Compile Include="Exceptions\__FacebookSharpException.cs" />
     <Compile Include="Facebook.cs" />
     <Compile Include="FacebookSettings.cs" />
+    <Compile Include="FacebookUtils\DateUtils.cs" />
     <Compile Include="FacebookUtils\_FacebookUtils.cs" />
     <Compile Include="Schemas\Graph\Album.cs" />
     <Compile Include="Schemas\Graph\Group.cs" />
