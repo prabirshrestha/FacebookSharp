@@ -33,14 +33,25 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FacebookJavascriptSdkSettings.cs" />
     <Compile Include="FacebookJavscriptSdk.cs" />
+    <Compile Include="FB\init.cs" />
+    <Compile Include="FB\logout.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Resources\xd_receiver.htm" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\FacebookSharp.Core\FacebookSharp.Core.csproj">
+      <Project>{4E7E4294-219E-457A-B092-D1283A7B28BE}</Project>
+      <Name>FacebookSharp.Core</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
