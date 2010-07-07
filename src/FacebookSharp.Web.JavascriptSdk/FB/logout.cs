@@ -9,9 +9,9 @@ namespace FacebookSharp.Web.JavascriptSdk
             return "Fb.logout(function(cb){});";
         }
 
-        public string Logout(string body)
+        public string Logout(string callbackFunctionName)
         {
-            return Logout("cb", body);
+            return string.Format("FB.logout({0});", callbackFunctionName);
         }
 
         public string Logout(string callBackFunctionVarName, string body)
