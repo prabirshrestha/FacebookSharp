@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FacebookSharp.Core", "Faceb
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FacebookSharp.MySqlProvider", "FacebookSharp.MySqlProvider\FacebookSharp.MySqlProvider.csproj", "{AF07862D-1427-4C2C-BD30-2264E7AE3FF6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FacebookSharp.Web.JavascriptSdk", "FacebookSharp.Web.JavascriptSdk\FacebookSharp.Web.JavascriptSdk.csproj", "{CF8E1346-32E6-4A22-83E8-DF781009248E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -25,6 +27,10 @@ Global
 		{AF07862D-1427-4C2C-BD30-2264E7AE3FF6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AF07862D-1427-4C2C-BD30-2264E7AE3FF6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AF07862D-1427-4C2C-BD30-2264E7AE3FF6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CF8E1346-32E6-4A22-83E8-DF781009248E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CF8E1346-32E6-4A22-83E8-DF781009248E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CF8E1346-32E6-4A22-83E8-DF781009248E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CF8E1346-32E6-4A22-83E8-DF781009248E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
