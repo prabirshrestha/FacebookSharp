@@ -193,6 +193,13 @@ namespace FacebookSharp
             return json;
         }
 
+        public static void ThrowIfFacebookException(string response)
+        {
+            var ex = ToFacebookException(response);
+            if (ex != null)
+                throw ex;
+        }
+
         public static FacebookException ToFacebookException(string response)
         {
             JToken tmp;

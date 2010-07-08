@@ -114,6 +114,7 @@ namespace FacebookSharp
         public T Request<T>(string graphPath)
         {
             var jsonString = Request(graphPath);
+            FacebookUtils.ThrowIfFacebookException(jsonString);
             return FacebookUtils.DeserializeObject<T>(jsonString);
         }
 
@@ -172,6 +173,7 @@ namespace FacebookSharp
         public T Request<T>(string graphPath, IDictionary<string, string> parameters)
         {
             var jsonString = Request(graphPath, parameters);
+            FacebookUtils.ThrowIfFacebookException(jsonString);
             return FacebookUtils.DeserializeObject<T>(jsonString);
         }
 
@@ -236,6 +238,7 @@ namespace FacebookSharp
         public T Request<T>(string graphPath, IDictionary<string, string> parameters, string httpMethod)
         {
             var jsonString = Request(graphPath, parameters, httpMethod);
+            FacebookUtils.ThrowIfFacebookException(jsonString);
             return FacebookUtils.DeserializeObject<T>(jsonString);
         }
 
