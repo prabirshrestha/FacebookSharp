@@ -135,13 +135,14 @@ namespace FacebookSharp
             }
             catch (WebException ex)
             {
-                using (var response = (HttpWebResponse)request.GetResponse())
+                if (ex.Status == WebExceptionStatus.ProtocolError && ex.Response != null)
                 {
-                    using (var reader = new StreamReader(response.GetResponseStream()))
+                    using (var reader = new StreamReader(ex.Response.GetResponseStream()))
                     {
                         return reader.ReadToEnd();
                     }
                 }
+                throw new FacebookSharpException("Unknown Error occured when communicating with facebook.", ex);
             }
         }
 
@@ -180,6 +181,26 @@ namespace FacebookSharp
         public static JToken ParseJson(string response, bool throwException)
         {
             JToken json;
+
+            FacebookException ex = ToFacebookException(response, out json);
+
+            if (!throwException) // i think sometimes, it shouldn't throw error,
+                return json;     // rather user should have more control over the behavior.
+
+            if (ex != null)
+                throw ex;
+
+            return json;
+        }
+
+        public static FacebookException ToFacebookException(string response)
+        {
+            JToken tmp;
+            return ToFacebookException(response, out tmp);
+        }
+
+        public static FacebookException ToFacebookException(string response, out JToken json)
+        {
             using (StringReader reader = new StringReader(response))
             {
                 using (JsonTextReader jsonTextReader = new JsonTextReader(reader))
@@ -188,10 +209,6 @@ namespace FacebookSharp
                 }
             }
 
-            if (!throwException) // i think sometimes, it shouldn't throw error,
-                return json;     // rather user should have more control over the behavior.
-
-            // todo: need to create a Facebook Exception Parser and throw more specific exceptions.
             // edge case: when sending a POST request to /[post_id]/likes
             // the return value is 'true' or 'false'.
             // just throw normal FacebookException.
@@ -202,23 +219,34 @@ namespace FacebookSharp
 
             JToken error = json["error"];
             if (error != null)
-                throw new FacebookException(error.Value<string>("message"), error.Value<string>("type"), 0);
+            {
+                string type = error.Value<string>("type");
+                string message = error.Value<string>("message");
+
+                switch (type)
+                {
+                    case "OAuthException":
+                        return new OAuthException(message);
+                }
+                // Just return generice if couldn't resolve. todo: add more
+                return new FacebookException(message, type, 0);
+            }
 
             JToken errorCode = json["error_code"];
             JToken errorMsg = json["error_msg"];
 
             if (errorCode != null && errorMsg != null)
-                throw new FacebookException(errorMsg.Value<string>(), "", int.Parse(errorCode.Value<string>()));
+                return new FacebookException(errorMsg.Value<string>(), "", int.Parse(errorCode.Value<string>()));
             if (errorCode != null)
-                throw new FacebookException("request faild", "", int.Parse(errorCode.Value<string>()));
+                return new FacebookException("request faild", "", int.Parse(errorCode.Value<string>()));
             if (errorMsg != null)
-                throw new FacebookException(errorMsg.Value<string>());
+                return new FacebookException(errorMsg.Value<string>());
 
             JToken errorReason = json["error_reason"];
             if (errorReason != null)
-                throw new FacebookException(errorReason.Value<string>());
+                return new FacebookException(errorReason.Value<string>());
 
-            return json;
+            return null;
         }
 
         /// <summary>
