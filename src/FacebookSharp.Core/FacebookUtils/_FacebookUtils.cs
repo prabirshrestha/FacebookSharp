@@ -234,6 +234,8 @@ namespace FacebookSharp
                 {
                     case "OAuthException":
                         return new OAuthException(message);
+                    case "QueryParseException":
+                        return new QueryParseException(message);
                 }
                 // Just return generice if couldn't resolve. todo: add more
                 return new FacebookException(message, type, 0);

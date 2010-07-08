@@ -43,6 +43,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Exceptions\OAuthException.cs" />
+    <Compile Include="Exceptions\QueryParseException.cs" />
     <Compile Include="Exceptions\_FacebookException.cs" />
     <Compile Include="Exceptions\__FacebookSharpException.cs" />
     <Compile Include="Facebook.cs" />
