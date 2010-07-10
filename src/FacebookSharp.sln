@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FacebookSharp.MySqlProvider
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FacebookSharp.Web.JavascriptSdk", "FacebookSharp.Web.JavascriptSdk\FacebookSharp.Web.JavascriptSdk.csproj", "{CF8E1346-32E6-4A22-83E8-DF781009248E}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DotNet35", "DotNet35", "{ADAE1C63-5FA2-42B1-8E38-8DDECF079DA0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -34,5 +36,11 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{4E7E4294-219E-457A-B092-D1283A7B28BE} = {ADAE1C63-5FA2-42B1-8E38-8DDECF079DA0}
+		{CEF9D393-79A7-4FFC-9A6E-E415E57FFAEE} = {ADAE1C63-5FA2-42B1-8E38-8DDECF079DA0}
+		{AF07862D-1427-4C2C-BD30-2264E7AE3FF6} = {ADAE1C63-5FA2-42B1-8E38-8DDECF079DA0}
+		{CF8E1346-32E6-4A22-83E8-DF781009248E} = {ADAE1C63-5FA2-42B1-8E38-8DDECF079DA0}
 	EndGlobalSection
 EndGlobal
