@@ -54,7 +54,7 @@
   <ItemGroup>
     <ProjectReference Include="..\FacebookSharp.Core\FacebookSharp.Core.csproj">
       <Project>{4E7E4294-219E-457A-B092-D1283A7B28BE}</Project>
-      <Name>FacebookSharp.Core</Name>
+      <Name>FacebookSharp.Core %28DotNet35\FacebookSharp.Core%29</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

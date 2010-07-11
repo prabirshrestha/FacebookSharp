@@ -1,0 +1,197 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{F80CA490-7E13-417A-99D8-63A557BF7D38}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>FacebookSharp.Core</RootNamespace>
+    <AssemblyName>FacebookSharp.Core</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\..\bin\DotNet4\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>..\..\..\bin\DotNet4\Debug\FacebookSharp.Core.XML</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\..\..\bin\DotNet4\bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>..\..\..\bin\DotNet4\bin\Release\FacebookSharp.Core.XML</DocumentationFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\..\..\libs\Json35r7\Bin\DotNet\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\..\FacebookSharp.Core\Exceptions\OAuthException.cs">
+      <Link>Exceptions\OAuthException.cs</Link>
+    </Compile>
+    <Compile Include="..\..\FacebookSharp.Core\Exceptions\_FacebookException.cs">
+      <Link>Exceptions\_FacebookException.cs</Link>
+    </Compile>
+    <Compile Include="..\..\FacebookSharp.Core\Exceptions\__FacebookSharpException.cs">
+      <Link>Exceptions\__FacebookSharpException.cs</Link>
+    </Compile>
+    <Compile Include="..\..\FacebookSharp.Core\Facebook.cs">
+      <Link>Facebook.cs</Link>
+    </Compile>
+    <Compile Include="..\..\FacebookSharp.Core\FacebookSettings.cs">
+      <Link>FacebookSettings.cs</Link>
+    </Compile>
+    <Compile Include="..\..\FacebookSharp.Core\FacebookUtils\DateUtils.cs">
+      <Link>FacebookUtils\DateUtils.cs</Link>
+    </Compile>
+    <Compile Include="..\..\FacebookSharp.Core\FacebookUtils\HttpUtitliy.cs">
+      <Link>FacebookUtils\HttpUtitliy.cs</Link>
+    </Compile>
+    <Compile Include="..\..\FacebookSharp.Core\FacebookUtils\_FacebookUtils.cs">
+      <Link>FacebookUtils\_FacebookUtils.cs</Link>
+    </Compile>
+    <Compile Include="..\..\FacebookSharp.Core\IFacebookMembershipProvider.cs">
+      <Link>IFacebookMembershipProvider.cs</Link>
+    </Compile>
+    <Compile Include="..\..\FacebookSharp.Core\Properties\AssemblyInfo.cs">
+      <Link>Properties\AssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\..\FacebookSharp.Core\Schemas\extended_permissions.cs">
+      <Link>Schemas\extended_permissions.cs</Link>
+    </Compile>
+    <Compile Include="..\..\FacebookSharp.Core\Schemas\Graph\Album.cs">
+      <Link>Schemas\Graph\Album.cs</Link>
+    </Compile>
+    <Compile Include="..\..\FacebookSharp.Core\Schemas\Graph\Comment.cs">
+      <Link>Schemas\Graph\Comment.cs</Link>
+    </Compile>
+    <Compile Include="..\..\FacebookSharp.Core\Schemas\Graph\Event.cs">
+      <Link>Schemas\Graph\Event.cs</Link>
+    </Compile>
+    <Compile Include="..\..\FacebookSharp.Core\Schemas\Graph\Friend.cs">
+      <Link>Schemas\Graph\Friend.cs</Link>
+    </Compile>
+    <Compile Include="..\..\FacebookSharp.Core\Schemas\Graph\From.cs">
+      <Link>Schemas\Graph\From.cs</Link>
+    </Compile>
+    <Compile Include="..\..\FacebookSharp.Core\Schemas\Graph\Group.cs">
+      <Link>Schemas\Graph\Group.cs</Link>
+    </Compile>
+    <Compile Include="..\..\FacebookSharp.Core\Schemas\Graph\HomeTownLocation.cs">
+      <Link>Schemas\Graph\HomeTownLocation.cs</Link>
+    </Compile>
+    <Compile Include="..\..\FacebookSharp.Core\Schemas\Graph\Link.cs">
+      <Link>Schemas\Graph\Link.cs</Link>
+    </Compile>
+    <Compile Include="..\..\FacebookSharp.Core\Schemas\Graph\Location.cs">
+      <Link>Schemas\Graph\Location.cs</Link>
+    </Compile>
+    <Compile Include="..\..\FacebookSharp.Core\Schemas\Graph\Note.cs">
+      <Link>Schemas\Graph\Note.cs</Link>
+    </Compile>
+    <Compile Include="..\..\FacebookSharp.Core\Schemas\Graph\Owner.cs">
+      <Link>Schemas\Graph\Owner.cs</Link>
+    </Compile>
+    <Compile Include="..\..\FacebookSharp.Core\Schemas\Graph\Page.cs">
+      <Link>Schemas\Graph\Page.cs</Link>
+    </Compile>
+    <Compile Include="..\..\FacebookSharp.Core\Schemas\Graph\Photo.cs">
+      <Link>Schemas\Graph\Photo.cs</Link>
+    </Compile>
+    <Compile Include="..\..\FacebookSharp.Core\Schemas\Graph\Post.cs">
+      <Link>Schemas\Graph\Post.cs</Link>
+    </Compile>
+    <Compile Include="..\..\FacebookSharp.Core\Schemas\Graph\Privacy.cs">
+      <Link>Schemas\Graph\Privacy.cs</Link>
+    </Compile>
+    <Compile Include="..\..\FacebookSharp.Core\Schemas\Graph\Tag.cs">
+      <Link>Schemas\Graph\Tag.cs</Link>
+    </Compile>
+    <Compile Include="..\..\FacebookSharp.Core\Schemas\Graph\To.cs">
+      <Link>Schemas\Graph\To.cs</Link>
+    </Compile>
+    <Compile Include="..\..\FacebookSharp.Core\Schemas\Graph\Url.cs">
+      <Link>Schemas\Graph\Url.cs</Link>
+    </Compile>
+    <Compile Include="..\..\FacebookSharp.Core\Schemas\Graph\User.cs">
+      <Link>Schemas\Graph\User.cs</Link>
+    </Compile>
+    <Compile Include="..\..\FacebookSharp.Core\Schemas\Graph\Video.cs">
+      <Link>Schemas\Graph\Video.cs</Link>
+    </Compile>
+    <Compile Include="..\..\FacebookSharp.Core\Schemas\Graph\Work.cs">
+      <Link>Schemas\Graph\Work.cs</Link>
+    </Compile>
+    <Compile Include="..\..\FacebookSharp.Core\Schemas\Graph\_CategorizedGraphObject.cs">
+      <Link>Schemas\Graph\_CategorizedGraphObject.cs</Link>
+    </Compile>
+    <Compile Include="..\..\FacebookSharp.Core\Schemas\Graph\_Connection.cs">
+      <Link>Schemas\Graph\_Connection.cs</Link>
+    </Compile>
+    <Compile Include="..\..\FacebookSharp.Core\Schemas\Graph\_Connections.cs">
+      <Link>Schemas\Graph\_Connections.cs</Link>
+    </Compile>
+    <Compile Include="..\..\FacebookSharp.Core\Schemas\Graph\_GraphObject.cs">
+      <Link>Schemas\Graph\_GraphObject.cs</Link>
+    </Compile>
+    <Compile Include="..\..\FacebookSharp.Core\Schemas\Graph\_Metadata.cs">
+      <Link>Schemas\Graph\_Metadata.cs</Link>
+    </Compile>
+    <Compile Include="..\..\FacebookSharp.Core\Schemas\Graph\_NamedGraphObject.cs">
+      <Link>Schemas\Graph\_NamedGraphObject.cs</Link>
+    </Compile>
+    <Compile Include="..\..\FacebookSharp.Core\Schemas\Graph\_Paging.cs">
+      <Link>Schemas\Graph\_Paging.cs</Link>
+    </Compile>
+    <Compile Include="..\..\FacebookSharp.Core\Schemas\schemas.cs">
+      <Link>Schemas\schemas.cs</Link>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\FacebookSharp.Core\Schemas\enum_flags_generator.rb">
+      <Link>Schemas\enum_flags_generator.rb</Link>
+    </None>
+    <None Include="..\..\FacebookSharp.Core\Schemas\extended_permissions.data">
+      <Link>Schemas\extended_permissions.data</Link>
+    </None>
+    <None Include="..\..\FacebookSharp.Core\Schemas\extended_permissions.data.dat">
+      <Link>Schemas\extended_permissions.data.dat</Link>
+    </None>
+    <EmbeddedResource Include="..\..\FacebookSharp.Core\Schemas\facebook.xsd">
+      <Link>Schemas\facebook.xsd</Link>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <None Include="..\..\FacebookSharp.Core\Schemas\generate_schemas.bat">
+      <Link>Schemas\generate_schemas.bat</Link>
+    </None>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
