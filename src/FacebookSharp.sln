@@ -15,6 +15,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DotNet4", "DotNet4", "{6E90
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FacebookSharp.Core", "DotNet4\FacebookSharp.Core\FacebookSharp.Core.csproj", "{F80CA490-7E13-417A-99D8-63A557BF7D38}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FacebookSharp.Extensions", "DotNet4\FacebookSharp.Extensions\FacebookSharp.Extensions.csproj", "{CE43F528-C493-4676-B4E2-869C2349577B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -41,6 +43,10 @@ Global
 		{F80CA490-7E13-417A-99D8-63A557BF7D38}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F80CA490-7E13-417A-99D8-63A557BF7D38}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F80CA490-7E13-417A-99D8-63A557BF7D38}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CE43F528-C493-4676-B4E2-869C2349577B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CE43F528-C493-4676-B4E2-869C2349577B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CE43F528-C493-4676-B4E2-869C2349577B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CE43F528-C493-4676-B4E2-869C2349577B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -51,5 +57,6 @@ Global
 		{CF8E1346-32E6-4A22-83E8-DF781009248E} = {ADAE1C63-5FA2-42B1-8E38-8DDECF079DA0}
 		{CEF9D393-79A7-4FFC-9A6E-E415E57FFAEE} = {ADAE1C63-5FA2-42B1-8E38-8DDECF079DA0}
 		{F80CA490-7E13-417A-99D8-63A557BF7D38} = {6E90872E-795D-4B4B-9AC6-B05837EF7E22}
+		{CE43F528-C493-4676-B4E2-869C2349577B} = {6E90872E-795D-4B4B-9AC6-B05837EF7E22}
 	EndGlobalSection
 EndGlobal
