@@ -19,20 +19,20 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\..\bin\Debug\</OutputPath>
+    <OutputPath>..\..\bin\DotNet35\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>..\..\bin\Debug\FacebookSharp.MySqlProvider.XML</DocumentationFile>
+    <DocumentationFile>..\..\bin\DotNet35\Debug\FacebookSharp.MySqlProvider.XML</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>..\..\bin\Release\</OutputPath>
+    <OutputPath>..\..\bin\DotNet35\Release\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>..\..\bin\Release\FacebookSharp.MySqlProvider.XML</DocumentationFile>
+    <DocumentationFile>..\..\bin\DotNet35\Release\FacebookSharp.MySqlProvider.XML</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="MySql.Data, Version=5.2.5.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
@@ -54,7 +54,7 @@
   <ItemGroup>
     <ProjectReference Include="..\FacebookSharp.Core\FacebookSharp.Core.csproj">
       <Project>{4E7E4294-219E-457A-B092-D1283A7B28BE}</Project>
-      <Name>FacebookSharp.Core</Name>
+      <Name>FacebookSharp.Core %28DotNet35\FacebookSharp.Core%29</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

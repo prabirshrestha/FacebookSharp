@@ -5,12 +5,12 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{CEF9D393-79A7-4FFC-9A6E-E415E57FFAEE}</ProjectGuid>
+    <ProjectGuid>{CE43F528-C493-4676-B4E2-869C2349577B}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>FacebookSharp.Extensions</RootNamespace>
     <AssemblyName>FacebookSharp.Extensions</AssemblyName>
-    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile>Client</TargetFrameworkProfile>
   </PropertyGroup>
@@ -18,37 +18,42 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\..\bin\DotNet35\Debug\</OutputPath>
+    <OutputPath>..\..\..\bin\DotNet4\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>..\..\bin\DotNet35\Debug\FacebookSharp.Extensions.XML</DocumentationFile>
+    <DocumentationFile>..\..\..\bin\DotNet4\Debug\FacebookSharp.Extensions.XML</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>..\..\bin\DotNet35\Release\</OutputPath>
+    <OutputPath>..\..\..\bin\DotNet4\Debug\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>..\..\bin\DotNet35\Release\FacebookSharp.Extensions.XML</DocumentationFile>
+    <DocumentationFile>..\..\..\bin\DotNet4\Debug\FacebookSharp.Extensions.XML</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FacebookExtensions.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="..\..\FacebookSharp.Extensions\FacebookExtensions.cs">
+      <Link>FacebookExtensions.cs</Link>
+    </Compile>
+    <Compile Include="..\..\FacebookSharp.Extensions\Properties\AssemblyInfo.cs">
+      <Link>Properties\AssemblyInfo.cs</Link>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\FacebookSharp.Core\FacebookSharp.Core.csproj">
-      <Project>{4E7E4294-219E-457A-B092-D1283A7B28BE}</Project>
-      <Name>FacebookSharp.Core %28DotNet35\FacebookSharp.Core%29</Name>
+      <Project>{F80CA490-7E13-417A-99D8-63A557BF7D38}</Project>
+      <Name>FacebookSharp.Core %28DotNet4\FacebookSharp.Core%29</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

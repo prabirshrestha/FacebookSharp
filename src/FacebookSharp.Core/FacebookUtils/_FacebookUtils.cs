@@ -10,6 +10,11 @@ namespace FacebookSharp
 
     public static partial class FacebookUtils
     {
+        static FacebookUtils()
+        {
+            InitHttpUtility();
+        }
+
         public static string EncodeUrl(IDictionary<string, string> parameters)
         {
             if (parameters == null || parameters.Count == 0)
@@ -22,7 +27,7 @@ namespace FacebookSharp
                     first = false;
                 else
                     sb.Append("&");
-                sb.AppendFormat("{0}={1}", pair.Key, pair.Value);
+                sb.AppendFormat("{0}={1}", UrlEncode(pair.Key), UrlEncode(pair.Value));
             }
             return sb.ToString();
         }
@@ -37,7 +42,7 @@ namespace FacebookSharp
             foreach (string parameter in array)
             {
                 string[] pair = parameter.Split('=');
-                parameters.Add(pair[0], pair[1]);
+                parameters.Add(UrlDecode(pair[0]), UrlDecode(pair[1]));
             }
             return parameters;
         }

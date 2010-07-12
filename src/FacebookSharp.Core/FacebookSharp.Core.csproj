@@ -18,20 +18,20 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\..\bin\Debug\</OutputPath>
+    <OutputPath>..\..\bin\DotNet35\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>..\..\bin\Debug\FacebookSharp.Core.xml</DocumentationFile>
+    <DocumentationFile>..\..\bin\DotNet35\Debug\FacebookSharp.Core.XML</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>..\..\bin\Release\</OutputPath>
+    <OutputPath>..\..\bin\DotNet35\Release\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>..\..\bin\Release\FacebookSharp.Core.xml</DocumentationFile>
+    <DocumentationFile>..\..\bin\DotNet35\Release\FacebookSharp.Core.XML</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Newtonsoft.Json">
@@ -49,6 +49,7 @@
     <Compile Include="Facebook.cs" />
     <Compile Include="FacebookSettings.cs" />
     <Compile Include="FacebookUtils\DateUtils.cs" />
+    <Compile Include="FacebookUtils\HttpUtitliy.cs" />
     <Compile Include="FacebookUtils\_FacebookUtils.cs" />
     <Compile Include="Schemas\Graph\Album.cs" />
     <Compile Include="Schemas\Graph\Group.cs" />
