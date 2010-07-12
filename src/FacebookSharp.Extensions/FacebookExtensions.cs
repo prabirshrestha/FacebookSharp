@@ -77,6 +77,21 @@ namespace FacebookSharp.Extensions
         }
 
         /// <summary>
+        /// Fetches the connections for given object.
+        /// </summary>
+        /// <param name="facebook"></param>
+        /// <param name="id">Id of the object to fetch.</param>
+        /// <param name="connectionName">Name of the connection.</param>
+        /// <param name="parameters">List of arguments.</param>
+        /// <returns>Returns the connections.</returns>
+        public static T GetConnections<T>(this Facebook facebook, string id, string connectionName, IDictionary<string, string> parameters)
+        {
+            var jsonString = GetConnections(facebook, id, connectionName, parameters);
+            FacebookUtils.ThrowIfFacebookException(jsonString);
+            return FacebookUtils.DeserializeObject<T>(jsonString);
+        }
+
+        /// <summary>
         /// Writes the give object to the graph, connected to the give parent.
         /// </summary>
         /// <param name="facebook"></param>
