@@ -24,7 +24,7 @@ namespace FacebookSharp.Extensions
     using System.Collections.Generic;
     using System.Text;
 
-    public static class FacebookExtensions
+    public static partial class FacebookExtensions
     {
         /// <summary>
         /// Fetches the give object from the graph.
