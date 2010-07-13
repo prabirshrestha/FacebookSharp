@@ -19,6 +19,8 @@
 // http://developers.facebook.com/docs/api. You can download the Facebook
 // JavaScript SDK at http://github.com/facebook/connect-js/.
 
+using System;
+
 namespace FacebookSharp.Extensions
 {
     using System.Collections.Generic;
@@ -215,6 +217,43 @@ namespace FacebookSharp.Extensions
             IDictionary<string, string> parameters = new Dictionary<string, string>();
             parameters.Add("method", "delete");
             return facebook.Request(id, parameters, "POST");
+        }
+
+        /// <summary>
+        /// Gets the profile picture url for the specified id.
+        /// </summary>
+        /// <param name="facebook">Id of the object to retrieve profile picture for.</param>
+        /// <param name="id"></param>
+        /// <returns>Url of the picture.</returns>
+        /// <remarks>
+        /// For security reasons, id cannot be passed as 'me'.
+        /// As this will be most probably used in website directly in the <img/> tag,
+        /// and passing the access token is quite risky out here.
+        /// incase you do want to use it, use GetMyProfilePictureUrl() instead,
+        /// this might be useful in desktop apps.
+        /// </remarks>
+        public static string GetProfilePictureUrl(this Facebook facebook, string id)
+        {
+            if (id.Equals("me", StringComparison.OrdinalIgnoreCase))
+                throw new FacebookSharpException("For security reason passing 'me' as id is not allowed.");
+            return string.Format("{0}{1}/picture", Facebook.GraphBaseUrl, id);
+        }
+
+        /// <summary>
+        /// Gets the profile picture url for the current facebook user.
+        /// </summary>
+        /// <param name="facebook"></param>
+        /// <returns>Url of the profile picture.</returns>
+        /// <remarks>
+        /// Try using GetProfilePictureUrl(id) as far as possible for security reasons.
+        /// </remarks>
+        public static string GetMyProfilePictureUrl(this Facebook facebook)
+        {
+            if (string.IsNullOrEmpty(facebook.Settings.AccessToken))
+                throw new ArgumentNullException("Settings.AccessToken",
+                                                "AccessToken must be specified inorder to invoke this method");
+            return string.Format("{0}me/picture?{1}={2}", Facebook.GraphBaseUrl, Facebook.Token,
+                                 facebook.Settings.AccessToken);
         }
 
     }
