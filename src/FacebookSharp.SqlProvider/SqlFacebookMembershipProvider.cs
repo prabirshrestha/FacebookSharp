@@ -31,7 +31,7 @@ namespace FacebookSharp
         {
             _connectionString = connectionString;
             _tableName = tableName;
-            _membershipProvider = membershipProvider ?? Membership.Provider;
+            _membershipProvider = membershipProvider;
         }
 
         #region Implementation of IFacebookMembershipProvider
