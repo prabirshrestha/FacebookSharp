@@ -1,9 +1,8 @@
-using System;
-using System.Data.SqlClient;
-using System.Web.Security;
-
 namespace FacebookSharp
 {
+    using System.Data.SqlClient;
+    using System.Web.Security;
+
     /// <remarks>
     /// CREATE TABLE [FacebookUsers](
     ///     [Username] VARCHAR(60) -- membershipUsername, primary key already enforced as unique and not null
@@ -151,17 +150,39 @@ namespace FacebookSharp
 
         public string GetFacebookAccessTokenByFacebookId(string facebookId)
         {
-            throw new NotImplementedException();
+            using (SqlConnection cn = new SqlConnection(_connectionString))
+            {
+                SqlCommand cmd =
+                    new SqlCommand(
+                        string.Format("SELECT AccessToken FROM {0} WHERE FacebookId=@FacebookId", _tableName), cn);
+                cmd.Parameters.AddWithValue("@FacebookId", facebookId);
+
+                cn.Open();
+                var result = cmd.ExecuteScalar();
+                return result == null ? "" : result.ToString();
+            }
         }
 
         public string GetFacebookId(string membershipUsername)
         {
-            throw new NotImplementedException();
+            using (SqlConnection cn = new SqlConnection(_connectionString))
+            {
+                SqlCommand cmd =
+                    new SqlCommand(
+                        string.Format("SELECT FacebookId FROM {0} WHERE Username=@Username", _tableName), cn);
+                cmd.Parameters.AddWithValue("@Username", membershipUsername);
+
+                cn.Open();
+                return cmd.ExecuteScalar().ToString();
+            }
         }
 
         public string GetFacebookId(object membershipProviderUserKey)
         {
-            throw new NotImplementedException();
+            MembershipUser user = Membership.GetUser(membershipProviderUserKey);
+            if (user == null)
+                throw new FacebookSharpException("User with given membershipProviderUserKey not found.");
+            return GetFacebookId(user.UserName);
         }
 
         #endregion
