@@ -36,7 +36,7 @@ namespace FacebookSharp
             {
                 SqlCommand cmd =
                     new SqlCommand(string.Format("SELECT COUNT(*) FROM {0} WHERE Username=@Username", _tableName), cn);
-                cmd.Parameters.AddWithValue("@user_name", membershipUsername);
+                cmd.Parameters.AddWithValue("@Username", membershipUsername);
                 cn.Open();
 
                 return (int)cmd.ExecuteScalar() == 1;
@@ -53,7 +53,15 @@ namespace FacebookSharp
 
         public bool IsFacebookUserLinked(string facebookId)
         {
-            throw new NotImplementedException();
+            using (SqlConnection cn = new SqlConnection(_connectionString))
+            {
+                SqlCommand cmd =
+                    new SqlCommand(string.Format("SELECT COUNT(*) FROM {0} WHERE FacebookId=@FacebookId", _tableName), cn);
+                cmd.Parameters.AddWithValue("@FacebookId", facebookId);
+                cn.Open();
+
+                return (long)cmd.ExecuteScalar() == 1;
+            }
         }
 
         public void LinkFacebook(string membershipUsername, string facebookId, string accessToken)
