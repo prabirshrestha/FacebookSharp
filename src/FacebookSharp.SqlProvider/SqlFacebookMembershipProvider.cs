@@ -60,18 +60,35 @@ namespace FacebookSharp
                 cmd.Parameters.AddWithValue("@FacebookId", facebookId);
                 cn.Open();
 
-                return (long)cmd.ExecuteScalar() == 1;
+                return (int)cmd.ExecuteScalar() == 1;
             }
         }
 
         public void LinkFacebook(string membershipUsername, string facebookId, string accessToken)
         {
-            throw new NotImplementedException();
+            using (SqlConnection cn = new SqlConnection(_connectionString))
+            {
+                SqlCommand cmd =
+                    new SqlCommand(
+                        string.Format(
+                            "INSERT INTO {0} (Username,FacebookId,AccessToken) VALUES (@Username,@FacebookId,@AccessToken)",
+                            _tableName), cn);
+                cmd.Parameters.AddWithValue("@Username", membershipUsername);
+                cmd.Parameters.AddWithValue("@FacebookId", facebookId);
+                cmd.Parameters.AddWithValue("@AccessToken", accessToken);
+
+                cn.Open();
+                cmd.ExecuteNonQuery();
+            }
         }
 
         public void LinkFacebook(object membershipProviderUserKey, string facebookId, string accessToken)
         {
-            throw new NotImplementedException();
+            MembershipUser user = Membership.GetUser(membershipProviderUserKey);
+            if (user == null)
+                throw new FacebookSharpException("User with given membershipProviderUserKey not found.");
+
+            LinkFacebook(user.UserName, facebookId, accessToken);
         }
 
         public void UnlinkFacebook(string membershipUsername)
