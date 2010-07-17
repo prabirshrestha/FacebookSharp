@@ -25,6 +25,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FacebookSharp.SQLiteProvide
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FacebookSharp.SQLiteProvider", "DotNet4\FacebookSharp.SQLiteProvider\FacebookSharp.SQLiteProvider.csproj", "{E6FB6F20-9E49-45DB-AAC5-B973A3EA51E1}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Misc", "Misc", "{3A08CCA6-8C68-40F4-B8B9-FB85C2B01C6F}"
+	ProjectSection(SolutionItems) = preProject
+		facebooksharp.db3 = facebooksharp.db3
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

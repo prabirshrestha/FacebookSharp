@@ -5,7 +5,7 @@ namespace FacebookSharp
 
     /// <remarks>
     /// CREATE TABLE [FacebookUsers](
-    ///     [Username] VARCHAR(60) -- membershipUsername, primary key already enforced as unique and not null
+    ///     [Username] VARCHAR(60), -- membershipUsername, primary key already enforced as unique and not null
     ///     [FacebookId] VARCHAR(50) NOT NULL UNIQUE,
     ///     [AccessToken] VARCHAR(256),
     ///     PRIMARY KEY ([Username])
