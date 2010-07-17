@@ -35,10 +35,15 @@ MySql implementation has been provided:
 Table structure for MySqlFacebookMembershipProvider
 
 CREATE TABLE `facebook_users` (
+
   `user_name` VARCHAR(60), -- membershipUsername, primary key already enforced as unique and not null
+  
   `facebook_id` VARCHAR(50) NOT NULL UNIQUE,
+  
   `access_token` VARCHAR(256),
+  
   PRIMARY KEY (`user_name`)
+  
 );
 
 More providers comming soon.
