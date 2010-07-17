@@ -115,7 +115,15 @@ namespace FacebookSharp
 
         public void UnlinkFacebookByFacebookId(string facebookId)
         {
-            throw new NotImplementedException();
+            using (SqlConnection cn = new SqlConnection(_connectionString))
+            {
+                SqlCommand cmd = new SqlCommand(
+                    string.Format("DELETE FROM {0} WHERE FacebookId=@FacebookId", _tableName), cn);
+                cmd.Parameters.AddWithValue("@FacebookId", facebookId);
+
+                cn.Open();
+                cmd.ExecuteNonQuery();
+            }
         }
 
         public string GetFacebookAccessToken(string membershipUsername)
