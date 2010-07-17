@@ -13,16 +13,30 @@ namespace FacebookSharp.Winforms
     {
         private Uri _loginUri;
 
+        public FacebookAuthenticationResult FacebookAuthenticationResult { get; private set; }
+
         public FacebookLoginForm(FacebookSettings facebookSettings)
         {
             _loginUri = new Uri(facebookSettings.DesktopLoginUrl);
-            Clipboard.SetText(_loginUri.ToString());
             InitializeComponent();
         }
 
         private void FacebookLoginForm_Load(object sender, EventArgs e)
         {
             wbFacebookLogin.Url = _loginUri;
+        }
+
+        private void wbFacebookLogin_Navigated(object sender, WebBrowserNavigatedEventArgs e)
+        {
+            string fullPath = e.Url.ToString();
+            if (fullPath.StartsWith("http://www.facebook.com/connect/login_success.html"))
+            {
+                FacebookAuthenticationResult = new FacebookAuthenticationResult(fullPath);
+                if (FacebookAuthenticationResult.IsSuccess)
+                    DialogResult = DialogResult.OK;
+                else
+                    DialogResult = DialogResult.Cancel;
+            }
         }
 
     }

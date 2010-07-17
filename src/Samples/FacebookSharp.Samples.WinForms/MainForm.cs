@@ -19,9 +19,30 @@ namespace FacebookSharp.Samples.WinForms
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            FacebookSettings fbSettings = new FacebookSettings {ApplicationID = txtApiKey.Text};
+            FacebookSettings fbSettings = new FacebookSettings { ApplicationID = txtApiKey.Text };
             FacebookLoginForm fbLoginDlg = new FacebookLoginForm(fbSettings);
-            fbLoginDlg.ShowDialog();
+            FacebookAuthenticationResult fbAuthResult;
+
+            if (fbLoginDlg.ShowDialog() == DialogResult.OK)
+            {
+                MessageBox.Show("You are logged in.");
+                fbAuthResult = fbLoginDlg.FacebookAuthenticationResult;
+                txtAccessToken.Text = fbAuthResult.AccessToken;
+                txtExpiresIn.Text = fbAuthResult.ExpiresIn.ToString();
+                btnGetMyInfo.Enabled = true;
+            }
+            else
+            {
+                MessageBox.Show("You must login inorder to access Facebook features.");
+                fbAuthResult = fbLoginDlg.FacebookAuthenticationResult;
+                MessageBox.Show(fbAuthResult.ErrorReasonText);
+            }
+        }
+
+        private void btnGetMyInfo_Click(object sender, EventArgs e)
+        {
+            Facebook fb = new Facebook(txtAccessToken.Text);
+            MessageBox.Show(fb.Request("me"));
         }
     }
 }

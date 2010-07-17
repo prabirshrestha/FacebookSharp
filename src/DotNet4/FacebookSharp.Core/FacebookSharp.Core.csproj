@@ -62,6 +62,9 @@
     <Compile Include="..\..\FacebookSharp.Core\Facebook.cs">
       <Link>Facebook.cs</Link>
     </Compile>
+    <Compile Include="..\..\FacebookSharp.Core\FacebookAuthenticationResult.cs">
+      <Link>FacebookAuthenticationResult.cs</Link>
+    </Compile>
     <Compile Include="..\..\FacebookSharp.Core\FacebookSettings.cs">
       <Link>FacebookSettings.cs</Link>
     </Compile>

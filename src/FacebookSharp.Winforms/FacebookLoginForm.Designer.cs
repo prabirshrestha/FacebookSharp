@@ -40,6 +40,7 @@
             this.wbFacebookLogin.ScrollBarsEnabled = false;
             this.wbFacebookLogin.Size = new System.Drawing.Size(556, 318);
             this.wbFacebookLogin.TabIndex = 0;
+            this.wbFacebookLogin.Navigated += new System.Windows.Forms.WebBrowserNavigatedEventHandler(this.wbFacebookLogin_Navigated);
             // 
             // FacebookLoginForm
             // 
@@ -48,7 +49,6 @@
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(556, 318);
             this.Controls.Add(this.wbFacebookLogin);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "FacebookLoginForm";

@@ -23,7 +23,7 @@ namespace FacebookSharp
             {
                 return Facebook.GenerateFacebookAuthorizeUrl(ApplicationID,
                                                              "http://www.facebook.com/connect/login_success.html",
-                                                             DefaultApplicationPermissions) + "&display=popup";
+                                                             DefaultApplicationPermissions) + "&display=popup&type=user_agent";
             }
         }
     }
