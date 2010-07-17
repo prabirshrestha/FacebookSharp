@@ -3,7 +3,7 @@ namespace FacebookSharp
     public class FacebookSettings
     {
         public string AccessToken { get; set; }
-        public string ApplicationID { get; set; }
+        public string ApplicationKey { get; set; }
         public string ApplicationSecret { get; set; }
         public string PostAuthorizeUrl { get; set; }
         public long AccessExpires { get; set; }
@@ -13,7 +13,7 @@ namespace FacebookSharp
         {
             get
             {
-                return Facebook.GenerateFacebookAuthorizeUrl(ApplicationID, PostAuthorizeUrl, DefaultApplicationPermissions);
+                return Facebook.GenerateFacebookAuthorizeUrl(ApplicationKey, PostAuthorizeUrl, DefaultApplicationPermissions);
             }
         }
 
@@ -21,7 +21,7 @@ namespace FacebookSharp
         {
             get
             {
-                return Facebook.GenerateFacebookAuthorizeUrl(ApplicationID,
+                return Facebook.GenerateFacebookAuthorizeUrl(ApplicationKey,
                                                              "http://www.facebook.com/connect/login_success.html",
                                                              DefaultApplicationPermissions) + "&display=popup&type=user_agent";
             }

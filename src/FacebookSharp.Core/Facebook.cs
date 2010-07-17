@@ -264,11 +264,11 @@ namespace FacebookSharp
         /// <summary>
         /// Returns the url to authenticate with Facebook.
         /// </summary>
-        /// <param name="facebookApplicationId"></param>
+        /// <param name="facebookApplicationKey"></param>
         /// <param name="redirectUri"></param>
         /// <param name="extendedPermissions"></param>
         /// <returns></returns>
-        public static string GenerateFacebookAuthorizeUrl(string facebookApplicationId, string redirectUri, string[] extendedPermissions)
+        public static string GenerateFacebookAuthorizeUrl(string facebookApplicationKey, string redirectUri, string[] extendedPermissions)
         {
             StringBuilder sb = new StringBuilder();
             if (extendedPermissions != null && extendedPermissions.Length > 0)
@@ -280,28 +280,28 @@ namespace FacebookSharp
                 }
                 sb = sb.Remove(sb.Length - 1, 1); // remove the last comma.
             }
-            return GenerateFacebookAuthorizeUrl(facebookApplicationId, redirectUri, sb.ToString());
+            return GenerateFacebookAuthorizeUrl(facebookApplicationKey, redirectUri, sb.ToString());
         }
 
         /// <summary>
         /// Returns the url to authenticate with Facebook.
         /// </summary>
-        /// <param name="facebookApplicationId"></param>
+        /// <param name="facebookApplicationKey"></param>
         /// <param name="redirectUri"></param>
         /// <param name="extendedPermissions"></param>
         /// <returns></returns>
-        public static string GenerateFacebookAuthorizeUrl(string facebookApplicationId, string redirectUri, string extendedPermissions)
+        public static string GenerateFacebookAuthorizeUrl(string facebookApplicationKey, string redirectUri, string extendedPermissions)
         {
             return string.IsNullOrEmpty(extendedPermissions)
                        ? string.Format(GraphBaseUrl + "oauth/authorize?client_id={0}&redirect_uri={1}",
-                                       facebookApplicationId, redirectUri)
+                                       facebookApplicationKey, redirectUri)
                        : string.Format(GraphBaseUrl + "oauth/authorize?client_id={0}&redirect_uri={1}&scope={2}",
-                                       facebookApplicationId, redirectUri, extendedPermissions);
+                                       facebookApplicationKey, redirectUri, extendedPermissions);
         }
 
         public string ExchangeAccessTokenForCode(string code)
         {
-            if (string.IsNullOrEmpty(Settings.ApplicationID))
+            if (string.IsNullOrEmpty(Settings.ApplicationKey))
                 throw new FacebookSharpException("Settings.ApplicationID missing.");
             if (string.IsNullOrEmpty(Settings.ApplicationSecret))
                 throw new FacebookSharpException("Settings.ApplicationSecret missing.");
@@ -311,7 +311,7 @@ namespace FacebookSharp
             string url =
                 string.Format(
                     "https://graph.facebook.com/oauth/access_token?client_id={0}&redirect_uri={1}&client_secret={2}&code={3}",
-                    Settings.ApplicationID, Settings.PostAuthorizeUrl, Settings.ApplicationSecret, code);
+                    Settings.ApplicationKey, Settings.PostAuthorizeUrl, Settings.ApplicationSecret, code);
 
             var wc = new WebClient();
             string result = wc.DownloadString(url);

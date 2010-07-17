@@ -16,4 +16,9 @@
             www.prabir.me</a> or catch up with me on twitter <a href="http://twitter.com/prabirshrestha"
                 target="_blank">@prabirshrestha</a>
     </p>
+    <p>
+        <b>
+            <a href="<%= FacebookContext.Facebook.Settings.FacebookAuthorizeUrl %>">Click here to login to facebook</a>
+        </b>
+    </p>
 </asp:Content>

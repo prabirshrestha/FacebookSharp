@@ -19,7 +19,7 @@ namespace FacebookSharp.Samples.WinForms
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            FacebookSettings fbSettings = new FacebookSettings { ApplicationID = txtApiKey.Text };
+            FacebookSettings fbSettings = new FacebookSettings { ApplicationKey = txtApiKey.Text };
             FacebookLoginForm fbLoginDlg = new FacebookLoginForm(fbSettings);
             FacebookAuthenticationResult fbAuthResult;
 
