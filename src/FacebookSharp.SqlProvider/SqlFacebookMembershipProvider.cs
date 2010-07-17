@@ -2,8 +2,30 @@ using System;
 
 namespace FacebookSharp
 {
+    /// <remarks>
+    /// CREATE TABLE [FacebookUsers](
+    ///     [Username] VARCHAR(60) -- membershipUsername, primary key already enforced as unique and not null
+    ///     [FacebookId] VARCHAR(50) NOT NULL UNIQUE,
+    ///     [AccessToken] VARCHAR(256),
+    ///     PRIMARY KEY ([Username])
+    /// );
+    /// </remarks>
     public class SqlFacebookMembershipProvider : IFacebookMembershipProvider
     {
+        private readonly string _connectionString;
+        private readonly string _tableName;
+
+        public SqlFacebookMembershipProvider(string connectionString)
+        {
+            _connectionString = connectionString;
+        }
+
+        public SqlFacebookMembershipProvider(string connectionString, string tableName)
+        {
+            _connectionString = connectionString;
+            _tableName = tableName;
+        }
+
         #region Implementation of IFacebookMembershipProvider
 
         public bool HasLinkedFacebook(string membershipUsername)
