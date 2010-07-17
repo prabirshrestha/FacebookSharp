@@ -16,17 +16,24 @@
     public class MySqlFacebookMembershipProvider : IFacebookMembershipProvider
     {
         private readonly string _tableName;
+        private readonly MembershipProvider _membershipProvider;
         private readonly string _connectionString;
 
         public MySqlFacebookMembershipProvider(string connectionString)
-            : this(connectionString, "facebook_users")
+            : this(connectionString, "facebook_users", null)
         {
         }
 
         public MySqlFacebookMembershipProvider(string connectionString, string tableName)
+            : this(connectionString, tableName, null)
+        {
+        }
+
+        public MySqlFacebookMembershipProvider(string connectionString, string tableName, MembershipProvider membershipProvider)
         {
             _connectionString = connectionString;
             _tableName = tableName;
+            _membershipProvider = membershipProvider;
         }
 
         #region Implementation of IFacebookMembershipProvider
@@ -46,7 +53,7 @@
 
         public bool HasLinkedFacebook(object membershipProviderUserKey)
         {
-            MembershipUser user = Membership.GetUser(membershipProviderUserKey);
+            MembershipUser user = _membershipProvider.GetUser(membershipProviderUserKey, false);
             if (user == null)
                 throw new FacebookSharpException("User with given membershipProviderUserKey not found.");
             return HasLinkedFacebook(user.UserName);
@@ -85,7 +92,7 @@
 
         public void LinkFacebook(object membershipProviderUserKey, string facebookId, string accessToken)
         {
-            MembershipUser user = Membership.GetUser(membershipProviderUserKey);
+            MembershipUser user = _membershipProvider.GetUser(membershipProviderUserKey, false);
             if (user == null)
                 throw new FacebookSharpException("User with given membershipProviderUserKey not found.");
 
@@ -107,7 +114,7 @@
 
         public void UnlinkFacebook(object membershipProviderUserKey)
         {
-            MembershipUser user = Membership.GetUser(membershipProviderUserKey);
+            MembershipUser user = _membershipProvider.GetUser(membershipProviderUserKey, false);
             if (user == null)
                 throw new FacebookSharpException("User with given membershipProviderUserKey not found.");
 
@@ -144,7 +151,7 @@
 
         public string GetFacebookAccessToken(object membershipProviderUserKey)
         {
-            MembershipUser user = Membership.GetUser(membershipProviderUserKey);
+            MembershipUser user = _membershipProvider.GetUser(membershipProviderUserKey, false);
             if (user == null)
                 throw new FacebookSharpException("User with given membershipProviderUserKey not found.");
             return GetFacebookAccessToken(user.UserName);
@@ -181,7 +188,7 @@
 
         public string GetFacebookId(object membershipProviderUserKey)
         {
-            MembershipUser user = Membership.GetUser(membershipProviderUserKey);
+            MembershipUser user = _membershipProvider.GetUser(membershipProviderUserKey, false);
             if (user == null)
                 throw new FacebookSharpException("User with given membershipProviderUserKey not found.");
             return GetFacebookId(user.UserName);
