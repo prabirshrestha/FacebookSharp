@@ -93,12 +93,24 @@ namespace FacebookSharp
 
         public void UnlinkFacebook(string membershipUsername)
         {
-            throw new NotImplementedException();
+            using (SqlConnection cn = new SqlConnection(_connectionString))
+            {
+                SqlCommand cmd = new SqlCommand(
+                    string.Format("DELETE FROM {0} WHERE Username=@Username", _tableName), cn);
+                cmd.Parameters.AddWithValue("@Username", membershipUsername);
+
+                cn.Open();
+                cmd.ExecuteNonQuery();
+            }
         }
 
         public void UnlinkFacebook(object membershipProviderUserKey)
         {
-            throw new NotImplementedException();
+            MembershipUser user = Membership.GetUser(membershipProviderUserKey);
+            if (user == null)
+                throw new FacebookSharpException("User with given membershipProviderUserKey not found.");
+
+            UnlinkFacebook(user.UserName);
         }
 
         public void UnlinkFacebookByFacebookId(string facebookId)
