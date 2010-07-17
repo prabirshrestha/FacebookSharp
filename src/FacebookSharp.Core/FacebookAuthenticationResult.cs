@@ -7,12 +7,14 @@ namespace FacebookSharp
         public FacebookAuthenticationResult(string url)
         {
             // todo: room for optimization
-            Uri uri = new Uri(url);
 
-            if (!url.Contains("http://www.facebook.com/connect/login_success.html"))
-            {
-                throw new ArgumentException("Url specified is not from facebook authorization", url);
-            }
+            //if (!url.StartsWith("http://www.facebook.com/connect/login_success.html") ||
+            //    (!string.IsNullOrEmpty(applicationPostAuthorizeUrl) && !url.StartsWith(applicationPostAuthorizeUrl)))
+            //{
+            //    throw new ArgumentException("Url specified is not a facebook post authorization url.", url);
+            //}
+
+            Uri uri = new Uri(url);
             string[] query;
             if (!string.IsNullOrEmpty(uri.Fragment))
                 query = uri.Fragment.Split('&');
