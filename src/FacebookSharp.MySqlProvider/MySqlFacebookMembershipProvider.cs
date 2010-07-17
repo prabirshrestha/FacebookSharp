@@ -1,4 +1,4 @@
-﻿namespace FacebookSharp.MySqlProvider
+﻿namespace FacebookSharp
 {
     using System.Web.Security;
     using MySql.Data.MySqlClient;
