@@ -128,12 +128,25 @@ namespace FacebookSharp
 
         public string GetFacebookAccessToken(string membershipUsername)
         {
-            throw new NotImplementedException();
+            using (SqlConnection cn = new SqlConnection(_connectionString))
+            {
+                SqlCommand cmd =
+                    new SqlCommand(
+                        string.Format("SELECT AccessToken FROM {0} WHERE Username=@Username", _tableName), cn);
+                cmd.Parameters.AddWithValue("@user_Usernamename", membershipUsername);
+
+                cn.Open();
+                var result = cmd.ExecuteScalar();
+                return result == null ? "" : result.ToString();
+            }
         }
 
         public string GetFacebookAccessToken(object membershipProviderUserKey)
         {
-            throw new NotImplementedException();
+            MembershipUser user = Membership.GetUser(membershipProviderUserKey);
+            if (user == null)
+                throw new FacebookSharpException("User with given membershipProviderUserKey not found.");
+            return GetFacebookAccessToken(user.UserName);
         }
 
         public string GetFacebookAccessTokenByFacebookId(string facebookId)
