@@ -42,6 +42,8 @@ namespace FacebookSharp
             foreach (string parameter in array)
             {
                 string[] pair = parameter.Split('=');
+                if (pair[0].StartsWith("#") || pair[0].StartsWith("?"))
+                    pair[0] = pair[0].Substring(1, pair[0].Length - 1);
                 parameters.Add(UrlDecode(pair[0]), UrlDecode(pair[1]));
             }
             return parameters;

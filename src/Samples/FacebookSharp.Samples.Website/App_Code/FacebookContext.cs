@@ -22,9 +22,13 @@ namespace FacebookSharp.Samples.Website
                 }
                 _facebook.Settings.PostAuthorizeUrl = ConfigurationManager.AppSettings["FacebookSharp.PostAuthorizeUrl"];
                 _facebook.Settings.ApplicationKey = ConfigurationManager.AppSettings["FacebookSharp.AppKey"];
+                _facebook.Settings.ApplicationSecret = ConfigurationManager.AppSettings["FacebookSharp.AppSecret"];
 
-                if (_facebook.Settings.PostAuthorizeUrl == "AppKey")
+
+                if (_facebook.Settings.ApplicationKey == "AppKey")
                     throw new ApplicationException("Please specify FacebookSharp.AppKey in web.config AppSettings.");
+                if(_facebook.Settings.ApplicationSecret=="AppSecret")
+                    throw new ApplicationException("Please specify FacebookSharp.AppSecret in web.config AppSettings.");
                 if (_facebook.Settings.PostAuthorizeUrl == "PostAuthorizeUrl")
                     throw new ApplicationException("Please specify FacebookSharp.PostAuthorizeUrl in web.config AppSettings.");
 

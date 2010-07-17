@@ -299,23 +299,49 @@ namespace FacebookSharp
                                        facebookApplicationKey, redirectUri, extendedPermissions);
         }
 
+        public static string ExchangeAccessTokenForCode(string code, string applicationKey, string applicationSecret, string postAuthorizeUrl)
+        {
+            int expiresIn;
+            return ExchangeAccessTokenForCode(code, applicationKey, applicationSecret, postAuthorizeUrl, out expiresIn);
+        }
+
+        public static string ExchangeAccessTokenForCode(string code, string applicationKey, string applicationSecret, string postAuthorizeUrl, out int expiresIn)
+        {
+            if (string.IsNullOrEmpty(applicationKey))
+                throw new ArgumentNullException("applicationKey");
+            if (string.IsNullOrEmpty(applicationSecret))
+                throw new ArgumentNullException("applicationSecret");
+            if (string.IsNullOrEmpty(postAuthorizeUrl))
+                throw new FacebookSharpException("postAuthorizeUrl");
+
+            string url =
+                string.Format(
+                    "https://graph.facebook.com/oauth/access_token?client_id={0}&redirect_uri={1}&client_secret={2}&code={3}",
+                    applicationKey, postAuthorizeUrl, applicationSecret, code);
+
+            var wc = new WebClient();
+            string result = wc.DownloadString(url);
+
+            IDictionary<string, string> r = FacebookUtils.DecodeUrl(result);
+            if (r.ContainsKey("expires_in"))
+                expiresIn = Convert.ToInt32(r["expires_in"]);
+            else
+                expiresIn = 0;
+            return r["access_token"];
+        }
+
         public string ExchangeAccessTokenForCode(string code)
         {
             if (string.IsNullOrEmpty(Settings.ApplicationKey))
-                throw new FacebookSharpException("Settings.ApplicationID missing.");
+                throw new FacebookSharpException("Settings.ApplicationKey missing.");
             if (string.IsNullOrEmpty(Settings.ApplicationSecret))
                 throw new FacebookSharpException("Settings.ApplicationSecret missing.");
             if (string.IsNullOrEmpty(Settings.PostAuthorizeUrl))
                 throw new FacebookSharpException("Settings.PostAuthorizeUrl missing.");
 
-            string url =
-                string.Format(
-                    "https://graph.facebook.com/oauth/access_token?client_id={0}&redirect_uri={1}&client_secret={2}&code={3}",
-                    Settings.ApplicationKey, Settings.PostAuthorizeUrl, Settings.ApplicationSecret, code);
-
-            var wc = new WebClient();
-            string result = wc.DownloadString(url);
-            return result.Replace("access_token=", "");
+            int expiresIn;
+            return ExchangeAccessTokenForCode(code, Settings.ApplicationKey, Settings.ApplicationSecret,
+                                              Settings.PostAuthorizeUrl, out expiresIn);
         }
 
     }
