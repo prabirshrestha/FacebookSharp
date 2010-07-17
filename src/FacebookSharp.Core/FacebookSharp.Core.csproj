@@ -52,6 +52,7 @@
     <Compile Include="FacebookUtils\DateUtils.cs" />
     <Compile Include="FacebookUtils\HttpUtitliy.cs" />
     <Compile Include="FacebookUtils\_FacebookUtils.cs" />
+    <Compile Include="IFacebookContext.cs" />
     <Compile Include="Schemas\Graph\Album.cs" />
     <Compile Include="Schemas\Graph\Group.cs" />
     <Compile Include="Schemas\Graph\Link.cs" />

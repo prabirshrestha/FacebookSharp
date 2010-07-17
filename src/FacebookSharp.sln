@@ -38,6 +38,28 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FacebookSharp.Winforms", "F
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FacebookSharp.Winforms", "DotNet4\FacebookSharp.Winforms\FacebookSharp.Winforms.csproj", "{F171C7E2-EE78-45B5-9571-29379CBBB7D5}"
 EndProject
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "FacebookSharp.Samples.Website", "Samples\FacebookSharp.Samples.Website\", "{20C9DA5C-62FD-4FE3-8E96-C5FF2792BFFD}"
+	ProjectSection(WebsiteProperties) = preProject
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.0"
+		ProjectReferences = "{F80CA490-7E13-417A-99D8-63A557BF7D38}|FacebookSharp.Core.dll;"
+		Debug.AspNetCompiler.VirtualPath = "/FacebookSharp.Samples.Website"
+		Debug.AspNetCompiler.PhysicalPath = "Samples\FacebookSharp.Samples.Website\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\FacebookSharp.Samples.Website\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/FacebookSharp.Samples.Website"
+		Release.AspNetCompiler.PhysicalPath = "Samples\FacebookSharp.Samples.Website\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\FacebookSharp.Samples.Website\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		VWDPort = "16443"
+		DefaultWebSiteLanguage = "Visual C#"
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -178,6 +200,16 @@ Global
 		{F171C7E2-EE78-45B5-9571-29379CBBB7D5}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{F171C7E2-EE78-45B5-9571-29379CBBB7D5}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{F171C7E2-EE78-45B5-9571-29379CBBB7D5}.Release|x86.ActiveCfg = Release|Any CPU
+		{20C9DA5C-62FD-4FE3-8E96-C5FF2792BFFD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{20C9DA5C-62FD-4FE3-8E96-C5FF2792BFFD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{20C9DA5C-62FD-4FE3-8E96-C5FF2792BFFD}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{20C9DA5C-62FD-4FE3-8E96-C5FF2792BFFD}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{20C9DA5C-62FD-4FE3-8E96-C5FF2792BFFD}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{20C9DA5C-62FD-4FE3-8E96-C5FF2792BFFD}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{20C9DA5C-62FD-4FE3-8E96-C5FF2792BFFD}.Release|Any CPU.Build.0 = Debug|Any CPU
+		{20C9DA5C-62FD-4FE3-8E96-C5FF2792BFFD}.Release|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{20C9DA5C-62FD-4FE3-8E96-C5FF2792BFFD}.Release|Mixed Platforms.Build.0 = Debug|Any CPU
+		{20C9DA5C-62FD-4FE3-8E96-C5FF2792BFFD}.Release|x86.ActiveCfg = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -196,5 +228,6 @@ Global
 		{E6FB6F20-9E49-45DB-AAC5-B973A3EA51E1} = {6E90872E-795D-4B4B-9AC6-B05837EF7E22}
 		{F171C7E2-EE78-45B5-9571-29379CBBB7D5} = {6E90872E-795D-4B4B-9AC6-B05837EF7E22}
 		{0752A78A-DE20-4F59-A09C-08FF4243DADE} = {FBDE71D4-D8EF-4919-80A7-71A4B872C9DE}
+		{20C9DA5C-62FD-4FE3-8E96-C5FF2792BFFD} = {FBDE71D4-D8EF-4919-80A7-71A4B872C9DE}
 	EndGlobalSection
 EndGlobal
