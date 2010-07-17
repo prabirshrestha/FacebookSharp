@@ -15,16 +15,23 @@ namespace FacebookSharp
     {
         private readonly string _connectionString;
         private readonly string _tableName;
+        private readonly MembershipProvider _membershipProvider;
 
         public SqlFacebookMembershipProvider(string connectionString)
+            : this(connectionString, "FacebookUsers", null)
         {
-            _connectionString = connectionString;
         }
 
         public SqlFacebookMembershipProvider(string connectionString, string tableName)
+            : this(connectionString, tableName, null)
+        {
+        }
+
+        public SqlFacebookMembershipProvider(string connectionString, string tableName, MembershipProvider membershipProvider)
         {
             _connectionString = connectionString;
             _tableName = tableName;
+            _membershipProvider = membershipProvider ?? Membership.Provider;
         }
 
         #region Implementation of IFacebookMembershipProvider
@@ -44,7 +51,7 @@ namespace FacebookSharp
 
         public bool HasLinkedFacebook(object membershipProviderUserKey)
         {
-            MembershipUser user = Membership.GetUser(membershipProviderUserKey);
+            MembershipUser user = _membershipProvider.GetUser(membershipProviderUserKey, false);
             if (user == null)
                 throw new FacebookSharpException("User with given membershipProviderUserKey not found.");
             return HasLinkedFacebook(user.UserName);
@@ -83,7 +90,7 @@ namespace FacebookSharp
 
         public void LinkFacebook(object membershipProviderUserKey, string facebookId, string accessToken)
         {
-            MembershipUser user = Membership.GetUser(membershipProviderUserKey);
+            MembershipUser user = _membershipProvider.GetUser(membershipProviderUserKey, false);
             if (user == null)
                 throw new FacebookSharpException("User with given membershipProviderUserKey not found.");
 
@@ -105,7 +112,7 @@ namespace FacebookSharp
 
         public void UnlinkFacebook(object membershipProviderUserKey)
         {
-            MembershipUser user = Membership.GetUser(membershipProviderUserKey);
+            MembershipUser user = _membershipProvider.GetUser(membershipProviderUserKey, false);
             if (user == null)
                 throw new FacebookSharpException("User with given membershipProviderUserKey not found.");
 
@@ -142,7 +149,7 @@ namespace FacebookSharp
 
         public string GetFacebookAccessToken(object membershipProviderUserKey)
         {
-            MembershipUser user = Membership.GetUser(membershipProviderUserKey);
+            MembershipUser user = _membershipProvider.GetUser(membershipProviderUserKey, false);
             if (user == null)
                 throw new FacebookSharpException("User with given membershipProviderUserKey not found.");
             return GetFacebookAccessToken(user.UserName);
@@ -179,7 +186,7 @@ namespace FacebookSharp
 
         public string GetFacebookId(object membershipProviderUserKey)
         {
-            MembershipUser user = Membership.GetUser(membershipProviderUserKey);
+            MembershipUser user = _membershipProvider.GetUser(membershipProviderUserKey, false);
             if (user == null)
                 throw new FacebookSharpException("User with given membershipProviderUserKey not found.");
             return GetFacebookId(user.UserName);
