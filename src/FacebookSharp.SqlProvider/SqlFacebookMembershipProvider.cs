@@ -1,4 +1,5 @@
 using System;
+using System.Data.SqlClient;
 
 namespace FacebookSharp
 {
@@ -30,7 +31,15 @@ namespace FacebookSharp
 
         public bool HasLinkedFacebook(string membershipUsername)
         {
-            throw new NotImplementedException();
+            using (SqlConnection cn = new SqlConnection(_connectionString))
+            {
+                SqlCommand cmd =
+                    new SqlCommand(string.Format("SELECT COUNT(*) FROM {0} WHERE Username=@Username", _tableName), cn);
+                cmd.Parameters.AddWithValue("@user_name", membershipUsername);
+                cn.Open();
+
+                return (int)cmd.ExecuteScalar() == 1;
+            }
         }
 
         public bool HasLinkedFacebook(object membershipProviderUserKey)
