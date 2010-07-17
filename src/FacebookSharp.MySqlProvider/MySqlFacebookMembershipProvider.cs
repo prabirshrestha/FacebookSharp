@@ -4,7 +4,6 @@
     using MySql.Data.MySqlClient;
 
     /// <remarks>
-    /// 
     /// Table structure for MySqlFacebookMembershipProvider
     ///     CREATE TABLE `facebook_users` (
     ///		  `user_name` VARCHAR(60), -- membershipUsername, primary key already enforced as unique and not null
