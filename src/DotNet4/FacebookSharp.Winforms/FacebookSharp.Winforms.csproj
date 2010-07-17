@@ -36,6 +36,8 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -43,6 +45,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\..\FacebookSharp.Winforms\FacebookLoginForm.cs">
+      <Link>FacebookLoginForm.cs</Link>
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="..\..\FacebookSharp.Winforms\FacebookLoginForm.designer.cs">
+      <Link>FacebookLoginForm.designer.cs</Link>
+      <DependentUpon>FacebookLoginForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -50,6 +60,12 @@
       <Project>{F80CA490-7E13-417A-99D8-63A557BF7D38}</Project>
       <Name>FacebookSharp.Core %28DotNet4\FacebookSharp.Core%29</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\..\FacebookSharp.Winforms\FacebookLoginForm.resx">
+      <Link>FacebookLoginForm.resx</Link>
+      <DependentUpon>FacebookLoginForm.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

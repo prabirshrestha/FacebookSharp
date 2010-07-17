@@ -292,8 +292,11 @@ namespace FacebookSharp
         /// <returns></returns>
         public static string GenerateFacebookAuthorizeUrl(string facebookApplicationId, string redirectUri, string extendedPermissions)
         {
-            return string.Format(GraphBaseUrl + "oauth/authorize?client_id={0}&redirect_uri={1}&scope={2}",
-                                 facebookApplicationId, redirectUri, extendedPermissions);
+            return string.IsNullOrEmpty(extendedPermissions)
+                       ? string.Format(GraphBaseUrl + "oauth/authorize?client_id={0}&redirect_uri={1}",
+                                       facebookApplicationId, redirectUri)
+                       : string.Format(GraphBaseUrl + "oauth/authorize?client_id={0}&redirect_uri={1}&scope={2}",
+                                       facebookApplicationId, redirectUri, extendedPermissions);
         }
 
         public string ExchangeAccessTokenForCode(string code)

@@ -34,14 +34,23 @@
     <DocumentationFile>..\..\bin\DotNet35\Release\FacebookSharp.Winforms.XML</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="FacebookSharp.Winforms, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FacebookLoginForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FacebookLoginForm.Designer.cs">
+      <DependentUpon>FacebookLoginForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -49,6 +58,11 @@
       <Project>{4E7E4294-219E-457A-B092-D1283A7B28BE}</Project>
       <Name>FacebookSharp.Core %28DotNet35\FacebookSharp.Core%29</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="FacebookLoginForm.resx">
+      <DependentUpon>FacebookLoginForm.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

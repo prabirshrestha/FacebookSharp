@@ -81,6 +81,10 @@
       <Project>{F80CA490-7E13-417A-99D8-63A557BF7D38}</Project>
       <Name>FacebookSharp.Core %28DotNet4\FacebookSharp.Core%29</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\DotNet4\FacebookSharp.Winforms\FacebookSharp.Winforms.csproj">
+      <Project>{F171C7E2-EE78-45B5-9571-29379CBBB7D5}</Project>
+      <Name>FacebookSharp.Winforms %28DotNet4\FacebookSharp.Winforms%29</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

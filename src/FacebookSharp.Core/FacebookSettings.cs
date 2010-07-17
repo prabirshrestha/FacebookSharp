@@ -8,12 +8,22 @@ namespace FacebookSharp
         public string PostAuthorizeUrl { get; set; }
         public long AccessExpires { get; set; }
         public string[] DefaultApplicationPermissions { get; set; }
-
+        
         public string FacebookAuthorizeUrl
         {
             get
             {
                 return Facebook.GenerateFacebookAuthorizeUrl(ApplicationID, PostAuthorizeUrl, DefaultApplicationPermissions);
+            }
+        }
+
+        public string DesktopLoginUrl
+        {
+            get
+            {
+                return Facebook.GenerateFacebookAuthorizeUrl(ApplicationID,
+                                                             "http://www.facebook.com/connect/login_success.html",
+                                                             DefaultApplicationPermissions) + "&display=popup";
             }
         }
     }
