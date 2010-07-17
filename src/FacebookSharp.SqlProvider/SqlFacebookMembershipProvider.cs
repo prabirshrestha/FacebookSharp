@@ -1,5 +1,6 @@
 using System;
 using System.Data.SqlClient;
+using System.Web.Security;
 
 namespace FacebookSharp
 {
@@ -44,7 +45,10 @@ namespace FacebookSharp
 
         public bool HasLinkedFacebook(object membershipProviderUserKey)
         {
-            throw new NotImplementedException();
+            MembershipUser user = Membership.GetUser(membershipProviderUserKey);
+            if (user == null)
+                throw new FacebookSharpException("User with given membershipProviderUserKey not found.");
+            return HasLinkedFacebook(user.UserName);
         }
 
         public bool IsFacebookUserLinked(string facebookId)
