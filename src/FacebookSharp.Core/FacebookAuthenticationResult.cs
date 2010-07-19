@@ -21,12 +21,12 @@ namespace FacebookSharp
                     paramters = FacebookUtils.DecodeUrl(uri.Fragment);
                 else
                     paramters = FacebookUtils.ParseUrl(url);
-                
+
                 if (paramters.ContainsKey("access_token"))
                     AccessToken = paramters["access_token"];
                 if (paramters.ContainsKey("expires_in"))
                     ExpiresIn = Convert.ToInt32(paramters["expires_in"]);
-                
+
             }
             else
             {   // its from web
@@ -63,6 +63,7 @@ namespace FacebookSharp
         public string ErrorReasonText { get; private set; }
 
         public bool IsSuccess { get { return string.IsNullOrEmpty(ErrorReasonText); } }
+        public bool IsUserDenied { get { return ErrorReasonText.Equals("user_denied", StringComparison.OrdinalIgnoreCase); } }
 
     }
 }
