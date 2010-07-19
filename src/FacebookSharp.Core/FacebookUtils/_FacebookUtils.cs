@@ -10,10 +10,13 @@ namespace FacebookSharp
 
     public static partial class FacebookUtils
     {
+#if !SILVERLIGHT
         static FacebookUtils()
         {
             InitHttpUtility();
         }
+#endif
+
 
         public static string EncodeUrl(IDictionary<string, string> parameters)
         {
@@ -87,19 +90,20 @@ namespace FacebookSharp
             return OpenUrl(url, method, parameters, "FacebookSharp", true);
         }
 
-        /// <summary>
-        /// Connect to an HTTP url and return the response as a string.
-        /// </summary>
-        /// <param name="url">The resource to open: must be a welformed URL</param>
-        /// <param name="method">The HTTP method to use ("GET", "POST", etc.)</param>
-        /// <param name="parameters">The query parameter for the URL (e.g. access_token=foo)</param>
-        /// <param name="userAgent">Sets the user agent when opening the url.</param>
-        /// <param name="compressHttp">If true adds Accept-Encoding as "gzip,deflate".</param>
-        /// <returns>The URL contents as a string.</returns>
-        /// <remarks>
-        /// Note that the HTTP method override is used on non-GET requests.
-        /// (i.e. requests are made as "POST" with method specified in the body).
-        /// </remarks>
+#if !SILVERLIGHT
+    /// <summary>
+    /// Connect to an HTTP url and return the response as a string.
+    /// </summary>
+    /// <param name="url">The resource to open: must be a welformed URL</param>
+    /// <param name="method">The HTTP method to use ("GET", "POST", etc.)</param>
+    /// <param name="parameters">The query parameter for the URL (e.g. access_token=foo)</param>
+    /// <param name="userAgent">Sets the user agent when opening the url.</param>
+    /// <param name="compressHttp">If true adds Accept-Encoding as "gzip,deflate".</param>
+    /// <returns>The URL contents as a string.</returns>
+    /// <remarks>
+    /// Note that the HTTP method override is used on non-GET requests.
+    /// (i.e. requests are made as "POST" with method specified in the body).
+    /// </remarks>
         public static string OpenUrl(string url, string method, IDictionary<string, string> parameters, string userAgent, bool compressHttp)
         {
             if (method.Equals("GET", StringComparison.OrdinalIgnoreCase))
@@ -152,6 +156,29 @@ namespace FacebookSharp
                 throw new FacebookSharpException("Unknown Error occured when communicating with facebook.", ex);
             }
         }
+#endif
+
+#if SILVERLIGHT
+    /// <summary>
+    /// Connect to an HTTP url and return the response as a string.
+    /// </summary>
+    /// <param name="url">The resource to open: must be a welformed URL</param>
+    /// <param name="method">The HTTP method to use ("GET", "POST", etc.)</param>
+    /// <param name="parameters">The query parameter for the URL (e.g. access_token=foo)</param>
+    /// <param name="userAgent">Sets the user agent when opening the url.</param>
+    /// <param name="compressHttp">If true adds Accept-Encoding as "gzip,deflate".</param>
+    /// <returns>The URL contents as a string.</returns>
+    /// <remarks>
+    /// Note that the HTTP method override is used on non-GET requests.
+    /// (i.e. requests are made as "POST" with method specified in the body).
+    /// </remarks>
+        public static string OpenUrl(string url, string method, IDictionary<string, string> parameters, string userAgent, bool compressHttp)
+        {
+            throw new NotImplementedException();
+        }
+
+#endif
+
 
         /// <summary>
         /// Parse a server response into a JSON object.

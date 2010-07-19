@@ -305,7 +305,8 @@ namespace FacebookSharp
             return ExchangeAccessTokenForCode(code, applicationKey, applicationSecret, postAuthorizeUrl, out expiresIn);
         }
 
-        public static string ExchangeAccessTokenForCode(string code, string applicationKey, string applicationSecret, string postAuthorizeUrl, out int expiresIn)
+#if !SILVERLIGHT
+ public static string ExchangeAccessTokenForCode(string code, string applicationKey, string applicationSecret, string postAuthorizeUrl, out int expiresIn)
         {
             if (string.IsNullOrEmpty(applicationKey))
                 throw new ArgumentNullException("applicationKey");
@@ -329,6 +330,15 @@ namespace FacebookSharp
                 expiresIn = 0;
             return r["access_token"];
         }
+
+#endif
+
+#if SILVERLIGHT
+        public static string ExchangeAccessTokenForCode(string code, string applicationKey, string applicationSecret, string postAuthorizeUrl, out int expiresIn)
+        {
+            throw new NotImplementedException();
+        }
+#endif
 
         public string ExchangeAccessTokenForCode(string code)
         {

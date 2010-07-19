@@ -60,6 +60,10 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "FacebookSharp.Samples.Websi
 		DefaultWebSiteLanguage = "Visual C#"
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Silverlight", "Silverlight", "{8474AA51-FC1E-4A06-84B2-95F406DB5D06}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FacebookSharp.Core", "Silverlight\FacebookSharp.Core\FacebookSharp.Core.csproj", "{6BB3B07C-90A3-41AB-8965-8783CA5CF052}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -210,6 +214,16 @@ Global
 		{20C9DA5C-62FD-4FE3-8E96-C5FF2792BFFD}.Release|Mixed Platforms.ActiveCfg = Debug|Any CPU
 		{20C9DA5C-62FD-4FE3-8E96-C5FF2792BFFD}.Release|Mixed Platforms.Build.0 = Debug|Any CPU
 		{20C9DA5C-62FD-4FE3-8E96-C5FF2792BFFD}.Release|x86.ActiveCfg = Debug|Any CPU
+		{6BB3B07C-90A3-41AB-8965-8783CA5CF052}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6BB3B07C-90A3-41AB-8965-8783CA5CF052}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6BB3B07C-90A3-41AB-8965-8783CA5CF052}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{6BB3B07C-90A3-41AB-8965-8783CA5CF052}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{6BB3B07C-90A3-41AB-8965-8783CA5CF052}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{6BB3B07C-90A3-41AB-8965-8783CA5CF052}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6BB3B07C-90A3-41AB-8965-8783CA5CF052}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6BB3B07C-90A3-41AB-8965-8783CA5CF052}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{6BB3B07C-90A3-41AB-8965-8783CA5CF052}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{6BB3B07C-90A3-41AB-8965-8783CA5CF052}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -229,5 +243,6 @@ Global
 		{F171C7E2-EE78-45B5-9571-29379CBBB7D5} = {6E90872E-795D-4B4B-9AC6-B05837EF7E22}
 		{0752A78A-DE20-4F59-A09C-08FF4243DADE} = {FBDE71D4-D8EF-4919-80A7-71A4B872C9DE}
 		{20C9DA5C-62FD-4FE3-8E96-C5FF2792BFFD} = {FBDE71D4-D8EF-4919-80A7-71A4B872C9DE}
+		{6BB3B07C-90A3-41AB-8965-8783CA5CF052} = {8474AA51-FC1E-4A06-84B2-95F406DB5D06}
 	EndGlobalSection
 EndGlobal

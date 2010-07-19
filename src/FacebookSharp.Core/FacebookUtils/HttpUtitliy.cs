@@ -1,3 +1,23 @@
+#if SILVERLIGHT
+using System.Windows.Browser;
+namespace FacebookSharp
+{
+    public static partial class FacebookUtils
+    {
+        public static string UrlEncode(string str)
+        {
+            return HttpUtility.UrlEncode(str);
+        }
+
+        public static string UrlDecode(string str)
+        {
+            return HttpUtility.UrlDecode(str);
+        }
+    }
+}
+#endif
+
+#if !SILVERLIGHT
 using System;
 using System.Collections;
 using System.Globalization;
@@ -6,10 +26,8 @@ using System.Text;
 
 namespace FacebookSharp
 {
-
     public static partial class FacebookUtils
     {
-
         #region Fields
 
         const string _hex = "0123456789ABCDEF";
@@ -283,12 +301,12 @@ namespace FacebookSharp
 
         #region Methods
 
-        public static void HtmlAttributeEncode(string s, TextWriter output)
+        private static void HtmlAttributeEncode(string s, TextWriter output)
         {
             output.Write(HtmlAttributeEncode(s));
         }
 
-        public static string HtmlAttributeEncode(string s)
+        private static string HtmlAttributeEncode(string s)
         {
             if (null == s)
                 return null;
@@ -325,7 +343,7 @@ namespace FacebookSharp
             return e.GetChars(b.GetBuffer(), 0, (int)b.Length);
         }
 
-        public static string UrlDecode(string s, Encoding e)
+        private static string UrlDecode(string s, Encoding e)
         {
             if (null == s)
                 return null;
@@ -388,7 +406,7 @@ namespace FacebookSharp
             return output.ToString();
         }
 
-        public static string UrlDecode(byte[] bytes, Encoding e)
+        private static string UrlDecode(byte[] bytes, Encoding e)
         {
             if (bytes == null)
                 return null;
@@ -418,7 +436,7 @@ namespace FacebookSharp
             return (char)value;
         }
 
-        public static string UrlDecode(byte[] bytes, int offset, int count, Encoding e)
+        private static string UrlDecode(byte[] bytes, int offset, int count, Encoding e)
         {
             if (bytes == null || count == 0)
                 return null;
@@ -484,7 +502,7 @@ namespace FacebookSharp
             return output.ToString();
         }
 
-        public static byte[] UrlDecodeToBytes(byte[] bytes)
+        private static byte[] UrlDecodeToBytes(byte[] bytes)
         {
             if (bytes == null)
                 return null;
@@ -492,12 +510,12 @@ namespace FacebookSharp
             return UrlDecodeToBytes(bytes, 0, bytes.Length);
         }
 
-        public static byte[] UrlDecodeToBytes(string str)
+        private static byte[] UrlDecodeToBytes(string str)
         {
             return UrlDecodeToBytes(str, Encoding.UTF8);
         }
 
-        public static byte[] UrlDecodeToBytes(string str, Encoding e)
+        private static byte[] UrlDecodeToBytes(string str, Encoding e)
         {
             if (str == null)
                 return null;
@@ -508,7 +526,7 @@ namespace FacebookSharp
             return UrlDecodeToBytes(e.GetBytes(str));
         }
 
-        public static byte[] UrlDecodeToBytes(byte[] bytes, int offset, int count)
+        private static byte[] UrlDecodeToBytes(byte[] bytes, int offset, int count)
         {
             if (bytes == null)
                 return null;
@@ -538,12 +556,12 @@ namespace FacebookSharp
             return (byte[])result.ToArray(typeof(byte));
         }
 
-        public static string UrlEncode(string str)
+        private static string UrlEncode(string str)
         {
             return UrlEncode(str, Encoding.UTF8);
         }
 
-        public static string UrlEncode(string s, Encoding Enc)
+        private static string UrlEncode(string s, Encoding Enc)
         {
             if (s == null)
                 return null;
@@ -556,7 +574,7 @@ namespace FacebookSharp
             return Encoding.ASCII.GetString(bytes, 0, bytes.Length);
         }
 
-        public static string UrlEncode(byte[] bytes)
+        private static string UrlEncode(byte[] bytes)
         {
             if (bytes == null)
                 return null;
@@ -567,7 +585,7 @@ namespace FacebookSharp
             return Encoding.ASCII.GetString(bytes, 0, bytes.Length);
         }
 
-        public static string UrlEncode(byte[] bytes, int offset, int count)
+        private static string UrlEncode(byte[] bytes, int offset, int count)
         {
             if (bytes == null)
                 return null;
@@ -578,12 +596,12 @@ namespace FacebookSharp
             return Encoding.ASCII.GetString(bytes, 0, bytes.Length);
         }
 
-        public static byte[] UrlEncodeToBytes(string str)
+        private static byte[] UrlEncodeToBytes(string str)
         {
             return UrlEncodeToBytes(str, Encoding.UTF8);
         }
 
-        public static byte[] UrlEncodeToBytes(string str, Encoding e)
+        private static byte[] UrlEncodeToBytes(string str, Encoding e)
         {
             if (str == null)
                 return null;
@@ -595,7 +613,7 @@ namespace FacebookSharp
             return UrlEncodeToBytes(bytes, 0, bytes.Length);
         }
 
-        public static byte[] UrlEncodeToBytes(byte[] bytes)
+        private static byte[] UrlEncodeToBytes(byte[] bytes)
         {
             if (bytes == null)
                 return null;
@@ -608,7 +626,7 @@ namespace FacebookSharp
 
         static char[] hexChars = "0123456789ABCDEF".ToCharArray();
 
-        public static byte[] UrlEncodeToBytes(byte[] bytes, int offset, int count)
+        private static byte[] UrlEncodeToBytes(byte[] bytes, int offset, int count)
         {
             if (bytes == null)
                 return null;
@@ -651,7 +669,7 @@ count)
             return (byte[])result.ToArray(typeof(byte));
         }
 
-        public static string UrlEncodeUnicode(string str)
+        private static string UrlEncodeUnicode(string str)
         {
             if (str == null)
                 return null;
@@ -701,7 +719,7 @@ count)
             return result.ToString();
         }
 
-        public static byte[] UrlEncodeUnicodeToBytes(string str)
+        private static byte[] UrlEncodeUnicodeToBytes(string str)
         {
             if (str == null)
                 return null;
@@ -717,7 +735,7 @@ count)
         /// </summary>
         /// <param name="s">The HTML string to decode. </param>
         /// <returns>The decoded text.</returns>
-        public static string HtmlDecode(string s)
+        private static string HtmlDecode(string s)
         {
             if (s == null)
                 throw new ArgumentNullException("s");
@@ -774,7 +792,7 @@ count)
         /// </summary>
         /// <param name="s">The HTML string to decode</param>
         /// <param name="output">The TextWriter output stream containing the decoded string. </param>
-        public static void HtmlDecode(string s, TextWriter output)
+        private static void HtmlDecode(string s, TextWriter output)
         {
             output.Write(HtmlDecode(s));
         }
@@ -825,7 +843,7 @@ count)
         /// </summary>
         /// <param name="s">The string to encode. </param>
         /// <param name="output">The TextWriter output stream containing the encoded string. </param>
-        public static void HtmlEncode(string s, TextWriter output)
+        private static void HtmlEncode(string s, TextWriter output)
         {
             output.Write(HtmlEncode(s));
         }
@@ -833,3 +851,4 @@ count)
         #endregion // Methods
     }
 }
+#endif
