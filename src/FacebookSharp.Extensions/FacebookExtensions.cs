@@ -256,5 +256,12 @@ namespace FacebookSharp.Extensions
                                  facebook.Settings.AccessToken);
         }
 
+        private static void AssertRequireAccessToken(Facebook facebook)
+        {
+            if (string.IsNullOrEmpty(facebook.Settings.AccessToken))
+                throw new ArgumentNullException("Settings.AccessToken",
+                                                "AccessToken must be specified inorder to invoke this method");
+        }
+
     }
 }

@@ -89,6 +89,9 @@
     <Compile Include="..\..\FacebookSharp.Core\Schemas\extended_permissions.cs">
       <Link>Schemas\extended_permissions.cs</Link>
     </Compile>
+    <Compile Include="..\..\FacebookSharp.Core\Schemas\Graph\Account.cs">
+      <Link>Schemas\Graph\Account.cs</Link>
+    </Compile>
     <Compile Include="..\..\FacebookSharp.Core\Schemas\Graph\Album.cs">
       <Link>Schemas\Graph\Album.cs</Link>
     </Compile>

@@ -6,33 +6,33 @@ namespace FacebookSharp.Samples.Website
 {
     public class SampleFacebookContext : IFacebookContext
     {
-        private Facebook _facebook;
+        private Facebook _facebookContext;
 
         #region Implementation of IFacebookContext
 
-        public Facebook Facebook
+        public Facebook FacebookContext
         {
             get
             {
-                if (_facebook == null)
+                if (_facebookContext == null)
                 {
-                    _facebook = HttpContext.Current.Session["access_token"] != null
+                    _facebookContext = HttpContext.Current.Session["access_token"] != null
                                     ? new Facebook(HttpContext.Current.Session["access_token"].ToString())
                                     : new Facebook();
                 }
-                _facebook.Settings.PostAuthorizeUrl = ConfigurationManager.AppSettings["FacebookSharp.PostAuthorizeUrl"];
-                _facebook.Settings.ApplicationKey = ConfigurationManager.AppSettings["FacebookSharp.AppKey"];
-                _facebook.Settings.ApplicationSecret = ConfigurationManager.AppSettings["FacebookSharp.AppSecret"];
+                _facebookContext.Settings.PostAuthorizeUrl = ConfigurationManager.AppSettings["FacebookSharp.PostAuthorizeUrl"];
+                _facebookContext.Settings.ApplicationKey = ConfigurationManager.AppSettings["FacebookSharp.AppKey"];
+                _facebookContext.Settings.ApplicationSecret = ConfigurationManager.AppSettings["FacebookSharp.AppSecret"];
 
 
-                if (_facebook.Settings.ApplicationKey == "AppKey")
+                if (_facebookContext.Settings.ApplicationKey == "AppKey")
                     throw new ApplicationException("Please specify FacebookSharp.AppKey in web.config AppSettings.");
-                if(_facebook.Settings.ApplicationSecret=="AppSecret")
+                if(_facebookContext.Settings.ApplicationSecret=="AppSecret")
                     throw new ApplicationException("Please specify FacebookSharp.AppSecret in web.config AppSettings.");
-                if (_facebook.Settings.PostAuthorizeUrl == "PostAuthorizeUrl")
+                if (_facebookContext.Settings.PostAuthorizeUrl == "PostAuthorizeUrl")
                     throw new ApplicationException("Please specify FacebookSharp.PostAuthorizeUrl in web.config AppSettings.");
 
-                return _facebook;
+                return _facebookContext;
             }
         }
 

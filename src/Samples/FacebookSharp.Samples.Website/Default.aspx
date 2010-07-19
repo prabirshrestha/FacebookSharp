@@ -18,7 +18,7 @@
     </p>
     <p>
         <b>
-            <a href="<%= FacebookContext.Facebook.Settings.FacebookAuthorizeUrl %>">Click here to login to facebook</a>
+            <a href="<%= FacebookContext.FacebookContext.Settings.FacebookAuthorizeUrl %>">Click here to login to facebook</a>
         </b>
     </p>
 </asp:Content>

@@ -10,6 +10,6 @@ public partial class Facebook : BasePage
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        lblAboutMe.Text = FacebookContext.Facebook.Request("me");
+        lblAboutMe.Text = FacebookContext.FacebookContext.Request("me");
     }
 }

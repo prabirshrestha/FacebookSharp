@@ -46,6 +46,9 @@
     <Compile Include="..\..\FacebookSharp.Extensions\FacebookExtensions.cs">
       <Link>FacebookExtensions.cs</Link>
     </Compile>
+    <Compile Include="..\..\FacebookSharp.Extensions\Me.cs">
+      <Link>Me.cs</Link>
+    </Compile>
     <Compile Include="..\..\FacebookSharp.Extensions\ParameterExtensions.cs">
       <Link>ParameterExtensions.cs</Link>
     </Compile>

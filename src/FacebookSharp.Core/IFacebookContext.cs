@@ -2,7 +2,7 @@ namespace FacebookSharp
 {
     public interface IFacebookContext
     {
-        Facebook Facebook { get; }
+        Facebook FacebookContext { get; }
         IFacebookMembershipProvider FacebookMembershipProvider { get; }
     }
 }

@@ -16,7 +16,7 @@ public partial class FacebookAuthorize : BasePage
         // since this is not a desktop app we need to send the facebook settings,
         // so that it can get apikey, api secret and post authorize url.
         FacebookAuthenticationResult = new FacebookAuthenticationResult(HttpContext.Current.Request.Url.ToString(),
-                                                                        FacebookContext.Facebook.Settings);
+                                                                        FacebookContext.FacebookContext.Settings);
 
         DisplayAppropriateMesage();
     }
