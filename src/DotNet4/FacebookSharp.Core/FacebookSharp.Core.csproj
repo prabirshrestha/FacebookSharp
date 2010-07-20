@@ -101,9 +101,6 @@
     <Compile Include="..\..\FacebookSharp.Core\Schemas\Graph\Event.cs">
       <Link>Schemas\Graph\Event.cs</Link>
     </Compile>
-    <Compile Include="..\..\FacebookSharp.Core\Schemas\Graph\Friend.cs">
-      <Link>Schemas\Graph\Friend.cs</Link>
-    </Compile>
     <Compile Include="..\..\FacebookSharp.Core\Schemas\Graph\From.cs">
       <Link>Schemas\Graph\From.cs</Link>
     </Compile>
@@ -133,6 +130,9 @@
     </Compile>
     <Compile Include="..\..\FacebookSharp.Core\Schemas\Graph\Post.cs">
       <Link>Schemas\Graph\Post.cs</Link>
+    </Compile>
+    <Compile Include="..\..\FacebookSharp.Core\Schemas\Graph\PostAction.cs">
+      <Link>Schemas\Graph\PostAction.cs</Link>
     </Compile>
     <Compile Include="..\..\FacebookSharp.Core\Schemas\Graph\Privacy.cs">
       <Link>Schemas\Graph\Privacy.cs</Link>

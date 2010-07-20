@@ -13,7 +13,7 @@
         /// Gets or sets an object containig the id and name of the user who posted the message.
         /// </summary>
         [DataMember(Name = "from")]
-        public Friend From { get; set; }
+        public From From { get; set; }
 
         /// <summary>
         /// Gets or sets the message.
@@ -88,7 +88,7 @@
         /// Gets or sets the privacy settings for this post.
         /// </summary>
         [DataMember(Name = "privacy")]
-        public string Privacy { get; set; }
+        public Privacy Privacy { get; set; }
 
         /// <summary>
         /// Gets or sets a list of profiles mentioned or targeted in this post.
@@ -98,6 +98,7 @@
 
         private CommentCollection _comments;
 
+
         /// <summary>
         /// Gets or sets the comments for this post.
         /// </summary>
@@ -106,6 +107,18 @@
         {
             get { return _comments ?? (_comments = new CommentCollection()); }
             set { _comments = value; }
+        }
+
+        private PostActionCollection _actions;
+        
+        /// <summary>
+        /// Gets or sets teh actions for this post.
+        /// </summary>
+        [DataMember(Name = "actions")]
+        public PostActionCollection Actions
+        {
+            get { return _actions ?? (_actions = new PostActionCollection()); }
+            set { _actions = value; }
         }
 
         //todo action

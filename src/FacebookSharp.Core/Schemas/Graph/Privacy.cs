@@ -1,9 +1,14 @@
 namespace FacebookSharp.Schemas.Graph
 {
-    public enum Privacy
+    using System.Runtime.Serialization;
+
+    [DataContract]
+    public class Privacy
     {
-        Open,
-        Closed,
-        Secret
+        [DataMember(Name = "description")]
+        public string Description { get; set; }
+
+        [DataMember(Name = "value")]
+        public string Value { get; set; }
     }
 }
