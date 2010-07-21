@@ -56,12 +56,12 @@ In the post-authorize page.
 		}
 	}
 
-for website authentication, facebook return the ?code=some_code 
+for website authentication, facebook returns the ?code=some_code 
 FacebookAuthenticationResult is smart enough to recognize it and return you the access token transparently in the background.
 You don't have to create any request or ask for anything.
 
-Incase you are developging desktop applications. You can also do the same concept. But for easy access, a Facebook Login Dialog has been created.
-Due to the nature of Facebook Authentication, you will need to provide only ApplicationKey for Desktop applications, but for web application you will need to provide PostAuthorizeUrl,ApplicationKey, ApplicationSecret.
+Incase you are developging desktop applications. You can also use the same concept. But for easy access, a Facebook Login Dialog has been created.
+Due to the nature of Facebook Authentication, you will need to provide only ApplicationKey for Desktop applications, but for web application you will need to provide PostAuthorizeUrl,ApplicationKey and ApplicationSecret.
 
 	FacebookSettings fbSettings = new FacebookSettings { ApplicationKey = "your application key" };
 	FacebookLoginForm fbLoginDlg = new FacebookLoginForm(fbSettings);
@@ -81,11 +81,11 @@ Due to the nature of Facebook Authentication, you will need to provide only Appl
 		MessageBox.Show(fbAuthResult.ErrorReasonText);
 	}
 
-You can specify extened permissions by specifify it in the FacebookSettings.
+You can specify extened permissions by specifying it in the FacebookSettings.
 
 	fbSettings.DefaultApplicationPermissions = new[] { "publish_stream","create_event" } };
 
-Please refer to http://developers.facebook.com/docs/authentication/permissions for more information on extended permissions.
+Please refer to [http://developers.facebook.com/docs/authentication/permissions](http://developers.facebook.com/docs/authentication/permissions) for more information on extended permissions.
 
 #### IFacebookMembershipProvider
 
@@ -105,8 +105,6 @@ Table structure for SqlFacebookMembershipProvider
 		[AccessToken] VARCHAR(256),
 		PRIMARY KEY ([Username])  
 	);
-
-More providers comming soon.
 
 ##Supported Platforms
 
