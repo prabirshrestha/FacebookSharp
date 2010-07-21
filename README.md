@@ -7,9 +7,8 @@ This library is a port from the original Facebook Android SDK written in Java wi
 * Reference FacebookSharp.Core
 * add using FacebookSharp;
 
-	var Facebook = new Facebook();
-	// If you want to specify AccessToken then
-	var Facebook = new Facebook("access_token");
+	Facebook fb = new Facebook();
+	Facebook fb = new Facebook("access_token"); // If you want to specify AccessToken then
 	var user = facebook.Request&lt;User>("me");
 	Console.WriteLine(user.Name);
 	
