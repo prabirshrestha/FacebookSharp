@@ -30,6 +30,65 @@ facebook.PutLike("id");
 
 facebook.PutWallPost("message",null);
 
+#### Getting Facebook Access Token
+Please review the samples found in the source control to get Facebook Access Token.
+Facebook# already contains a windows form dialog, for easy login to facebook and retriving access token.
+
+Same api for retriving the access token is used for both windows and web applications.
+For web applications:
+In the post-authorize page.
+
+protected void Page_Load(object sender, EventArgs e)
+{
+	FacebookSettings fbSettings  = new FacebookSettings();
+	fbSettings.PostAuthorizeUrl  = "http://localhost:16443/FacebookSharp.Samples.Website/FacebookAuthorize.aspx"; // change this to your appropriate post authorize url
+	fbSettings.ApplicationKey 	 = "application_key";
+	fbSettings.ApplicationSecret = "application_secret";
+	
+	FacebookAuthenticationResult fbAuthResult = new FacebookAuthenticationResult(HttpContext.Current.Request.Url.ToString(),fbSettings);
+	if (fbAuthResult.IsSuccess)
+	{
+		string accessToken = fbAuthResult.AccessToken;
+		int expiresIn = fbAuthResult.ExpiresIn;
+		// save this access token for future reference ....
+		// then do your application logic: might be redirect?
+	}
+	else
+	{
+		string errorReason = fbAuthResult.ErrorReasonText;
+		// you can also display the error reason text,
+		// or mite be tell the user that you must allow access to facebook
+		// before using this app ....
+	}
+}
+
+for website authentication, facebook return the ?code=some_code 
+FacebookAuthenticationResult is smart enough to recognize it and return you the access token transparently in the background.
+You don't have to create any request or ask for anything.
+
+Incase you are developging desktop applications. You can also do the same concept. But for easy access, a Facebook Login Dialog has been created.
+Due to the nature of Facebook Authentication, you will need to provide only ApplicationKey for Desktop applications, but for web application you will need to provide PostAuthorizeUrl,ApplicationKey, ApplicationSecret.
+FacebookSettings fbSettings = new FacebookSettings { ApplicationKey = "your application key" };
+FacebookLoginForm fbLoginDlg = new FacebookLoginForm(fbSettings);
+FacebookAuthenticationResult fbAuthResult;
+
+if (fbLoginDlg.ShowDialog() == DialogResult.OK)
+{
+	MessageBox.Show("You are logged in.");
+	fbAuthResult = fbLoginDlg.FacebookAuthenticationResult;
+	txtAccessToken.Text = fbAuthResult.AccessToken;
+	txtExpiresIn.Text = fbAuthResult.ExpiresIn.ToString();
+}
+else
+{
+	MessageBox.Show("You must login inorder to access Facebook features.");
+	fbAuthResult = fbLoginDlg.FacebookAuthenticationResult;
+	MessageBox.Show(fbAuthResult.ErrorReasonText);
+}
+
+You can specify extened permissions by specifify it in the FacebookSettings.
+fbSettings.DefaultApplicationPermissions = new[] { "publish_stream","create_event" } };
+Please refer to http://developers.facebook.com/docs/authentication/permissions for more information on extended permissions.
 
 #### IFacebookMembershipProvider
 // To have easy link between your MembershipProvider and FacebookMembershipProvider IFacebookMembershipProvider has been created. This interface contains methods such as 
@@ -39,18 +98,18 @@ void LinkFacebook(string membershipUsername, string facebookId, string accessTok
 void UnlinkFacebook(string membershipUsername);
 string GetFacebookAccessToken(string membershipUsername);
 
-// MySql implementation has been provided:
-// Table structure for MySqlFacebookMembershipProvider
+// SqlServer, SQLite and MySql implementation has been provided:
+// Table structure for SqlFacebookMembershipProvider
 
-CREATE TABLE `facebook_users` (
+CREATE TABLE [FacebookUsers](
 
-  `user_name` VARCHAR(60), -- membershipUsername, primary key already enforced as unique and not null
+  [Username] VARCHAR(60), -- membershipUsername
   
-  `facebook_id` VARCHAR(50) NOT NULL UNIQUE,
+  [FacebookId] VARCHAR(50) NOT NULL UNIQUE,
   
-  `access_token` VARCHAR(256),
+  [AccessToken] VARCHAR(256),
   
-  PRIMARY KEY (`user_name`)
+  PRIMARY KEY ([Username])
   
 );
 
