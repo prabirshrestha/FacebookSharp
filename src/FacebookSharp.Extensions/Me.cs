@@ -32,5 +32,16 @@ namespace FacebookSharp.Extensions
         {
             return GetMyPages(facebook, null);
         }
+
+        public static bool AmIAdminOfPage(this Facebook facebook, string pageId)
+        {
+            AssertRequireAccessToken(facebook);
+            var pages = facebook.GetMyPages();
+
+            if (pages == null)
+                return false;
+
+            return pages.Data.Find(p => p.ID == pageId) != null;
+        }
     }
 }

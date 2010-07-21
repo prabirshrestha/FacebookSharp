@@ -10,4 +10,11 @@ namespace FacebookSharp.Schemas.Graph
         [DataMember(Name = "data")]
         public List<T> Data { get; set; }
     }
+
+    [DataContract]
+    public class FacebookCollection<T>
+    {
+        [DataMember(Name = "data")]
+        public List<T> Data { get; set; }
+    }
 }

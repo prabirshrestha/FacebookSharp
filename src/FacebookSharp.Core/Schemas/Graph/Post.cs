@@ -94,7 +94,7 @@
         /// Gets or sets a list of profiles mentioned or targeted in this post.
         /// </summary>
         [DataMember(Name = "to")]
-        public List<To> To { get; set; }
+        public FacebookCollection<CategorizedGraphObject> To { get; set; }
 
         private CommentCollection _comments;
 
@@ -110,7 +110,7 @@
         }
 
         private PostActionCollection _actions;
-        
+
         /// <summary>
         /// Gets or sets teh actions for this post.
         /// </summary>

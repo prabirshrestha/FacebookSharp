@@ -88,6 +88,9 @@
     <Compile Include="..\..\FacebookSharp.Core\FacebookUtils\HttpUtitliy.cs">
       <Link>FacebookUtils\HttpUtitliy.cs</Link>
     </Compile>
+    <Compile Include="..\..\FacebookSharp.Core\FacebookUtils\JsonUtils.cs">
+      <Link>FacebookUtils\JsonUtils.cs</Link>
+    </Compile>
     <Compile Include="..\..\FacebookSharp.Core\FacebookUtils\_FacebookUtils.cs">
       <Link>FacebookUtils\_FacebookUtils.cs</Link>
     </Compile>
@@ -100,6 +103,9 @@
     <Compile Include="..\..\FacebookSharp.Core\Schemas\extended_permissions.cs">
       <Link>Schemas\extended_permissions.cs</Link>
     </Compile>
+    <Compile Include="..\..\FacebookSharp.Core\Schemas\Graph\Account.cs">
+      <Link>Schemas\Graph\Account.cs</Link>
+    </Compile>
     <Compile Include="..\..\FacebookSharp.Core\Schemas\Graph\Album.cs">
       <Link>Schemas\Graph\Album.cs</Link>
     </Compile>
@@ -108,9 +114,6 @@
     </Compile>
     <Compile Include="..\..\FacebookSharp.Core\Schemas\Graph\Event.cs">
       <Link>Schemas\Graph\Event.cs</Link>
-    </Compile>
-    <Compile Include="..\..\FacebookSharp.Core\Schemas\Graph\Friend.cs">
-      <Link>Schemas\Graph\Friend.cs</Link>
     </Compile>
     <Compile Include="..\..\FacebookSharp.Core\Schemas\Graph\From.cs">
       <Link>Schemas\Graph\From.cs</Link>
@@ -142,14 +145,14 @@
     <Compile Include="..\..\FacebookSharp.Core\Schemas\Graph\Post.cs">
       <Link>Schemas\Graph\Post.cs</Link>
     </Compile>
+    <Compile Include="..\..\FacebookSharp.Core\Schemas\Graph\PostAction.cs">
+      <Link>Schemas\Graph\PostAction.cs</Link>
+    </Compile>
     <Compile Include="..\..\FacebookSharp.Core\Schemas\Graph\Privacy.cs">
       <Link>Schemas\Graph\Privacy.cs</Link>
     </Compile>
     <Compile Include="..\..\FacebookSharp.Core\Schemas\Graph\Tag.cs">
       <Link>Schemas\Graph\Tag.cs</Link>
-    </Compile>
-    <Compile Include="..\..\FacebookSharp.Core\Schemas\Graph\To.cs">
-      <Link>Schemas\Graph\To.cs</Link>
     </Compile>
     <Compile Include="..\..\FacebookSharp.Core\Schemas\Graph\Url.cs">
       <Link>Schemas\Graph\Url.cs</Link>

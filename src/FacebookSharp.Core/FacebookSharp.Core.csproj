@@ -65,7 +65,6 @@
     <Compile Include="Schemas\Graph\PostAction.cs" />
     <Compile Include="Schemas\Graph\Privacy.cs" />
     <Compile Include="Schemas\Graph\Tag.cs" />
-    <Compile Include="Schemas\Graph\To.cs" />
     <Compile Include="Schemas\Graph\Url.cs" />
     <Compile Include="Schemas\Graph\Video.cs" />
     <Compile Include="Schemas\Graph\_CategorizedGraphObject.cs" />

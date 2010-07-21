@@ -143,9 +143,6 @@
     <Compile Include="..\..\FacebookSharp.Core\Schemas\Graph\Tag.cs">
       <Link>Schemas\Graph\Tag.cs</Link>
     </Compile>
-    <Compile Include="..\..\FacebookSharp.Core\Schemas\Graph\To.cs">
-      <Link>Schemas\Graph\To.cs</Link>
-    </Compile>
     <Compile Include="..\..\FacebookSharp.Core\Schemas\Graph\Url.cs">
       <Link>Schemas\Graph\Url.cs</Link>
     </Compile>
