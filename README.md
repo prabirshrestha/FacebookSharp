@@ -30,29 +30,29 @@ Same api for retriving the access token is used for both windows and web applica
 For web applications:
 In the post-authorize page.
 
-protected void Page_Load(object sender, EventArgs e)
-{
-	FacebookSettings fbSettings  = new FacebookSettings();
-	fbSettings.PostAuthorizeUrl  = "http://localhost:16443/FacebookSharp.Samples.Website/FacebookAuthorize.aspx"; // change this to your appropriate post authorize url
-	fbSettings.ApplicationKey 	 = "application_key";
-	fbSettings.ApplicationSecret = "application_secret";
+	protected void Page_Load(object sender, EventArgs e)
+	{
+		FacebookSettings fbSettings  = new FacebookSettings();
+		fbSettings.PostAuthorizeUrl  = "http://localhost:16443/FacebookSharp.Samples.Website/FacebookAuthorize.aspx"; // change this to your appropriate post authorize url
+		fbSettings.ApplicationKey 	 = "application_key";
+		fbSettings.ApplicationSecret = "application_secret";
 	
-	FacebookAuthenticationResult fbAuthResult = new FacebookAuthenticationResult(HttpContext.Current.Request.Url.ToString(),fbSettings);
-	if (fbAuthResult.IsSuccess)
-	{
-		string accessToken = fbAuthResult.AccessToken;
-		int expiresIn = fbAuthResult.ExpiresIn;
-		// save this access token for future reference ....
-		// then do your application logic: might be redirect?
+		FacebookAuthenticationResult fbAuthResult = new FacebookAuthenticationResult(HttpContext.Current.Request.Url.ToString(),fbSettings);
+		if (fbAuthResult.IsSuccess)
+		{
+			string accessToken = fbAuthResult.AccessToken;
+			int expiresIn = fbAuthResult.ExpiresIn;
+			// save this access token for future reference ....
+			// then do your application logic: might be redirect?
+		}
+		else
+		{
+			string errorReason = fbAuthResult.ErrorReasonText;
+			// you can also display the error reason text,
+			// or mite be tell the user that you must allow access to facebook
+			// before using this app ....
+		}
 	}
-	else
-	{
-		string errorReason = fbAuthResult.ErrorReasonText;
-		// you can also display the error reason text,
-		// or mite be tell the user that you must allow access to facebook
-		// before using this app ....
-	}
-}
 
 for website authentication, facebook return the ?code=some_code 
 FacebookAuthenticationResult is smart enough to recognize it and return you the access token transparently in the background.
@@ -64,46 +64,44 @@ FacebookSettings fbSettings = new FacebookSettings { ApplicationKey = "your appl
 FacebookLoginForm fbLoginDlg = new FacebookLoginForm(fbSettings);
 FacebookAuthenticationResult fbAuthResult;
 
-if (fbLoginDlg.ShowDialog() == DialogResult.OK)
-{
-	MessageBox.Show("You are logged in.");
-	fbAuthResult = fbLoginDlg.FacebookAuthenticationResult;
-	txtAccessToken.Text = fbAuthResult.AccessToken;
-	txtExpiresIn.Text = fbAuthResult.ExpiresIn.ToString();
-}
-else
-{
-	MessageBox.Show("You must login inorder to access Facebook features.");
-	fbAuthResult = fbLoginDlg.FacebookAuthenticationResult;
-	MessageBox.Show(fbAuthResult.ErrorReasonText);
-}
+	if (fbLoginDlg.ShowDialog() == DialogResult.OK)
+	{
+		MessageBox.Show("You are logged in.");
+		fbAuthResult = fbLoginDlg.FacebookAuthenticationResult;
+		txtAccessToken.Text = fbAuthResult.AccessToken;
+		txtExpiresIn.Text = fbAuthResult.ExpiresIn.ToString();
+	}
+	else
+	{
+		MessageBox.Show("You must login inorder to access Facebook features.");
+		fbAuthResult = fbLoginDlg.FacebookAuthenticationResult;
+		MessageBox.Show(fbAuthResult.ErrorReasonText);
+	}
 
 You can specify extened permissions by specifify it in the FacebookSettings.
-fbSettings.DefaultApplicationPermissions = new[] { "publish_stream","create_event" } };
+
+	fbSettings.DefaultApplicationPermissions = new[] { "publish_stream","create_event" } };
+
 Please refer to http://developers.facebook.com/docs/authentication/permissions for more information on extended permissions.
 
 #### IFacebookMembershipProvider
-// To have easy link between your MembershipProvider and FacebookMembershipProvider IFacebookMembershipProvider has been created. This interface contains methods such as 
 
-bool HasLinkedFacebook(string membershipUsername);
-void LinkFacebook(string membershipUsername, string facebookId, string accessToken);
-void UnlinkFacebook(string membershipUsername);
-string GetFacebookAccessToken(string membershipUsername);
+To have easy link between your MembershipProvider and FacebookMembershipProvider IFacebookMembershipProvider has been created. This interface contains methods such as 
 
-// SqlServer, SQLite and MySql implementation has been provided:
-// Table structure for SqlFacebookMembershipProvider
+	bool HasLinkedFacebook(string membershipUsername);
+	void LinkFacebook(string membershipUsername, string facebookId, string accessToken);
+	void UnlinkFacebook(string membershipUsername);
+	string GetFacebookAccessToken(string membershipUsername);
 
-CREATE TABLE [FacebookUsers](
+SqlServer, SQLite and MySql implementation has been provided:
+Table structure for SqlFacebookMembershipProvider
 
-  [Username] VARCHAR(60), -- membershipUsername
-  
-  [FacebookId] VARCHAR(50) NOT NULL UNIQUE,
-  
-  [AccessToken] VARCHAR(256),
-  
-  PRIMARY KEY ([Username])
-  
-);
+	CREATE TABLE [FacebookUsers](
+		[Username] VARCHAR(60), -- membershipUsername
+  		[FacebookId] VARCHAR(50) NOT NULL UNIQUE,
+		[AccessToken] VARCHAR(256),
+		PRIMARY KEY ([Username])  
+	);
 
 More providers comming soon.
 
