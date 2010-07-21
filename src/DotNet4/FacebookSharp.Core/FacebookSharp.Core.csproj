@@ -74,6 +74,9 @@
     <Compile Include="..\..\FacebookSharp.Core\FacebookUtils\HttpUtitliy.cs">
       <Link>FacebookUtils\HttpUtitliy.cs</Link>
     </Compile>
+    <Compile Include="..\..\FacebookSharp.Core\FacebookUtils\JsonUtils.cs">
+      <Link>FacebookUtils\JsonUtils.cs</Link>
+    </Compile>
     <Compile Include="..\..\FacebookSharp.Core\FacebookUtils\_FacebookUtils.cs">
       <Link>FacebookUtils\_FacebookUtils.cs</Link>
     </Compile>

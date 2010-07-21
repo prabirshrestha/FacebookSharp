@@ -51,6 +51,7 @@
     <Compile Include="FacebookSettings.cs" />
     <Compile Include="FacebookUtils\DateUtils.cs" />
     <Compile Include="FacebookUtils\HttpUtitliy.cs" />
+    <Compile Include="FacebookUtils\JsonUtils.cs" />
     <Compile Include="FacebookUtils\_FacebookUtils.cs" />
     <Compile Include="IFacebookContext.cs" />
     <Compile Include="Schemas\Graph\Account.cs" />

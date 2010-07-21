@@ -17,7 +17,6 @@ namespace FacebookSharp
         }
 #endif
 
-
         public static string EncodeUrl(IDictionary<string, string> parameters)
         {
             if (parameters == null || parameters.Count == 0)
@@ -91,19 +90,19 @@ namespace FacebookSharp
         }
 
 #if !SILVERLIGHT
-    /// <summary>
-    /// Connect to an HTTP url and return the response as a string.
-    /// </summary>
-    /// <param name="url">The resource to open: must be a welformed URL</param>
-    /// <param name="method">The HTTP method to use ("GET", "POST", etc.)</param>
-    /// <param name="parameters">The query parameter for the URL (e.g. access_token=foo)</param>
-    /// <param name="userAgent">Sets the user agent when opening the url.</param>
-    /// <param name="compressHttp">If true adds Accept-Encoding as "gzip,deflate".</param>
-    /// <returns>The URL contents as a string.</returns>
-    /// <remarks>
-    /// Note that the HTTP method override is used on non-GET requests.
-    /// (i.e. requests are made as "POST" with method specified in the body).
-    /// </remarks>
+        /// <summary>
+        /// Connect to an HTTP url and return the response as a string.
+        /// </summary>
+        /// <param name="url">The resource to open: must be a welformed URL</param>
+        /// <param name="method">The HTTP method to use ("GET", "POST", etc.)</param>
+        /// <param name="parameters">The query parameter for the URL (e.g. access_token=foo)</param>
+        /// <param name="userAgent">Sets the user agent when opening the url.</param>
+        /// <param name="compressHttp">If true adds Accept-Encoding as "gzip,deflate".</param>
+        /// <returns>The URL contents as a string.</returns>
+        /// <remarks>
+        /// Note that the HTTP method override is used on non-GET requests.
+        /// (i.e. requests are made as "POST" with method specified in the body).
+        /// </remarks>
         public static string OpenUrl(string url, string method, IDictionary<string, string> parameters, string userAgent, bool compressHttp)
         {
             if (method.Equals("GET", StringComparison.OrdinalIgnoreCase))
@@ -179,6 +178,52 @@ namespace FacebookSharp
 
 #endif
 
+        #region Json Converter Utils
+
+        /// <summary>
+        /// Parse Json string to IDictionary&lt;string, object>.
+        /// </summary>
+        /// <param name="json"></param>
+        /// <returns></returns>
+        public static IDictionary<string, object> FromJson(string json)
+        {
+            return JsonParser.FromJson(json);
+        }
+
+        /// <summary>
+        /// Parse Json string to IDictionary&lt;string, object>. 
+        /// </summary>
+        /// <param name="json"></param>
+        /// <param name="throwFacebookException"></param>
+        /// <returns></returns>
+        public static IDictionary<string, object> FromJson(string json, bool throwFacebookException)
+        {
+            IDictionary<string, object> jsonBag = FromJson(json);
+
+            FacebookException ex = ToFacebookException(json);
+
+            if (!throwFacebookException)    // i think sometimes, it shouldn't throw error,
+                return jsonBag;             // rather user should have more control over the behavior.
+
+            if (ex != null)
+                throw ex;
+
+            return jsonBag;
+        }
+
+
+        /// <summary>
+        /// Parse IDictionary&lt;string, object> to json string.
+        /// </summary>
+        /// <param name="json"></param>
+        /// <returns></returns>
+        public static string ToJson(IDictionary<string, object> bag)
+        {
+            return JsonParser.ToJson(bag);
+        }
+        
+
+        #endregion
 
         /// <summary>
         /// Parse a server response into a JSON object.
@@ -193,6 +238,7 @@ namespace FacebookSharp
         /// populated with the error message and error type or code if available. 
         /// </remarks>
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
+        [Obsolete("use FromJson method instead.")]
         public static JToken ParseJson(string response)
         {
             return ParseJson(response, true); // this is the default behavior in facebook android sdk.
@@ -212,6 +258,7 @@ namespace FacebookSharp
         /// populated with the error message and error type or code if available. 
         /// </remarks>
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
+        [Obsolete("use FromJson method instead.")]
         public static JToken ParseJson(string response, bool throwException)
         {
             JToken json;
