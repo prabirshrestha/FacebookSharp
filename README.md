@@ -4,31 +4,23 @@ Facebook Graph API for .Net
 This library is a port from the original Facebook Android SDK written in Java with more features added.
 
 ## Usage
-* Reference FacebookSharp.Core and add using FacebookSharp;
+* Reference FacebookSharp.Core
+* add using FacebookSharp;
 
-var Facebook = new Facebook();
+	var Facebook = new Facebook();
+	// If you want to specify AccessToken then 
+	var Facebook = new Facebook("access_token");
+	var user = facebook.Request&lt;User>("me");
+	Console.WriteLine(user.Name);
+	
+For more easy access FacebookSharp.Extensions has also been created.
 
-// If you want to specify AccessToken then 
-
-var Facebook = new Facebook("access_token");
-
-var user = facebook.Request&lt;User>("me");
-
-Console.WriteLine(user.Name);
-
-// For more easy access FacebookSharp.Extensions has also been created.
-
-using FacebookSharp.Extensions;
-
-string profilePictureUrl = facebook.GetMyProfilePictureUrl();
-
-facebook.PutComment("id","some comment message");
-
-facebook.DeleteObject("id");
-
-facebook.PutLike("id");
-
-facebook.PutWallPost("message",null);
+	using FacebookSharp.Extensions;
+	string profilePictureUrl = facebook.GetMyProfilePictureUrl();
+	facebook.PutComment("id","some comment message");
+	facebook.DeleteObject("id");
+	facebook.PutLike("id");
+	facebook.PutWallPost("message",null);
 
 #### Getting Facebook Access Token
 Please review the samples found in the source control to get Facebook Access Token.
