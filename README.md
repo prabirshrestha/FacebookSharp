@@ -60,9 +60,10 @@ You don't have to create any request or ask for anything.
 
 Incase you are developging desktop applications. You can also do the same concept. But for easy access, a Facebook Login Dialog has been created.
 Due to the nature of Facebook Authentication, you will need to provide only ApplicationKey for Desktop applications, but for web application you will need to provide PostAuthorizeUrl,ApplicationKey, ApplicationSecret.
-FacebookSettings fbSettings = new FacebookSettings { ApplicationKey = "your application key" };
-FacebookLoginForm fbLoginDlg = new FacebookLoginForm(fbSettings);
-FacebookAuthenticationResult fbAuthResult;
+
+	FacebookSettings fbSettings = new FacebookSettings { ApplicationKey = "your application key" };
+	FacebookLoginForm fbLoginDlg = new FacebookLoginForm(fbSettings);
+	FacebookAuthenticationResult fbAuthResult;
 
 	if (fbLoginDlg.ShowDialog() == DialogResult.OK)
 	{
