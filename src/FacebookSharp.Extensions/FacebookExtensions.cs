@@ -19,10 +19,9 @@
 // http://developers.facebook.com/docs/api. You can download the Facebook
 // JavaScript SDK at http://github.com/facebook/connect-js/.
 
-using System;
-
 namespace FacebookSharp.Extensions
 {
+    using System;
     using System.Collections.Generic;
     using System.Text;
 

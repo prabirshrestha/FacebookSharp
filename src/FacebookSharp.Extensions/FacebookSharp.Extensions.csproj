@@ -42,6 +42,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FeedExtensions.cs" />
     <Compile Include="Me.cs" />
     <Compile Include="ParameterExtensions.cs" />
     <Compile Include="FacebookExtensions.cs" />
