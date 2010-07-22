@@ -306,7 +306,7 @@ namespace FacebookSharp
             output.Write(HtmlAttributeEncode(s));
         }
 
-        private static string HtmlAttributeEncode(string s)
+        public static string HtmlAttributeEncode(string s)
         {
             if (null == s)
                 return null;
@@ -556,7 +556,7 @@ namespace FacebookSharp
             return (byte[])result.ToArray(typeof(byte));
         }
 
-        private static string UrlEncode(string str)
+        public static string UrlEncode(string str)
         {
             return UrlEncode(str, Encoding.UTF8);
         }
@@ -735,7 +735,7 @@ count)
         /// </summary>
         /// <param name="s">The HTML string to decode. </param>
         /// <returns>The decoded text.</returns>
-        private static string HtmlDecode(string s)
+        public static string HtmlDecode(string s)
         {
             if (s == null)
                 throw new ArgumentNullException("s");
