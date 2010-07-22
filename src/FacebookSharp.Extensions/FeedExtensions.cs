@@ -5,10 +5,10 @@ namespace FacebookSharp.Extensions
 
     public static partial class FacebookExtensions
     {
-        #region Feed specifics
+        #region Post specifics
 
         /// <summary>
-        /// Gets the feed for the specified facebook id (application ,event, group, page or user).
+        /// Get the feeds for the specified facebook id (application ,event, group, page or user).
         /// </summary>
         /// <param name="facebook"></param>
         /// <param name="id"></param>
@@ -23,13 +23,13 @@ namespace FacebookSharp.Extensions
         ///  Page       | The page's wall.
         ///  User       | The user's wall. Requires the read_stream permission to see non-public posts.
         /// </remarks>
-        public static string GetFeedAsJson(this Facebook facebook, string id, IDictionary<string, string> parameters)
+        public static string GetFeedsAsJson(this Facebook facebook, string id, IDictionary<string, string> parameters)
         {
             return facebook.GetConnections(id, "feed", parameters);
         }
 
         /// <summary>
-        /// Gets the feed for the specified facebook id (application ,event, group, page or user).
+        /// Get the feeds for the specified facebook id (application ,event, group, page or user).
         /// </summary>
         /// <param name="facebook"></param>
         /// <param name="id"></param>
@@ -46,9 +46,9 @@ namespace FacebookSharp.Extensions
         ///  Page       | The page's wall.
         ///  User       | The user's wall. Requires the read_stream permission to see non-public posts.
         /// </remarks>
-        public static PostCollection GetFeed(this Facebook facebook, string id, IDictionary<string, string> parameters)
+        public static PostCollection GetFeeds(this Facebook facebook, string id, IDictionary<string, string> parameters)
         {
-            return FacebookUtils.DeserializeObject<PostCollection>(facebook.GetFeedAsJson(id, parameters));
+            return FacebookUtils.DeserializeObject<PostCollection>(facebook.GetFeedsAsJson(id, parameters));
         }
 
         #endregion
