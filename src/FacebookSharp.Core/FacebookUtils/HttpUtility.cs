@@ -43,6 +43,13 @@ namespace FacebookSharp
 
         #region FacebookSharp Helper methods for paramaters encode/decode
 
+        /*
+         * NOTE: EncodeDictionaryUrl,DecodeDictionaryUrl and ParseUrlQueryString methods are marked for deletion 
+         * most probably won't require it coz RestSharp does it internally.
+         * 
+         */
+
+        [Obsolete("This method is marked for deletion in future release.")]
         public static string EncodeDictionaryUrl(IDictionary<string, string> parameters)
         {
             if (parameters == null || parameters.Count == 0)
@@ -60,6 +67,7 @@ namespace FacebookSharp
             return sb.ToString();
         }
 
+        [Obsolete("This method is marked for deletion in future release.")]
         public static IDictionary<string, string> DecodeDictionaryUrl(string s)
         {
             IDictionary<string, string> parameters = new Dictionary<string, string>();
@@ -82,6 +90,7 @@ namespace FacebookSharp
         /// </summary>
         /// <param name="url">The URL to parse</param>
         /// <returns>Returns a dictionary of keys and values.</returns>
+        [Obsolete("This method is marked for deletion in future release.")]
         public static IDictionary<string, string> ParseUrlQueryString(string url)
         {
             // hack to prevent MalformedURLException
@@ -99,7 +108,6 @@ namespace FacebookSharp
         }
 
         #endregion
-
 
     }
 }
