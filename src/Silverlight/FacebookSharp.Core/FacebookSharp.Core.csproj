@@ -88,6 +88,9 @@
     <Compile Include="..\..\FacebookSharp.Core\FacebookUtils\DateUtils.cs">
       <Link>FacebookUtils\DateUtils.cs</Link>
     </Compile>
+    <Compile Include="..\..\FacebookSharp.Core\FacebookUtils\ExceptionHelpers.cs">
+      <Link>FacebookUtils\ExceptionHelpers.cs</Link>
+    </Compile>
     <Compile Include="..\..\FacebookSharp.Core\FacebookUtils\HttpUtility.cs">
       <Link>FacebookUtils\HttpUtility.cs</Link>
     </Compile>

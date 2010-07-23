@@ -53,6 +53,7 @@
     <Compile Include="Facebook.cs" />
     <Compile Include="FacebookAuthenticationResult.cs" />
     <Compile Include="FacebookSettings.cs" />
+    <Compile Include="FacebookUtils\ExceptionHelpers.cs" />
     <Compile Include="FacebookUtils\HttpUtility.cs" />
     <Compile Include="FacebookUtils\DateUtils.cs" />
     <Compile Include="FacebookUtils\JsonUtils.cs" />
