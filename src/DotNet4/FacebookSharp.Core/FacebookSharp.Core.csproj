@@ -185,6 +185,9 @@
     <Compile Include="..\..\FacebookSharp.Core\Schemas\schemas.cs">
       <Link>Schemas\schemas.cs</Link>
     </Compile>
+    <Compile Include="..\..\FacebookSharp.Core\Schemas\StringValue.cs">
+      <Link>Schemas\StringValue.cs</Link>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\FacebookSharp.Core\Schemas\enum_flags_generator.rb">
