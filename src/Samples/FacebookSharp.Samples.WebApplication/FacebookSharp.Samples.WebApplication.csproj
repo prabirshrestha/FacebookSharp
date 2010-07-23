@@ -94,7 +94,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Site.master" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\FacebookSharp.Core\FacebookSharp.Core.csproj">
