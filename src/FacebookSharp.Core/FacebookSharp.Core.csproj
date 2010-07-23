@@ -38,6 +38,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\libs\RestSharp\DotNet35\Release\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="RestSharp">
+      <HintPath>..\..\libs\RestSharp\DotNet35\Release\RestSharp.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.XML" />
@@ -50,8 +53,8 @@
     <Compile Include="Facebook.cs" />
     <Compile Include="FacebookAuthenticationResult.cs" />
     <Compile Include="FacebookSettings.cs" />
+    <Compile Include="FacebookUtils\HttpUtility.cs" />
     <Compile Include="FacebookUtils\DateUtils.cs" />
-    <Compile Include="FacebookUtils\HttpUtitliy.cs" />
     <Compile Include="FacebookUtils\JsonUtils.cs" />
     <Compile Include="FacebookUtils\_FacebookUtils.cs" />
     <Compile Include="IFacebookContext.cs" />

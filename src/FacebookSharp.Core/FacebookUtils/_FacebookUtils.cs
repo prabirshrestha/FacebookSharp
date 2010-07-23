@@ -10,13 +10,6 @@ namespace FacebookSharp
 
     public static partial class FacebookUtils
     {
-#if !SILVERLIGHT
-        static FacebookUtils()
-        {
-            InitHttpUtility();
-        }
-#endif
-
         public static string EncodeUrl(IDictionary<string, string> parameters)
         {
             if (parameters == null || parameters.Count == 0)

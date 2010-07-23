@@ -1,4 +1,5 @@
-﻿namespace FacebookSharp
+﻿
+namespace FacebookSharp
 {
     using System.Web.Security;
     using MySql.Data.MySqlClient;
@@ -89,6 +90,12 @@
             }
         }
 
+        public void LinkFacebook(string membershipUsername, string facebookId, string accessToken, int expiresIn)
+        {
+            // todo: add expires in
+            LinkFacebook(membershipUsername, facebookId, accessToken);
+        }
+
         public void LinkFacebook(object membershipProviderUserKey, string facebookId, string accessToken)
         {
             MembershipUser user = _membershipProvider.GetUser(membershipProviderUserKey, false);
@@ -96,6 +103,12 @@
                 throw new FacebookSharpException("User with given membershipProviderUserKey not found.");
 
             LinkFacebook(user.UserName, facebookId, accessToken);
+        }
+
+        public void LinkFacebook(object membershipProviderUserKey, string facebookId, string accessToken, int expiresIn)
+        {
+            // todo: add expires in
+            LinkFacebook(membershipProviderUserKey, facebookId, accessToken);
         }
 
         public void UnlinkFacebook(string membershipUsername)

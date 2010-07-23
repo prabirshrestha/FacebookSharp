@@ -1,3 +1,5 @@
+using System;
+
 namespace FacebookSharp
 {
     /// <summary>
@@ -44,11 +46,24 @@ namespace FacebookSharp
         /// <param name="accessToken">Facebook access token.</param>
         /// <remarks>
         /// If the specified membership user doesn't exist, it should not throw error.
-        /// Incase the facebookId is not a Facebook User, it should it should not throw error.
+        /// Incase the facebookId is not a Facebook User, it should it should not throw error. 
+        /// todo: remove this method soon
         /// </remarks>
+        [Obsolete("Use LinkFacebook(string membershipUsername, string facebookId, string accessToken, int expiresIn) instead.")]
         void LinkFacebook(string membershipUsername, string facebookId, string accessToken);
 
-        // todo: add expiry
+        /// <summary>
+        /// Links the Facebook User with the Membership Provider.
+        /// </summary>
+        /// <param name="membershipUsername">Membership username to link.</param>
+        /// <param name="facebookId">Facebook user id to link.</param>
+        /// <param name="accessToken">Facebook access token.</param>
+        /// <param name="expiresIn">Expires in.</param>
+        /// <remarks>
+        /// If the specified membership user doesn't exist, it should not throw error.
+        /// Incase the facebookId is not a Facebook User, it should it should not throw error.
+        /// </remarks>
+        void LinkFacebook(string membershipUsername, string facebookId, string accessToken, int expiresIn);
 
         /// <summary>
         /// Links the Facebook User with the Membership Provider.
@@ -59,10 +74,23 @@ namespace FacebookSharp
         /// <remarks>
         /// If the specified membership user doesn't exist, it should not throw error.
         /// Incase the facebookId is not a Facebook User, it should it should not throw error.
+        /// todo: remove this method soon
         /// </remarks>
+        [Obsolete("Use LinkFacebook(object membershipProviderUserKey, string facebookId, string accessToken, int expiresIn) instead.")]        
         void LinkFacebook(object membershipProviderUserKey, string facebookId, string accessToken);
 
-        // todo: add expiry
+        /// <summary>
+        /// Links the Facebook User with the Membership Provider.
+        /// </summary>
+        /// <param name="membershipProviderUserKey">Membership user's unique provider user key.</param>
+        /// <param name="facebookId">Facebook user id to link.</param>
+        /// <param name="accessToken">Facebook access token.</param>
+        /// <param name="expiresIn">Expires in.</param>
+        /// <remarks>
+        /// If the specified membership user doesn't exist, it should not throw error.
+        /// Incase the facebookId is not a Facebook User, it should it should not throw error.
+        /// </remarks>
+        void LinkFacebook(object membershipProviderUserKey, string facebookId, string accessToken, int expiresIn);
 
         /// <summary>
         /// Unlinks Facebook User from the Membership Provider.

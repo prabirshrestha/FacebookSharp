@@ -209,6 +209,7 @@ namespace FacebookSharp
                     parameters.Add(Token, AccessToken);
             }
             string url = GraphBaseUrl + graphPath; // note: facebook android sdk uses rest based if graphPath is null. we don't. all is graph in ours.
+            // do the request here.
             return FacebookUtils.OpenUrl(url, httpMethod, parameters);
         }
 
