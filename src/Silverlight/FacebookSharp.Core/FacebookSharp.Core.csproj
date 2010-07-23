@@ -50,7 +50,10 @@
   <ItemGroup>
     <Reference Include="mscorlib" />
     <Reference Include="Newtonsoft.Json.Silverlight">
-      <HintPath>..\..\..\libs\Json35r7\Bin\Silverlight\Newtonsoft.Json.Silverlight.dll</HintPath>
+      <HintPath>..\..\..\libs\RestSharp\Silverlight\Release\Newtonsoft.Json.Silverlight.dll</HintPath>
+    </Reference>
+    <Reference Include="RestSharp.Silverlight">
+      <HintPath>..\..\..\libs\RestSharp\Silverlight\Release\RestSharp.Silverlight.dll</HintPath>
     </Reference>
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Windows" />
