@@ -1,9 +1,6 @@
 namespace FacebookSharp
 {
     using System;
-    using System.Collections.Generic;
-    using System.Net;
-    using System.Text;
     using RestSharp;
 
     public partial class Facebook
@@ -20,15 +17,9 @@ namespace FacebookSharp
             if (string.IsNullOrEmpty(postAuthorizeUrl))
                 throw new FacebookSharpException("postAuthorizeUrl");
 
-            string url =
-                string.Format(
-                    "https://graph.facebook.com/oauth/access_token?client_id={0}&redirect_uri={1}&client_secret={2}&code={3}",
-                    applicationKey, postAuthorizeUrl, applicationSecret, code);
-
             var client = new RestClient(GraphBaseUrl);
 
-            var request = new RestRequest(Method.GET);
-            request.Resource = "oauth/access_token";
+            var request = new RestRequest(Method.GET) { Resource = "oauth/access_token" };
             request.AddParameter("client_id", applicationKey);
             request.AddParameter("redirect_uri", postAuthorizeUrl);
             request.AddParameter("client_secret", applicationSecret);
