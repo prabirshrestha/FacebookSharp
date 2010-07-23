@@ -10,10 +10,10 @@
         /// <summary>
         /// Throws an exception if the json string contains facebook exception.
         /// </summary>
-        /// <param name="response">Json string</param>
-        public static void ThrowIfFacebookException(string response)
+        /// <param name="jsonString">Json string</param>
+        public static void ThrowIfFacebookException(string jsonString)
         {
-            var ex = ToFacebookException(response);
+            var ex = (FacebookException)jsonString;
             if (ex != null)
                 throw ex;
         }
@@ -21,17 +21,19 @@
         /// <summary>
         /// Converts the json string to FacebookException.
         /// </summary>
-        /// <param name="response">Json string</param>
+        /// <param name="jsonString">Json string</param>
         /// <returns>Returns an instance of FacebookException if the json string contatins exception, otherwise null.</returns>
-        public static FacebookException ToFacebookException(string response)
+        [Obsolete("Use explicit casting to FacebookException instead. var ex = (FacebookException)jsonString;")]
+        public static FacebookException ToFacebookException(string jsonString)
         {
             JToken tmp;
-            return ToFacebookException(response, out tmp);
+            return ToFacebookException(jsonString, out tmp);
         }
 
-        public static FacebookException ToFacebookException(string response, out JToken json)
+        [Obsolete("Try not to use this method. Most probably will be removed in future version.")]
+        public static FacebookException ToFacebookException(string jsonString, out JToken json)
         {
-            using (StringReader reader = new StringReader(response))
+            using (StringReader reader = new StringReader(jsonString))
             {
                 using (JsonTextReader jsonTextReader = new JsonTextReader(reader))
                 {
@@ -42,10 +44,10 @@
             // edge case: when sending a POST request to /[post_id]/likes
             // the return value is 'true' or 'false'.
             // just throw normal FacebookException.
-            if (response.Equals("false", StringComparison.OrdinalIgnoreCase))
+            if (jsonString.Equals("false", StringComparison.OrdinalIgnoreCase))
                 throw new FacebookException("request failed.");
-            if (response.Equals("true", StringComparison.OrdinalIgnoreCase))
-                response = "{value:true}";
+            if (jsonString.Equals("true", StringComparison.OrdinalIgnoreCase))
+                jsonString = "{value:true}";
 
             JToken error = json["error"];
             if (error != null)

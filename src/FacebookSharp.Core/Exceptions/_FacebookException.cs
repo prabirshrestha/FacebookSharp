@@ -31,5 +31,17 @@ namespace FacebookSharp
         {
             get { return _errorCode; }
         }
+
+        /// <summary>
+        /// Convert Json string to FacebookException
+        /// </summary>
+        /// <param name="jsonString">Json string to parse</param>
+        /// <returns>
+        /// Returns an instance of FacebookException if jsonString is an exception otherwise null.
+        /// </returns>
+        public static explicit operator FacebookException(string jsonString)
+        {
+            return FacebookUtils.ToFacebookException(jsonString);
+        }
     }
 }
