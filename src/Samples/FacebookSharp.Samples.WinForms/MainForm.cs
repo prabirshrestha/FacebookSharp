@@ -34,15 +34,18 @@ namespace FacebookSharp.Samples.WinForms
             else
             {
                 MessageBox.Show("You must login inorder to access Facebook features.");
-                fbAuthResult = fbLoginDlg.FacebookAuthenticationResult;
-                MessageBox.Show(fbAuthResult.ErrorReasonText);
+                if (fbLoginDlg.FacebookAuthenticationResult != null)
+                {   // it can be null if the user just cancelled.
+                    fbAuthResult = fbLoginDlg.FacebookAuthenticationResult;
+                    MessageBox.Show(fbAuthResult.ErrorReasonText);
+                }
             }
         }
 
         private void btnGetMyInfo_Click(object sender, EventArgs e)
         {
             Facebook fb = new Facebook(txtAccessToken.Text);
-            MessageBox.Show(fb.Request("me"));
+            MessageBox.Show(fb.Request("/me"));
         }
     }
 }

@@ -4,8 +4,9 @@ namespace FacebookSharp
     using System.Collections.Generic;
     using System.Net;
     using System.Text;
+    using RestSharp;
 
-    public class Facebook
+    public partial class Facebook
     {
         private FacebookSettings _settings;
         public FacebookSettings Settings
@@ -45,7 +46,7 @@ namespace FacebookSharp
             get { return _oauthEndpoint; }
         }
 
-        protected static string _graphBaseUrl = "https://graph.facebook.com/";
+        protected static string _graphBaseUrl = "https://graph.facebook.com";
 
         public static string GraphBaseUrl
         {
@@ -294,66 +295,13 @@ namespace FacebookSharp
         public static string GenerateFacebookAuthorizeUrl(string facebookApplicationKey, string redirectUri, string extendedPermissions)
         {
             return string.IsNullOrEmpty(extendedPermissions)
-                       ? string.Format(GraphBaseUrl + "oauth/authorize?client_id={0}&redirect_uri={1}",
+                       ? string.Format(GraphBaseUrl + "/oauth/authorize?client_id={0}&redirect_uri={1}",
                                        facebookApplicationKey, redirectUri)
-                       : string.Format(GraphBaseUrl + "oauth/authorize?client_id={0}&redirect_uri={1}&scope={2}",
+                       : string.Format(GraphBaseUrl + "/oauth/authorize?client_id={0}&redirect_uri={1}&scope={2}",
                                        facebookApplicationKey, redirectUri, extendedPermissions);
         }
 
-        public static string ExchangeAccessTokenForCode(string code, string applicationKey, string applicationSecret, string postAuthorizeUrl)
-        {
-            int expiresIn;
-            return ExchangeAccessTokenForCode(code, applicationKey, applicationSecret, postAuthorizeUrl, out expiresIn);
-        }
 
-#if !SILVERLIGHT
- public static string ExchangeAccessTokenForCode(string code, string applicationKey, string applicationSecret, string postAuthorizeUrl, out int expiresIn)
-        {
-            if (string.IsNullOrEmpty(applicationKey))
-                throw new ArgumentNullException("applicationKey");
-            if (string.IsNullOrEmpty(applicationSecret))
-                throw new ArgumentNullException("applicationSecret");
-            if (string.IsNullOrEmpty(postAuthorizeUrl))
-                throw new FacebookSharpException("postAuthorizeUrl");
-
-            string url =
-                string.Format(
-                    "https://graph.facebook.com/oauth/access_token?client_id={0}&redirect_uri={1}&client_secret={2}&code={3}",
-                    applicationKey, postAuthorizeUrl, applicationSecret, code);
-
-            var wc = new WebClient();
-            string result = wc.DownloadString(url);
-
-            IDictionary<string, string> r = FacebookUtils.DecodeDictionaryUrl(result);
-            if (r.ContainsKey("expires_in"))
-                expiresIn = Convert.ToInt32(r["expires_in"]);
-            else
-                expiresIn = 0;
-            return r["access_token"];
-        }
-
-#endif
-
-#if SILVERLIGHT
-        public static string ExchangeAccessTokenForCode(string code, string applicationKey, string applicationSecret, string postAuthorizeUrl, out int expiresIn)
-        {
-            throw new NotImplementedException();
-        }
-#endif
-
-        public string ExchangeAccessTokenForCode(string code)
-        {
-            if (string.IsNullOrEmpty(Settings.ApplicationKey))
-                throw new FacebookSharpException("Settings.ApplicationKey missing.");
-            if (string.IsNullOrEmpty(Settings.ApplicationSecret))
-                throw new FacebookSharpException("Settings.ApplicationSecret missing.");
-            if (string.IsNullOrEmpty(Settings.PostAuthorizeUrl))
-                throw new FacebookSharpException("Settings.PostAuthorizeUrl missing.");
-
-            int expiresIn;
-            return ExchangeAccessTokenForCode(code, Settings.ApplicationKey, Settings.ApplicationSecret,
-                                              Settings.PostAuthorizeUrl, out expiresIn);
-        }
 
     }
 }

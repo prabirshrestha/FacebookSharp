@@ -46,6 +46,7 @@
     <Reference Include="System.XML" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AccessToken.cs" />
     <Compile Include="Exceptions\OAuthException.cs" />
     <Compile Include="Exceptions\QueryParseException.cs" />
     <Compile Include="Exceptions\_FacebookException.cs" />

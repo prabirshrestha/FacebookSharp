@@ -37,9 +37,19 @@
             {
                 using (JsonTextReader jsonTextReader = new JsonTextReader(reader))
                 {
-                    json = JToken.ReadFrom(jsonTextReader);
+                    try
+                    {
+                        json = JToken.ReadFrom(jsonTextReader);
+                    }
+                    catch (JsonReaderException exception)
+                    {
+                        json = null;
+                        jsonString = "true"; // todo: need to fix this: wat if input jsonString is not json?
+                    }
                 }
             }
+            if (json == null)
+                return null;
 
             // edge case: when sending a POST request to /[post_id]/likes
             // the return value is 'true' or 'false'.

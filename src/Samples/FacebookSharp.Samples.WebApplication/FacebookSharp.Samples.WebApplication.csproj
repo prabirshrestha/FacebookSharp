@@ -66,6 +66,7 @@
     </Compile>
     <Compile Include="FacebookAuthorize.aspx.cs">
       <DependentUpon>FacebookAuthorize.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="FacebookAuthorize.aspx.designer.cs">
       <DependentUpon>FacebookAuthorize.aspx</DependentUpon>
@@ -73,6 +74,7 @@
     <Compile Include="FacebookContext.cs" />
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Site.master.cs">

@@ -64,6 +64,9 @@
     <Reference Include="System.Windows.Browser" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\..\FacebookSharp.Core\AccessToken.cs">
+      <Link>AccessToken.cs</Link>
+    </Compile>
     <Compile Include="..\..\FacebookSharp.Core\Exceptions\OAuthException.cs">
       <Link>Exceptions\OAuthException.cs</Link>
     </Compile>
