@@ -52,6 +52,7 @@
     <Compile Include="Exceptions\_FacebookException.cs" />
     <Compile Include="Exceptions\__FacebookSharpException.cs" />
     <Compile Include="Facebook.cs" />
+    <Compile Include="Facebook.Sync.cs" />
     <Compile Include="FacebookAuthenticationResult.cs" />
     <Compile Include="FacebookSettings.cs" />
     <Compile Include="FacebookUtils\ExceptionHelpers.cs" />
