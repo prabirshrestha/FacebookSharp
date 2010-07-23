@@ -34,6 +34,12 @@
     <DocumentationFile>..\..\..\bin\DotNet4\bin\Release\FacebookSharp.Core.XML</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\..\..\libs\RestSharp\DotNet35\Release\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="RestSharp">
+      <HintPath>..\..\..\libs\RestSharp\DotNet35\Release\RestSharp.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Runtime.Serialization" />

@@ -77,13 +77,13 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\FacebookSharp.Core\FacebookSharp.Core.csproj">
-      <Project>{4E7E4294-219E-457A-B092-D1283A7B28BE}</Project>
-      <Name>FacebookSharp.Core %28DotNet35\FacebookSharp.Core%29</Name>
+    <ProjectReference Include="..\..\DotNet4\FacebookSharp.Core\FacebookSharp.Core.csproj">
+      <Project>{F80CA490-7E13-417A-99D8-63A557BF7D38}</Project>
+      <Name>FacebookSharp.Core %28DotNet4\FacebookSharp.Core%29</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\FacebookSharp.Winforms\FacebookSharp.Winforms.csproj">
-      <Project>{C057E9AE-8D64-4501-BDE0-6EEE3F911135}</Project>
-      <Name>FacebookSharp.Winforms %28DotNet35\FacebookSharp.Winforms%29</Name>
+    <ProjectReference Include="..\..\DotNet4\FacebookSharp.Winforms\FacebookSharp.Winforms.csproj">
+      <Project>{F171C7E2-EE78-45B5-9571-29379CBBB7D5}</Project>
+      <Name>FacebookSharp.Winforms %28DotNet4\FacebookSharp.Winforms%29</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
