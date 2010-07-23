@@ -105,6 +105,15 @@ Table structure for SqlFacebookMembershipProvider
 		[AccessToken] VARCHAR(256),
 		PRIMARY KEY ([Username])  
 	);
+	
+#### Converting Json strings to real exceptions
+
+You can easily convert Json strings to Facebook Exceptions in C#. If the json string doesn't contain exception it returns null instead.
+
+string jsonString = "some fb json string error goes here.";
+var ex = (FacebookException)jsonString;
+
+It simple as explicitly casting a string to FacebookException.
 
 ##Supported Platforms
 
