@@ -34,8 +34,9 @@
     <DocumentationFile>..\..\bin\DotNet35\Release\FacebookSharp.Core.XML</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>..\..\libs\Json35r7\Bin\DotNet\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=3.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\libs\RestSharp\DotNet35\Release\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Runtime.Serialization" />
