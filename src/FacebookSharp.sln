@@ -38,33 +38,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FacebookSharp.Winforms", "F
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FacebookSharp.Winforms", "DotNet4\FacebookSharp.Winforms\FacebookSharp.Winforms.csproj", "{F171C7E2-EE78-45B5-9571-29379CBBB7D5}"
 EndProject
-Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "FacebookSharp.Samples.Website", "Samples\FacebookSharp.Samples.Website\", "{20C9DA5C-62FD-4FE3-8E96-C5FF2792BFFD}"
-	ProjectSection(WebsiteProperties) = preProject
-		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.0"
-		ProjectReferences = "{F80CA490-7E13-417A-99D8-63A557BF7D38}|FacebookSharp.Core.dll;"
-		Debug.AspNetCompiler.VirtualPath = "/FacebookSharp.Samples.Website"
-		Debug.AspNetCompiler.PhysicalPath = "Samples\FacebookSharp.Samples.Website\"
-		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\FacebookSharp.Samples.Website\"
-		Debug.AspNetCompiler.Updateable = "true"
-		Debug.AspNetCompiler.ForceOverwrite = "true"
-		Debug.AspNetCompiler.FixedNames = "false"
-		Debug.AspNetCompiler.Debug = "True"
-		Release.AspNetCompiler.VirtualPath = "/FacebookSharp.Samples.Website"
-		Release.AspNetCompiler.PhysicalPath = "Samples\FacebookSharp.Samples.Website\"
-		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\FacebookSharp.Samples.Website\"
-		Release.AspNetCompiler.Updateable = "true"
-		Release.AspNetCompiler.ForceOverwrite = "true"
-		Release.AspNetCompiler.FixedNames = "false"
-		Release.AspNetCompiler.Debug = "False"
-		VWDPort = "16443"
-		DefaultWebSiteLanguage = "Visual C#"
-	EndProjectSection
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Silverlight", "Silverlight", "{8474AA51-FC1E-4A06-84B2-95F406DB5D06}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FacebookSharp.Core", "Silverlight\FacebookSharp.Core\FacebookSharp.Core.csproj", "{6BB3B07C-90A3-41AB-8965-8783CA5CF052}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Facebooksharp.Web.Mvc", "Facebooksharp.Web.Mvc\Facebooksharp.Web.Mvc.csproj", "{64CF34EB-40BB-4462-8523-DE40D1997246}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FacebookSharp.Samples.WebApplication", "Samples\FacebookSharp.Samples.WebApplication\FacebookSharp.Samples.WebApplication.csproj", "{74441934-2B6A-45E8-A12D-FF9C5CB23925}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -206,16 +186,6 @@ Global
 		{F171C7E2-EE78-45B5-9571-29379CBBB7D5}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{F171C7E2-EE78-45B5-9571-29379CBBB7D5}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{F171C7E2-EE78-45B5-9571-29379CBBB7D5}.Release|x86.ActiveCfg = Release|Any CPU
-		{20C9DA5C-62FD-4FE3-8E96-C5FF2792BFFD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{20C9DA5C-62FD-4FE3-8E96-C5FF2792BFFD}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{20C9DA5C-62FD-4FE3-8E96-C5FF2792BFFD}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{20C9DA5C-62FD-4FE3-8E96-C5FF2792BFFD}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
-		{20C9DA5C-62FD-4FE3-8E96-C5FF2792BFFD}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{20C9DA5C-62FD-4FE3-8E96-C5FF2792BFFD}.Release|Any CPU.ActiveCfg = Debug|Any CPU
-		{20C9DA5C-62FD-4FE3-8E96-C5FF2792BFFD}.Release|Any CPU.Build.0 = Debug|Any CPU
-		{20C9DA5C-62FD-4FE3-8E96-C5FF2792BFFD}.Release|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{20C9DA5C-62FD-4FE3-8E96-C5FF2792BFFD}.Release|Mixed Platforms.Build.0 = Debug|Any CPU
-		{20C9DA5C-62FD-4FE3-8E96-C5FF2792BFFD}.Release|x86.ActiveCfg = Debug|Any CPU
 		{6BB3B07C-90A3-41AB-8965-8783CA5CF052}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{6BB3B07C-90A3-41AB-8965-8783CA5CF052}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6BB3B07C-90A3-41AB-8965-8783CA5CF052}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
@@ -236,6 +206,16 @@ Global
 		{64CF34EB-40BB-4462-8523-DE40D1997246}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{64CF34EB-40BB-4462-8523-DE40D1997246}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{64CF34EB-40BB-4462-8523-DE40D1997246}.Release|x86.ActiveCfg = Release|Any CPU
+		{74441934-2B6A-45E8-A12D-FF9C5CB23925}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{74441934-2B6A-45E8-A12D-FF9C5CB23925}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{74441934-2B6A-45E8-A12D-FF9C5CB23925}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{74441934-2B6A-45E8-A12D-FF9C5CB23925}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{74441934-2B6A-45E8-A12D-FF9C5CB23925}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{74441934-2B6A-45E8-A12D-FF9C5CB23925}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{74441934-2B6A-45E8-A12D-FF9C5CB23925}.Release|Any CPU.Build.0 = Release|Any CPU
+		{74441934-2B6A-45E8-A12D-FF9C5CB23925}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{74441934-2B6A-45E8-A12D-FF9C5CB23925}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{74441934-2B6A-45E8-A12D-FF9C5CB23925}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -255,7 +235,7 @@ Global
 		{E6FB6F20-9E49-45DB-AAC5-B973A3EA51E1} = {6E90872E-795D-4B4B-9AC6-B05837EF7E22}
 		{F171C7E2-EE78-45B5-9571-29379CBBB7D5} = {6E90872E-795D-4B4B-9AC6-B05837EF7E22}
 		{0752A78A-DE20-4F59-A09C-08FF4243DADE} = {FBDE71D4-D8EF-4919-80A7-71A4B872C9DE}
-		{20C9DA5C-62FD-4FE3-8E96-C5FF2792BFFD} = {FBDE71D4-D8EF-4919-80A7-71A4B872C9DE}
+		{74441934-2B6A-45E8-A12D-FF9C5CB23925} = {FBDE71D4-D8EF-4919-80A7-71A4B872C9DE}
 		{6BB3B07C-90A3-41AB-8965-8783CA5CF052} = {8474AA51-FC1E-4A06-84B2-95F406DB5D06}
 	EndGlobalSection
 EndGlobal
