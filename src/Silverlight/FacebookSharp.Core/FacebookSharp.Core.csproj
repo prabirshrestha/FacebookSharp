@@ -205,10 +205,10 @@
     <None Include="..\..\FacebookSharp.Core\Schemas\extended_permissions.data.dat">
       <Link>Schemas\extended_permissions.data.dat</Link>
     </None>
-    <EmbeddedResource Include="..\..\FacebookSharp.Core\Schemas\facebook.xsd">
+    <None Include="..\..\FacebookSharp.Core\Schemas\facebook.xsd">
       <Link>Schemas\facebook.xsd</Link>
       <SubType>Designer</SubType>
-    </EmbeddedResource>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Silverlight\$(SilverlightVersion)\Microsoft.Silverlight.CSharp.targets" />
   <ProjectExtensions>

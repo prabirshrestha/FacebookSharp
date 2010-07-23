@@ -93,11 +93,11 @@
     <Compile Include="Schemas\schemas.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Schemas\facebook.xsd">
+    <None Include="Schemas\facebook.xsd">
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Generator>Xsd2CodeCustomTool</Generator>
-    </EmbeddedResource>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="Schemas\enum_flags_generator.rb" />

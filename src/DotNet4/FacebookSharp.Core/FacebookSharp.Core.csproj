@@ -196,10 +196,10 @@
     <None Include="..\..\FacebookSharp.Core\Schemas\extended_permissions.data.dat">
       <Link>Schemas\extended_permissions.data.dat</Link>
     </None>
-    <EmbeddedResource Include="..\..\FacebookSharp.Core\Schemas\facebook.xsd">
+    <None Include="..\..\FacebookSharp.Core\Schemas\facebook.xsd">
       <Link>Schemas\facebook.xsd</Link>
       <SubType>Designer</SubType>
-    </EmbeddedResource>
+    </None>
     <None Include="..\..\FacebookSharp.Core\Schemas\generate_schemas.bat">
       <Link>Schemas\generate_schemas.bat</Link>
     </None>
