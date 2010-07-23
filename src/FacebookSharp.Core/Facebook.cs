@@ -2,9 +2,7 @@ namespace FacebookSharp
 {
     using System;
     using System.Collections.Generic;
-    using System.Net;
     using System.Text;
-    using RestSharp;
 
     public partial class Facebook
     {
@@ -36,6 +34,7 @@ namespace FacebookSharp
 
         public static readonly string Token = "access_token";
         public static readonly string Expires = "expires_in";
+        internal static readonly string DefaultUserAgent = "FacebookSharp";
 
         #region Facebook Server endpoints.
         // May be modified in a subclass for testing.

@@ -109,6 +109,9 @@
     <Compile Include="..\..\FacebookSharp.Core\IFacebookMembershipProvider.cs">
       <Link>IFacebookMembershipProvider.cs</Link>
     </Compile>
+    <Compile Include="..\..\FacebookSharp.Core\OfficialFacebookSdkCompatibilityApi.cs">
+      <Link>OfficialFacebookSdkCompatibilityApi.cs</Link>
+    </Compile>
     <Compile Include="..\..\FacebookSharp.Core\Schemas\extended_permissions.cs">
       <Link>Schemas\extended_permissions.cs</Link>
     </Compile>

@@ -42,6 +42,7 @@ namespace FacebookSharp
                                                                       facebookSettings.ApplicationKey,
                                                                       facebookSettings.ApplicationSecret,
                                                                       facebookSettings.PostAuthorizeUrl,
+                                                                      facebookSettings.UserAgent,
                                                                       out expiresIn);
                     ExpiresIn = expiresIn;
 

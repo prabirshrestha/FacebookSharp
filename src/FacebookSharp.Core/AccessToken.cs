@@ -46,29 +46,17 @@ namespace FacebookSharp
             throw new NotImplementedException();
         }
 
-        public static string ExchangeAccessTokenForCode(string code, string applicationKey, string applicationSecret, string postAuthorizeUrl, out int expiresIn)
-        {
-            return ExchangeAccessTokenForCode(code, applicationKey, applicationSecret, postAuthorizeUrl, "FacebookSharp",
-                                              out expiresIn);
-        }
-
 #endif
 
 #if SILVERLIGHT
-        public static string ExchangeAccessTokenForCode(string code, string applicationKey, string applicationSecret, string postAuthorizeUrl, out int expiresIn)
+
+        public static string ExchangeAccessTokenForCode(string code, string applicationKey, string applicationSecret, string postAuthorizeUrl, string userAgent, out int expiresIn)
         {
             throw new NotImplementedException();
         }
 #endif
 
-
-        public static string ExchangeAccessTokenForCode(string code, string applicationKey, string applicationSecret, string postAuthorizeUrl)
-        {
-            int expiresIn;
-            return ExchangeAccessTokenForCode(code, applicationKey, applicationSecret, postAuthorizeUrl, out expiresIn);
-        }
-
-        public string ExchangeAccessTokenForCode(string code)
+        public string ExchangeAccessTokenForCode(string code, out int expiresIn)
         {
             if (string.IsNullOrEmpty(Settings.ApplicationKey))
                 throw new ArgumentNullException("Settings.ApplicationKey missing.");
@@ -77,9 +65,8 @@ namespace FacebookSharp
             if (string.IsNullOrEmpty(Settings.PostAuthorizeUrl))
                 throw new ArgumentNullException("Settings.PostAuthorizeUrl missing.");
 
-            int expiresIn;
             return ExchangeAccessTokenForCode(code, Settings.ApplicationKey, Settings.ApplicationSecret,
-                                              Settings.PostAuthorizeUrl, out expiresIn);
+                                              Settings.PostAuthorizeUrl, DefaultUserAgent, out expiresIn);
         }
     }
 }
