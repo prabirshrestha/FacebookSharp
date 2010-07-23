@@ -324,7 +324,7 @@ namespace FacebookSharp
             var wc = new WebClient();
             string result = wc.DownloadString(url);
 
-            IDictionary<string, string> r = FacebookUtils.DecodeUrl(result);
+            IDictionary<string, string> r = FacebookUtils.DecodeDictionaryUrl(result);
             if (r.ContainsKey("expires_in"))
                 expiresIn = Convert.ToInt32(r["expires_in"]);
             else

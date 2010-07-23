@@ -18,9 +18,9 @@ namespace FacebookSharp
             {
                 Uri uri = new Uri(url);
                 if (!string.IsNullOrEmpty(uri.Fragment))
-                    paramters = FacebookUtils.DecodeUrl(uri.Fragment);
+                    paramters = FacebookUtils.DecodeDictionaryUrl(uri.Fragment);
                 else
-                    paramters = FacebookUtils.ParseUrl(url);
+                    paramters = FacebookUtils.ParseUrlQueryString(url);
 
                 if (paramters.ContainsKey("access_token"))
                     AccessToken = paramters["access_token"];
@@ -30,7 +30,7 @@ namespace FacebookSharp
             }
             else
             {   // its from web
-                paramters = FacebookUtils.ParseUrl(url);
+                paramters = FacebookUtils.ParseUrlQueryString(url);
 
                 if (paramters.ContainsKey("code"))
                 {   // incase this is from the web, we need to exchange the code with access token
