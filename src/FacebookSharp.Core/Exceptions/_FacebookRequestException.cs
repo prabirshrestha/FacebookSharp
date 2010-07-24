@@ -13,7 +13,7 @@ namespace FacebookSharp
     /// </remarks>
     public class FacebookRequestException : FacebookSharpException
     {
-        private readonly RestResponse _response;
+        private readonly RestResponseBase _response;
 
         public FacebookRequestException(string message)
             : this(message, null)
@@ -21,18 +21,19 @@ namespace FacebookSharp
 
         }
 
-        internal FacebookRequestException(RestResponse response)
+        internal FacebookRequestException(RestResponseBase response)
             : this("Error occured while processing your Facebook request.", response)
         {
 
         }
 
         // internal coz, need to hide the RestResponse
-        internal FacebookRequestException(string message, RestResponse response)
+        internal FacebookRequestException(string message, RestResponseBase response)
             : base(message)
         {
             _response = response ?? new RestResponse();
         }
+
 
         public string ContentType { get { return _response.ContentType; } }
         public long ContentLength { get { return _response.ContentLength; } }

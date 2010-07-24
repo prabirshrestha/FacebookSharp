@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using FacebookSharp.Winforms;
+using FacebookSharp.Schemas.Graph;
 
 namespace FacebookSharp.Samples.WinForms
 {
@@ -45,6 +46,12 @@ namespace FacebookSharp.Samples.WinForms
         private void btnGetMyInfo_Click(object sender, EventArgs e)
         {
             Facebook fb = new Facebook(txtAccessToken.Text);
+
+            // you can either use generic version or non generic version
+            var user = fb.Get<User>("/me");
+            MessageBox.Show("Hi " + user.Name);
+
+            // non-generic version returns raw JSON string given by Facebook.
             MessageBox.Show(fb.Get("/me"));
 
             // example for posting on the wall:
