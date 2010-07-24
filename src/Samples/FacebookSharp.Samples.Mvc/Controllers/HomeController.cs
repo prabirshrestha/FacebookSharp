@@ -11,8 +11,6 @@ namespace FacebookSharp.Samples.Mvc.Controllers
     {
         public ActionResult Index()
         {
-            ViewData["Message"] = "Welcome to ASP.NET MVC!";
-
             return View();
         }
 

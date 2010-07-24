@@ -5,8 +5,19 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-    <h2><%: ViewData["Message"] %></h2>
+    <h2>Facebook in ASP.NET MVC using the Facebook Graph API.</h2>
+     <p>
+        To learn more about Facebook# visit <a href="http://github.com/prabirshrestha/FacebookSharp"
+            title="Facebook# @ github" target="_blank">http://bit.ly/facebooksharp</a>.
+    </p>
     <p>
-        To learn more about ASP.NET MVC visit <a href="http://asp.net/mvc" title="ASP.NET MVC Website">http://asp.net/mvc</a>.
+        You can also find more information on my blog at <a href="http://www.prabir.me" target="_blank">
+            www.prabir.me</a> or catch up with me on twitter <a href="http://twitter.com/prabirshrestha"
+                target="_blank">@prabirshrestha</a>
+    </p>
+    <p>
+        <b>
+            <a href="#">Click here to login to facebook</a>
+        </b>
     </p>
 </asp:Content>
