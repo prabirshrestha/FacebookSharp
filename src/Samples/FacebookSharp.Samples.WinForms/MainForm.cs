@@ -53,10 +53,9 @@ namespace FacebookSharp.Samples.WinForms
             //                            {"message", "testing from FB# restsharp."}
             //                        });
             //MessageBox.Show(resultPost); // this result is the id of the new post
-            
+
             // example for deleting
-            //var r = fb.Get("/me/feed");
-            //string resultDelete = fb.Delete("/100001327642026_105241676198495");
+            //string resultDelete = fb.Delete("/id");
             //MessageBox.Show(resultDelete);
         }
     }

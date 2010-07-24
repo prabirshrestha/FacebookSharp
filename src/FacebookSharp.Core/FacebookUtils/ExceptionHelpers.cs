@@ -78,8 +78,8 @@
                 return new FacebookException(message, type, 0);
             }
 
-            JToken errorCode = json["error_code"];
-            JToken errorMsg = json["error_msg"];
+            JToken errorCode = json.SelectToken("error_code", false);
+            JToken errorMsg = json.SelectToken("error_msg", false);
 
             if (errorCode != null && errorMsg != null)
                 return new FacebookException(errorMsg.Value<string>(), string.Empty, int.Parse(errorCode.Value<string>()));
@@ -88,7 +88,7 @@
             if (errorMsg != null)
                 return new FacebookException(errorMsg.Value<string>());
 
-            JToken errorReason = json["error_reason"];
+            JToken errorReason = json.SelectToken("error_reason", false);
             if (errorReason != null)
                 return new FacebookException(errorReason.Value<string>());
 

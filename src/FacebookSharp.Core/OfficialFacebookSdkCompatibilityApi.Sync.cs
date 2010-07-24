@@ -25,8 +25,6 @@ namespace FacebookSharp
 
         public string Delete(string graphPath)
         {
-            throw new NotImplementedException();
-
             // note: temporary hack for restsharp delete method
             // in the official facebook c# sdk it expects to add / in the path,
             // but seems like in restsharp adds it automatically, 
