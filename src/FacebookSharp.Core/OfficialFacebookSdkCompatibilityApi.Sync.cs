@@ -30,6 +30,7 @@ namespace FacebookSharp
             // so inorder to stick with the official facebook c# sdk,
             // we excpect the user to pass /, and remove it if it exsits.
             // have to file this issue to restsharp to double check if that is actually the expected behavior.
+            // submitted it as an issue http://github.com/johnsheehan/RestSharp/issues#issue/44
 
             if (graphPath.StartsWith("/") && graphPath.Length > 1)
                 graphPath = graphPath.Substring(1);
