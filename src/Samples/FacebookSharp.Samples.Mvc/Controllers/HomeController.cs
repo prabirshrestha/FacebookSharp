@@ -11,6 +11,11 @@ namespace FacebookSharp.Samples.Mvc.Controllers
     {
         public ActionResult Index()
         {
+            if (User.Identity.IsAuthenticated)
+                ViewData["starturl"] = Url.Action("Index", "Facebook");
+            else
+                ViewData["starturl"] = Url.Action("LogOn", "Account");
+
             return View();
         }
 

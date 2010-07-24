@@ -17,7 +17,7 @@
     </p>
     <p>
         <b>
-            <%: Html.ActionLink("Click here to start.","LogOn","Account") %>
+            <a href="<%= ViewData["starturl"] %>">Click here to start</a>
         </b>
     </p>
     <p>
