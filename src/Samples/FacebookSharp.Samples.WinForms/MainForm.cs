@@ -45,7 +45,7 @@ namespace FacebookSharp.Samples.WinForms
         private void btnGetMyInfo_Click(object sender, EventArgs e)
         {
             Facebook fb = new Facebook(txtAccessToken.Text);
-            MessageBox.Show(fb.Request("/me"));
+            MessageBox.Show(fb.Get("/me"));
         }
     }
 }
