@@ -8,6 +8,11 @@ namespace FacebookSharp
     public interface IFacebookMembershipProvider
     {
         /// <summary>
+        /// Name of the application
+        /// </summary>
+        string ApplicationName { get; }
+
+        /// <summary>
         /// Checks if the specified membership user has already linked the Facebook account.
         /// </summary>
         /// <param name="membershipUsername">Membership username.</param>
@@ -76,7 +81,7 @@ namespace FacebookSharp
         /// Incase the facebookId is not a Facebook User, it should it should not throw error.
         /// todo: remove this method soon
         /// </remarks>
-        [Obsolete("Use LinkFacebook(object membershipProviderUserKey, string facebookId, string accessToken, int expiresIn) instead.")]        
+        [Obsolete("Use LinkFacebook(object membershipProviderUserKey, string facebookId, string accessToken, int expiresIn) instead.")]
         void LinkFacebook(object membershipProviderUserKey, string facebookId, string accessToken);
 
         /// <summary>

@@ -1,5 +1,4 @@
-﻿
-namespace FacebookSharp
+﻿namespace FacebookSharp
 {
     using System.Web.Security;
     using MySql.Data.MySqlClient;
@@ -12,6 +11,7 @@ namespace FacebookSharp
     ///		  `access_token` VARCHAR(256),
     ///		  PRIMARY KEY (`user_name`)
     ///		);
+    /// todo: add support for application name
     /// </remarks>
     public class MySqlFacebookMembershipProvider : IFacebookMembershipProvider
     {
@@ -37,6 +37,14 @@ namespace FacebookSharp
         }
 
         #region Implementation of IFacebookMembershipProvider
+
+        /// <summary>
+        /// Name of the application
+        /// </summary>
+        public string ApplicationName
+        {
+            get { return _membershipProvider == null ? string.Empty : _membershipProvider.ApplicationName; }
+        }
 
         public bool HasLinkedFacebook(string membershipUsername)
         {

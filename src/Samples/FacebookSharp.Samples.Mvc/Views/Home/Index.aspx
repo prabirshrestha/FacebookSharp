@@ -3,10 +3,10 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
     Home Page
 </asp:Content>
-
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-    <h2>Facebook in ASP.NET MVC using the Facebook Graph API.</h2>
-     <p>
+    <h2>
+        Facebook in ASP.NET MVC using the Facebook Graph API.</h2>
+    <p>
         To learn more about Facebook# visit <a href="http://github.com/prabirshrestha/FacebookSharp"
             title="Facebook# @ github" target="_blank">http://bit.ly/facebooksharp</a>.
     </p>
@@ -17,7 +17,19 @@
     </p>
     <p>
         <b>
-            <a href="#">Click here to login to facebook</a>
+            <%: Html.ActionLink("Click here to start.","LogOn","Account") %>
         </b>
+    </p>
+    <p>
+        <b>Make sure you have executed the following sql script.</b>
+        <pre>
+        CREATE TABLE [FacebookUsers](
+            [ApplicationName] VARCHAR(256) NOT NULL,
+            [Username] VARCHAR(60), -- membershipUsername, primary key already enforced as unique and not null
+            [FacebookId] VARCHAR(50) NOT NULL UNIQUE,
+            [AccessToken] VARCHAR(256),
+            PRIMARY KEY ([Username])
+        );
+        </pre>
     </p>
 </asp:Content>

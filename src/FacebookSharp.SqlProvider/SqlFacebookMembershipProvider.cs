@@ -6,6 +6,7 @@ namespace FacebookSharp
 
     /// <remarks>
     /// CREATE TABLE [FacebookUsers](
+    ///     [ApplicationName] VARCHAR(256) NOT NULL,
     ///     [Username] VARCHAR(60), -- membershipUsername, primary key already enforced as unique and not null
     ///     [FacebookId] VARCHAR(50) NOT NULL UNIQUE,
     ///     [AccessToken] VARCHAR(256),
@@ -39,13 +40,22 @@ namespace FacebookSharp
 
         #region Implementation of IFacebookMembershipProvider
 
+        /// <summary>
+        /// Name of the application
+        /// </summary>
+        public string ApplicationName
+        {
+            get { return _membershipProvider == null ? string.Empty : _membershipProvider.ApplicationName; }
+        }
+
         public bool HasLinkedFacebook(string membershipUsername)
         {
             using (SqlConnection cn = new SqlConnection(_connectionString))
             {
                 SqlCommand cmd =
-                    new SqlCommand(string.Format("SELECT COUNT(*) FROM {0} WHERE Username=@Username", _tableName), cn);
+                    new SqlCommand(string.Format("SELECT COUNT(*) FROM {0} WHERE ApplicationName=@ApplicationName AND Username=@Username", _tableName), cn);
                 cmd.Parameters.AddWithValue("@Username", membershipUsername);
+                cmd.Parameters.AddWithValue("@ApplicationName", ApplicationName);
                 cn.Open();
 
                 return (int)cmd.ExecuteScalar() == 1;
@@ -65,8 +75,9 @@ namespace FacebookSharp
             using (SqlConnection cn = new SqlConnection(_connectionString))
             {
                 SqlCommand cmd =
-                    new SqlCommand(string.Format("SELECT COUNT(*) FROM {0} WHERE FacebookId=@FacebookId", _tableName), cn);
+                    new SqlCommand(string.Format("SELECT COUNT(*) FROM {0} WHERE ApplicationName=@ApplicationName AND FacebookId=@FacebookId", _tableName), cn);
                 cmd.Parameters.AddWithValue("@FacebookId", facebookId);
+                cmd.Parameters.AddWithValue("@ApplicationName", ApplicationName);
                 cn.Open();
 
                 return (int)cmd.ExecuteScalar() == 1;
@@ -80,8 +91,9 @@ namespace FacebookSharp
                 SqlCommand cmd =
                     new SqlCommand(
                         string.Format(
-                            "INSERT INTO {0} (Username,FacebookId,AccessToken) VALUES (@Username,@FacebookId,@AccessToken)",
+                            "INSERT INTO {0} (ApplicationName,Username,FacebookId,AccessToken) VALUES (@ApplicationName,@Username,@FacebookId,@AccessToken)",
                             _tableName), cn);
+                cmd.Parameters.AddWithValue("@ApplicationName", ApplicationName);
                 cmd.Parameters.AddWithValue("@Username", membershipUsername);
                 cmd.Parameters.AddWithValue("@FacebookId", facebookId);
                 cmd.Parameters.AddWithValue("@AccessToken", accessToken);
@@ -91,7 +103,7 @@ namespace FacebookSharp
             }
         }
 
-       public void LinkFacebook(string membershipUsername, string facebookId, string accessToken, int expiresIn)
+        public void LinkFacebook(string membershipUsername, string facebookId, string accessToken, int expiresIn)
         {
             // todo: add expires in
             LinkFacebook(membershipUsername, facebookId, accessToken);
@@ -117,7 +129,8 @@ namespace FacebookSharp
             using (SqlConnection cn = new SqlConnection(_connectionString))
             {
                 SqlCommand cmd = new SqlCommand(
-                    string.Format("DELETE FROM {0} WHERE Username=@Username", _tableName), cn);
+                    string.Format("DELETE FROM {0} WHERE ApplicationName=@ApplicationName AND Username=@Username", _tableName), cn);
+                cmd.Parameters.AddWithValue("@ApplicationName", ApplicationName);
                 cmd.Parameters.AddWithValue("@Username", membershipUsername);
 
                 cn.Open();
@@ -139,7 +152,8 @@ namespace FacebookSharp
             using (SqlConnection cn = new SqlConnection(_connectionString))
             {
                 SqlCommand cmd = new SqlCommand(
-                    string.Format("DELETE FROM {0} WHERE FacebookId=@FacebookId", _tableName), cn);
+                    string.Format("DELETE FROM {0} WHERE ApplicationName=@ApplicationName AND FacebookId=@FacebookId", _tableName), cn);
+                cmd.Parameters.AddWithValue("@ApplicationName", ApplicationName);
                 cmd.Parameters.AddWithValue("@FacebookId", facebookId);
 
                 cn.Open();
@@ -153,7 +167,8 @@ namespace FacebookSharp
             {
                 SqlCommand cmd =
                     new SqlCommand(
-                        string.Format("SELECT AccessToken FROM {0} WHERE Username=@Username", _tableName), cn);
+                        string.Format("SELECT AccessToken FROM {0} WHERE ApplicationName=@ApplicationName AND Username=@Username", _tableName), cn);
+                cmd.Parameters.AddWithValue("@ApplicationName", ApplicationName);
                 cmd.Parameters.AddWithValue("@user_Usernamename", membershipUsername);
 
                 cn.Open();
@@ -176,7 +191,8 @@ namespace FacebookSharp
             {
                 SqlCommand cmd =
                     new SqlCommand(
-                        string.Format("SELECT AccessToken FROM {0} WHERE FacebookId=@FacebookId", _tableName), cn);
+                        string.Format("SELECT AccessToken FROM {0} WHERE ApplicationName=@ApplicationName AND FacebookId=@FacebookId", _tableName), cn);
+                cmd.Parameters.AddWithValue("@ApplicationName", ApplicationName);
                 cmd.Parameters.AddWithValue("@FacebookId", facebookId);
 
                 cn.Open();
@@ -191,7 +207,8 @@ namespace FacebookSharp
             {
                 SqlCommand cmd =
                     new SqlCommand(
-                        string.Format("SELECT FacebookId FROM {0} WHERE Username=@Username", _tableName), cn);
+                        string.Format("SELECT FacebookId FROM {0} WHERE ApplicationName=@ApplicationName  AND Username=@Username", _tableName), cn);
+                cmd.Parameters.AddWithValue("ApplicationName", ApplicationName);
                 cmd.Parameters.AddWithValue("@Username", membershipUsername);
 
                 cn.Open();

@@ -1,4 +1,3 @@
-
 namespace FacebookSharp
 {
     using System.Data.SQLite;
@@ -11,6 +10,7 @@ namespace FacebookSharp
     ///     AccessToken VARCHAR(256),
     ///     PRIMARY KEY (Username)
     /// ); 
+    /// todo: add support for application name
     /// </remarks>
     public class SQLiteFacebookMembershipProvider : IFacebookMembershipProvider
     {
@@ -40,6 +40,14 @@ namespace FacebookSharp
         }
 
         #region Implementation of IFacebookMembershipProvider
+
+        /// <summary>
+        /// Name of the application
+        /// </summary>
+        public string ApplicationName
+        {
+            get { return _membershipProvider == null ? string.Empty : _membershipProvider.ApplicationName; }
+        }
 
         public bool HasLinkedFacebook(string membershipUsername)
         {
