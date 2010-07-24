@@ -36,7 +36,7 @@ namespace FacebookSharp.Extensions
         /// <returns>The required object</returns>
         public static string GetObject(this Facebook facebook, string id, IDictionary<string, string> parameters)
         {
-            return facebook.Request("/" + id, parameters);
+            return facebook.Get("/" + id, parameters);
         }
 
         /// <summary>
@@ -61,7 +61,7 @@ namespace FacebookSharp.Extensions
                 parameters = new Dictionary<string, string>();
             parameters["ids"] = joinedIds.ToString();
 
-            return facebook.Request(null, parameters);
+            return facebook.Get(null, parameters);
         }
 
         /// <summary>
@@ -74,7 +74,7 @@ namespace FacebookSharp.Extensions
         /// <returns>Returns the connections.</returns>
         public static string GetConnections(this Facebook facebook, string id, string connectionName, IDictionary<string, string> parameters)
         {
-            return facebook.Request("/" + id + "/" + connectionName, parameters);
+            return facebook.Get("/" + id + "/" + connectionName, parameters);
         }
 
         /// <summary>
@@ -121,7 +121,7 @@ namespace FacebookSharp.Extensions
         {
             if (!facebook.IsSessionValid())
                 throw new FacebookSharpException("AccessToken required.");
-            return facebook.Request("/" + parentObject + "/" + connectionName, parameters, "POST");
+            return facebook.Post("/" + parentObject + "/" + connectionName, parameters);
         }
 
         /// <summary>
@@ -213,9 +213,7 @@ namespace FacebookSharp.Extensions
         /// <returns>Result of the operation.</returns>
         public static string DeleteObject(this Facebook facebook, string id)
         {
-            IDictionary<string, string> parameters = new Dictionary<string, string>();
-            parameters.Add("method", "delete");
-            return facebook.Request("/" + id, parameters, "POST");
+            return facebook.Delete("/" + id);
         }
 
         /// <summary>

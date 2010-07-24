@@ -1,7 +1,6 @@
 namespace FacebookSharp
 {
     using System;
-    using System.Collections.Generic;
     using System.Text;
 
     public partial class Facebook
@@ -76,174 +75,6 @@ namespace FacebookSharp
         }
 
         /// <summary>
-        /// Make a request to the Facebook Graph API without any parameter.
-        /// </summary>
-        /// <param name="graphPath">Path to resource in the Facebook graph.</param>
-        /// <returns>JSON string represnetation of the response.</returns>
-        /// <remarks>
-        /// See http://developers.facebook.com/docs/api
-        /// 
-        /// Note that this method is synchronous.
-        /// This method blocks waiting for a network reponse,
-        /// so do not call it in a UI thread.
-        /// 
-        /// To fetch data about the currently logged authenticated user,
-        /// provide "me", which will fetch http://graph.facebook.com/me
-        /// </remarks>
-        public string Request(string graphPath)
-        {
-            return Request(graphPath, null, "GET");
-        }
-
-        /// <summary>
-        /// Make a request to the Facebook Graph API without any parameter.
-        /// </summary>
-        /// <typeparam name="T">Type of object to deserialize the result to.</typeparam>
-        /// <param name="graphPath">Path to resource in the Facebook graph.</param>
-        /// <returns>JSON string represnetation of the response.</returns>
-        /// <remarks>
-        /// See http://developers.facebook.com/docs/api
-        /// 
-        /// Note that this method is synchronous.
-        /// This method blocks waiting for a network reponse,
-        /// so do not call it in a UI thread.
-        /// 
-        /// To fetch data about the currently logged authenticated user,
-        /// provide "me", which will fetch http://graph.facebook.com/me
-        /// </remarks>
-        public T Request<T>(string graphPath)
-        {
-            var jsonString = Request(graphPath);
-            FacebookUtils.ThrowIfFacebookException(jsonString);
-            return FacebookUtils.DeserializeObject<T>(jsonString);
-        }
-
-        /// <summary>
-        /// Make a request to the Facebook Graph API with the given string
-        /// parameters using an HTTP GET (default method).
-        /// </summary>
-        /// <param name="graphPath">Path to the resource in the Facebook graph.</param>
-        /// <param name="parameters">key-value string parameters.</param>
-        /// <returns></returns>
-        /// <remarks>
-        /// See http://developers.facebook.com/docs/api
-        /// 
-        /// Note that this method is synchronous.
-        /// This method blocks waiting for a network reponse,
-        /// so do not call it in a UI thread.
-        /// 
-        /// To fetch data about the currently logged authenticated user,
-        /// provide "me", which will fetch http://graph.facebook.com/me
-        /// 
-        /// For parameters:
-        ///     key-value string parameters, e.g. the path "search" with
-        /// parameters "q" : "facebook" would produce a query for the
-        /// following graph resource:
-        /// https://graph.facebook.com/search?q=facebook
-        /// </remarks>
-        public string Request(string graphPath, IDictionary<string, string> parameters)
-        {
-            return Request(graphPath, parameters, "GET");
-        }
-
-        /// <summary>
-        /// Make a request to the Facebook Graph API with the given string
-        /// parameters using an HTTP GET (default method).
-        /// </summary>
-        /// <typeparam name="T">Type of object to deserialize the result to.</typeparam>
-        /// <param name="graphPath">Path to the resource in the Facebook graph.</param>
-        /// <param name="parameters">key-value string parameters.</param>
-        /// <returns></returns>
-        /// <remarks>
-        /// See http://developers.facebook.com/docs/api
-        /// 
-        /// Note that this method is synchronous.
-        /// This method blocks waiting for a network reponse,
-        /// so do not call it in a UI thread.
-        /// 
-        /// To fetch data about the currently logged authenticated user,
-        /// provide "me", which will fetch http://graph.facebook.com/me
-        /// 
-        /// For parameters:
-        ///     key-value string parameters, e.g. the path "search" with
-        /// parameters "q" : "facebook" would produce a query for the
-        /// following graph resource:
-        /// https://graph.facebook.com/search?q=facebook
-        /// </remarks>
-        public T Request<T>(string graphPath, IDictionary<string, string> parameters)
-        {
-            var jsonString = Request(graphPath, parameters);
-            FacebookUtils.ThrowIfFacebookException(jsonString);
-            return FacebookUtils.DeserializeObject<T>(jsonString);
-        }
-
-        /// <summary>
-        /// Synchronously make a requst to the Facebook Graph API with the given HTTP method and string parameters.
-        /// </summary>
-        /// <param name="graphPath">Path to the resource in the Facebook graph.</param>
-        /// <param name="parameters">key-value string parameters.</param>
-        /// <param name="httpMethod">HTTP ver, e.g. "GET", "POST", "DELETE"</param>
-        /// <returns></returns>
-        /// <remarks>
-        /// See http://developers.facebook.com/docs/api
-        /// 
-        /// Note that binary data parameters (e.g. pictures) are not yet supported by this helper function.
-        /// 
-        /// Note that this method is synchronous.
-        /// This method blocks waiting for a network reponse,
-        /// so do not call it in a UI thread.
-        /// 
-        /// For parameters:
-        ///     key-value string parameters, e.g. the path "search" with
-        /// parameters "q" : "facebook" would produce a query for the
-        /// following graph resource:
-        /// https://graph.facebook.com/search?q=facebook
-        /// </remarks>
-        public string Request(string graphPath, IDictionary<string, string> parameters, string httpMethod)
-        {
-            if (IsSessionValid())
-            {
-                if (parameters == null)
-                    parameters = new Dictionary<string, string>();
-                if (!string.IsNullOrEmpty(Settings.AccessToken))
-                    parameters.Add(Token, AccessToken);
-            }
-            string url = GraphBaseUrl + graphPath; // note: facebook android sdk uses rest based if graphPath is null. we don't. all is graph in ours.
-            // do the request here.
-            return FacebookUtils.OpenUrl(url, httpMethod, parameters);
-        }
-
-        /// <summary>
-        /// Synchronously make a requst to the Facebook Graph API with the given HTTP method and string parameters.
-        /// </summary>
-        /// <typeparam name="T">Type of object to deserialize the result to.</typeparam>
-        /// <param name="graphPath">Path to the resource in the Facebook graph.</param>
-        /// <param name="parameters">key-value string parameters.</param>
-        /// <param name="httpMethod">HTTP ver, e.g. "GET", "POST", "DELETE"</param>
-        /// <returns></returns>
-        /// <remarks>
-        /// See http://developers.facebook.com/docs/api
-        /// 
-        /// Note that binary data parameters (e.g. pictures) are not yet supported by this helper function.
-        /// 
-        /// Note that this method is synchronous.
-        /// This method blocks waiting for a network reponse,
-        /// so do not call it in a UI thread.
-        /// 
-        /// For parameters:
-        ///     key-value string parameters, e.g. the path "search" with
-        /// parameters "q" : "facebook" would produce a query for the
-        /// following graph resource:
-        /// https://graph.facebook.com/search?q=facebook
-        /// </remarks>
-        public T Request<T>(string graphPath, IDictionary<string, string> parameters, string httpMethod)
-        {
-            var jsonString = Request(graphPath, parameters, httpMethod);
-            FacebookUtils.ThrowIfFacebookException(jsonString);
-            return FacebookUtils.DeserializeObject<T>(jsonString);
-        }
-
-        /// <summary>
         /// Checks whether this object has an non-expired session token.
         /// </summary>
         /// <returns>Return true if session is valid otherwise false.</returns>
@@ -299,8 +130,6 @@ namespace FacebookSharp
                        : string.Format(GraphBaseUrl + "/oauth/authorize?client_id={0}&redirect_uri={1}&scope={2}",
                                        facebookApplicationKey, redirectUri, extendedPermissions);
         }
-
-
 
     }
 }
