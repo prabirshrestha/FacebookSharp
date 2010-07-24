@@ -59,7 +59,7 @@
             if (jsonString.Equals("true", StringComparison.OrdinalIgnoreCase))
                 jsonString = "{value:true}";
 
-            JToken error = json["error"];
+            JToken error = json.SelectToken("error", false);
             if (error != null)
             {
                 string type = error.Value<string>("type");

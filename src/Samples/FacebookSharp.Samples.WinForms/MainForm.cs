@@ -46,6 +46,18 @@ namespace FacebookSharp.Samples.WinForms
         {
             Facebook fb = new Facebook(txtAccessToken.Text);
             MessageBox.Show(fb.Get("/me"));
+
+            // example for posting on the wall:
+            //string resultPost = fb.Post("/me/feed", new Dictionary<string, string>
+            //                        {
+            //                            {"message", "testing from FB# restsharp."}
+            //                        });
+            //MessageBox.Show(resultPost); // this result is the id of the new post
+            
+            // example for deleting
+            //var r = fb.Get("/me/feed");
+            //string resultDelete = fb.Delete("/100001327642026_105241676198495");
+            //MessageBox.Show(resultDelete);
         }
     }
 }
