@@ -34,7 +34,7 @@ namespace FacebookSharp
             if (graphPath.StartsWith("/") && graphPath.Length > 1)
                 graphPath = graphPath.Substring(1);
 
-            var request = new RestRequest(graphPath, Method.DELETE) { Resource = graphPath };
+            var request = new RestRequest(graphPath, Method.DELETE);
 
             var response = Execute(request, true);
 
@@ -52,7 +52,7 @@ namespace FacebookSharp
 
         public string Post(string graphPath, IDictionary<string, string> parameters)
         {
-            var request = new RestRequest(graphPath, Method.POST) { Resource = graphPath };
+            var request = new RestRequest(graphPath, Method.POST);
 
             if (parameters != null)
             {
@@ -78,7 +78,7 @@ namespace FacebookSharp
 
         public string Get(string graphPath, IDictionary<string, string> parameters, bool addAccessToken)
         {
-            var request = new RestRequest(graphPath, Method.GET) { Resource = graphPath };
+            var request = new RestRequest(graphPath, Method.GET);
 
             if (parameters != null)
             {
