@@ -1,19 +1,38 @@
-using System.Collections.Generic;
-
 namespace FacebookSharp
 {
     using System;
+    using System.Collections.Generic;
 
     public class FacebookAuthenticationResult
     {
-        public FacebookAuthenticationResult(string url)
-            : this(url, null)
+        public FacebookAuthenticationResult(string accessToken, int expiresIn, string errorReasonText)
         {
+            AccessToken = accessToken;
+            ExpiresIn = expiresIn;
+            ErrorReasonText = errorReasonText;
         }
 
-        public FacebookAuthenticationResult(string url, FacebookSettings facebookSettings)
+
+        public string AccessToken { get; private set; }
+        public int ExpiresIn { get; private set; }
+        public string ErrorReasonText { get; private set; }
+
+        public bool IsSuccess { get { return string.IsNullOrEmpty(ErrorReasonText); } }
+        public bool IsUserDenied { get { return ErrorReasonText.Equals("user_denied", StringComparison.OrdinalIgnoreCase); } }
+
+#if !SILVERLIGHT
+        public static FacebookAuthenticationResult Parse(string url)
         {
+            return Parse(url, null);
+        }
+
+        public static FacebookAuthenticationResult Parse(string url, FacebookSettings facebookSettings)
+        {
+            string accessToken = null;
+            string errorReasonText = null;
+            int expiresIn = 0;
             IDictionary<string, string> paramters;
+
             if (url.StartsWith("http://www.facebook.com/connect/login_success.html"))
             {
                 Uri uri = new Uri(url);
@@ -23,9 +42,9 @@ namespace FacebookSharp
                     paramters = FacebookUtils.ParseUrlQueryString(url);
 
                 if (paramters.ContainsKey("access_token"))
-                    AccessToken = paramters["access_token"];
+                    accessToken = paramters["access_token"];
                 if (paramters.ContainsKey("expires_in"))
-                    ExpiresIn = Convert.ToInt32(paramters["expires_in"]);
+                    expiresIn = Convert.ToInt32(paramters["expires_in"]);
 
             }
             else
@@ -37,34 +56,23 @@ namespace FacebookSharp
                     if (facebookSettings == null)
                         throw new ArgumentNullException("facebookSettings");
 
-                    int expiresIn;
-                    AccessToken = Facebook.ExchangeAccessTokenForCode(paramters["code"],
+                    accessToken = Facebook.ExchangeAccessTokenForCode(paramters["code"],
                                                                       facebookSettings.ApplicationKey,
                                                                       facebookSettings.ApplicationSecret,
                                                                       facebookSettings.PostAuthorizeUrl,
                                                                       facebookSettings.UserAgent,
                                                                       out expiresIn);
-                    ExpiresIn = expiresIn;
 
                 }
             }
+
             if (paramters.ContainsKey("error_reason"))
-                ErrorReasonText = paramters["error_reason"];
+                errorReasonText = paramters["error_reason"];
+
+            return new FacebookAuthenticationResult(accessToken, expiresIn, errorReasonText);
         }
+#endif
 
-        public FacebookAuthenticationResult(string accessToken, int expiresIn, string errorReasonText)
-        {
-            AccessToken = accessToken;
-            ExpiresIn = expiresIn;
-            ErrorReasonText = errorReasonText;
-        }
-
-        public string AccessToken { get; private set; }
-        public int ExpiresIn { get; private set; }
-        public string ErrorReasonText { get; private set; }
-
-        public bool IsSuccess { get { return string.IsNullOrEmpty(ErrorReasonText); } }
-        public bool IsUserDenied { get { return ErrorReasonText.Equals("user_denied", StringComparison.OrdinalIgnoreCase); } }
 
     }
 }
