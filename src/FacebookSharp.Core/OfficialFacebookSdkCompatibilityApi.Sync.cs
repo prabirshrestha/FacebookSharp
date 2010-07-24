@@ -2,7 +2,6 @@
 
 namespace FacebookSharp
 {
-    using System;
     using System.Collections.Generic;
     using RestSharp;
 
@@ -48,8 +47,7 @@ namespace FacebookSharp
                 return response.Content;
             }
 
-            // todo wat if there r some other types of errors? no internet connection
-            throw new NotImplementedException();
+            throw new FacebookRequestException(response);
         }
 
         public string Post(string graphPath, IDictionary<string, string> parameters)
@@ -73,8 +71,7 @@ namespace FacebookSharp
                 return response.Content;
             }
 
-            // todo wat if there r some other types of errors? no internet connection
-            throw new NotImplementedException();
+            throw new FacebookRequestException(response);
         }
 
         #endregion
@@ -100,8 +97,7 @@ namespace FacebookSharp
                 return response.Content;
             }
 
-            // todo wat if there r some other types of errors? no internet connection
-            throw new NotImplementedException();
+            throw new FacebookRequestException(response);
         }
     }
 }

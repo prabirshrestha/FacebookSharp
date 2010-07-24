@@ -12,7 +12,7 @@ namespace FacebookSharp.Samples.WebApplication
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            lblAboutMe.Text = FacebookContext.FacebookContext.Request("/me");
+            lblAboutMe.Text = FacebookContext.FacebookContext.Get("/me");
         }
     }
 }

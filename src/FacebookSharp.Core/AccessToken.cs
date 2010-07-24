@@ -43,7 +43,7 @@ namespace FacebookSharp
                 return json["access_token"];
             }
 
-            throw new NotImplementedException();
+            throw new FacebookRequestException(response);
         }
 
 #endif

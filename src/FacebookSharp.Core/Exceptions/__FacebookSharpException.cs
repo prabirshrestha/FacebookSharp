@@ -1,4 +1,5 @@
 using System;
+using RestSharp;
 
 namespace FacebookSharp
 {

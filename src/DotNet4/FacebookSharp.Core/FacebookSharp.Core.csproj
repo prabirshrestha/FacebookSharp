@@ -62,6 +62,9 @@
     <Compile Include="..\..\FacebookSharp.Core\Exceptions\_FacebookException.cs">
       <Link>Exceptions\_FacebookException.cs</Link>
     </Compile>
+    <Compile Include="..\..\FacebookSharp.Core\Exceptions\_FacebookRequestException.cs">
+      <Link>Exceptions\_FacebookRequestException.cs</Link>
+    </Compile>
     <Compile Include="..\..\FacebookSharp.Core\Exceptions\__FacebookSharpException.cs">
       <Link>Exceptions\__FacebookSharpException.cs</Link>
     </Compile>
