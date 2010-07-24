@@ -24,3 +24,6 @@ Thumbs.db
 
 # StyleCop Cache ignores
 *StyleCop.Cache
+
+*.MDF
+*.ldf
