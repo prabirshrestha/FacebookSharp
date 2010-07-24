@@ -19,7 +19,7 @@ namespace FacebookSharp
         private readonly MembershipProvider _membershipProvider;
 
         public SQLiteFacebookMembershipProvider(string connectionString)
-            : this(connectionString, "facebook_users", null)
+            : this(connectionString, null, null)
         {
 
         }
@@ -33,7 +33,7 @@ namespace FacebookSharp
         public SQLiteFacebookMembershipProvider(string connectionString, string tableName, MembershipProvider membershipProvider)
         {
             _connectionString = connectionString;
-            _tableName = tableName;
+            _tableName = tableName ?? "facebook_users";
             _membershipProvider = membershipProvider;
             // we cound had done _membershipProvider = membershipProvider ?? Membership.Provider
             // but that wouldn't allow to work under client profile

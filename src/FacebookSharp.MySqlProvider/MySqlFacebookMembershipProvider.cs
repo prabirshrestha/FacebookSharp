@@ -20,7 +20,7 @@
         private readonly string _connectionString;
 
         public MySqlFacebookMembershipProvider(string connectionString)
-            : this(connectionString, "facebook_users", null)
+            : this(connectionString, null, null)
         {
         }
 
@@ -32,7 +32,7 @@
         public MySqlFacebookMembershipProvider(string connectionString, string tableName, MembershipProvider membershipProvider)
         {
             _connectionString = connectionString;
-            _tableName = tableName;
+            _tableName = tableName ?? "facebook_users";
             _membershipProvider = membershipProvider;
         }
 
