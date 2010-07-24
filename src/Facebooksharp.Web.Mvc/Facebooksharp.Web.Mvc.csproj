@@ -45,7 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ActionFilters\FacebookAccountRequiredAttrribute.cs" />
+    <Compile Include="ActionFilters\FacebookAuthorizeAttribute.cs" />
     <Compile Include="BaseFacebookController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -43,8 +43,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\..\Facebooksharp.Web.Mvc\ActionFilters\FacebookAccountRequiredAttrribute.cs">
-      <Link>ActionFilters\FacebookAccountRequiredAttrribute.cs</Link>
+    <Compile Include="..\..\Facebooksharp.Web.Mvc\ActionFilters\FacebookAuthorizeAttribute.cs">
+      <Link>ActionFilters\FacebookAuthorizeAttribute.cs</Link>
     </Compile>
     <Compile Include="..\..\Facebooksharp.Web.Mvc\BaseFacebookController.cs">
       <Link>BaseFacebookController.cs</Link>
