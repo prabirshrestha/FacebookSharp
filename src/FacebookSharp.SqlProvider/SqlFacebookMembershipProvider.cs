@@ -169,7 +169,7 @@ namespace FacebookSharp
                     new SqlCommand(
                         string.Format("SELECT AccessToken FROM {0} WHERE ApplicationName=@ApplicationName AND Username=@Username", _tableName), cn);
                 cmd.Parameters.AddWithValue("@ApplicationName", ApplicationName);
-                cmd.Parameters.AddWithValue("@user_Usernamename", membershipUsername);
+                cmd.Parameters.AddWithValue("@Username", membershipUsername);
 
                 cn.Open();
                 var result = cmd.ExecuteScalar();
