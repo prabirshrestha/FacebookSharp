@@ -233,7 +233,7 @@ namespace FacebookSharp.Extensions
         {
             if (id.Equals("me", StringComparison.OrdinalIgnoreCase))
                 throw new FacebookSharpException("For security reason passing 'me' as id is not allowed.");
-            return string.Format("/{0}{1}/picture", Facebook.GraphBaseUrl, id);
+            return string.Format("{0}/{1}/picture", Facebook.GraphBaseUrl, id);
         }
 
         /// <summary>
@@ -249,7 +249,7 @@ namespace FacebookSharp.Extensions
             if (string.IsNullOrEmpty(facebook.Settings.AccessToken))
                 throw new ArgumentNullException("Settings.AccessToken",
                                                 "AccessToken must be specified inorder to invoke this method");
-            return string.Format("/{0}me/picture?{1}={2}", Facebook.GraphBaseUrl, Facebook.Token,
+            return string.Format("{0}/me/picture?{1}={2}", Facebook.GraphBaseUrl, Facebook.Token,
                                  facebook.Settings.AccessToken);
         }
 

@@ -42,6 +42,8 @@
             </td>
         </tr>
     </table>
+    <img src="<%: ViewData["ProfilePic"] %>" alt="<%: Model.Name %>" />
+    <%:ViewData["ProfilePic"]%>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="Navigation" runat="server">
 </asp:Content>

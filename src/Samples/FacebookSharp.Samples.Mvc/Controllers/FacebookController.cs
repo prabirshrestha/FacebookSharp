@@ -7,6 +7,7 @@ using System.Configuration;
 using System.Web.Security;
 using FacebookSharp.Schemas.Graph;
 using FacebookSharp.Web.Mvc;
+using FacebookSharp.Extensions;
 
 namespace FacebookSharp.Samples.Mvc.Controllers
 {
@@ -97,7 +98,17 @@ namespace FacebookSharp.Samples.Mvc.Controllers
         [FacebookAuthorize]
         public ActionResult Index()
         {
+            // you can access the facebook using the FacebookSharp.Core
+            // but you will find this ugly and error prone.
             var fbUser = FacebookContext.Get<User>("/me");
+
+            // instead fo that add using FacebookSharp.Extensions; at the top
+            // then use the extensions methods to acess facebook graph api in more
+            // c# way :-) more of these extension methods comming soon.
+            ViewData["ProfilePic"] = FacebookContext.GetProfilePictureUrl(fbUser.ID);
+
+            // notice how the FacebookContext automatically gets the access token,
+            // for the user and adds it to every request. thats the beauty of IFacebookContext
             return View(fbUser);
         }
 
