@@ -1,7 +1,6 @@
 namespace FacebookSharp
 {
     using RestSharp;
-    using RestSharp.Authenticators;
 
     public partial class Facebook
     {

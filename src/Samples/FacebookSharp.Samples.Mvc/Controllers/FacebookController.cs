@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Configuration;
 using System.Web.Security;
+using FacebookSharp.Web.Mvc;
 
 namespace FacebookSharp.Samples.Mvc.Controllers
 {
@@ -64,7 +65,7 @@ namespace FacebookSharp.Samples.Mvc.Controllers
 
         //
         // GET: /Facebook/
-
+        [FacebookAuthorize]
         public ActionResult Index()
         {
             return View();
