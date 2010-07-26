@@ -12,7 +12,9 @@ body
     padding: 0;
     color: #696969;
 }
-
+a{
+    outline:none;
+}
 a:link
 {
     color: #034af3;
@@ -341,4 +343,12 @@ div#title
 .tri-state
 {
     width: 6em;
+}
+
+
+.KO{
+    color:Red;   
+}
+OK{
+    color:Green;
 }
