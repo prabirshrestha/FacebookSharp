@@ -5,6 +5,16 @@ namespace FacebookSharp
 
     public class FacebookAuthenticationResult
     {
+        public FacebookAuthenticationResult()
+        {
+            // try not to use this ctor
+            // we dont need it at all.
+            // its required for mvc, coz when using
+            // FacebookAuthenticationResultAttribute we get
+            // No parameterless constructor defined for this object. error
+            // ugly hack :-(
+        }
+
         public FacebookAuthenticationResult(string accessToken, int expiresIn, string errorReasonText)
         {
             AccessToken = accessToken;
@@ -12,13 +22,20 @@ namespace FacebookSharp
             ErrorReasonText = errorReasonText;
         }
 
-
         public string AccessToken { get; private set; }
         public int ExpiresIn { get; private set; }
         public string ErrorReasonText { get; private set; }
 
         public bool IsSuccess { get { return string.IsNullOrEmpty(ErrorReasonText); } }
-        public bool IsUserDenied { get { return ErrorReasonText.Equals("user_denied", StringComparison.OrdinalIgnoreCase); } }
+        public bool IsUserDenied
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(ErrorReasonText))
+                    return false;
+                return ErrorReasonText.Equals("user_denied", StringComparison.OrdinalIgnoreCase);
+            }
+        }
 
 #if !SILVERLIGHT
         public static FacebookAuthenticationResult Parse(string url)

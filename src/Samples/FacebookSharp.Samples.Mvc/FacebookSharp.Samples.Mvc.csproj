@@ -78,6 +78,8 @@
     <Content Include="Global.asax" />
     <Content Include="Views\Facebook\Index.aspx" />
     <Content Include="Views\Facebook\Link.aspx" />
+    <Content Include="Views\Facebook\LinkError.aspx" />
+    <Content Include="Views\Facebook\LinkSuccess.aspx" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

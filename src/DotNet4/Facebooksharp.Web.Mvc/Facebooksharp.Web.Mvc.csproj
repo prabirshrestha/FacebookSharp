@@ -45,6 +45,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\..\Facebooksharp.Web.Mvc\ActionFilters\FacebookAuthenticationResultAttribute.cs">
+      <Link>ActionFilters\FacebookAuthenticationResultAttribute.cs</Link>
+    </Compile>
     <Compile Include="..\..\Facebooksharp.Web.Mvc\ActionFilters\FacebookAuthorizeAttribute.cs">
       <Link>ActionFilters\FacebookAuthorizeAttribute.cs</Link>
     </Compile>
