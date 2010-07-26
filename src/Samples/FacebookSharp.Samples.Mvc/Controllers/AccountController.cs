@@ -33,6 +33,18 @@ namespace FacebookSharp.Samples.Mvc.Controllers
 
         public ActionResult LogOn()
         {
+            string fb = Request.QueryString["fb"];
+            if (!string.IsNullOrEmpty(fb))
+            {
+                // if we reach here it means, the user came here due to facebook authorization
+                // being unsuccessfull
+                fb = fb.ToLower();
+                if (fb == "true") // requires facebook account, bascially we need to linke the user to new fb account
+                    return RedirectToAction("Link", "Facebook");
+                else // shouldn't have the facebook account
+                    return RedirectToAction("Index", "Home");
+            }
+
             return View();
         }
 

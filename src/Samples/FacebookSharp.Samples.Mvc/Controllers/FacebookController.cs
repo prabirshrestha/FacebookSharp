@@ -71,5 +71,11 @@ namespace FacebookSharp.Samples.Mvc.Controllers
             return View();
         }
 
+        [FacebookAuthorize(RequiresLinkedFacebookAccount = false)]
+        public ActionResult Link()
+        {
+            return View();
+        }
+
     }
 }
