@@ -122,14 +122,13 @@ It simple as explicitly casting a string to FacebookException.
 ### .NET 3.5 and .NET 4.0
 Supported. (Client profile supported too.)
 
+Contains MVC Action filters for easing the development.
+
 ### Silverlight
 Comming soon
 
 ### Windows Phone
 Comming soon
-
-## Future releases
-Plan for deep integration with ASP.NET and ASP.NET MVC with action filters and controllers.
 
 ## Download the latest binaries
 
