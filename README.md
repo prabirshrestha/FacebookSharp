@@ -11,7 +11,7 @@ This library is a port from the original Facebook Android SDK written in Java wi
 
 	Facebook fb = new Facebook("access_token"); // If you want to specify AccessToken then
 
-	var user = facebook.Request&lt;User>("/me");
+	var user = facebook.Get&lt;User>("/me");
 
 	Console.WriteLine(user.Name);
 	
@@ -39,7 +39,9 @@ In the post-authorize page.
 		fbSettings.ApplicationKey 	 = "application_key";
 		fbSettings.ApplicationSecret = "application_secret";
 	
-		FacebookAuthenticationResult fbAuthResult = new FacebookAuthenticationResult(HttpContext.Current.Request.Url.ToString(),fbSettings);
+		FacebookAuthenticationResult fbAuthResult = FacebookAuthenticationResult.Parse(
+                HttpContext.Current.Request.Url.ToString(), FacebookContext.FacebookContext.Settings);
+
 		if (fbAuthResult.IsSuccess)
 		{
 			string accessToken = fbAuthResult.AccessToken;
