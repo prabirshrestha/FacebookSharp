@@ -1,6 +1,5 @@
 # Visual Studio Ignores
-bin/
-Bin/
+[Bb]in/
 obj/
 
 *.suo
@@ -24,3 +23,9 @@ Thumbs.db
 
 # StyleCop Cache ignores
 *StyleCop.Cache
+
+*.MDF
+*.ldf
+
+.vs10x
+*.vs10x

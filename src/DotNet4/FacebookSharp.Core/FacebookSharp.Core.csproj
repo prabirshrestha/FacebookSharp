@@ -35,7 +35,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Newtonsoft.Json">
-      <HintPath>..\..\..\libs\Json35r7\Bin\DotNet\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\..\..\libs\RestSharp\DotNet35\Release\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="RestSharp">
+      <HintPath>..\..\..\libs\RestSharp\DotNet35\Release\RestSharp.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -47,6 +50,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\..\FacebookSharp.Core\AccessToken.cs">
+      <Link>AccessToken.cs</Link>
+    </Compile>
+    <Compile Include="..\..\FacebookSharp.Core\DialogFormFactors.cs">
+      <Link>DialogFormFactors.cs</Link>
+    </Compile>
     <Compile Include="..\..\FacebookSharp.Core\Exceptions\OAuthException.cs">
       <Link>Exceptions\OAuthException.cs</Link>
     </Compile>
@@ -56,11 +65,17 @@
     <Compile Include="..\..\FacebookSharp.Core\Exceptions\_FacebookException.cs">
       <Link>Exceptions\_FacebookException.cs</Link>
     </Compile>
+    <Compile Include="..\..\FacebookSharp.Core\Exceptions\_FacebookRequestException.cs">
+      <Link>Exceptions\_FacebookRequestException.cs</Link>
+    </Compile>
     <Compile Include="..\..\FacebookSharp.Core\Exceptions\__FacebookSharpException.cs">
       <Link>Exceptions\__FacebookSharpException.cs</Link>
     </Compile>
     <Compile Include="..\..\FacebookSharp.Core\Facebook.cs">
       <Link>Facebook.cs</Link>
+    </Compile>
+    <Compile Include="..\..\FacebookSharp.Core\Facebook.Sync.cs">
+      <Link>Facebook.Sync.cs</Link>
     </Compile>
     <Compile Include="..\..\FacebookSharp.Core\FacebookAuthenticationResult.cs">
       <Link>FacebookAuthenticationResult.cs</Link>
@@ -71,8 +86,11 @@
     <Compile Include="..\..\FacebookSharp.Core\FacebookUtils\DateUtils.cs">
       <Link>FacebookUtils\DateUtils.cs</Link>
     </Compile>
-    <Compile Include="..\..\FacebookSharp.Core\FacebookUtils\HttpUtitliy.cs">
-      <Link>FacebookUtils\HttpUtitliy.cs</Link>
+    <Compile Include="..\..\FacebookSharp.Core\FacebookUtils\ExceptionHelpers.cs">
+      <Link>FacebookUtils\ExceptionHelpers.cs</Link>
+    </Compile>
+    <Compile Include="..\..\FacebookSharp.Core\FacebookUtils\HttpUtility.cs">
+      <Link>FacebookUtils\HttpUtility.cs</Link>
     </Compile>
     <Compile Include="..\..\FacebookSharp.Core\FacebookUtils\JsonUtils.cs">
       <Link>FacebookUtils\JsonUtils.cs</Link>
@@ -85,6 +103,12 @@
     </Compile>
     <Compile Include="..\..\FacebookSharp.Core\IFacebookMembershipProvider.cs">
       <Link>IFacebookMembershipProvider.cs</Link>
+    </Compile>
+    <Compile Include="..\..\FacebookSharp.Core\OAuth2Authenticator.cs">
+      <Link>OAuth2Authenticator.cs</Link>
+    </Compile>
+    <Compile Include="..\..\FacebookSharp.Core\OfficialFacebookSdkCompatibilityApi.Sync.cs">
+      <Link>OfficialFacebookSdkCompatibilityApi.Sync.cs</Link>
     </Compile>
     <Compile Include="..\..\FacebookSharp.Core\Properties\AssemblyInfo.cs">
       <Link>Properties\AssemblyInfo.cs</Link>
@@ -179,6 +203,9 @@
     <Compile Include="..\..\FacebookSharp.Core\Schemas\schemas.cs">
       <Link>Schemas\schemas.cs</Link>
     </Compile>
+    <Compile Include="..\..\FacebookSharp.Core\Schemas\StringValue.cs">
+      <Link>Schemas\StringValue.cs</Link>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\FacebookSharp.Core\Schemas\enum_flags_generator.rb">
@@ -190,10 +217,10 @@
     <None Include="..\..\FacebookSharp.Core\Schemas\extended_permissions.data.dat">
       <Link>Schemas\extended_permissions.data.dat</Link>
     </None>
-    <EmbeddedResource Include="..\..\FacebookSharp.Core\Schemas\facebook.xsd">
+    <None Include="..\..\FacebookSharp.Core\Schemas\facebook.xsd">
       <Link>Schemas\facebook.xsd</Link>
       <SubType>Designer</SubType>
-    </EmbeddedResource>
+    </None>
     <None Include="..\..\FacebookSharp.Core\Schemas\generate_schemas.bat">
       <Link>Schemas\generate_schemas.bat</Link>
     </None>

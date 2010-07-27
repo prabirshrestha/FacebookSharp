@@ -1,4 +1,3 @@
-
 namespace FacebookSharp
 {
     using System.Data.SQLite;
@@ -11,6 +10,7 @@ namespace FacebookSharp
     ///     AccessToken VARCHAR(256),
     ///     PRIMARY KEY (Username)
     /// ); 
+    /// todo: add support for application name
     /// </remarks>
     public class SQLiteFacebookMembershipProvider : IFacebookMembershipProvider
     {
@@ -19,7 +19,7 @@ namespace FacebookSharp
         private readonly MembershipProvider _membershipProvider;
 
         public SQLiteFacebookMembershipProvider(string connectionString)
-            : this(connectionString, "facebook_users", null)
+            : this(connectionString, null, null)
         {
 
         }
@@ -33,13 +33,21 @@ namespace FacebookSharp
         public SQLiteFacebookMembershipProvider(string connectionString, string tableName, MembershipProvider membershipProvider)
         {
             _connectionString = connectionString;
-            _tableName = tableName;
+            _tableName = tableName ?? "facebook_users";
             _membershipProvider = membershipProvider;
             // we cound had done _membershipProvider = membershipProvider ?? Membership.Provider
             // but that wouldn't allow to work under client profile
         }
 
         #region Implementation of IFacebookMembershipProvider
+
+        /// <summary>
+        /// Name of the application
+        /// </summary>
+        public string ApplicationName
+        {
+            get { return _membershipProvider == null ? string.Empty : _membershipProvider.ApplicationName; }
+        }
 
         public bool HasLinkedFacebook(string membershipUsername)
         {
@@ -93,6 +101,12 @@ namespace FacebookSharp
             }
         }
 
+        public void LinkFacebook(string membershipUsername, string facebookId, string accessToken, int expiresIn)
+        {
+            // todo: add expires in
+            LinkFacebook(membershipUsername, facebookId, accessToken);
+        }
+
         public void LinkFacebook(object membershipProviderUserKey, string facebookId, string accessToken)
         {
             MembershipUser user = _membershipProvider.GetUser(membershipProviderUserKey, false);
@@ -100,6 +114,12 @@ namespace FacebookSharp
                 throw new FacebookSharpException("User with given membershipProviderUserKey not found.");
 
             LinkFacebook(user.UserName, facebookId, accessToken);
+        }
+
+        public void LinkFacebook(object membershipProviderUserKey, string facebookId, string accessToken, int expiresIn)
+        {
+            // todo: add expires in
+            LinkFacebook(membershipProviderUserKey, facebookId, accessToken);
         }
 
         public void UnlinkFacebook(string membershipUsername)

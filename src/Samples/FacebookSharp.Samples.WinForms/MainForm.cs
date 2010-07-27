@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using FacebookSharp.Winforms;
+using FacebookSharp.Schemas.Graph;
 
 namespace FacebookSharp.Samples.WinForms
 {
@@ -34,15 +35,35 @@ namespace FacebookSharp.Samples.WinForms
             else
             {
                 MessageBox.Show("You must login inorder to access Facebook features.");
-                fbAuthResult = fbLoginDlg.FacebookAuthenticationResult;
-                MessageBox.Show(fbAuthResult.ErrorReasonText);
+                if (fbLoginDlg.FacebookAuthenticationResult != null)
+                {   // it can be null if the user just cancelled.
+                    fbAuthResult = fbLoginDlg.FacebookAuthenticationResult;
+                    MessageBox.Show(fbAuthResult.ErrorReasonText);
+                }
             }
         }
 
         private void btnGetMyInfo_Click(object sender, EventArgs e)
         {
             Facebook fb = new Facebook(txtAccessToken.Text);
-            MessageBox.Show(fb.Request("me"));
+
+            // you can either use generic version or non generic version
+            var user = fb.Get<User>("/me");
+            MessageBox.Show("Hi " + user.Name);
+
+            // non-generic version returns raw JSON string given by Facebook.
+            MessageBox.Show(fb.Get("/me"));
+
+            // example for posting on the wall:
+            //string resultPost = fb.Post("/me/feed", new Dictionary<string, string>
+            //                        {
+            //                            {"message", "testing from FB# restsharp."}
+            //                        });
+            //MessageBox.Show(resultPost); // this result is the id of the new post
+
+            // example for deleting
+            //string resultDelete = fb.Delete("/id");
+            //MessageBox.Show(resultDelete);
         }
     }
 }

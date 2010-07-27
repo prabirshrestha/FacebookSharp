@@ -35,6 +35,8 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Abstractions" />
     <Reference Include="System.Web.Mvc, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>C:\Program Files (x86)\Microsoft ASP.NET\ASP.NET MVC 2\Assemblies\System.Web.Mvc.dll</HintPath>
@@ -45,6 +47,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ActionFilters\FacebookAuthenticationResultAttribute.cs" />
+    <Compile Include="ActionFilters\FacebookAuthorizeAttribute.cs" />
+    <Compile Include="ActionResults\FacebookHttpUnauthorizedResult.cs" />
     <Compile Include="BaseFacebookController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -11,7 +11,7 @@ This library is a port from the original Facebook Android SDK written in Java wi
 
 	Facebook fb = new Facebook("access_token"); // If you want to specify AccessToken then
 
-	var user = facebook.Request&lt;User>("me");
+	var user = facebook.Request&lt;User>("/me");
 
 	Console.WriteLine(user.Name);
 	
@@ -105,6 +105,15 @@ Table structure for SqlFacebookMembershipProvider
 		[AccessToken] VARCHAR(256),
 		PRIMARY KEY ([Username])  
 	);
+	
+#### Converting Json strings to real exceptions
+
+You can easily convert Json strings to Facebook Exceptions in C#. If the json string doesn't contain exception it returns null instead.
+
+string jsonString = "some fb json string error goes here.";
+var ex = (FacebookException)jsonString;
+
+It simple as explicitly casting a string to FacebookException.
 
 ##Supported Platforms
 

@@ -8,6 +8,7 @@ namespace FacebookSharp
         public string PostAuthorizeUrl { get; set; }
         public long AccessExpires { get; set; }
         public string[] DefaultApplicationPermissions { get; set; }
+        public string UserAgent { get; set; }
         
         public string FacebookAuthorizeUrl
         {

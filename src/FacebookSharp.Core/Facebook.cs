@@ -1,11 +1,9 @@
 namespace FacebookSharp
 {
     using System;
-    using System.Collections.Generic;
-    using System.Net;
     using System.Text;
 
-    public class Facebook
+    public partial class Facebook
     {
         private FacebookSettings _settings;
         public FacebookSettings Settings
@@ -35,6 +33,7 @@ namespace FacebookSharp
 
         public static readonly string Token = "access_token";
         public static readonly string Expires = "expires_in";
+        internal static readonly string DefaultUserAgent = "FacebookSharp";
 
         #region Facebook Server endpoints.
         // May be modified in a subclass for testing.
@@ -45,7 +44,7 @@ namespace FacebookSharp
             get { return _oauthEndpoint; }
         }
 
-        protected static string _graphBaseUrl = "https://graph.facebook.com/";
+        protected static string _graphBaseUrl = "https://graph.facebook.com";
 
         public static string GraphBaseUrl
         {
@@ -73,173 +72,6 @@ namespace FacebookSharp
         public long AccessExpires
         {
             get { return Settings.AccessExpires; }
-        }
-
-        /// <summary>
-        /// Make a request to the Facebook Graph API without any parameter.
-        /// </summary>
-        /// <param name="graphPath">Path to resource in the Facebook graph.</param>
-        /// <returns>JSON string represnetation of the response.</returns>
-        /// <remarks>
-        /// See http://developers.facebook.com/docs/api
-        /// 
-        /// Note that this method is synchronous.
-        /// This method blocks waiting for a network reponse,
-        /// so do not call it in a UI thread.
-        /// 
-        /// To fetch data about the currently logged authenticated user,
-        /// provide "me", which will fetch http://graph.facebook.com/me
-        /// </remarks>
-        public string Request(string graphPath)
-        {
-            return Request(graphPath, null, "GET");
-        }
-
-        /// <summary>
-        /// Make a request to the Facebook Graph API without any parameter.
-        /// </summary>
-        /// <typeparam name="T">Type of object to deserialize the result to.</typeparam>
-        /// <param name="graphPath">Path to resource in the Facebook graph.</param>
-        /// <returns>JSON string represnetation of the response.</returns>
-        /// <remarks>
-        /// See http://developers.facebook.com/docs/api
-        /// 
-        /// Note that this method is synchronous.
-        /// This method blocks waiting for a network reponse,
-        /// so do not call it in a UI thread.
-        /// 
-        /// To fetch data about the currently logged authenticated user,
-        /// provide "me", which will fetch http://graph.facebook.com/me
-        /// </remarks>
-        public T Request<T>(string graphPath)
-        {
-            var jsonString = Request(graphPath);
-            FacebookUtils.ThrowIfFacebookException(jsonString);
-            return FacebookUtils.DeserializeObject<T>(jsonString);
-        }
-
-        /// <summary>
-        /// Make a request to the Facebook Graph API with the given string
-        /// parameters using an HTTP GET (default method).
-        /// </summary>
-        /// <param name="graphPath">Path to the resource in the Facebook graph.</param>
-        /// <param name="parameters">key-value string parameters.</param>
-        /// <returns></returns>
-        /// <remarks>
-        /// See http://developers.facebook.com/docs/api
-        /// 
-        /// Note that this method is synchronous.
-        /// This method blocks waiting for a network reponse,
-        /// so do not call it in a UI thread.
-        /// 
-        /// To fetch data about the currently logged authenticated user,
-        /// provide "me", which will fetch http://graph.facebook.com/me
-        /// 
-        /// For parameters:
-        ///     key-value string parameters, e.g. the path "search" with
-        /// parameters "q" : "facebook" would produce a query for the
-        /// following graph resource:
-        /// https://graph.facebook.com/search?q=facebook
-        /// </remarks>
-        public string Request(string graphPath, IDictionary<string, string> parameters)
-        {
-            return Request(graphPath, parameters, "GET");
-        }
-
-        /// <summary>
-        /// Make a request to the Facebook Graph API with the given string
-        /// parameters using an HTTP GET (default method).
-        /// </summary>
-        /// <typeparam name="T">Type of object to deserialize the result to.</typeparam>
-        /// <param name="graphPath">Path to the resource in the Facebook graph.</param>
-        /// <param name="parameters">key-value string parameters.</param>
-        /// <returns></returns>
-        /// <remarks>
-        /// See http://developers.facebook.com/docs/api
-        /// 
-        /// Note that this method is synchronous.
-        /// This method blocks waiting for a network reponse,
-        /// so do not call it in a UI thread.
-        /// 
-        /// To fetch data about the currently logged authenticated user,
-        /// provide "me", which will fetch http://graph.facebook.com/me
-        /// 
-        /// For parameters:
-        ///     key-value string parameters, e.g. the path "search" with
-        /// parameters "q" : "facebook" would produce a query for the
-        /// following graph resource:
-        /// https://graph.facebook.com/search?q=facebook
-        /// </remarks>
-        public T Request<T>(string graphPath, IDictionary<string, string> parameters)
-        {
-            var jsonString = Request(graphPath, parameters);
-            FacebookUtils.ThrowIfFacebookException(jsonString);
-            return FacebookUtils.DeserializeObject<T>(jsonString);
-        }
-
-        /// <summary>
-        /// Synchronously make a requst to the Facebook Graph API with the given HTTP method and string parameters.
-        /// </summary>
-        /// <param name="graphPath">Path to the resource in the Facebook graph.</param>
-        /// <param name="parameters">key-value string parameters.</param>
-        /// <param name="httpMethod">HTTP ver, e.g. "GET", "POST", "DELETE"</param>
-        /// <returns></returns>
-        /// <remarks>
-        /// See http://developers.facebook.com/docs/api
-        /// 
-        /// Note that binary data parameters (e.g. pictures) are not yet supported by this helper function.
-        /// 
-        /// Note that this method is synchronous.
-        /// This method blocks waiting for a network reponse,
-        /// so do not call it in a UI thread.
-        /// 
-        /// For parameters:
-        ///     key-value string parameters, e.g. the path "search" with
-        /// parameters "q" : "facebook" would produce a query for the
-        /// following graph resource:
-        /// https://graph.facebook.com/search?q=facebook
-        /// </remarks>
-        public string Request(string graphPath, IDictionary<string, string> parameters, string httpMethod)
-        {
-            if (IsSessionValid())
-            {
-                if (parameters == null)
-                    parameters = new Dictionary<string, string>();
-                if (!string.IsNullOrEmpty(Settings.AccessToken))
-                    parameters.Add(Token, AccessToken);
-            }
-            string url = GraphBaseUrl + graphPath; // note: facebook android sdk uses rest based if graphPath is null. we don't. all is graph in ours.
-            return FacebookUtils.OpenUrl(url, httpMethod, parameters);
-        }
-
-        /// <summary>
-        /// Synchronously make a requst to the Facebook Graph API with the given HTTP method and string parameters.
-        /// </summary>
-        /// <typeparam name="T">Type of object to deserialize the result to.</typeparam>
-        /// <param name="graphPath">Path to the resource in the Facebook graph.</param>
-        /// <param name="parameters">key-value string parameters.</param>
-        /// <param name="httpMethod">HTTP ver, e.g. "GET", "POST", "DELETE"</param>
-        /// <returns></returns>
-        /// <remarks>
-        /// See http://developers.facebook.com/docs/api
-        /// 
-        /// Note that binary data parameters (e.g. pictures) are not yet supported by this helper function.
-        /// 
-        /// Note that this method is synchronous.
-        /// This method blocks waiting for a network reponse,
-        /// so do not call it in a UI thread.
-        /// 
-        /// For parameters:
-        ///     key-value string parameters, e.g. the path "search" with
-        /// parameters "q" : "facebook" would produce a query for the
-        /// following graph resource:
-        /// https://graph.facebook.com/search?q=facebook
-        /// </remarks>
-        public T Request<T>(string graphPath, IDictionary<string, string> parameters, string httpMethod)
-        {
-            var jsonString = Request(graphPath, parameters, httpMethod);
-            FacebookUtils.ThrowIfFacebookException(jsonString);
-            return FacebookUtils.DeserializeObject<T>(jsonString);
         }
 
         /// <summary>
@@ -293,65 +125,10 @@ namespace FacebookSharp
         public static string GenerateFacebookAuthorizeUrl(string facebookApplicationKey, string redirectUri, string extendedPermissions)
         {
             return string.IsNullOrEmpty(extendedPermissions)
-                       ? string.Format(GraphBaseUrl + "oauth/authorize?client_id={0}&redirect_uri={1}",
+                       ? string.Format(GraphBaseUrl + "/oauth/authorize?client_id={0}&redirect_uri={1}",
                                        facebookApplicationKey, redirectUri)
-                       : string.Format(GraphBaseUrl + "oauth/authorize?client_id={0}&redirect_uri={1}&scope={2}",
+                       : string.Format(GraphBaseUrl + "/oauth/authorize?client_id={0}&redirect_uri={1}&scope={2}",
                                        facebookApplicationKey, redirectUri, extendedPermissions);
-        }
-
-        public static string ExchangeAccessTokenForCode(string code, string applicationKey, string applicationSecret, string postAuthorizeUrl)
-        {
-            int expiresIn;
-            return ExchangeAccessTokenForCode(code, applicationKey, applicationSecret, postAuthorizeUrl, out expiresIn);
-        }
-
-#if !SILVERLIGHT
- public static string ExchangeAccessTokenForCode(string code, string applicationKey, string applicationSecret, string postAuthorizeUrl, out int expiresIn)
-        {
-            if (string.IsNullOrEmpty(applicationKey))
-                throw new ArgumentNullException("applicationKey");
-            if (string.IsNullOrEmpty(applicationSecret))
-                throw new ArgumentNullException("applicationSecret");
-            if (string.IsNullOrEmpty(postAuthorizeUrl))
-                throw new FacebookSharpException("postAuthorizeUrl");
-
-            string url =
-                string.Format(
-                    "https://graph.facebook.com/oauth/access_token?client_id={0}&redirect_uri={1}&client_secret={2}&code={3}",
-                    applicationKey, postAuthorizeUrl, applicationSecret, code);
-
-            var wc = new WebClient();
-            string result = wc.DownloadString(url);
-
-            IDictionary<string, string> r = FacebookUtils.DecodeUrl(result);
-            if (r.ContainsKey("expires_in"))
-                expiresIn = Convert.ToInt32(r["expires_in"]);
-            else
-                expiresIn = 0;
-            return r["access_token"];
-        }
-
-#endif
-
-#if SILVERLIGHT
-        public static string ExchangeAccessTokenForCode(string code, string applicationKey, string applicationSecret, string postAuthorizeUrl, out int expiresIn)
-        {
-            throw new NotImplementedException();
-        }
-#endif
-
-        public string ExchangeAccessTokenForCode(string code)
-        {
-            if (string.IsNullOrEmpty(Settings.ApplicationKey))
-                throw new FacebookSharpException("Settings.ApplicationKey missing.");
-            if (string.IsNullOrEmpty(Settings.ApplicationSecret))
-                throw new FacebookSharpException("Settings.ApplicationSecret missing.");
-            if (string.IsNullOrEmpty(Settings.PostAuthorizeUrl))
-                throw new FacebookSharpException("Settings.PostAuthorizeUrl missing.");
-
-            int expiresIn;
-            return ExchangeAccessTokenForCode(code, Settings.ApplicationKey, Settings.ApplicationSecret,
-                                              Settings.PostAuthorizeUrl, out expiresIn);
         }
 
     }

@@ -2,7 +2,7 @@ namespace FacebookSharp.Web.Mvc
 {
     using System.Web.Mvc;
 
-    public abstract class FacebookController : Controller, IFacebookContext
+    public abstract class BaseFacebookController : Controller, IFacebookContext
     {
         #region Implementation of IFacebookContext
 

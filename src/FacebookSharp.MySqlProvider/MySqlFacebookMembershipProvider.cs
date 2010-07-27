@@ -11,6 +11,7 @@
     ///		  `access_token` VARCHAR(256),
     ///		  PRIMARY KEY (`user_name`)
     ///		);
+    /// todo: add support for application name
     /// </remarks>
     public class MySqlFacebookMembershipProvider : IFacebookMembershipProvider
     {
@@ -19,7 +20,7 @@
         private readonly string _connectionString;
 
         public MySqlFacebookMembershipProvider(string connectionString)
-            : this(connectionString, "facebook_users", null)
+            : this(connectionString, null, null)
         {
         }
 
@@ -31,11 +32,19 @@
         public MySqlFacebookMembershipProvider(string connectionString, string tableName, MembershipProvider membershipProvider)
         {
             _connectionString = connectionString;
-            _tableName = tableName;
+            _tableName = tableName ?? "facebook_users";
             _membershipProvider = membershipProvider;
         }
 
         #region Implementation of IFacebookMembershipProvider
+
+        /// <summary>
+        /// Name of the application
+        /// </summary>
+        public string ApplicationName
+        {
+            get { return _membershipProvider == null ? string.Empty : _membershipProvider.ApplicationName; }
+        }
 
         public bool HasLinkedFacebook(string membershipUsername)
         {
@@ -89,6 +98,12 @@
             }
         }
 
+        public void LinkFacebook(string membershipUsername, string facebookId, string accessToken, int expiresIn)
+        {
+            // todo: add expires in
+            LinkFacebook(membershipUsername, facebookId, accessToken);
+        }
+
         public void LinkFacebook(object membershipProviderUserKey, string facebookId, string accessToken)
         {
             MembershipUser user = _membershipProvider.GetUser(membershipProviderUserKey, false);
@@ -96,6 +111,12 @@
                 throw new FacebookSharpException("User with given membershipProviderUserKey not found.");
 
             LinkFacebook(user.UserName, facebookId, accessToken);
+        }
+
+        public void LinkFacebook(object membershipProviderUserKey, string facebookId, string accessToken, int expiresIn)
+        {
+            // todo: add expires in
+            LinkFacebook(membershipProviderUserKey, facebookId, accessToken);
         }
 
         public void UnlinkFacebook(string membershipUsername)

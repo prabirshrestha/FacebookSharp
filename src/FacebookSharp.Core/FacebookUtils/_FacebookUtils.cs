@@ -1,3 +1,5 @@
+using System.Reflection;
+
 namespace FacebookSharp
 {
     using System;
@@ -10,66 +12,28 @@ namespace FacebookSharp
 
     public static partial class FacebookUtils
     {
-#if !SILVERLIGHT
-        static FacebookUtils()
-        {
-            InitHttpUtility();
-        }
-#endif
-
-        public static string EncodeUrl(IDictionary<string, string> parameters)
-        {
-            if (parameters == null || parameters.Count == 0)
-                return "";
-            StringBuilder sb = new StringBuilder();
-            bool first = true;
-            foreach (KeyValuePair<string, string> pair in parameters)
-            {
-                if (first)
-                    first = false;
-                else
-                    sb.Append("&");
-                sb.AppendFormat("{0}={1}", UrlEncode(pair.Key), UrlEncode(pair.Value));
-            }
-            return sb.ToString();
-        }
-
-        public static IDictionary<string, string> DecodeUrl(string s)
-        {
-            IDictionary<string, string> parameters = new Dictionary<string, string>();
-            if (string.IsNullOrEmpty(s))
-                return parameters;
-
-            string[] array = s.Split('&');
-            foreach (string parameter in array)
-            {
-                string[] pair = parameter.Split('=');
-                if (pair[0].StartsWith("#") || pair[0].StartsWith("?"))
-                    pair[0] = pair[0].Substring(1, pair[0].Length - 1);
-                parameters.Add(UrlDecode(pair[0]), UrlDecode(pair[1]));
-            }
-            return parameters;
-        }
 
         /// <summary>
-        /// Parse a URL query and fragment parameters into a key-value bundle.
+        /// Will get the string value for a given enums value, this will
+        /// only work if you assign the StringValue attribute to
+        /// the items in your enum.
         /// </summary>
-        /// <param name="url">The URL to parse</param>
-        /// <returns>Returns a dictionary of keys and values.</returns>
-        public static IDictionary<string, string> ParseUrl(string url)
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public static string GetStringValue(this Enum value)
         {
-            // hack to prevent MalformedURLException
-            url = url.Replace("fbconnect", "http");
-            try
-            {
-                Uri u = new Uri(url);
-                IDictionary<string, string> b = DecodeUrl(u.Query); // need to test this method.
-                return b;
-            }
-            catch (Exception ex)
-            {   // todo: need to catch the invalid url exception.
-                return new Dictionary<string, string>();
-            }
+            // Get the type
+            Type type = value.GetType();
+
+            // Get fieldinfo for this type
+            FieldInfo fieldInfo = type.GetField(value.ToString());
+
+            // Get the stringvalue attributes
+            StringValueAttribute[] attribs = fieldInfo.GetCustomAttributes(
+                typeof(StringValueAttribute), false) as StringValueAttribute[];
+
+            // Return the first if there was a match.
+            return attribs.Length > 0 ? attribs[0].StringValue : null;
         }
 
         /// <summary>
@@ -106,7 +70,7 @@ namespace FacebookSharp
         public static string OpenUrl(string url, string method, IDictionary<string, string> parameters, string userAgent, bool compressHttp)
         {
             if (method.Equals("GET", StringComparison.OrdinalIgnoreCase))
-                url = url + "?" + EncodeUrl(parameters);
+                url = url + "?" + EncodeDictionaryUrl(parameters);
             // might be should log this method.
 
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
@@ -127,7 +91,7 @@ namespace FacebookSharp
                 request.Method = "POST";
                 request.ContentType = "application/x-www-form-urlencoded";
 
-                byte[] data = Encoding.UTF8.GetBytes(EncodeUrl(parameters));
+                byte[] data = Encoding.UTF8.GetBytes(EncodeDictionaryUrl(parameters));
                 request.ContentLength = data.Length;
 
                 request.GetRequestStream().Write(data, 0, data.Length);
@@ -272,71 +236,6 @@ namespace FacebookSharp
                 throw ex;
 
             return json;
-        }
-
-        public static void ThrowIfFacebookException(string response)
-        {
-            var ex = ToFacebookException(response);
-            if (ex != null)
-                throw ex;
-        }
-
-        public static FacebookException ToFacebookException(string response)
-        {
-            JToken tmp;
-            return ToFacebookException(response, out tmp);
-        }
-
-        public static FacebookException ToFacebookException(string response, out JToken json)
-        {
-            using (StringReader reader = new StringReader(response))
-            {
-                using (JsonTextReader jsonTextReader = new JsonTextReader(reader))
-                {
-                    json = JToken.ReadFrom(jsonTextReader);
-                }
-            }
-
-            // edge case: when sending a POST request to /[post_id]/likes
-            // the return value is 'true' or 'false'.
-            // just throw normal FacebookException.
-            if (response.Equals("false", StringComparison.OrdinalIgnoreCase))
-                throw new FacebookException("request failed.");
-            if (response.Equals("true", StringComparison.OrdinalIgnoreCase))
-                response = "{value:true}";
-
-            JToken error = json["error"];
-            if (error != null)
-            {
-                string type = error.Value<string>("type");
-                string message = error.Value<string>("message");
-
-                switch (type)
-                {
-                    case "OAuthException":
-                        return new OAuthException(message);
-                    case "QueryParseException":
-                        return new QueryParseException(message);
-                }
-                // Just return generice if couldn't resolve. todo: add more
-                return new FacebookException(message, type, 0);
-            }
-
-            JToken errorCode = json["error_code"];
-            JToken errorMsg = json["error_msg"];
-
-            if (errorCode != null && errorMsg != null)
-                return new FacebookException(errorMsg.Value<string>(), "", int.Parse(errorCode.Value<string>()));
-            if (errorCode != null)
-                return new FacebookException("request faild", "", int.Parse(errorCode.Value<string>()));
-            if (errorMsg != null)
-                return new FacebookException(errorMsg.Value<string>());
-
-            JToken errorReason = json["error_reason"];
-            if (errorReason != null)
-                return new FacebookException(errorReason.Value<string>());
-
-            return null;
         }
 
         /// <summary>

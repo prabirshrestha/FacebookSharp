@@ -34,26 +34,37 @@
     <DocumentationFile>..\..\bin\DotNet35\Release\FacebookSharp.Core.XML</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>..\..\libs\Json35r7\Bin\DotNet\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=3.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\libs\RestSharp\DotNet35\Release\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="RestSharp">
+      <HintPath>..\..\libs\RestSharp\DotNet35\Release\RestSharp.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.XML" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AccessToken.cs" />
+    <Compile Include="OAuth2Authenticator.cs" />
+    <Compile Include="DialogFormFactors.cs" />
     <Compile Include="Exceptions\OAuthException.cs" />
     <Compile Include="Exceptions\QueryParseException.cs" />
     <Compile Include="Exceptions\_FacebookException.cs" />
+    <Compile Include="Exceptions\_FacebookRequestException.cs" />
     <Compile Include="Exceptions\__FacebookSharpException.cs" />
     <Compile Include="Facebook.cs" />
+    <Compile Include="Facebook.Sync.cs" />
     <Compile Include="FacebookAuthenticationResult.cs" />
     <Compile Include="FacebookSettings.cs" />
+    <Compile Include="FacebookUtils\ExceptionHelpers.cs" />
+    <Compile Include="FacebookUtils\HttpUtility.cs" />
     <Compile Include="FacebookUtils\DateUtils.cs" />
-    <Compile Include="FacebookUtils\HttpUtitliy.cs" />
     <Compile Include="FacebookUtils\JsonUtils.cs" />
     <Compile Include="FacebookUtils\_FacebookUtils.cs" />
     <Compile Include="IFacebookContext.cs" />
+    <Compile Include="OfficialFacebookSdkCompatibilityApi.Sync.cs" />
     <Compile Include="Schemas\Graph\Account.cs" />
     <Compile Include="Schemas\Graph\Album.cs" />
     <Compile Include="Schemas\Graph\Group.cs" />
@@ -86,13 +97,14 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Schemas\extended_permissions.cs" />
     <Compile Include="Schemas\schemas.cs" />
+    <Compile Include="Schemas\StringValue.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Schemas\facebook.xsd">
+    <None Include="Schemas\facebook.xsd">
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Generator>Xsd2CodeCustomTool</Generator>
-    </EmbeddedResource>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="Schemas\enum_flags_generator.rb" />
