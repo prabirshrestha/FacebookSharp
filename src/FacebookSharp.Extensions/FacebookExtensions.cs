@@ -229,6 +229,27 @@ namespace FacebookSharp.Extensions
         }
 
         /// <summary>
+        /// Gets the Facebook user id and the name who likes the specified Facebook object.
+        /// </summary>
+        /// <param name="facebook">
+        /// The facebook.
+        /// </param>
+        /// <param name="id">
+        /// The id.
+        /// </param>
+        /// <returns>
+        /// Returns collection of Facebook users' id along with names.
+        /// </returns>
+        /// <remarks>
+        ///     Key: Facebook User Id
+        ///     Value: Facebook Username
+        /// </remarks>
+        public static IDictionary<string, string> GetLikes(this Facebook facebook, string id)
+        {
+            return facebook.Get<Dictionary<string, string>>("/" + id + "/likes");
+        }
+
+        /// <summary>
         /// Gets the profile picture url for the specified id.
         /// </summary>
         /// <param name="facebook">Id of the object to retrieve profile picture for.</param>
