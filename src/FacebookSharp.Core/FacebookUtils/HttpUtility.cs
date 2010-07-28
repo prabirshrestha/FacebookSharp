@@ -86,8 +86,8 @@ namespace FacebookSharp
         }
 
         /// <summary>
-        /// </summary>
         /// Parse a URL query and fragment parameters into a key-value bundle.
+        /// </summary>
         /// <param name="query">
         /// The URL query to parse.
         /// </param>
@@ -163,6 +163,20 @@ namespace FacebookSharp
             }
 
             return result;
+        }
+
+        /// <summary>
+        /// Parse a URL query and fragment parameters into a key-value bundle.
+        /// </summary>
+        /// <param name="uri">
+        /// The uri to parse
+        /// </param>
+        /// <returns>
+        /// Returns a dictionary of keys and values for the querystring.
+        /// </returns>
+        public static IDictionary<string, List<string>> ParseUrlQueryString(Uri uri)
+        {
+            return ParseUrlQueryString(uri.Query);
         }
 
         #endregion
