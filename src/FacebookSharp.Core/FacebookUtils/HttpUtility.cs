@@ -86,28 +86,6 @@ namespace FacebookSharp
         }
 
         /// <summary>
-        /// Parse a URL query and fragment parameters into a key-value bundle.
-        /// </summary>
-        /// <param name="url">The URL to parse</param>
-        /// <returns>Returns a dictionary of keys and values.</returns>
-        [Obsolete("This method is marked for deletion in future release.")]
-        public static IDictionary<string, string> ParseUrlQueryString(string url)
-        {
-            // hack to prevent MalformedURLException
-            url = url.Replace("fbconnect", "http");
-            try
-            {
-                Uri u = new Uri(url);
-                IDictionary<string, string> b = DecodeDictionaryUrl(u.Query); // need to test this method.
-                return b;
-            }
-            catch (Exception ex)
-            {   // todo: need to catch the invalid url exception.
-                return new Dictionary<string, string>();
-            }
-        }
-
-        /// <summary>
         /// </summary>
         /// Parse a URL query and fragment parameters into a key-value bundle.
         /// <param name="query">
@@ -116,7 +94,7 @@ namespace FacebookSharp
         /// <returns>
         /// Returns a dictionary of keys and values for the querystring.
         /// </returns>
-        public static IDictionary<string, List<string>> ParseQueryString(string query)
+        public static IDictionary<string, List<string>> ParseUrlQueryString(string query)
         {
             var result = new Dictionary<string, List<string>>();
 

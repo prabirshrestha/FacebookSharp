@@ -56,7 +56,14 @@ namespace FacebookSharp
                 if (!string.IsNullOrEmpty(uri.Fragment))
                     paramters = FacebookUtils.DecodeDictionaryUrl(uri.Fragment);
                 else
-                    paramters = FacebookUtils.ParseUrlQueryString(url);
+                {
+                    var pars = FacebookUtils.ParseUrlQueryString(url);
+                    paramters = new Dictionary<string, string>();
+                    foreach (var p in pars)
+                    {
+                        paramters.Add(p.Key, p.Value[0]);
+                    }
+                }
 
                 if (paramters.ContainsKey("access_token"))
                     accessToken = paramters["access_token"];
@@ -66,7 +73,12 @@ namespace FacebookSharp
             }
             else
             {   // its from web
-                paramters = FacebookUtils.ParseUrlQueryString(url);
+                var pars = FacebookUtils.ParseUrlQueryString(url);
+                paramters = new Dictionary<string, string>();
+                foreach (var p in pars)
+                {
+                    paramters.Add(p.Key, p.Value[0]);
+                }
 
                 if (paramters.ContainsKey("code"))
                 {   // incase this is from the web, we need to exchange the code with access token
