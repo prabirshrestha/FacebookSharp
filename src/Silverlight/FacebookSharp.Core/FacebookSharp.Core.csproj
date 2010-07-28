@@ -55,9 +55,9 @@
     <Reference Include="RestSharp.Silverlight">
       <HintPath>..\..\..\libs\RestSharp\Silverlight\Release\RestSharp.Silverlight.dll</HintPath>
     </Reference>
+    <Reference Include="system" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Windows" />
-    <Reference Include="system" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Net" />
