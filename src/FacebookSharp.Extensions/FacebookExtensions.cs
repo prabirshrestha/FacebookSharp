@@ -144,11 +144,17 @@ namespace FacebookSharp.Extensions
         ///      "description": "This is a longer description of the attachment",
         ///      "picture": "http://www.example.com/thumbnail.jpg"}
         /// </remarks>
-        public static string PutWallPost(this Facebook facebook, string message, IDictionary<string, string> parameters)
+        public static string PostToWall(this Facebook facebook, string message, IDictionary<string, string> parameters)
         {
             if (parameters != null)
                 parameters.Add("message", "message");
             return facebook.PutObject("/me", "feed", parameters);
+        }
+
+        [Obsolete("This method is marked for deletion in future releases. Use PostToWall.")]
+        public static string PutWallPost(this Facebook facebook, string message, IDictionary<string, string> parameters)
+        {
+            return facebook.PostToWall(message, parameters);
         }
 
         /// <summary>
@@ -172,12 +178,18 @@ namespace FacebookSharp.Extensions
         ///      "description": "This is a longer description of the attachment",
         ///      "picture": "http://www.example.com/thumbnail.jpg"}
         /// </remarks>
-        public static string PutWallPost(this Facebook facebook, string message, IDictionary<string, string> parameters, string profileId)
+        public static string PostToWall(this Facebook facebook, string message, IDictionary<string, string> parameters, string profileId)
         {
             if (parameters == null)
                 parameters = new Dictionary<string, string>();
             parameters.Add("message", message);
             return facebook.PutObject(profileId, "feed", parameters);
+        }
+
+        [Obsolete("This method is marked for deletion in future releases. Use PostToWall.")]
+        public static string PutWallPost(this Facebook facebook, string message, IDictionary<string, string> parameters, string profileId)
+        {
+            return facebook.PostToWall(message, parameters, profileId);
         }
 
         /// <summary>
@@ -258,6 +270,38 @@ namespace FacebookSharp.Extensions
             if (string.IsNullOrEmpty(facebook.Settings.AccessToken))
                 throw new ArgumentNullException("Settings.AccessToken",
                                                 "AccessToken must be specified inorder to invoke this method");
+        }
+
+        /// <summary>
+        /// Helper method to add optional parameters for paging.
+        /// </summary>
+        /// <param name="parameters">
+        /// The parameters.
+        /// </param>
+        /// <param name="limit">
+        /// The limit.
+        /// </param>
+        /// <param name="offset">
+        /// The offset.
+        /// </param>
+        /// <param name="until">
+        /// The until.
+        /// </param>
+        /// <returns>
+        /// </returns>
+        private static IDictionary<string, string> AppendPagingParameters(IDictionary<string, string> parameters, int? limit, int? offset, string until)
+        {
+            if (parameters == null)
+                parameters = new Dictionary<string, string>();
+
+            if (limit != null)
+                parameters.LimitTo(limit.Value);
+            if (offset != null)
+                parameters.Offset(offset.Value);
+            if (!string.IsNullOrEmpty(until))
+                parameters.Until(until);
+
+            return parameters;
         }
 
     }

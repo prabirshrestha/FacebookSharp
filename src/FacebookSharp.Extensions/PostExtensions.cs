@@ -47,6 +47,29 @@ namespace FacebookSharp.Extensions
             return FacebookUtils.DeserializeObject<PostCollection>(facebook.GetPostAsJson(id, parameters));
         }
 
+        /// <summary>
+        /// Get the posts for the specified facebook id (application, page or user).
+        /// </summary>
+        /// <param name="facebook"></param>
+        /// <param name="id"></param>
+        /// <param name="limit"></param>
+        /// <param name="offset"></param>
+        /// <param name="until"></param>
+        /// <param name="parameters"></param>
+        /// <returns>Returns PostCollection.</returns>
+        /// <remarks>
+        /// type of id  | returns
+        /// ------------|------------------------
+        ///  Application| The applications's own posts.
+        ///  Page       | The page's own posts.
+        ///  User       | The user's own posts. Requires the read_stream permission to see non-public posts.
+        /// </remarks>
+        public static PostCollection GetPosts(this Facebook facebook, string id, int? limit, int? offset, string until, IDictionary<string, string> parameters)
+        {
+            parameters = AppendPagingParameters(parameters, limit, offset, until);
+            return facebook.GetPosts(id, parameters);
+        }
+
         #endregion
 
     }

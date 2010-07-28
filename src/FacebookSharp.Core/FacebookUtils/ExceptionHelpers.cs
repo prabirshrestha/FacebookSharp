@@ -31,7 +31,7 @@
         }
 
         [Obsolete("Try not to use this method. Most probably will be removed in future version.")]
-        public static FacebookException ToFacebookException(string jsonString, out JToken json)
+        private static FacebookException ToFacebookException(string jsonString, out JToken json)
         {
             using (StringReader reader = new StringReader(jsonString))
             {
@@ -71,6 +71,10 @@
                         return new OAuthException(message);
                     case "QueryParseException":
                         return new QueryParseException(message);
+                    case "Exception":
+                        if (message.Equals(DuplicateStatusMessageException.MESSAGE, StringComparison.OrdinalIgnoreCase))
+                            return new DuplicateStatusMessageException(message);
+                        break;
                 }
 
                 // Just return generic if couldn't resolve. 

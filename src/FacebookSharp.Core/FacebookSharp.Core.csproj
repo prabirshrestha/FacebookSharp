@@ -47,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AccessToken.cs" />
+    <Compile Include="Exceptions\DuplicateStatusMessageException.cs" />
     <Compile Include="OAuth2Authenticator.cs" />
     <Compile Include="DialogFormFactors.cs" />
     <Compile Include="Exceptions\OAuthException.cs" />

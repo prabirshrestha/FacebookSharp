@@ -22,7 +22,7 @@ For more easy access FacebookSharp.Extensions has also been created.
 	facebook.PutComment("id","some comment message");
 	facebook.DeleteObject("id");
 	facebook.PutLike("id");
-	facebook.PutWallPost("message",null);
+	facebook.PostToWall("message",null);
 
 #### Getting Facebook Access Token
 Please review the samples found in the source control to get Facebook Access Token.
@@ -91,7 +91,7 @@ Please refer to [http://developers.facebook.com/docs/authentication/permissions]
 
 #### IFacebookMembershipProvider
 
-To have easy link between your MembershipProvider and FacebookMembershipProvider IFacebookMembershipProvider has been created. This interface contains methods such as 
+To have easy link between your MembershipProvider and FacebookMembershipProvider IFacebookMembershipProvider have been provided. This interface contains methods such as 
 
 	bool HasLinkedFacebook(string membershipUsername);
 	void LinkFacebook(string membershipUsername, string facebookId, string accessToken);
@@ -119,7 +119,7 @@ It simple as explicitly casting a string to FacebookException.
 
 ### Some other useful extensions
 
-Incase you want to add extra parameters to IDictionary<string,string> you will bascially need to use the Add method.
+Incase you want to add extra parameters to IDictionary<string,string> you will basically need to use the Add method.
 
 var p = new Dictionary<string,string>();
 p.Add("limit",10);
