@@ -4,9 +4,6 @@ namespace FacebookSharp
 {
     using System;
     using System.Collections.Generic;
-    using System.IO;
-    using System.Net;
-    using System.Text;
     using Newtonsoft.Json;
     using Newtonsoft.Json.Linq;
 
@@ -36,113 +33,7 @@ namespace FacebookSharp
             return attribs.Length > 0 ? attribs[0].StringValue : null;
         }
 
-        /// <summary>
-        /// Connect to an HTTP url and return the response as a string.
-        /// </summary>
-        /// <param name="url">The resource to open: must be a welformed URL</param>
-        /// <param name="method">The HTTP method to use ("GET", "POST", etc.)</param>
-        /// <param name="parameters">The query parameter for the URL (e.g. access_token=foo)</param>
-        /// <param name="userAgent">Sets the user agent when opening the url.</param>
-        /// <returns>The URL contents as a string.</returns>
-        /// <remarks>
-        /// Note that the HTTP method override is used on non-GET requests.
-        /// (i.e. requests are made as "POST" with method specified in the body).
-        /// </remarks>
-        public static string OpenUrl(string url, string method, IDictionary<string, string> parameters)
-        {   // this is the default method signature (same method arguments) as in facebook android sdk.
-            return OpenUrl(url, method, parameters, "FacebookSharp", true);
-        }
-
-#if !SILVERLIGHT
-        /// <summary>
-        /// Connect to an HTTP url and return the response as a string.
-        /// </summary>
-        /// <param name="url">The resource to open: must be a welformed URL</param>
-        /// <param name="method">The HTTP method to use ("GET", "POST", etc.)</param>
-        /// <param name="parameters">The query parameter for the URL (e.g. access_token=foo)</param>
-        /// <param name="userAgent">Sets the user agent when opening the url.</param>
-        /// <param name="compressHttp">If true adds Accept-Encoding as "gzip,deflate".</param>
-        /// <returns>The URL contents as a string.</returns>
-        /// <remarks>
-        /// Note that the HTTP method override is used on non-GET requests.
-        /// (i.e. requests are made as "POST" with method specified in the body).
-        /// </remarks>
-        public static string OpenUrl(string url, string method, IDictionary<string, string> parameters, string userAgent, bool compressHttp)
-        {
-            if (method.Equals("GET", StringComparison.OrdinalIgnoreCase))
-                url = url + "?" + EncodeDictionaryUrl(parameters);
-            // might be should log this method.
-
-            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
-
-            if (!string.IsNullOrEmpty(userAgent))
-                request.UserAgent = userAgent;
-
-            if (compressHttp)
-            {
-                request.Headers.Add("Accept-Encoding", "gzip,deflate");
-                request.AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate;
-            }
-
-            if (!method.Equals("GET", StringComparison.OrdinalIgnoreCase))
-            {
-                // use method override
-                parameters.Add("method", method);
-                request.Method = "POST";
-                request.ContentType = "application/x-www-form-urlencoded";
-
-                byte[] data = Encoding.UTF8.GetBytes(EncodeDictionaryUrl(parameters));
-                request.ContentLength = data.Length;
-
-                request.GetRequestStream().Write(data, 0, data.Length);
-            }
-
-            try
-            {
-                using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
-                {
-                    using (StreamReader reader = new StreamReader(response.GetResponseStream()))
-                    {
-                        return reader.ReadToEnd();
-                    }
-                }
-            }
-            catch (WebException ex)
-            {
-                if (ex.Status == WebExceptionStatus.ProtocolError && ex.Response != null)
-                {
-                    using (var reader = new StreamReader(ex.Response.GetResponseStream()))
-                    {
-                        return reader.ReadToEnd();
-                    }
-                }
-                throw new FacebookSharpException("Unknown Error occured when communicating with facebook.", ex);
-            }
-        }
-#endif
-
-#if SILVERLIGHT
-    /// <summary>
-    /// Connect to an HTTP url and return the response as a string.
-    /// </summary>
-    /// <param name="url">The resource to open: must be a welformed URL</param>
-    /// <param name="method">The HTTP method to use ("GET", "POST", etc.)</param>
-    /// <param name="parameters">The query parameter for the URL (e.g. access_token=foo)</param>
-    /// <param name="userAgent">Sets the user agent when opening the url.</param>
-    /// <param name="compressHttp">If true adds Accept-Encoding as "gzip,deflate".</param>
-    /// <returns>The URL contents as a string.</returns>
-    /// <remarks>
-    /// Note that the HTTP method override is used on non-GET requests.
-    /// (i.e. requests are made as "POST" with method specified in the body).
-    /// </remarks>
-        public static string OpenUrl(string url, string method, IDictionary<string, string> parameters, string userAgent, bool compressHttp)
-        {
-            throw new NotImplementedException();
-        }
-
-#endif
-
-        #region Json Converter Utils
+       #region Json Converter Utils
 
         /// <summary>
         /// Parse Json string to IDictionary&lt;string, object>.
