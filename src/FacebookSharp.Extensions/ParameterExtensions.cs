@@ -37,5 +37,11 @@ namespace FacebookSharp.Extensions
             parameters.Add("offset", offset.ToString());
             return parameters;
         }
+
+        public static IDictionary<string, string> Until(this IDictionary<string, string> parameters, string until)
+        {
+            parameters.Add("until", until);
+            return parameters;
+        }
     }
 }

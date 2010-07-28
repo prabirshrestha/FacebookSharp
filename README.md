@@ -117,6 +117,17 @@ var ex = (FacebookException)jsonString;
 
 It simple as explicitly casting a string to FacebookException.
 
+### Some other useful extensions
+
+Incase you want to add extra parameters to IDictionary<string,string> you will bascially need to use the Add method.
+
+var p = new Dictionary<string,string>();
+p.Add("limit",10);
+p.Add("offset",5");
+
+Instead of doing that there are extensions methods which is in FacebookSharp.Extensions namespace. So now you will just need to call them.
+var p = new Dictionary<string,string>().LimitTo(10).Offset(5);
+
 ##Supported Platforms
 
 ### .NET 3.5 and .NET 4.0
