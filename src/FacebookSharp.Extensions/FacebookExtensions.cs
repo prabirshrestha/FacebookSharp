@@ -24,6 +24,7 @@ namespace FacebookSharp.Extensions
     using System;
     using System.Collections.Generic;
     using System.Text;
+    using FacebookSharp.Schemas.Graph;
 
     public static partial class FacebookExtensions
     {
@@ -244,9 +245,14 @@ namespace FacebookSharp.Extensions
         ///     Key: Facebook User Id
         ///     Value: Facebook Username
         /// </remarks>
-        public static IDictionary<string, string> GetLikes(this Facebook facebook, string id)
+        public static LikeCollection GetLikes(this Facebook facebook, string id)
         {
-            return facebook.Get<Dictionary<string, string>>("/" + id + "/likes");
+            var likes = facebook.Get<LikeCollection>("/" + id + "/likes") ?? new LikeCollection();
+
+            if (likes.Data == null)
+                likes.Data = new List<Like>();
+
+            return likes;
         }
 
         /// <summary>
