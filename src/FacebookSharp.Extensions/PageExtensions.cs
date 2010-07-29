@@ -58,12 +58,38 @@ namespace FacebookSharp.Extensions
         /// </returns>
         public static BasicUserInfoCollection GetPageMembers(this Facebook facebook, string pageId)
         {
-            var likes = facebook.Get<BasicUserInfoCollection>("/" + pageId + "/members") ?? new BasicUserInfoCollection();
+            return facebook.GetPageMembers(pageId, null);
+        }
+
+        /// <summary>
+        /// Gets the the list of all facebook user who are members of the specified page.
+        /// </summary>
+        /// <param name="facebook">
+        /// The facebook.
+        /// </param>
+        /// <param name="pageId">
+        /// The page id.
+        /// </param>
+        /// <param name="parameters">
+        /// The parameters.
+        /// </param>
+        /// <returns>
+        /// Returns list of users who are members for the page.
+        /// </returns>
+        public static BasicUserInfoCollection GetPageMembers(this Facebook facebook, string pageId, IDictionary<string, string> parameters)
+        {
+            var likes = facebook.Get<BasicUserInfoCollection>("/" + pageId + "/members", parameters) ?? new BasicUserInfoCollection();
 
             if (likes.Data == null)
                 likes.Data = new List<BasicUserInfo>();
 
             return likes;
+        }
+
+        public static BasicUserInfoCollection GetPageMembers(this Facebook facebook, string pageId, int? limit, int? offset, string until, IDictionary<string, string> parameters)
+        {
+            parameters = AppendPagingParameters(parameters, limit, offset, until);
+            return facebook.GetPageMembers(pageId, parameters);
         }
     }
 }

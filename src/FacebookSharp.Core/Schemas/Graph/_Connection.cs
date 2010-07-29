@@ -16,5 +16,11 @@ namespace FacebookSharp.Schemas.Graph
     {
         [DataMember(Name = "data")]
         public List<T> Data { get; set; }
+
+        /// <summary>
+        /// Gets or sets Paging.
+        /// </summary>
+        [DataMember(Name = "paging")]
+        public Paging Paging { get; set; }
     }
 }
