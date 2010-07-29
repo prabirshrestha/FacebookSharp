@@ -325,7 +325,33 @@ namespace FacebookSharp.Extensions
         /// </remarks>
         public static string GetProfilePictureUrlSafe(this Facebook facebook, string profileId)
         {
-            var request = new RestRequest("/me/picture", Method.GET);
+            return facebook.GetProfilePictureUrlSafe(profileId, null);
+        }
+
+        /// <summary>
+        /// Gets the profile picture url for the specified id. Passing the access token.
+        /// </summary>
+        /// <param name="facebook">
+        /// The facebook.
+        /// </param>
+        /// <param name="pictureSizeType">
+        /// The picture size type.
+        /// </param>
+        /// <returns>
+        /// </returns>
+        /// <exception cref="FacebookException">
+        /// </exception>
+        /// <exception cref="FacebookRequestException">
+        /// </exception>
+        /// <remarks>
+        /// This is useful in web pages, if you don't want to show the access token on the client side,
+        /// or html page.
+        /// </remarks>
+        public static string GetProfilePictureUrlSafe(this Facebook facebook, string profileId, PictureSizeType? pictureSizeType)
+        {
+            var request = new RestRequest("/" + profileId + "/picture", Method.GET);
+            if (pictureSizeType != null)
+                request.AddParameter("type", FacebookUtils.ToString(pictureSizeType.Value));
 
             var response = facebook.Execute(request, true);
 

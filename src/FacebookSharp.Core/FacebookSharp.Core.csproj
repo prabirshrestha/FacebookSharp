@@ -76,6 +76,7 @@
     <Compile Include="Schemas\Graph\Post.cs" />
     <Compile Include="Schemas\Graph\PostAction.cs" />
     <Compile Include="Schemas\Graph\Privacy.cs" />
+    <Compile Include="Schemas\Graph\ProfileSizeType.cs" />
     <Compile Include="Schemas\Graph\Tag.cs" />
     <Compile Include="Schemas\Graph\Url.cs" />
     <Compile Include="Schemas\Graph\Video.cs" />

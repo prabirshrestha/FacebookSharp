@@ -1,4 +1,5 @@
 using System.Reflection;
+using FacebookSharp.Schemas.Graph;
 
 namespace FacebookSharp
 {
@@ -33,7 +34,32 @@ namespace FacebookSharp
             return attribs.Length > 0 ? attribs[0].StringValue : null;
         }
 
-       #region Json Converter Utils
+        /// <summary>
+        /// Convert <see cref="PictureSizeType"/> to facebook string.
+        /// </summary>
+        /// <param name="pictureSizeType">
+        /// The picture size type.
+        /// </param>
+        /// <returns>
+        /// </returns>
+        /// <exception cref="ArgumentOutOfRangeException">
+        /// </exception>
+        public static string ToString(PictureSizeType pictureSizeType)
+        {
+            switch (pictureSizeType)
+            {
+                case PictureSizeType.Square:
+                    return "square";
+                case PictureSizeType.Small:
+                    return "small";
+                case PictureSizeType.Large:
+                    return "large";
+                default:
+                    throw new ArgumentOutOfRangeException("pictureSizeType");
+            }
+        }
+
+        #region Json Converter Utils
 
         /// <summary>
         /// Parse Json string to IDictionary&lt;string, object>.
@@ -76,7 +102,7 @@ namespace FacebookSharp
         {
             return JsonParser.ToJson(bag);
         }
-        
+
 
         #endregion
 

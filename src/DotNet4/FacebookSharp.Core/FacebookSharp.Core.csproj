@@ -167,6 +167,9 @@
     <Compile Include="..\..\FacebookSharp.Core\Schemas\Graph\Privacy.cs">
       <Link>Schemas\Graph\Privacy.cs</Link>
     </Compile>
+    <Compile Include="..\..\FacebookSharp.Core\Schemas\Graph\ProfileSizeType.cs">
+      <Link>Schemas\Graph\ProfileSizeType.cs</Link>
+    </Compile>
     <Compile Include="..\..\FacebookSharp.Core\Schemas\Graph\Tag.cs">
       <Link>Schemas\Graph\Tag.cs</Link>
     </Compile>
