@@ -245,12 +245,12 @@ namespace FacebookSharp.Extensions
         ///     Key: Facebook User Id
         ///     Value: Facebook Username
         /// </remarks>
-        public static LikeCollection GetLikes(this Facebook facebook, string id)
+        public static BasicUserInfoCollection GetLikes(this Facebook facebook, string id)
         {
-            var likes = facebook.Get<LikeCollection>("/" + id + "/likes") ?? new LikeCollection();
+            var likes = facebook.Get<BasicUserInfoCollection>("/" + id + "/likes") ?? new BasicUserInfoCollection();
 
             if (likes.Data == null)
-                likes.Data = new List<Like>();
+                likes.Data = new List<BasicUserInfo>();
 
             return likes;
         }

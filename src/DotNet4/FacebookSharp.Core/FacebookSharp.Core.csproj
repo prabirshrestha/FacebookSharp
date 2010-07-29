@@ -140,9 +140,6 @@
     <Compile Include="..\..\FacebookSharp.Core\Schemas\Graph\HomeTownLocation.cs">
       <Link>Schemas\Graph\HomeTownLocation.cs</Link>
     </Compile>
-    <Compile Include="..\..\FacebookSharp.Core\Schemas\Graph\Like.cs">
-      <Link>Schemas\Graph\Like.cs</Link>
-    </Compile>
     <Compile Include="..\..\FacebookSharp.Core\Schemas\Graph\Link.cs">
       <Link>Schemas\Graph\Link.cs</Link>
     </Compile>

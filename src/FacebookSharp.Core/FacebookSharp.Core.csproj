@@ -69,7 +69,6 @@
     <Compile Include="Schemas\Graph\Account.cs" />
     <Compile Include="Schemas\Graph\Album.cs" />
     <Compile Include="Schemas\Graph\Group.cs" />
-    <Compile Include="Schemas\Graph\Like.cs" />
     <Compile Include="Schemas\Graph\Link.cs" />
     <Compile Include="Schemas\Graph\Note.cs" />
     <Compile Include="Schemas\Graph\Page.cs" />

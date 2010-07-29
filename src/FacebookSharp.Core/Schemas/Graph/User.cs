@@ -84,4 +84,31 @@ namespace FacebookSharp.Schemas.Graph
     }
 
     public class UserCollection : Connection<User> { }
+
+    /// <summary>
+    /// Represents the user info who likes a Facebook Object.
+    /// </summary>
+    [DataContract]
+    public class BasicUserInfo
+    {
+        /// <summary>
+        /// Gets or sets Facebook User ID.
+        /// </summary>
+        [DataMember(Name = "id")]
+        public string ID { get; set; }
+
+        /// <summary>
+        /// Gets or sets Facebook Username.
+        /// </summary>
+        [DataMember(Name = "name")]
+        public string Name { get; set; }
+    }
+
+
+    /// <summary>
+    /// Collection for Facebook Likes
+    /// </summary>
+    public class BasicUserInfoCollection : FacebookCollection<BasicUserInfo>
+    {
+    }
 }
