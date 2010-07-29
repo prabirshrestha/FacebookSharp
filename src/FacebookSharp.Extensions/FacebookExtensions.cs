@@ -256,6 +256,23 @@ namespace FacebookSharp.Extensions
         }
 
         /// <summary>
+        /// Gets profile url. ex: http://www.facebook.com/profile.php?id=123456
+        /// </summary>
+        /// <param name="facebook">
+        /// The facebook.
+        /// </param>
+        /// <param name="id">
+        /// The id.
+        /// </param>
+        /// <returns>
+        /// Returns the generated facebook profile url
+        /// </returns>
+        public static string GetProfileUrl(this Facebook facebook, string id)
+        {
+            return "http://www.facebook.com/profile.php?id=" + id;
+        }
+
+        /// <summary>
         /// Gets the profile picture url for the specified id.
         /// </summary>
         /// <param name="facebook">Id of the object to retrieve profile picture for.</param>
