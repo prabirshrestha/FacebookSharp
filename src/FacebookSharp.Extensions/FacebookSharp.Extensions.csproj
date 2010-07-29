@@ -42,9 +42,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="PageExtensions.cs" />
     <Compile Include="PostExtensions.cs" />
     <Compile Include="FeedExtensions.cs" />
-    <Compile Include="Me.cs" />
     <Compile Include="ParameterExtensions.cs" />
     <Compile Include="FacebookExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
