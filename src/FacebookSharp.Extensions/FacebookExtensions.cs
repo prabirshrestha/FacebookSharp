@@ -19,6 +19,9 @@
 // http://developers.facebook.com/docs/api. You can download the Facebook
 // JavaScript SDK at http://github.com/facebook/connect-js/.
 
+using System.Diagnostics.CodeAnalysis;
+using RestSharp;
+
 namespace FacebookSharp.Extensions
 {
     using System;
@@ -47,7 +50,8 @@ namespace FacebookSharp.Extensions
         /// <param name="parameters">List of arguments.</param>
         /// <param name="ids">Ids of the objects to return.</param>
         /// <returns>A map from ID to object. If any of the IDs are invalid, an exception is raised.</returns>
-        public static string GetObjects(this Facebook facebook, IDictionary<string, string> parameters, params  string[] ids)
+        public static string GetObjects(this Facebook facebook, IDictionary<string, string> parameters,
+                                        params string[] ids)
         {
             StringBuilder joinedIds = new StringBuilder();
             for (int i = 0; i < ids.Length; i++)
@@ -73,7 +77,8 @@ namespace FacebookSharp.Extensions
         /// <param name="connectionName">Name of the connection.</param>
         /// <param name="parameters">List of arguments.</param>
         /// <returns>Returns the connections.</returns>
-        public static string GetConnections(this Facebook facebook, string id, string connectionName, IDictionary<string, string> parameters)
+        public static string GetConnections(this Facebook facebook, string id, string connectionName,
+                                            IDictionary<string, string> parameters)
         {
             return facebook.Get("/" + id + "/" + connectionName, parameters);
         }
@@ -86,7 +91,8 @@ namespace FacebookSharp.Extensions
         /// <param name="connectionName">Name of the connection.</param>
         /// <param name="parameters">List of arguments.</param>
         /// <returns>Returns the connections.</returns>
-        public static T GetConnections<T>(this Facebook facebook, string id, string connectionName, IDictionary<string, string> parameters)
+        public static T GetConnections<T>(this Facebook facebook, string id, string connectionName,
+                                          IDictionary<string, string> parameters)
         {
             var jsonString = GetConnections(facebook, id, connectionName, parameters);
             FacebookUtils.ThrowIfFacebookException(jsonString);
@@ -118,7 +124,8 @@ namespace FacebookSharp.Extensions
         /// http://developers.facebook.com/docs/authentication/ for details about
         /// extended permissions.
         /// </remarks>
-        public static string PutObject(this Facebook facebook, string parentObject, string connectionName, IDictionary<string, string> parameters)
+        public static string PutObject(this Facebook facebook, string parentObject, string connectionName,
+                                       IDictionary<string, string> parameters)
         {
             if (!facebook.IsSessionValid())
                 throw new FacebookSharpException("AccessToken required.");
@@ -179,7 +186,8 @@ namespace FacebookSharp.Extensions
         ///      "description": "This is a longer description of the attachment",
         ///      "picture": "http://www.example.com/thumbnail.jpg"}
         /// </remarks>
-        public static string PostToWall(this Facebook facebook, string message, IDictionary<string, string> parameters, string profileId)
+        public static string PostToWall(this Facebook facebook, string message, IDictionary<string, string> parameters,
+                                        string profileId)
         {
             if (parameters == null)
                 parameters = new Dictionary<string, string>();
@@ -188,7 +196,8 @@ namespace FacebookSharp.Extensions
         }
 
         [Obsolete("This method is marked for deletion in future releases. Use PostToWall.")]
-        public static string PutWallPost(this Facebook facebook, string message, IDictionary<string, string> parameters, string profileId)
+        public static string PutWallPost(this Facebook facebook, string message, IDictionary<string, string> parameters,
+                                         string profileId)
         {
             return facebook.PostToWall(message, parameters, profileId);
         }
@@ -267,6 +276,9 @@ namespace FacebookSharp.Extensions
         /// <returns>
         /// Returns the generated facebook profile url
         /// </returns>
+        [SuppressMessage("Microsoft.StyleCop.CSharp.DocumentationRules",
+            "SA1632:DocumentationTextMustMeetMinimumCharacterLength",
+            Justification = "Reviewed. Suppression is OK here.")]
         public static string GetProfileUrl(this Facebook facebook, string id)
         {
             return "http://www.facebook.com/profile.php?id=" + id;
@@ -290,6 +302,43 @@ namespace FacebookSharp.Extensions
             if (id.Equals("me", StringComparison.OrdinalIgnoreCase))
                 throw new FacebookSharpException("For security reason passing 'me' as id is not allowed.");
             return string.Format("{0}/{1}/picture", Facebook.GraphBaseUrl, id);
+        }
+
+        /// <summary>
+        /// Gets the profile picture url for the specified id. Passing the access token.
+        /// </summary>
+        /// <param name="facebook">
+        /// The facebook.
+        /// </param>
+        /// <param name="profileId">
+        /// The profile id.
+        /// </param>
+        /// <returns>
+        /// </returns>
+        /// <exception cref="FacebookException">
+        /// </exception>
+        /// <exception cref="FacebookRequestException">
+        /// </exception>
+        /// <remarks>
+        /// This is useful in web pages, if you don't want to show the access token on the client side,
+        /// or html page.
+        /// </remarks>
+        public static string GetProfilePictureUrlSafe(this Facebook facebook, string profileId)
+        {
+            var request = new RestRequest("/me/picture", Method.GET);
+
+            var response = facebook.Execute(request, true);
+
+            if (response.ResponseStatus == ResponseStatus.Completed)
+            {
+                var fbException = (FacebookException)response.Content;
+                if (fbException != null)
+                    throw fbException;
+
+                return response.ResponseUri.ToString();
+            }
+
+            throw new FacebookRequestException(response);
         }
 
         /// <summary>
@@ -333,7 +382,8 @@ namespace FacebookSharp.Extensions
         /// </param>
         /// <returns>
         /// </returns>
-        private static IDictionary<string, string> AppendPagingParameters(IDictionary<string, string> parameters, int? limit, int? offset, string until)
+        private static IDictionary<string, string> AppendPagingParameters(IDictionary<string, string> parameters,
+                                                                          int? limit, int? offset, string until)
         {
             if (parameters == null)
                 parameters = new Dictionary<string, string>();
@@ -347,6 +397,5 @@ namespace FacebookSharp.Extensions
 
             return parameters;
         }
-
     }
 }

@@ -34,6 +34,7 @@
     <DocumentationFile>..\..\bin\DotNet35\Release\FacebookSharp.Extensions.XML</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="RestSharp, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />

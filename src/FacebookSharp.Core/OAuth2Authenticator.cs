@@ -1,4 +1,8 @@
-﻿namespace FacebookSharp
+﻿using System.Runtime.CompilerServices;
+
+[assembly: InternalsVisibleTo("FacebookSharp.Extensions")]
+
+namespace FacebookSharp
 {
     using RestSharp;
 

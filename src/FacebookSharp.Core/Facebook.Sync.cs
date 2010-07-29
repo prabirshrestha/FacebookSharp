@@ -1,3 +1,4 @@
+
 namespace FacebookSharp
 {
     using RestSharp;
@@ -5,7 +6,7 @@ namespace FacebookSharp
     public partial class Facebook
     {
 #if !SILVERLIGHT
-        private RestResponse Execute(RestRequest request, bool addAccessToken)
+        internal RestResponse Execute(RestRequest request, bool addAccessToken)
         {
             var client = new RestClient(GraphBaseUrl);
 
@@ -14,6 +15,6 @@ namespace FacebookSharp
 
             return client.Execute(request);
         }
-#endif
+#endif  
     }
 }
