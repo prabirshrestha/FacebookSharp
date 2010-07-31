@@ -55,7 +55,7 @@ namespace FacebookSharp
         {
             IDictionary<string, object> jsonBag = FromJson(json);
 
-            FacebookException ex = ToFacebookException(json);
+            FacebookException ex = (FacebookException) json;
 
             if (!throwFacebookException)    // i think sometimes, it shouldn't throw error,
                 return jsonBag;             // rather user should have more control over the behavior.
