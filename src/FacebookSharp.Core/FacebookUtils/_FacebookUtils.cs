@@ -79,55 +79,7 @@ namespace FacebookSharp
         
 
         #endregion
-
-        /// <summary>
-        /// Parse a server response into a JSON object.
-        /// </summary>
-        /// <param name="response">String representation of the response.</param>
-        /// <returns>Returns the response as a JSON object.</returns>
-        /// <remarks>
-        /// This is a basic implementation using Newtonsoft.JSON.
-        /// 
-        /// The parsed JSON is checked for a variety of error fields and
-        /// a <see cref="FacebookException"/> is thrown if an error condition is set,
-        /// populated with the error message and error type or code if available. 
-        /// </remarks>
-        [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
-        [Obsolete("use FromJson method instead.")]
-        public static JToken ParseJson(string response)
-        {
-            return ParseJson(response, true); // this is the default behavior in facebook android sdk.
-        }
-
-        /// <summary>
-        /// Parse a server response into a JSON object.
-        /// </summary>
-        /// <param name="response">String representation of the response.</param>
-        /// <param name="throwException">If set to true, then it converts to FacebookException and throws error, else returns JToken always.</param>
-        /// <returns>Returns the response as a JSON object.</returns>
-        /// <remarks>
-        /// This is a basic implementation using Newtonsoft.JSON.
-        /// 
-        /// The parsed JSON is checked for a variety of error fields and
-        /// a <see cref="FacebookException"/> is thrown if an error condition is set,
-        /// populated with the error message and error type or code if available. 
-        /// </remarks>
-        [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
-        [Obsolete("use FromJson method instead.")]
-        public static JToken ParseJson(string response, bool throwException)
-        {
-            JToken json;
-
-            FacebookException ex = ToFacebookException(response, out json);
-
-            if (!throwException) // i think sometimes, it shouldn't throw error,
-                return json;     // rather user should have more control over the behavior.
-
-            if (ex != null)
-                throw ex;
-
-            return json;
-        }
+      
 
         /// <summary>
         /// Deserializes the specified object to JSON object.
