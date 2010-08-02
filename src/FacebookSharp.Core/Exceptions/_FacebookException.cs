@@ -1,6 +1,10 @@
-
 namespace FacebookSharp
 {
+    using System;
+    using System.IO;
+    using Newtonsoft.Json;
+    using Newtonsoft.Json.Linq;
+
     /// <summary>
     /// Encapsulation of a Facebook Error: a Facebook request that could not be fulfilled.
     /// </summary>
@@ -41,7 +45,69 @@ namespace FacebookSharp
         /// </returns>
         public static explicit operator FacebookException(string jsonString)
         {
-            return FacebookUtils.ToFacebookException(jsonString);
+            JToken json;
+
+            using (StringReader reader = new StringReader(jsonString))
+            {
+                using (JsonTextReader jsonTextReader = new JsonTextReader(reader))
+                {
+                    try
+                    {
+                        json = JToken.ReadFrom(jsonTextReader);
+                    }
+                    catch (JsonReaderException exception)
+                    {
+                        json = null;
+                        jsonString = "true"; // todo: need to fix this: wat if input jsonString is not json?
+                    }
+                }
+            }
+            if (json == null)
+                return null;
+
+            // edge case: when sending a POST request to /[post_id]/likes
+            // the return value is 'true' or 'false'.
+            // just throw normal FacebookException.
+            if (jsonString.Equals("false", StringComparison.OrdinalIgnoreCase))
+                throw new FacebookException("request failed.");
+            if (jsonString.Equals("true", StringComparison.OrdinalIgnoreCase))
+                jsonString = "{value:true}";
+
+            JToken error = json.SelectToken("error", false);
+            if (error != null)
+            {
+                string type = error.Value<string>("type");
+                string message = error.Value<string>("message");
+
+                switch (type)
+                {
+                    case "OAuthException":
+                        return new OAuthException(message);
+                    case "QueryParseException":
+                        return new QueryParseException(message);
+                    case "Exception":
+                        if (message.Equals(DuplicateStatusMessageException.MESSAGE, StringComparison.OrdinalIgnoreCase))
+                            return new DuplicateStatusMessageException(message);
+                        break;
+                }
+
+                // Just return generic if couldn't resolve. 
+                // todo: add more exceptions
+                return new FacebookException(message, type, 0);
+            }
+
+            JToken errorCode = json.SelectToken("error_code", false);
+            JToken errorMsg = json.SelectToken("error_msg", false);
+
+            if (errorCode != null && errorMsg != null)
+                return new FacebookException(errorMsg.Value<string>(), string.Empty, int.Parse(errorCode.Value<string>()));
+            if (errorCode != null)
+                return new FacebookException("request faild", string.Empty, int.Parse(errorCode.Value<string>()));
+            if (errorMsg != null)
+                return new FacebookException(errorMsg.Value<string>());
+
+            JToken errorReason = json.SelectToken("error_reason", false);
+            return errorReason != null ? new FacebookException(errorReason.Value<string>()) : null;
         }
     }
 }

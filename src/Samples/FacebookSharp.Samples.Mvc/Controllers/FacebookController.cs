@@ -169,6 +169,14 @@ namespace FacebookSharp.Samples.Mvc.Controllers
             return View("LinkError", far);
         }
 
+        [FacebookAuthorize(RequiresLinkedFacebookAccount = true)]
+        public ActionResult Unlink()
+        {
+            FacebookMembershipProvider.UnlinkFacebook(User.Identity.Name);
+            return RedirectToAction("Index");
+        }
+
+
         #endregion
 
     }

@@ -1,4 +1,6 @@
 
+using System.Collections.Generic;
+
 namespace FacebookSharp
 {
     using System;
@@ -36,12 +38,13 @@ namespace FacebookSharp
                 if (fbException != null)
                     throw fbException;
 
-                var json = FacebookUtils.DecodeDictionaryUrl(result);
-                if (json.ContainsKey("expires_in"))
-                    expiresIn = Convert.ToInt32(json["expires_in"]);
-                else
-                    expiresIn = 0;
-                return json["access_token"];
+                // the result comes like the querystring
+                // this allows us to make use of ParseUrlQueryString(string query) method.
+                var pars = FacebookUtils.ParseUrlQueryString(result);
+
+                expiresIn = pars.ContainsKey("expires_in") ? Convert.ToInt32(pars["expires_in"][0]) : 0;
+
+                return pars["access_token"][0];
             }
 
             throw new FacebookRequestException(response);

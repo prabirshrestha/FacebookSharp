@@ -54,7 +54,17 @@ namespace FacebookSharp
             {
                 Uri uri = new Uri(url);
                 if (!string.IsNullOrEmpty(uri.Fragment))
-                    paramters = FacebookUtils.DecodeDictionaryUrl(uri.Fragment);
+                {
+                    var pars = FacebookUtils.ParseUrlQueryString(uri.Fragment);
+                    paramters = new Dictionary<string, string>();
+                    foreach (var p in pars)
+                    {
+                        if (p.Key.StartsWith("#"))
+                            paramters.Add(p.Key.Substring(1), p.Value[0]);
+                        else
+                            paramters.Add(p.Key, p.Value[0]);
+                    }
+                }
                 else
                 {
                     var pars = FacebookUtils.ParseUrlQueryString(url);

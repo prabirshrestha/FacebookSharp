@@ -41,50 +41,8 @@ namespace FacebookSharp
 
         #endregion
 
-        #region FacebookSharp Helper methods for paramaters encode/decode
-
-        /*
-         * NOTE: EncodeDictionaryUrl,DecodeDictionaryUrl and ParseUrlQueryString methods are marked for deletion 
-         * most probably won't require it coz RestSharp does it internally.
-         * 
-         */
-
-        [Obsolete("This method is marked for deletion in future release.")]
-        public static string EncodeDictionaryUrl(IDictionary<string, string> parameters)
-        {
-            if (parameters == null || parameters.Count == 0)
-                return "";
-            StringBuilder sb = new StringBuilder();
-            bool first = true;
-            foreach (KeyValuePair<string, string> pair in parameters)
-            {
-                if (first)
-                    first = false;
-                else
-                    sb.Append("&");
-                sb.AppendFormat("{0}={1}", UrlEncode(pair.Key), UrlEncode(pair.Value));
-            }
-            return sb.ToString();
-        }
-
-        [Obsolete("This method is marked for deletion in future release.")]
-        public static IDictionary<string, string> DecodeDictionaryUrl(string s)
-        {
-            IDictionary<string, string> parameters = new Dictionary<string, string>();
-            if (string.IsNullOrEmpty(s))
-                return parameters;
-
-            string[] array = s.Split('&');
-            foreach (string parameter in array)
-            {
-                string[] pair = parameter.Split('=');
-                if (pair[0].StartsWith("#") || pair[0].StartsWith("?"))
-                    pair[0] = pair[0].Substring(1, pair[0].Length - 1);
-                parameters.Add(UrlDecode(pair[0]), UrlDecode(pair[1]));
-            }
-            return parameters;
-        }
-
+        #region FacebookSharp Helper methods for parsing QueryString
+        
         /// <summary>
         /// Parse a URL query and fragment parameters into a key-value bundle.
         /// </summary>
