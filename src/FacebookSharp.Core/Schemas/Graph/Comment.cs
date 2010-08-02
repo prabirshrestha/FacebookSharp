@@ -1,5 +1,6 @@
 namespace FacebookSharp.Schemas.Graph
 {
+    using System.Diagnostics.CodeAnalysis;
     using System.Runtime.Serialization;
 
     /// <summary>
@@ -27,7 +28,17 @@ namespace FacebookSharp.Schemas.Graph
         public string CreatedTime { get; set; }
     }
 
+    /// <summary>
+    /// List of Facebook comments
+    /// </summary>
+    [SuppressMessage("Microsoft.StyleCop.CSharp.MaintainabilityRules", "SA1402:FileMayOnlyContainASingleClass",
+        Justification = "Reviewed. Suppression is OK here."), DataContract]
     public class CommentCollection : Connection<Comment>
     {
+        /// <summary>
+        /// Gets or sets Total number of comments posted.
+        /// </summary>
+        [DataMember(Name = "count")]
+        public int TotalComments { get; set; }
     }
 }
