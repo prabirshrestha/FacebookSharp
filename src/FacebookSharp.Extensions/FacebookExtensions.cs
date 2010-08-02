@@ -19,15 +19,16 @@
 // http://developers.facebook.com/docs/api. You can download the Facebook
 // JavaScript SDK at http://github.com/facebook/connect-js/.
 
-using System.Diagnostics.CodeAnalysis;
-using RestSharp;
+
 
 namespace FacebookSharp.Extensions
 {
     using System;
     using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
     using System.Text;
     using FacebookSharp.Schemas.Graph;
+    using RestSharp;
 
     public static partial class FacebookExtensions
     {
@@ -209,6 +210,7 @@ namespace FacebookSharp.Extensions
         /// <param name="objectId">Id of the object.</param>
         /// <param name="message">Comment Message.</param>
         /// <returns>Result of the operation.</returns>
+        [Obsolete("This method is marked for deletion in future releases. Use PostComment.")]
         public static string PutComment(this Facebook facebook, string objectId, string message)
         {
             IDictionary<string, string> parameters = new Dictionary<string, string>();

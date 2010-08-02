@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CommentsExtensions.cs" />
     <Compile Include="PageExtensions.cs" />
     <Compile Include="PostExtensions.cs" />
     <Compile Include="FeedExtensions.cs" />
