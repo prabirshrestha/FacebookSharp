@@ -330,6 +330,8 @@ namespace FacebookSharp.Extensions
             return facebook.GetProfilePictureUrlSafe(profileId, null);
         }
 
+        #if !SILVERLIGHT
+
         /// <summary>
         /// Gets the profile picture url for the specified id. Passing the access token.
         /// </summary>
@@ -368,6 +370,8 @@ namespace FacebookSharp.Extensions
 
             throw new FacebookRequestException(response);
         }
+
+        #endif
 
         /// <summary>
         /// Gets the profile picture url for the current facebook user.
