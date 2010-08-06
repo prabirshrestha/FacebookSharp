@@ -3,7 +3,7 @@ namespace FacebookSharp.Schemas.Graph
     using System.Runtime.Serialization;
 
     [DataContract]
-    public class Owner : NamedGraphObject
+    public class Owner : CategorizedGraphObject
     {
         
     }
