@@ -1,12 +1,10 @@
-using System.Reflection;
-using FacebookSharp.Schemas.Graph;
-
 namespace FacebookSharp
 {
     using System;
     using System.Collections.Generic;
+    using System.Reflection;
     using Newtonsoft.Json;
-    using Newtonsoft.Json.Linq;
+    using Schemas.Graph;
 
     public static partial class FacebookUtils
     {

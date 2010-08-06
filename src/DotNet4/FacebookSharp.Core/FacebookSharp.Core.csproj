@@ -19,7 +19,7 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>..\..\..\bin\DotNet4\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DefineConstants>TRACE;DEBUG</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <DocumentationFile>..\..\..\bin\DotNet4\Debug\FacebookSharp.Core.XML</DocumentationFile>
@@ -91,6 +91,9 @@
     </Compile>
     <Compile Include="..\..\FacebookSharp.Core\FacebookUtils\ExceptionHelpers.cs">
       <Link>FacebookUtils\ExceptionHelpers.cs</Link>
+    </Compile>
+    <Compile Include="..\..\FacebookSharp.Core\FacebookUtils\Expando.cs">
+      <Link>FacebookUtils\Expando.cs</Link>
     </Compile>
     <Compile Include="..\..\FacebookSharp.Core\FacebookUtils\HttpUtility.cs">
       <Link>FacebookUtils\HttpUtility.cs</Link>
