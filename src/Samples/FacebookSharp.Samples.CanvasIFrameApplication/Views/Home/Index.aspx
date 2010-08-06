@@ -9,6 +9,10 @@
 <body>
     <div>
     C# Samples
+
+    <p>
+        Hi <%: ViewData["name"] %>
+    </p>
     </div>
 </body>
 </html>

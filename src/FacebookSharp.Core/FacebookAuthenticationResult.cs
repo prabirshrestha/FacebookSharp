@@ -1,3 +1,6 @@
+using System.Security.Cryptography;
+using System.Text;
+
 namespace FacebookSharp
 {
     using System;
@@ -74,7 +77,6 @@ namespace FacebookSharp
                         paramters.Add(p.Key, p.Value[0]);
                     }
                 }
-
                 if (paramters.ContainsKey("access_token"))
                     accessToken = paramters["access_token"];
                 if (paramters.ContainsKey("expires_in"))
@@ -83,14 +85,51 @@ namespace FacebookSharp
             }
             else
             {   // its from web
-                var pars = FacebookUtils.ParseUrlQueryString(url);
+                var uri = new Uri(url);
+                var pars = FacebookUtils.ParseUrlQueryString(uri.Query);
+
                 paramters = new Dictionary<string, string>();
                 foreach (var p in pars)
                 {
                     paramters.Add(p.Key, p.Value[0]);
                 }
 
-                if (paramters.ContainsKey("code"))
+                if (paramters.ContainsKey("signed_request"))
+                {  // we are accessing from iframe canvas
+                    // note: needs to enable Canvas Session Parameter and OAuth 2.0 for Canvas (beta) in Migration Tab in app settings.
+                    if (facebookSettings == null)
+                        throw new ArgumentNullException("facebookSettings");
+                    if (string.IsNullOrEmpty(facebookSettings.ApplicationSecret))
+                        throw new ArgumentNullException("facebookSettings.ApplicationSecret");
+
+                    string signedRequest = paramters["signed_request"];
+                    string expectedSignature = signedRequest.Substring(0, signedRequest.IndexOf('.'));
+                    string payload = signedRequest.Substring(signedRequest.IndexOf('.') + 1);
+
+                    // Back & Forth with Signature 
+                    byte[] actualSignature = FromUrlBase64String(expectedSignature);
+                    string testSignature = ToUrlBase64String(actualSignature);
+
+                    // Back & Forth With Data
+                    byte[] actualPayload = FromUrlBase64String(payload);
+                    string json = (new UTF8Encoding()).GetString(actualPayload);
+                    string testPayload = ToUrlBase64String(actualPayload);
+
+                    // Attempt to get same hash
+                    var hmac = SignWithHmac(UTF8Encoding.UTF8.GetBytes(payload),
+                                            UTF8Encoding.UTF8.GetBytes(facebookSettings.ApplicationSecret));
+                    var hmacBase64 = ToUrlBase64String(hmac);
+
+                    if (hmacBase64 != expectedSignature)
+                        throw new FacebookSharpException("signed_request validation failed");
+
+                    var j = FacebookUtils.FromJson(json);
+                    if (j.ContainsKey("oauth_token"))
+                        accessToken = j["oauth_token"].ToString();
+                    if (j.ContainsKey("expires"))
+                        expiresIn = Convert.ToInt32(j["expires"]);
+                }
+                else if (paramters.ContainsKey("code"))
                 {   // incase this is from the web, we need to exchange the code with access token
                     if (facebookSettings == null)
                         throw new ArgumentNullException("facebookSettings");
@@ -112,6 +151,34 @@ namespace FacebookSharp
         }
 #endif
 
+        #region signed_request helpers
+
+        // http://developers.facebook.com/docs/authentication/canvas
+
+        private static byte[] FromUrlBase64String(string Base64UrlSafe)
+        {
+            Base64UrlSafe = Base64UrlSafe.PadRight(Base64UrlSafe.Length + (4 - Base64UrlSafe.Length % 4) % 4, '=');
+            Base64UrlSafe = Base64UrlSafe.Replace('-', '+').Replace('_', '/');
+            return Convert.FromBase64String(Base64UrlSafe);
+        }
+
+        private static string ToUrlBase64String(byte[] Input)
+        {
+            return Convert.ToBase64String(Input).Replace("=", String.Empty)
+                .Replace('+', '-')
+                .Replace('/', '_');
+        }
+
+        private static byte[] SignWithHmac(byte[] dataToSign, byte[] keyBody)
+        {
+            using (var hmacAlgorithm = new HMACSHA256(keyBody))
+            {
+                hmacAlgorithm.ComputeHash(dataToSign);
+                return hmacAlgorithm.Hash;
+            }
+        }
+
+        #endregion
 
     }
 }

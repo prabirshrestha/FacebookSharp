@@ -99,6 +99,16 @@
   <ItemGroup>
     <Folder Include="Models\" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\DotNet4\FacebookSharp.Core\FacebookSharp.Core.csproj">
+      <Project>{F80CA490-7E13-417A-99D8-63A557BF7D38}</Project>
+      <Name>FacebookSharp.Core %28DotNet4\FacebookSharp.Core%29</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\DotNet4\FacebookSharp.Extensions\FacebookSharp.Extensions.csproj">
+      <Project>{CE43F528-C493-4676-B4E2-869C2349577B}</Project>
+      <Name>FacebookSharp.Extensions %28DotNet4\FacebookSharp.Extensions%29</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
