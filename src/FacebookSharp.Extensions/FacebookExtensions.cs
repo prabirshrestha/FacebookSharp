@@ -330,7 +330,7 @@ namespace FacebookSharp.Extensions
             return facebook.GetProfilePictureUrlSafe(profileId, null);
         }
 
-        #if !SILVERLIGHT
+#if !SILVERLIGHT
 
         /// <summary>
         /// Gets the profile picture url for the specified id. Passing the access token.
@@ -371,7 +371,7 @@ namespace FacebookSharp.Extensions
             throw new FacebookRequestException(response);
         }
 
-        #endif
+#endif
 
         /// <summary>
         /// Gets the profile picture url for the current facebook user.
@@ -428,6 +428,20 @@ namespace FacebookSharp.Extensions
                 parameters.Until(until);
 
             return parameters;
+        }
+
+        /// <summary>
+        /// Converts to specified <see cref="DateTime"/> to ISO-8601 format (yyyy-MM-ddTHH:mm:ssZ).
+        /// </summary>
+        /// <param name="dateTime">
+        /// The date time.
+        /// </param>
+        /// <returns>
+        /// Returns the string representation of date time in ISO-8601 format (yyyy-MM-ddTHH:mm:ssZ).
+        /// </returns>
+        public static string ToIso8601FormattedDateTime(this DateTime dateTime)
+        {
+            return FacebookUtils.Date.ToIso8601FormattedDateTime(dateTime);
         }
     }
 }

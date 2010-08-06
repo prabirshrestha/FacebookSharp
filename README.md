@@ -128,6 +128,16 @@ p.Add("offset",5");
 Instead of doing that there are extensions methods which is in FacebookSharp.Extensions namespace. So now you will just need to call them.
 var p = new Dictionary<string,string>().LimitTo(10).Offset(5);
 
+#### Date and Time Helpers
+
+Facebook makes heavy use of ISO-8601 formatted date. In order to convert the .NET DateTime object to facebook recognizable ISO-8601 formatted date, a Helper method can be called.
+
+string iso8601FromattedDate = FacebookUtils.Date.ToIso8601FormattedDateTime(DateTime.UtcNow);
+
+In case you are using FacebookSharp.Extensions. You can also call the extension method ToIso8601FormattedDateTime();
+
+string iso8601FromattedDate = DateTime.UtcNow.ToIso8601FormattedDateTime();
+
 ##Supported Platforms
 
 ### .NET 3.5 and .NET 4.0
