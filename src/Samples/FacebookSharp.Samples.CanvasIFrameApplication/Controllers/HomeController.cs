@@ -17,6 +17,8 @@ namespace FacebookSharp.Samples.CanvasIFrameApplication.Controllers
 
         public ActionResult Index()
         {
+            // note: need to enable Canvas Session Parameter and OAuth 2.0 for Canvas (beta) in Migration Tab in app settings.
+
             var far = FacebookAuthenticationResult.Parse(
                 Request.Url.ToString(), new FacebookSettings { ApplicationSecret = "" });
 

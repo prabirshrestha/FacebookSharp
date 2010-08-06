@@ -95,39 +95,24 @@ namespace FacebookSharp
                 }
 
                 if (paramters.ContainsKey("signed_request"))
-                {  // we are accessing from iframe canvas
+                {   // if we are accessing from iframe canvas
                     // note: needs to enable Canvas Session Parameter and OAuth 2.0 for Canvas (beta) in Migration Tab in app settings.
+                    // might add other features later on.
+
                     if (facebookSettings == null)
                         throw new ArgumentNullException("facebookSettings");
                     if (string.IsNullOrEmpty(facebookSettings.ApplicationSecret))
                         throw new ArgumentNullException("facebookSettings.ApplicationSecret");
 
-                    string signedRequest = paramters["signed_request"];
-                    string expectedSignature = signedRequest.Substring(0, signedRequest.IndexOf('.'));
-                    string payload = signedRequest.Substring(signedRequest.IndexOf('.') + 1);
+                    IDictionary<string, object> jsonObject;
+                    if (!ValidateSignedRequest(paramters["signed_request"], facebookSettings.ApplicationSecret, out jsonObject))
+                        throw new InvalidSignedRequestException();
 
-                    // Back & Forth with Signature 
-                    byte[] actualSignature = FromUrlBase64String(expectedSignature);
-                    string testSignature = ToUrlBase64String(actualSignature);
+                    if (jsonObject.ContainsKey("oauth_token"))
+                        accessToken = jsonObject["oauth_token"].ToString();
+                    if (jsonObject.ContainsKey("expires"))
+                        expiresIn = Convert.ToInt32(jsonObject["expires"]);
 
-                    // Back & Forth With Data
-                    byte[] actualPayload = FromUrlBase64String(payload);
-                    string json = (new UTF8Encoding()).GetString(actualPayload);
-                    string testPayload = ToUrlBase64String(actualPayload);
-
-                    // Attempt to get same hash
-                    var hmac = SignWithHmac(UTF8Encoding.UTF8.GetBytes(payload),
-                                            UTF8Encoding.UTF8.GetBytes(facebookSettings.ApplicationSecret));
-                    var hmacBase64 = ToUrlBase64String(hmac);
-
-                    if (hmacBase64 != expectedSignature)
-                        throw new FacebookSharpException("signed_request validation failed");
-
-                    var j = FacebookUtils.FromJson(json);
-                    if (j.ContainsKey("oauth_token"))
-                        accessToken = j["oauth_token"].ToString();
-                    if (j.ContainsKey("expires"))
-                        expiresIn = Convert.ToInt32(j["expires"]);
                 }
                 else if (paramters.ContainsKey("code"))
                 {   // incase this is from the web, we need to exchange the code with access token
@@ -178,6 +163,58 @@ namespace FacebookSharp
             }
         }
 
+#if !SILVERLIGHT
+
+        /// <summary>
+        /// Validates facebook signed_request using the applicationSecret.
+        /// </summary>
+        /// <param name="signedRequest">
+        /// The signed request.
+        /// </param>
+        /// <param name="applicationSecret">
+        /// The application secret.
+        /// </param>
+        /// <param name="jsonObject">
+        /// The json object if validation passes, else null.
+        /// </param>
+        /// <returns>
+        /// Returns true if validation passes, else false.
+        /// </returns>
+        public static bool ValidateSignedRequest(string signedRequest, string applicationSecret, out IDictionary<string, object> jsonObject)
+        {
+            if (string.IsNullOrEmpty(applicationSecret))
+                throw new ArgumentNullException("applicationSecret");
+
+            jsonObject = null;
+
+            string expectedSignature = signedRequest.Substring(0, signedRequest.IndexOf('.'));
+            string payload = signedRequest.Substring(signedRequest.IndexOf('.') + 1);
+
+            // Back & Forth with Signature 
+            // byte[] actualSignature = FromUrlBase64String(expectedSignature);
+            // string testSignature = ToUrlBase64String(actualSignature);
+
+            // Back & Forth With Data
+            byte[] actualPayload = FromUrlBase64String(payload);
+            string json = (new UTF8Encoding()).GetString(actualPayload);
+            // string testPayload = ToUrlBase64String(actualPayload);
+
+            // Attempt to get same hash
+            var hmac = SignWithHmac(
+                Encoding.UTF8.GetBytes(payload),
+                Encoding.UTF8.GetBytes(applicationSecret));
+
+            var hmacBase64 = ToUrlBase64String(hmac);
+
+            if (hmacBase64 != expectedSignature)
+                return false;
+
+            jsonObject = FacebookUtils.FromJson(json);
+
+            return true;
+        }
+
+#endif
         #endregion
 
     }
