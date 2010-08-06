@@ -44,6 +44,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CommentsExtensions.cs" />
+    <Compile Include="EventExtensions.cs" />
     <Compile Include="Expando.cs" />
     <Compile Include="PageExtensions.cs" />
     <Compile Include="PostExtensions.cs" />

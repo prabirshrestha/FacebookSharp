@@ -37,11 +37,25 @@ namespace FacebookSharp.Extensions
         /// </summary>
         /// <param name="facebook"></param>
         /// <param name="id">Id of the object to fetch.</param>
-        /// <param name="parameters">List of arguments.</param>
-        /// <returns>The required object</returns>
+        /// <param name="parameters">List of parameters.</param>
+        /// <returns>The facebook graph object.</returns>
         public static string GetObject(this Facebook facebook, string id, IDictionary<string, string> parameters)
         {
             return facebook.Get("/" + id, parameters);
+        }
+
+        /// <summary>
+        /// Fetches the give object from the graph.
+        /// </summary>
+        /// <param name="facebook">The facebook.</param>
+        /// <param name="id">Id of the object to fetch.</param>
+        /// <param name="parameters">List of parameters.</param>
+        /// <typeparam name="T">Type of Object to deserialize to.</typeparam>
+        /// <returns>Deserialized Facebook graph object.</returns>
+        public static T GetObject<T>(this Facebook facebook, string id, IDictionary<string, string> parameters)
+             where T : new()
+        {
+            return facebook.Get<T>("/" + id, parameters);
         }
 
         /// <summary>

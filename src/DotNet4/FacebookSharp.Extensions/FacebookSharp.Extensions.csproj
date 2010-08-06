@@ -50,6 +50,9 @@
     <Compile Include="..\..\FacebookSharp.Extensions\CommentsExtensions.cs">
       <Link>CommentsExtensions.cs</Link>
     </Compile>
+    <Compile Include="..\..\FacebookSharp.Extensions\EventExtensions.cs">
+      <Link>EventExtensions.cs</Link>
+    </Compile>
     <Compile Include="..\..\FacebookSharp.Extensions\Expando.cs">
       <Link>Expando.cs</Link>
     </Compile>
