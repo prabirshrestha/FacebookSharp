@@ -138,6 +138,14 @@ In case you are using FacebookSharp.Extensions. You can also call the extension 
 
 string iso8601FromattedDate = DateTime.UtcNow.ToIso8601FormattedDateTime();
 
+To convert .NET date time object to ISO-8601 formatted date time string, call the method FromIso8601FormattedDateTime.
+
+DateTime dt = FacebookUtils.Date.FromIso8601FormattedDateTime("2010-08-06T05:07:25.9883130Z");
+
+Or incase you are using extensions methods
+
+DateTime dt = "2010-08-06T05:07:25.9883130Z".FromIso8601FormattedDateTime();
+
 ##Supported Platforms
 
 ### .NET 3.5 and .NET 4.0
