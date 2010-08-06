@@ -50,6 +50,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FacebookSharp.Samples.Mvc",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Facebooksharp.Web.Mvc", "DotNet4\Facebooksharp.Web.Mvc\Facebooksharp.Web.Mvc.csproj", "{CBA0FE71-1DD3-4190-A010-B4492248A1C3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FacebookSharp.Samples.CanvasIFrameApplication", "Samples\FacebookSharp.Samples.CanvasIFrameApplication\FacebookSharp.Samples.CanvasIFrameApplication.csproj", "{7BF83FA4-7D67-4C3E-BF73-734418F96101}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -240,6 +242,16 @@ Global
 		{CBA0FE71-1DD3-4190-A010-B4492248A1C3}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{CBA0FE71-1DD3-4190-A010-B4492248A1C3}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{CBA0FE71-1DD3-4190-A010-B4492248A1C3}.Release|x86.ActiveCfg = Release|Any CPU
+		{7BF83FA4-7D67-4C3E-BF73-734418F96101}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7BF83FA4-7D67-4C3E-BF73-734418F96101}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7BF83FA4-7D67-4C3E-BF73-734418F96101}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{7BF83FA4-7D67-4C3E-BF73-734418F96101}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{7BF83FA4-7D67-4C3E-BF73-734418F96101}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{7BF83FA4-7D67-4C3E-BF73-734418F96101}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7BF83FA4-7D67-4C3E-BF73-734418F96101}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7BF83FA4-7D67-4C3E-BF73-734418F96101}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{7BF83FA4-7D67-4C3E-BF73-734418F96101}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{7BF83FA4-7D67-4C3E-BF73-734418F96101}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -262,6 +274,7 @@ Global
 		{0752A78A-DE20-4F59-A09C-08FF4243DADE} = {FBDE71D4-D8EF-4919-80A7-71A4B872C9DE}
 		{74441934-2B6A-45E8-A12D-FF9C5CB23925} = {FBDE71D4-D8EF-4919-80A7-71A4B872C9DE}
 		{3E6A68B9-FB88-4E54-8011-5508E63629C0} = {FBDE71D4-D8EF-4919-80A7-71A4B872C9DE}
+		{7BF83FA4-7D67-4C3E-BF73-734418F96101} = {FBDE71D4-D8EF-4919-80A7-71A4B872C9DE}
 		{6BB3B07C-90A3-41AB-8965-8783CA5CF052} = {8474AA51-FC1E-4A06-84B2-95F406DB5D06}
 	EndGlobalSection
 EndGlobal
