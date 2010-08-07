@@ -179,7 +179,7 @@ namespace FacebookSharp
 			loginUrl.Append(String.Join("&",paramList.ToArray()));
 			
 			if (extendedPermissions.Length > 0)
-				loginUrl.Append("req_perms=" + String.Join(",",extendedPermissions));
+				loginUrl.Append("&req_perms=" + String.Join(",",extendedPermissions));
 			
 			return loginUrl.ToString();
 		}
