@@ -92,7 +92,7 @@ namespace FacebookSharp.Samples.CanvasIFrameApplication.Controllers
             if (FacebookContext.IsSessionValid())
                 ViewData["name"] = FacebookContext.Get<User>("/me").Name;
             else
-                Response.Redirect(string.Format("http://www.facebook.com/login.php?v=1.0&api_key={0}&next={1}&canvas=",
+                Response.Redirect(string.Format("http://www.facebook.com/login.php?v=1.0&api_key={0}&next={1}&canvas=1",
                                                 FacebookContext.Settings.ApplicationKey,
                                                 FacebookContext.Settings.CanvasUrl));
 
