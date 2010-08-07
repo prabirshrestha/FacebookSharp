@@ -102,7 +102,7 @@ namespace FacebookSharp.Samples.Mvc.Controllers
             // but you will find this ugly and error prone.
             var fbUser = FacebookContext.Get<User>("/me");
 
-            // instead fo that add using FacebookSharp.Extensions; at the top
+            // instead of that add using FacebookSharp.Extensions; at the top
             // then use the extensions methods to acess facebook graph api in more
             // c# way :-) more of these extension methods comming soon.
             ViewData["ProfilePic"] = FacebookContext.GetProfilePictureUrl(fbUser.ID);
