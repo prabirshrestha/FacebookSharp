@@ -29,7 +29,7 @@ namespace FacebookSharp
         public int ExpiresIn { get; private set; }
         public string ErrorReasonText { get; private set; }
 
-        public bool IsSuccess { get { return string.IsNullOrEmpty(ErrorReasonText); } }
+        public bool IsSuccess { get { return (string.IsNullOrEmpty(ErrorReasonText) && !string.IsNullOrEmpty(AccessToken)); } }
         public bool IsUserDenied
         {
             get
