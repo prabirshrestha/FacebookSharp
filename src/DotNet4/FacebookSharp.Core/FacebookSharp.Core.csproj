@@ -86,6 +86,9 @@
     <Compile Include="..\..\FacebookSharp.Core\Facebook.Sync.cs">
       <Link>Facebook.Sync.cs</Link>
     </Compile>
+    <Compile Include="..\..\FacebookSharp.Core\FacebookAsyncResult.cs">
+      <Link>FacebookAsyncResult.cs</Link>
+    </Compile>
     <Compile Include="..\..\FacebookSharp.Core\FacebookAuthenticationResult.cs">
       <Link>FacebookAuthenticationResult.cs</Link>
     </Compile>
