@@ -92,7 +92,11 @@ namespace FacebookSharp.Samples.CanvasIFrameApplication.Controllers
             if (FacebookContext.IsSessionValid())
                 ViewData["name"] = FacebookContext.Get<User>("/me").Name;
             else
-                Response.Redirect(FacebookContext.Settings.FacebookCanvasLoginUrl);
+            {
+                ViewData["FacebookContext"] = FacebookContext;
+                return View("FacebookAuthorize", this);
+            }
+
 
             return View();
         }

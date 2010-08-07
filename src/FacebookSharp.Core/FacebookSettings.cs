@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Text;
 
 namespace FacebookSharp
 {
@@ -34,6 +35,17 @@ namespace FacebookSharp
                             { "v", "1.0" }
                         },
                     DefaultApplicationPermissions);
+            }
+        }
+
+        public string FacebookCanvasLoginJavascript
+        {
+            get
+            {
+                var jsredir = new StringBuilder();
+                jsredir.AppendLine("if (parent != self) { top.location.href = '" + FacebookCanvasLoginUrl + "'; }");
+                jsredir.AppendLine("else { self.location.href = '" + FacebookCanvasLoginUrl + "'; }");
+                return jsredir.ToString();
             }
         }
 
