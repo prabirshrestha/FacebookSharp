@@ -176,10 +176,11 @@ namespace FacebookSharp
 				if (allowedParams.Contains(p.Key))
 					paramList.Add(p.Key + "=" + p.Value);
 			}
-			loginUrl.Append(String.Join("&",paramList.ToArray()));
 			
 			if (extendedPermissions.Length > 0)
-				loginUrl.Append("&req_perms=" + String.Join(",",extendedPermissions));
+				paramList.Add("req_perms=" + String.Join(",",extendedPermissions));
+			
+			loginUrl.Append(String.Join("&",paramList.ToArray()));
 			
 			return loginUrl.ToString();
 		}
