@@ -130,6 +130,9 @@
     <Compile Include="..\..\FacebookSharp.Core\IFacebookMembershipProvider.cs">
       <Link>IFacebookMembershipProvider.cs</Link>
     </Compile>
+    <Compile Include="..\..\FacebookSharp.Core\OfficialFacebookSdkCompatibilityApi.Async.cs">
+      <Link>OfficialFacebookSdkCompatibilityApi.Async.cs</Link>
+    </Compile>
     <Compile Include="..\..\FacebookSharp.Core\OfficialFacebookSdkCompatibilityApi.Sync.cs">
       <Link>OfficialFacebookSdkCompatibilityApi.Sync.cs</Link>
     </Compile>

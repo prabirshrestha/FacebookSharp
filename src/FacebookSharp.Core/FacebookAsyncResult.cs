@@ -19,6 +19,9 @@ namespace FacebookSharp
             return FacebookUtils.DeserializeObject<T>(Response);
         }
 
-        public bool IsSuccessful { get { return Exception != null; } }
+        public bool IsSuccessful
+        {
+            get { return Exception == null; }
+        }
     }
 }

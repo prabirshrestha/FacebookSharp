@@ -47,12 +47,21 @@ namespace FacebookSharp.Samples.WinForms
         {
             Facebook fb = new Facebook(txtAccessToken.Text);
 
+            fb.GetAsync("/me", null, result =>
+                                         {
+                                             if (result.IsSuccessful)
+                                                 MessageBox.Show(result.Response);
+                                             else
+                                             {
+                                                 MessageBox.Show("Error: " + Environment.NewLine + result.Response);
+                                             }
+                                         });
             // you can either use generic version or non generic version
-            var user = fb.Get<User>("/me");
-            MessageBox.Show("Hi " + user.Name);
+            //var user = fb.Get<User>("/me");
+            //MessageBox.Show("Hi " + user.Name);
 
             // non-generic version returns raw JSON string given by Facebook.
-            MessageBox.Show(fb.Get("/me"));
+            //MessageBox.Show(fb.Get("/me"));
 
             // example for posting on the wall:
             //string resultPost = fb.Post("/me/feed", new Dictionary<string, string>

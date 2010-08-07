@@ -68,6 +68,7 @@
     <Compile Include="FacebookUtils\JsonUtils.cs" />
     <Compile Include="FacebookUtils\_FacebookUtils.cs" />
     <Compile Include="IFacebookContext.cs" />
+    <Compile Include="OfficialFacebookSdkCompatibilityApi.Async.cs" />
     <Compile Include="OfficialFacebookSdkCompatibilityApi.Sync.cs" />
     <Compile Include="Schemas\Graph\Account.cs" />
     <Compile Include="Schemas\Graph\Album.cs" />
