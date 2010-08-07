@@ -2,6 +2,7 @@ namespace FacebookSharp
 {
     using System;
     using System.Text;
+	using System.Collections.Generic;
 
     public partial class Facebook
     {
@@ -104,14 +105,7 @@ namespace FacebookSharp
         {
             StringBuilder sb = new StringBuilder();
             if (extendedPermissions != null && extendedPermissions.Length > 0)
-            {
-                foreach (string extendedPermission in extendedPermissions)
-                {
-                    sb.Append(extendedPermission);
-                    sb.Append(",");
-                }
-                sb = sb.Remove(sb.Length - 1, 1); // remove the last comma.
-            }
+            	sb.Append(String.Join(",",extendedPermissions));
             return GenerateFacebookAuthorizeUrl(facebookApplicationKey, redirectUri, sb.ToString());
         }
 
@@ -130,6 +124,64 @@ namespace FacebookSharp
                        : string.Format(GraphBaseUrl + "/oauth/authorize?client_id={0}&redirect_uri={1}&scope={2}",
                                        facebookApplicationKey, redirectUri, extendedPermissions);
         }
-
+		
+		/// <summary>
+        /// Returns the url to login with Facebook.
+        /// </summary>
+        /// <param name="parameters"></param>
+        /// <returns></returns>
+		public static string GenerateFacebookLoginUrl(IDictionary<string, string> parameters)
+		{
+			return GenerateFacebookLoginUrl(parameters,new string[0]);
+		}
+		
+		/// <summary>
+        /// Returns the url to login with Facebook.
+        /// </summary>
+        /// <param name="parameters"></param>
+        /// <param name="extendedPermissions"></param>
+        /// <returns></returns>
+		public static string GenerateFacebookLoginUrl(IDictionary<string, string> parameters, string extendedPermissions)
+		{
+			return GenerateFacebookLoginUrl(parameters,new string[1] { extendedPermissions });
+		}
+		
+		/// <summary>
+        /// Returns the url to login with Facebook.
+        /// </summary>
+        /// <param name="parameters"></param>
+        /// <param name="extendedPermissions"></param>
+        /// <returns></returns>
+		public static string GenerateFacebookLoginUrl(IDictionary<string, string> parameters, string[] extendedPermissions)
+		{
+			// todo: make these static somewhere else... (maybe setup defaults somewhere too)
+			List<string> allowedParams = new List<string>();
+			allowedParams.Add("api_key");
+			allowedParams.Add("next");
+			allowedParams.Add("canvas");
+			allowedParams.Add("display");
+			allowedParams.Add("cancel_url");
+			allowedParams.Add("fbconnect");
+			allowedParams.Add("return_session");
+			allowedParams.Add("session_version");
+			allowedParams.Add("v");
+			
+			StringBuilder loginUrl = new StringBuilder();
+			loginUrl.Append("http://www.facebook.com/login.php?");
+			List<string> paramList = new List<string>();
+			
+			// todo: encode parameter values
+			foreach (KeyValuePair<string, string> p in parameters)
+			{
+				if (allowedParams.Contains(p.Key))
+					paramList.Add(p.Key + "=" + p.Value);
+			}
+			loginUrl.Append(String.Join("&",paramList.ToArray()));
+			
+			if (extendedPermissions.Length > 0)
+				loginUrl.Append("req_perms=" + String.Join(",",extendedPermissions));
+			
+			return loginUrl.ToString();
+		}
     }
 }
