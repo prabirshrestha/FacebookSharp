@@ -28,7 +28,7 @@ namespace FacebookSharp
 			public string SessionKey { get; private set; } // fb_sig_session_key
 			public int ExpireTime { get; private set; } // fb_sig_expires
 			
-			internal FacebookPostAuthorizeCallback(IDictionary<string, string> vars) : base(vars)
+			internal Authorize(IDictionary<string, string> vars) : base(vars)
 			{
 				SessionKey = vars["fb_sig_session_key"];
 				ProfileUpdatedAt = vars["fb_sig_profile_update_time"];
@@ -42,7 +42,7 @@ namespace FacebookSharp
 			public bool RemovedByUser { get; private set; } // fb_sig_added == 0
 			public bool RemovedByAdmin { get; private set; } // fb_sig_page_added == 0
 			
-			internal FacebookPostRemovalCallback(IDictionary<string, string> vars) : base(vars)
+			internal Removal(IDictionary<string, string> vars) : base(vars)
 			{
 				Blocked = Convert.ToBoolean(vars["fb_sig_blocked"]);
 				if (vars.ContainsKey("fb_sig_added"))
@@ -111,9 +111,9 @@ namespace FacebookSharp
 			if (ValidateSignature(post_variables,applicationSecret))
 			{
 				if (post_variables.ContainsKey("fb_sig_authorize"))
-					return new FacebookPostAuthorizeCallback(post_variables);
+					return new Authorize(post_variables);
 				else if (post_variables.ContainsKey("fb_sig_uninstall"))
-					return new FacebookPostRemovalCallback(post_variables);
+					return new Removal(post_variables);
 			}
 			return null;
 		}
