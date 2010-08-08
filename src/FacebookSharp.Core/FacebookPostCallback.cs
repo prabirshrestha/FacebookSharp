@@ -15,7 +15,7 @@ namespace FacebookSharp
 		public string RequestedAt { get; private set; } // fb_sig_time
 		public string ApiKey { get; private set; } // fb_sig_api_key
 		
-		public FacebookPostCallback(NameValueCollection vars)
+		protected FacebookPostCallback(NameValueCollection vars)
 		{
 			ApiKey = vars["fb_sig_api_key"];
 			RequestedAt = vars["fb_sig_time"];
@@ -23,13 +23,27 @@ namespace FacebookSharp
 			LinkedAccountIds = (List<int>)FacebookUtils.FromJson(vars["fb_sig_linked_account_id"])["array"];
 		}
 		
+		public class FacebookPostAuthorizeCallback : FacebookPostCallback
+		{
+			public string ProfileUpdatedAt { get; private set; } // fb_sig_profile_update_time
+			public string SessionKey { get; private set; } // fb_sig_session_key
+			public int ExpireTime { get; private set; } // fb_sig_expires
+			
+			internal FacebookPostAuthorizeCallback(NameValueCollection vars) : base(vars)
+			{
+				SessionKey = vars["fb_sig_session_key"];
+				ProfileUpdatedAt = vars["fb_sig_profile_update_time"];
+				ExpireTime = Convert.ToInt32(vars["fb_sig_expires"]);
+			}
+		}
+	
 		public class FacebookPostRemovalCallback : FacebookPostCallback
 		{			
 			public bool Blocked { get; private set; } // fb_sig_blocked == 1
 			public bool RemovedByUser { get; private set; } // fb_sig_added == 0
 			public bool RemovedByAdmin { get; private set; } // fb_sig_page_added == 0
 			
-			public FacebookPostRemovalCallback(NameValueCollection vars) : base(vars)
+			internal FacebookPostRemovalCallback(NameValueCollection vars) : base(vars)
 			{
 				Blocked = Convert.ToBoolean(vars["fb_sig_blocked"]);
 				if (vars["fb_sig_added"] != null)
@@ -42,20 +56,6 @@ namespace FacebookSharp
 					RemovedByAdmin = true;
 					RemovedByUser = false;
 				}
-			}
-		}
-		
-		public class FacebookPostAuthorizeCallback : FacebookPostCallback
-		{
-			public string ProfileUpdatedAt { get; private set; } // fb_sig_profile_update_time
-			public string SessionKey { get; private set; } // fb_sig_session_key
-			public int ExpireTime { get; private set; } // fb_sig_expires
-			
-			public FacebookPostAuthorizeCallback(NameValueCollection vars) : base(vars)
-			{
-				SessionKey = vars["fb_sig_session_key"];
-				ProfileUpdatedAt = vars["fb_sig_profile_update_time"];
-				ExpireTime = Convert.ToInt32(vars["fb_sig_expires"]);
 			}
 		}
 		
