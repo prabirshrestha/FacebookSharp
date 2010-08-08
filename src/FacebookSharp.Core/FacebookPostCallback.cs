@@ -10,8 +10,8 @@ namespace FacebookSharp
 	// todo: convert time properties to something other than strings...
 	public abstract class FacebookPostCallback
 	{
-		public List<int> LinkedAccountIds { get; private set; } // fb_sig_linked_account_id
-		public int UserId { get; private set; } // fb_sig_user
+		public List<string> LinkedAccountIds { get; private set; } // fb_sig_linked_account_id
+		public string UserId { get; private set; } // fb_sig_user
 		public string RequestedAt { get; private set; } // fb_sig_time
 		public string ApiKey { get; private set; } // fb_sig_api_key
 		
@@ -19,8 +19,8 @@ namespace FacebookSharp
 		{
 			ApiKey = vars["fb_sig_api_key"];
 			RequestedAt = vars["fb_sig_time"];
-			UserId = Convert.ToInt32(vars["fb_sig_user"]);
-			LinkedAccountIds = (List<int>)FacebookUtils.FromJson(vars["fb_sig_linked_account_id"])["array"];
+			UserId = vars["fb_sig_user"];
+			LinkedAccountIds = (List<string>)FacebookUtils.FromJson(vars["fb_sig_linked_account_id"])["array"];
 		}
 		
 		public class FacebookPostAuthorizeCallback : FacebookPostCallback
