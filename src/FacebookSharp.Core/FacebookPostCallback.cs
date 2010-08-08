@@ -5,7 +5,6 @@ namespace FacebookSharp
 {
 	using System;
 	using System.Collections.Generic;
-	using System.Collections.Specialized;
 	
 	// todo: convert time properties to something other than strings...
 	public abstract class FacebookPostCallback
@@ -15,7 +14,7 @@ namespace FacebookSharp
 		public string RequestedAt { get; private set; } // fb_sig_time
 		public string ApiKey { get; private set; } // fb_sig_api_key
 		
-		protected FacebookPostCallback(NameValueCollection vars)
+		protected FacebookPostCallback(IDictionary<string, string> vars)
 		{
 			ApiKey = vars["fb_sig_api_key"];
 			RequestedAt = vars["fb_sig_time"];
@@ -29,7 +28,7 @@ namespace FacebookSharp
 			public string SessionKey { get; private set; } // fb_sig_session_key
 			public int ExpireTime { get; private set; } // fb_sig_expires
 			
-			internal FacebookPostAuthorizeCallback(NameValueCollection vars) : base(vars)
+			internal FacebookPostAuthorizeCallback(IDictionary<string, string> vars) : base(vars)
 			{
 				SessionKey = vars["fb_sig_session_key"];
 				ProfileUpdatedAt = vars["fb_sig_profile_update_time"];
@@ -43,15 +42,15 @@ namespace FacebookSharp
 			public bool RemovedByUser { get; private set; } // fb_sig_added == 0
 			public bool RemovedByAdmin { get; private set; } // fb_sig_page_added == 0
 			
-			internal FacebookPostRemovalCallback(NameValueCollection vars) : base(vars)
+			internal FacebookPostRemovalCallback(IDictionary<string, string> vars) : base(vars)
 			{
 				Blocked = Convert.ToBoolean(vars["fb_sig_blocked"]);
-				if (vars["fb_sig_added"] != null)
+				if (vars.ContainsKey("fb_sig_added"))
 				{
 					RemovedByUser = true;
 					RemovedByAdmin = false;
 				}
-				else if (vars["fb_sig_page_added"] != null)
+				else if (vars.ContainsKey("fb_sig_page_added"))
 				{
 					RemovedByAdmin = true;
 					RemovedByUser = false;
@@ -71,15 +70,14 @@ namespace FacebookSharp
         /// <returns>
         /// Returns true if validation passes, else false.
         /// </returns>
-		public static bool ValidateSignature(NameValueCollection variables, string applicationSecret)
+		public static bool ValidateSignature(IDictionary<string, string> variables, string applicationSecret)
 		{
 			string sig = "";
-			string[] sorted_keys = variables.AllKeys;
-			Array.Sort(sorted_keys);
-			foreach (string field in sorted_keys)
+			SortedDictionary<string, string> sorted_variables = new SortedDictionary<string, string>(variables);
+			foreach (KeyValuePair<string, string> param in sorted_variables)
 			{
-				if (field.Substring(0,7).Equals("fb_sig_"))
-					sig += field.Substring(7) + "=" + variables[field];
+				if (param.Key.Substring(0,7).Equals("fb_sig_"))
+					sig += param.Key.Substring(7) + "=" + param.Value;
 			}
 			
 			sig += applicationSecret;
@@ -93,8 +91,8 @@ namespace FacebookSharp
 		/// <summary>
         /// Parse incoming POST request
         /// </summary>
-        /// <param name="post_variables">
-        /// The post variables from Request.Form
+        /// <param name="post_data">
+        /// The raw post data from Request.Form
         /// </param>
         /// <param name="applicationSecret">
         /// The application secret.
@@ -102,13 +100,19 @@ namespace FacebookSharp
         /// <returns>
         /// Returns a FacebookPostCallback object if validation passes, else null.
         /// </returns>
-		public static FacebookPostCallback Parse(NameValueCollection post_variables, string applicationSecret)
+		public static FacebookPostCallback Parse(string post_data, string applicationSecret)
 		{
+			var post_vars = FacebookUtils.ParseUrlQueryString(post_data);
+			IDictionary<string, string> post_variables = new Dictionary<string, string>();
+            foreach (var p in post_vars)
+            {
+                post_variables.Add(p.Key, p.Value[0]);
+            }
 			if (ValidateSignature(post_variables,applicationSecret))
 			{
-				if (post_variables.GetValues("fb_sig_authorize")[0] == "1")
+				if (post_variables.ContainsKey("fb_sig_authorize"))
 					return new FacebookPostAuthorizeCallback(post_variables);
-				else if (post_variables.GetValues("fb_sig_uninstall")[0] == "1")
+				else if (post_variables.ContainsKey("fb_sig_uninstall"))
 					return new FacebookPostRemovalCallback(post_variables);
 			}
 			return null;
