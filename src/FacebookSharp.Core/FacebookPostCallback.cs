@@ -12,7 +12,7 @@ namespace FacebookSharp
 	{
 		public List<int> LinkedAccountIds { get; private set; } // fb_sig_linked_account_id
 		public int UserId { get; private set; } // fb_sig_user
-        public string RequestedAt { get; private set; } // fb_sig_time
+		public string RequestedAt { get; private set; } // fb_sig_time
 		public string ApiKey { get; private set; } // fb_sig_api_key
 		
 		public FacebookPostCallback(NameValueCollection vars)
@@ -104,12 +104,12 @@ namespace FacebookSharp
         /// </returns>
 		public static FacebookPostCallback Parse(NameValueCollection post_variables, string applicationSecret)
 		{
-			if (FacebookPostCallback.ValidateSignature(post_variables,applicationSecret))
+			if (ValidateSignature(post_variables,applicationSecret))
 			{
 				if (post_variables.GetValues("fb_sig_authorize")[0] == "1")
 					return new FacebookPostAuthorizeCallback(post_variables);
 				else if (post_variables.GetValues("fb_sig_uninstall")[0] == "1")
-					return new FacebookPostRemoveCallback(post_variables);
+					return new FacebookPostRemovalCallback(post_variables);
 			}
 			return null;
 		}
