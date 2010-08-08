@@ -22,7 +22,7 @@ namespace FacebookSharp
 			LinkedAccountIds = (List<string>)FacebookUtils.FromJson(vars["fb_sig_linked_account_id"])["array"];
 		}
 		
-		public class FacebookPostAuthorizeCallback : FacebookPostCallback
+		public class Authorize : FacebookPostCallback
 		{
 			public string ProfileUpdatedAt { get; private set; } // fb_sig_profile_update_time
 			public string SessionKey { get; private set; } // fb_sig_session_key
@@ -36,7 +36,7 @@ namespace FacebookSharp
 			}
 		}
 	
-		public class FacebookPostRemovalCallback : FacebookPostCallback
+		public class Removal : FacebookPostCallback
 		{			
 			public bool Blocked { get; private set; } // fb_sig_blocked == 1
 			public bool RemovedByUser { get; private set; } // fb_sig_added == 0
