@@ -61,8 +61,8 @@ namespace FacebookSharp
 		/// <summary>
         /// Validate incoming POST request using application secret
         /// </summary>
-        /// <param name="post_variables">
-        /// The post variables from Request.Form
+        /// <param name="variables">
+        /// The post variables in dictionary format
         /// </param>
         /// <param name="applicationSecret">
         /// The application secret.
