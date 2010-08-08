@@ -105,7 +105,7 @@ namespace FacebookSharp
         {
             StringBuilder sb = new StringBuilder();
             if (extendedPermissions != null && extendedPermissions.Length > 0)
-            	sb.Append(String.Join(",",extendedPermissions));
+                sb.Append(String.Join(",", extendedPermissions));
             return GenerateFacebookAuthorizeUrl(facebookApplicationKey, redirectUri, sb.ToString());
         }
 
@@ -125,7 +125,7 @@ namespace FacebookSharp
                                        facebookApplicationKey, redirectUri, extendedPermissions);
         }
 		
-		/// <summary>
+        /// <summary>
         /// Returns the url to login with Facebook.
         /// </summary>
         /// <param name="parameters"></param>
@@ -134,8 +134,8 @@ namespace FacebookSharp
 		{
 			return GenerateFacebookLoginUrl(parameters,new string[0]);
 		}
-		
-		/// <summary>
+
+        /// <summary>
         /// Returns the url to login with Facebook.
         /// </summary>
         /// <param name="parameters"></param>
@@ -145,8 +145,8 @@ namespace FacebookSharp
 		{
 			return GenerateFacebookLoginUrl(parameters,new string[1] { extendedPermissions });
 		}
-		
-		/// <summary>
+
+        /// <summary>
         /// Returns the url to login with Facebook.
         /// </summary>
         /// <param name="parameters"></param>
