@@ -23,13 +23,13 @@ namespace FacebookSharp
 			LinkedAccountIds = (List<int>)FacebookUtils.FromJson(vars["fb_sig_linked_account_id"])["array"];
 		}
 		
-		public class FacebookPostRemoveCallback : FacebookPostCallback
+		public class FacebookPostRemovalCallback : FacebookPostCallback
 		{			
 			public bool Blocked { get; private set; } // fb_sig_blocked == 1
 			public bool RemovedByUser { get; private set; } // fb_sig_added == 0
 			public bool RemovedByAdmin { get; private set; } // fb_sig_page_added == 0
 			
-			public FacebookPostRemoveCallback(NameValueCollection vars) : base(vars)
+			public FacebookPostRemovalCallback(NameValueCollection vars) : base(vars)
 			{
 				Blocked = Convert.ToBoolean(vars["fb_sig_blocked"]);
 				if (vars["fb_sig_added"] != null)
