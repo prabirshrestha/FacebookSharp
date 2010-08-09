@@ -119,7 +119,7 @@ var ex = (FacebookException)jsonString;
 
 It simple as explicitly casting a string to FacebookException.
 
-#### Post-Remove and Post-Authorize Callbacks
+#### Post-Authorize and Post-Remove Callbacks
 
 These callbacks can be automatically processed and verified as well. For canvas users that have OAuth 2.0 Beta enabled in their application migrations, you can simply do the following:
       
@@ -133,7 +133,7 @@ For all other users (without OAuth 2.0 Beta enabled in application migrations) y
 
         // in your post-remove page
         string appSecret = ConfigurationManager.AppSettings["FacebookSharp.AppSecret"];
-        FacebookPostCallback.Removal remove = FacebookPostCallback.Parse(Request.Form.ToString(),appSecret);
+        PostRemoveCallback remove = FacebookPostCallback.Parse(Request.Form.ToString(),appSecret);
         if (remove != null)
         {
           // do something
@@ -142,7 +142,7 @@ For all other users (without OAuth 2.0 Beta enabled in application migrations) y
         
         // in your post-authorize page
         string appSecret = ConfigurationManager.AppSettings["FacebookSharp.AppSecret"];
-        FacebookPostCallback.Authorize auth = FacebookPostCallback.Parse(Request.Form.ToString(),appSecret);
+        PostAuthorizeCallback auth = FacebookPostCallback.Parse(Request.Form.ToString(),appSecret);
         if (auth != null)
         {
           // do something
