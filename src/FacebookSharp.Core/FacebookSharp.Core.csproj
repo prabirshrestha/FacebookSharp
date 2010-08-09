@@ -102,6 +102,7 @@
     <Compile Include="Schemas\extended_permissions.cs" />
     <Compile Include="Schemas\schemas.cs" />
     <Compile Include="Schemas\StringValue.cs" />
+    <Compile Include="FacebookPostCallback.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Schemas\facebook.xsd">
