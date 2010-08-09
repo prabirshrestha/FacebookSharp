@@ -125,7 +125,7 @@ namespace FacebookSharp
 			IDictionary<string, string> post_variables = new Dictionary<string, string>();
             foreach (var p in post_vars)
             {
-                post_variables.Add(p.Key, p.Value[0]);
+                post_variables.Add(p.Key, p.Value[0].ToString());
             }
 			if (ValidateSignature(post_variables,applicationSecret))
 			{
