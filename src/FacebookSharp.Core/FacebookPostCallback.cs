@@ -40,7 +40,7 @@ namespace FacebookSharp
 			public string SessionKey { get; private set; } // fb_sig_session_key
 			public string SessionSecret { get; private set; } // fb_sig_ss
 			public int ExpireTime { get; private set; } // fb_sig_expires
-			public bool OfflineAccess { get { return (ExpireTime == 0); } private set; } // fb_sig_expires == 0
+			public bool OfflineAccess { get { return (ExpireTime == 0); } } // fb_sig_expires == 0
 			public string[] ExtendedPermissions { get; private set; } // fb_sig_ext_perms
 			public string CookieSignature { get; private set; } // fb_sig_cookie_sig
 			
@@ -50,7 +50,7 @@ namespace FacebookSharp
 				SessionSecret = vars["fb_sig_ss"];
 				ProfileUpdatedAt = vars["fb_sig_profile_update_time"];
 				ExpireTime = Convert.ToInt32(vars["fb_sig_expires"]);
-				ExtendedPermissions = vars["fb_sig_ext_perms"].Split(",");
+				ExtendedPermissions = vars["fb_sig_ext_perms"].Split(',');
 				CookieSignature = vars["fb_sig_cookie_sig"];
 			}
 		}

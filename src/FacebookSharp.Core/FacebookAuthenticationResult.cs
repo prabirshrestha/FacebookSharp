@@ -145,6 +145,8 @@ namespace FacebookSharp
                                                                       out expiresIn);
 					return new FacebookAuthenticationResult(accessToken, expiresIn, null);
                 }
+				
+				return null;
             }
         }
 #endif
