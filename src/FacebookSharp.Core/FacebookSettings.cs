@@ -1,8 +1,8 @@
-using System.Collections.Generic;
-using System.Text;
-
 namespace FacebookSharp
 {
+    using System.Collections.Generic;
+    using System.Text;
+
     public class FacebookSettings
     {
         public string AccessToken { get; set; }

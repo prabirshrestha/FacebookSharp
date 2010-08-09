@@ -1,7 +1,7 @@
-using System;
-
 namespace FacebookSharp
 {
+    using System;
+
     /// <summary>
     /// Interface for linking Facebook with Membership Provider
     /// </summary>

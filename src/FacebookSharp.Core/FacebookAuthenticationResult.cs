@@ -1,10 +1,9 @@
-using System.Security.Cryptography;
-using System.Text;
-
 namespace FacebookSharp
 {
     using System;
     using System.Collections.Generic;
+    using System.Security.Cryptography;
+    using System.Text;
 
     public class FacebookAuthenticationResult
     {
@@ -24,36 +23,36 @@ namespace FacebookSharp
             ExpiresIn = expiresIn;
             ErrorReasonText = errorReasonText;
         }
-		
-		// todo: eliminate redundancy
-		public FacebookAuthenticationResult(IDictionary<string, string> data)
-		{
-			if (data.ContainsKey("access_token"))
-				AccessToken = data["access_token"];
-			if (data.ContainsKey("expires_in"))
-				ExpiresIn = Convert.ToInt32(data["expires_in"]);
-			if (data.ContainsKey("user_id"))
-				UserId = data["user_id"];
-			if (data.ContainsKey("error_reason"))
+
+        // todo: eliminate redundancy
+        public FacebookAuthenticationResult(IDictionary<string, string> data)
+        {
+            if (data.ContainsKey("access_token"))
+                AccessToken = data["access_token"];
+            if (data.ContainsKey("expires_in"))
+                ExpiresIn = Convert.ToInt32(data["expires_in"]);
+            if (data.ContainsKey("user_id"))
+                UserId = data["user_id"];
+            if (data.ContainsKey("error_reason"))
                 ErrorReasonText = data["error_reason"];
-		}
-		
-		public FacebookAuthenticationResult(IDictionary<string, object> data)
-		{
-			if (data.ContainsKey("oauth_token"))
-				AccessToken = data["oauth_token"].ToString();
-			if (data.ContainsKey("expires"))
-				ExpiresIn = Convert.ToInt32(data["expires"]);
-			if (data.ContainsKey("user_id"))
-				UserId = data["user_id"].ToString();
-			if (data.ContainsKey("error_reason"))
+        }
+
+        public FacebookAuthenticationResult(IDictionary<string, object> data)
+        {
+            if (data.ContainsKey("oauth_token"))
+                AccessToken = data["oauth_token"].ToString();
+            if (data.ContainsKey("expires"))
+                ExpiresIn = Convert.ToInt32(data["expires"]);
+            if (data.ContainsKey("user_id"))
+                UserId = data["user_id"].ToString();
+            if (data.ContainsKey("error_reason"))
                 ErrorReasonText = data["error_reason"].ToString();
-		}
+        }
 
         public string AccessToken { get; private set; }
         public int ExpiresIn { get; private set; }
         public string ErrorReasonText { get; private set; }
-		public string UserId { get; private set; }
+        public string UserId { get; private set; }
 
         public bool IsSuccess { get { return (string.IsNullOrEmpty(ErrorReasonText) && !string.IsNullOrEmpty(AccessToken)); } }
         public bool IsUserDenied
@@ -100,8 +99,8 @@ namespace FacebookSharp
                         paramters.Add(p.Key, p.Value[0]);
                     }
                 }
-				
-				return new FacebookAuthenticationResult(paramters);
+
+                return new FacebookAuthenticationResult(paramters);
             }
             else
             {   // its from web
@@ -128,7 +127,7 @@ namespace FacebookSharp
                     if (!ValidateSignedRequest(paramters["signed_request"], facebookSettings.ApplicationSecret, out jsonObject))
                         throw new InvalidSignedRequestException();
 
-					return new FacebookAuthenticationResult(jsonObject);
+                    return new FacebookAuthenticationResult(jsonObject);
 
                 }
                 else if (paramters.ContainsKey("code"))
@@ -136,17 +135,17 @@ namespace FacebookSharp
                     if (facebookSettings == null)
                         throw new ArgumentNullException("facebookSettings");
 
-					int expiresIn;
+                    int expiresIn;
                     string accessToken = Facebook.ExchangeAccessTokenForCode(paramters["code"],
                                                                       facebookSettings.ApplicationKey,
                                                                       facebookSettings.ApplicationSecret,
                                                                       facebookSettings.PostAuthorizeUrl,
                                                                       facebookSettings.UserAgent,
                                                                       out expiresIn);
-					return new FacebookAuthenticationResult(accessToken, expiresIn, null);
+                    return new FacebookAuthenticationResult(accessToken, expiresIn, null);
                 }
-				
-				return null;
+
+                return null;
             }
         }
 #endif
@@ -197,8 +196,8 @@ namespace FacebookSharp
         /// </returns>
         public static bool ValidateSignedRequest(string signedRequest, string applicationSecret, out IDictionary<string, object> jsonObject)
         {
-			if (signedRequest.StartsWith("signed_request="))
-				signedRequest = signedRequest.Substring(15);
+            if (signedRequest.StartsWith("signed_request="))
+                signedRequest = signedRequest.Substring(15);
             if (string.IsNullOrEmpty(applicationSecret))
                 throw new ArgumentNullException("applicationSecret");
 
