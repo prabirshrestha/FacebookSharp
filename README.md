@@ -124,9 +124,8 @@ It simple as explicitly casting a string to FacebookException.
 These callbacks can be automatically processed and verified as well. For canvas users that have OAuth 2.0 Beta enabled in their application migrations, you can simply do the following:
       
         string appSecret = ConfigurationManager.AppSettings["FacebookSharp.AppSecret"];
-        var parameters = FacebookUtils.ParseUrlQueryString(Request.Form.ToString());
         IDictionary<string, object> data;
-        bool success = FacebookAuthenticationResult.ValidateSignedRequest(parameters["signed_request"][0],appSecret,out data);
+        bool success = FacebookAuthenticationResult.ValidateSignedRequest(Request.Form.ToString(),appSecret,out data);
         // data will contain keys: user_id, oauth_token, expires
         // you can then use data["oauth_token"].ToString() in a new Facebook object
 

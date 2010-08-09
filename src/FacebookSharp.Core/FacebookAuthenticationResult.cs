@@ -197,6 +197,8 @@ namespace FacebookSharp
         /// </returns>
         public static bool ValidateSignedRequest(string signedRequest, string applicationSecret, out IDictionary<string, object> jsonObject)
         {
+			if (signedRequest.StartsWith("signed_request="))
+				signedRequest = signedRequest.Substring(15);
             if (string.IsNullOrEmpty(applicationSecret))
                 throw new ArgumentNullException("applicationSecret");
 
