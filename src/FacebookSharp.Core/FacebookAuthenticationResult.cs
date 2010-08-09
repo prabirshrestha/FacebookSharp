@@ -28,10 +28,10 @@ namespace FacebookSharp
 		// todo: eliminate redundancy
 		public FacebookAuthenticationResult(IDictionary<string, string> data)
 		{
-			if (data.ContainsKey("oauth_token"))
-				AccessToken = data["oauth_token"];
-			if (data.ContainsKey("expires"))
-				ExpiresIn = Convert.ToInt32(data["expires"]);
+			if (data.ContainsKey("access_token"))
+				AccessToken = data["access_token"];
+			if (data.ContainsKey("expires_in"))
+				ExpiresIn = Convert.ToInt32(data["expires_in"]);
 			if (data.ContainsKey("user_id"))
 				UserId = data["user_id"];
 			if (data.ContainsKey("error_reason"))
