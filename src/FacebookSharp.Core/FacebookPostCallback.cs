@@ -12,6 +12,7 @@ namespace FacebookSharp
     // Use FacebookAuthenticationResult.ValidateSignedRequest (assuming OAuth 2.0 beta is enabled in app migrations)
 
     // todo: convert time properties to something other than strings...
+    // todo: docs such as fb_sig_profile_update_time goes in xml summary documentation
     public abstract class FacebookPostCallback
     {
         public List<string> LinkedAccountIds { get; private set; } // fb_sig_linked_account_id
@@ -32,51 +33,6 @@ namespace FacebookSharp
             LinkedAccountIds = (List<string>)FacebookUtils.FromJson(vars["fb_sig_linked_account_id"])["array"];
             UsingNewFacebook = Convert.ToBoolean(vars["fb_sig_in_new_facebook"]);
             Country = vars["fb_sig_country"];
-        }
-
-        public class Authorize : FacebookPostCallback
-        {
-            public string ProfileUpdatedAt { get; private set; } // fb_sig_profile_update_time
-            public string SessionKey { get; private set; } // fb_sig_session_key
-            public string SessionSecret { get; private set; } // fb_sig_ss
-            public int ExpireTime { get; private set; } // fb_sig_expires
-            public bool OfflineAccess { get { return (ExpireTime == 0); } } // fb_sig_expires == 0
-            public string[] ExtendedPermissions { get; private set; } // fb_sig_ext_perms
-            public string CookieSignature { get; private set; } // fb_sig_cookie_sig
-
-            internal Authorize(IDictionary<string, string> vars)
-                : base(vars)
-            {
-                SessionKey = vars["fb_sig_session_key"];
-                SessionSecret = vars["fb_sig_ss"];
-                ProfileUpdatedAt = vars["fb_sig_profile_update_time"];
-                ExpireTime = Convert.ToInt32(vars["fb_sig_expires"]);
-                ExtendedPermissions = vars["fb_sig_ext_perms"].Split(',');
-                CookieSignature = vars["fb_sig_cookie_sig"];
-            }
-        }
-
-        public class Removal : FacebookPostCallback
-        {
-            public bool Blocked { get; private set; } // fb_sig_blocked == 1
-            public bool RemovedByUser { get; private set; } // fb_sig_added == 0
-            public bool RemovedByAdmin { get; private set; } // fb_sig_page_added == 0
-
-            internal Removal(IDictionary<string, string> vars)
-                : base(vars)
-            {
-                Blocked = Convert.ToBoolean(vars["fb_sig_blocked"]);
-                if (vars.ContainsKey("fb_sig_added"))
-                {
-                    RemovedByUser = true;
-                    RemovedByAdmin = false;
-                }
-                else if (vars.ContainsKey("fb_sig_page_added"))
-                {
-                    RemovedByAdmin = true;
-                    RemovedByUser = false;
-                }
-            }
         }
 
         /// <summary>
@@ -132,11 +88,56 @@ namespace FacebookSharp
             if (ValidateSignature(post_variables, applicationSecret))
             {
                 if (post_variables.ContainsKey("fb_sig_authorize"))
-                    return new Authorize(post_variables);
+                    return new PostAuthorizeCallback(post_variables);
                 else if (post_variables.ContainsKey("fb_sig_uninstall"))
-                    return new Removal(post_variables);
+                    return new PostRemoveCallback(post_variables);
             }
             return null;
+        }
+    }
+
+    public class PostAuthorizeCallback : FacebookPostCallback
+    {
+        public string ProfileUpdatedAt { get; private set; } // fb_sig_profile_update_time
+        public string SessionKey { get; private set; } // fb_sig_session_key
+        public string SessionSecret { get; private set; } // fb_sig_ss
+        public int ExpireTime { get; private set; } // fb_sig_expires
+        public bool OfflineAccess { get { return (ExpireTime == 0); } } // fb_sig_expires == 0
+        public string[] ExtendedPermissions { get; private set; } // fb_sig_ext_perms
+        public string CookieSignature { get; private set; } // fb_sig_cookie_sig
+
+        internal PostAuthorizeCallback(IDictionary<string, string> vars)
+            : base(vars)
+        {
+            SessionKey = vars["fb_sig_session_key"];
+            SessionSecret = vars["fb_sig_ss"];
+            ProfileUpdatedAt = vars["fb_sig_profile_update_time"];
+            ExpireTime = Convert.ToInt32(vars["fb_sig_expires"]);
+            ExtendedPermissions = vars["fb_sig_ext_perms"].Split(',');
+            CookieSignature = vars["fb_sig_cookie_sig"];
+        }
+    }
+
+    public class PostRemoveCallback : FacebookPostCallback
+    {
+        public bool Blocked { get; private set; } // fb_sig_blocked == 1
+        public bool RemovedByUser { get; private set; } // fb_sig_added == 0
+        public bool RemovedByAdmin { get; private set; } // fb_sig_page_added == 0
+
+        internal PostRemoveCallback(IDictionary<string, string> vars)
+            : base(vars)
+        {
+            Blocked = Convert.ToBoolean(vars["fb_sig_blocked"]);
+            if (vars.ContainsKey("fb_sig_added"))
+            {
+                RemovedByUser = true;
+                RemovedByAdmin = false;
+            }
+            else if (vars.ContainsKey("fb_sig_page_added"))
+            {
+                RemovedByAdmin = true;
+                RemovedByUser = false;
+            }
         }
     }
 }
