@@ -455,6 +455,7 @@ namespace FacebookSharp.Extensions
         /// </returns>
         /// <remarks>
         /// You might want to checkout http://frugalcoder.us/post/2010/01/07/EcmaScript-5s-Date-Extensions.aspx
+        /// and http://webreflection.blogspot.com/2009/07/ecmascript-iso-date-for-every-browser.html
         /// for Javascript ISO-8601 dates.
         /// </remarks>
         public static string ToIso8601FormattedDateTime(this DateTime dateTime)
@@ -473,6 +474,7 @@ namespace FacebookSharp.Extensions
         /// </returns>
         /// <remarks>
         /// You might want to checkout http://frugalcoder.us/post/2010/01/07/EcmaScript-5s-Date-Extensions.aspx
+        /// and http://webreflection.blogspot.com/2009/07/ecmascript-iso-date-for-every-browser.html
         /// for Javascript ISO-8601 dates.
         /// </remarks>
         public static DateTime FromIso8601FormattedDateTime(this string iso8601DateTime)
