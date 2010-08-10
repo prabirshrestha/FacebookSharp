@@ -453,6 +453,10 @@ namespace FacebookSharp.Extensions
         /// <returns>
         /// Returns the string representation of date time in ISO-8601 format (yyyy-MM-ddTHH:mm:ssZ).
         /// </returns>
+        /// <remarks>
+        /// You might want to checkout http://frugalcoder.us/post/2010/01/07/EcmaScript-5s-Date-Extensions.aspx
+        /// for Javascript ISO-8601 dates.
+        /// </remarks>
         public static string ToIso8601FormattedDateTime(this DateTime dateTime)
         {
             return FacebookUtils.Date.ToIso8601FormattedDateTime(dateTime);
@@ -467,9 +471,33 @@ namespace FacebookSharp.Extensions
         /// <returns>
         /// Returns the <see cref="DateTime"/> equivalent to the ISO-8601 formatted date time. 
         /// </returns>
+        /// <remarks>
+        /// You might want to checkout http://frugalcoder.us/post/2010/01/07/EcmaScript-5s-Date-Extensions.aspx
+        /// for Javascript ISO-8601 dates.
+        /// </remarks>
         public static DateTime FromIso8601FormattedDateTime(this string iso8601DateTime)
         {
             return FacebookUtils.Date.FromIso8601FormattedDateTime(iso8601DateTime);
+        }
+
+        /// <summary>
+        /// Get Unix Timestamp for the specified <see cref="DateTime"/>.
+        /// </summary>
+        /// <param name="date">Date Time.</param>
+        /// <returns>Returns Unix Timestamp.</returns>
+        public static long SecondsSinceEpoch(this DateTime date)
+        {
+            return FacebookUtils.Date.SecondsSinceEpoch(date);
+        }
+
+        /// <summary>
+        /// Get <see cref="DateTime"/> from the specified UnixTimestamp.
+        /// </summary>
+        /// <param name="secondsSinceEpoch"></param>
+        /// <returns>Returns <see cref="DateTime"/>.</returns>
+        public static DateTime EpochToDate(this long secondsSinceEpoch)
+        {
+            return FacebookUtils.Date.EpochToDate(secondsSinceEpoch);
         }
     }
 }
