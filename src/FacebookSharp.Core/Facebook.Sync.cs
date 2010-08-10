@@ -11,8 +11,8 @@ namespace FacebookSharp
             var client = new RestClient(GraphBaseUrl);
 
             if (addAccessToken && !string.IsNullOrEmpty(Settings.AccessToken)) // todo: check if acces_token already added.
-                client.Authenticator = new OAuth2UriQueryParamaterAuthenticator(Settings.AccessToken);
-
+                client.Authenticator = new OAuth2UriQueryParameterAuthenticator(Settings.AccessToken);
+                                           
             return client.Execute(request);
         }
 #endif  
