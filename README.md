@@ -119,6 +119,38 @@ var ex = (FacebookException)jsonString;
 
 It simple as explicitly casting a string to FacebookException.
 
+#### Post-Authorize and Post-Remove Callbacks
+
+These callbacks can be automatically processed and verified as well. For canvas users that have OAuth 2.0 Beta enabled in their application migrations, you can simply do the following:
+      
+        string appSecret = ConfigurationManager.AppSettings["FacebookSharp.AppSecret"];
+        IDictionary<string, object> data;
+        bool success = FacebookAuthenticationResult.ValidateSignedRequest(Request.Form.ToString(),appSecret,out data);
+        // data will contain keys: user_id, oauth_token, expires
+        // you can then use data["oauth_token"].ToString() in a new Facebook object
+
+For all other users (without OAuth 2.0 Beta enabled in application migrations) you may do the following:
+
+        // in your post-remove page
+        string appSecret = ConfigurationManager.AppSettings["FacebookSharp.AppSecret"];
+        PostRemoveCallback remove = FacebookPostCallback.Parse(Request.Form.ToString(),appSecret);
+        if (remove != null)
+        {
+          // do something
+          // remove will have all the properties you expect to receive
+        }
+        
+        // in your post-authorize page
+        string appSecret = ConfigurationManager.AppSettings["FacebookSharp.AppSecret"];
+        PostAuthorizeCallback auth = FacebookPostCallback.Parse(Request.Form.ToString(),appSecret);
+        if (auth != null)
+        {
+          // do something
+          // auth will have all the properties you expect to receive
+        }
+
+You may also choose to validate the signature of the POST callback manually by using FacebookPostCallback.ValidateSignature
+
 ### Some other useful extensions
 
 Incase you want to add extra parameters to IDictionary<string,string> you will basically need to use the Add method.

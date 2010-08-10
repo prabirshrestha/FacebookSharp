@@ -69,7 +69,7 @@ namespace FacebookSharp.Samples.CanvasIFrameApplication.Controllers
                     // in case its canvas check the signed_request
                     var far = FacebookAuthenticationResult.Parse(
                         Request.Url.ToString(), FacebookContext.Settings);
-                    
+
                     _facebookContext.Settings.AccessToken = far.AccessToken;
                     _facebookContext.Settings.AccessExpires = far.ExpiresIn;
 
@@ -92,9 +92,11 @@ namespace FacebookSharp.Samples.CanvasIFrameApplication.Controllers
             if (FacebookContext.IsSessionValid())
                 ViewData["name"] = FacebookContext.Get<User>("/me").Name;
             else
-                Response.Redirect(string.Format("http://www.facebook.com/login.php?v=1.0&api_key={0}&next={1}&canvas=",
-                                                FacebookContext.Settings.ApplicationKey,
-                                                FacebookContext.Settings.CanvasUrl));
+            {
+                ViewData["FacebookContext"] = FacebookContext;
+                return View("FacebookAuthorize", this);
+            }
+
 
             return View();
         }

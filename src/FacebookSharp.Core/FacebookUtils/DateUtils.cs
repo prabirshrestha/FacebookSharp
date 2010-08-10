@@ -1,7 +1,7 @@
 namespace FacebookSharp
 {
-    using System.Diagnostics.CodeAnalysis;
     using System;
+    using System.Diagnostics.CodeAnalysis;
 
     public static partial class FacebookUtils
     {

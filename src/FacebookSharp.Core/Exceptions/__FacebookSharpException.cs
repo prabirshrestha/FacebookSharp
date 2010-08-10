@@ -1,8 +1,7 @@
-using System;
-using RestSharp;
-
 namespace FacebookSharp
 {
+    using System;
+
     /// <summary>
     /// Generic exception for Facebook Sharp Library.
     /// </summary>

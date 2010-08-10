@@ -34,16 +34,18 @@
     <DocumentationFile>..\..\bin\DotNet35\Release\FacebookSharp.Core.XML</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Newtonsoft.Json, Version=3.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+    <Reference Include="RestSharp, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\libs\RestSharp\DotNet35\Release\Newtonsoft.Json.dll</HintPath>
-    </Reference>
-    <Reference Include="RestSharp">
       <HintPath>..\..\libs\RestSharp\DotNet35\Release\RestSharp.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Runtime.Serialization" />
-    <Reference Include="System.XML" />
+    <Reference Include="Newtonsoft.Json, Version=3.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\libs\RestSharp\DotNet35\Release\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AccessToken.cs" />
@@ -104,6 +106,7 @@
     <Compile Include="Schemas\extended_permissions.cs" />
     <Compile Include="Schemas\schemas.cs" />
     <Compile Include="Schemas\StringValue.cs" />
+    <Compile Include="FacebookPostCallback.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Schemas\facebook.xsd">
@@ -119,6 +122,7 @@
     <None Include="Schemas\generate_schemas.bat" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
