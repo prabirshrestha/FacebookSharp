@@ -54,7 +54,7 @@ namespace FacebookSharp.Samples.CanvasIFrameApplication.Controllers
                     settings.ApplicationSecret = ConfigurationManager.AppSettings["FacebookSharp.AppSecret"];
 
                     var far = FacebookAuthenticationResult.Parse(Request.Url.ToString(), settings);
-                    if (far != null && far.IsSuccess) // be carefull out here, it will return null if it can't parse
+                    if (far.IsSuccess)
                     {
                         settings.AccessExpires = far.ExpiresIn;
                         settings.AccessToken = far.AccessToken;

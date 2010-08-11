@@ -155,7 +155,7 @@ namespace FacebookSharp.Samples.Mvc.Controllers
         [FacebookAuthenticationResult(FacebookAuthenticationResultParameterName = "far")]
         public ActionResult PostAuthorize(FacebookAuthenticationResult far)
         {
-            if (far != null && far.IsSuccess)
+            if (far.IsSuccess)
             {
                 var fb = new Facebook(far.AccessToken); // Use that access token to get the facebook user id
                 var user = fb.Get<User>("/me", new Dictionary<string, string> { { "fields", "id" } });

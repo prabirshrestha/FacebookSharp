@@ -24,7 +24,7 @@ namespace FacebookSharp.Samples.WebApplication
 
         private void DisplayAppropriateMesage()
         {
-            if (FacebookAuthenticationResult != null && FacebookAuthenticationResult.IsSuccess)
+            if (FacebookAuthenticationResult.IsSuccess)
             {
                 pnlOK.Visible = true;
                 Session["access_token"] = FacebookAuthenticationResult.AccessToken;
