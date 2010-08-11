@@ -42,7 +42,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Silverlight", "Silverlight"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FacebookSharp.Core", "Silverlight\FacebookSharp.Core\FacebookSharp.Core.csproj", "{6BB3B07C-90A3-41AB-8965-8783CA5CF052}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Facebooksharp.Web.Mvc", "Facebooksharp.Web.Mvc\Facebooksharp.Web.Mvc.csproj", "{64CF34EB-40BB-4462-8523-DE40D1997246}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FacebookSharp.Web.Mvc", "Facebooksharp.Web.Mvc\FacebookSharp.Web.Mvc.csproj", "{64CF34EB-40BB-4462-8523-DE40D1997246}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FacebookSharp.Samples.WebApplication", "Samples\FacebookSharp.Samples.WebApplication\FacebookSharp.Samples.WebApplication.csproj", "{74441934-2B6A-45E8-A12D-FF9C5CB23925}"
 EndProject
