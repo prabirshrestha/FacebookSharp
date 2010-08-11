@@ -29,9 +29,13 @@ namespace FacebookSharp.Web.Mvc
                 if (_facebookContext == null)
                 {
                     string accessToken = null;
+                    long expiresIn = 0;
                     if (FacebookMembershipProvider != null)
+                    {
                         accessToken = FacebookMembershipProvider.GetFacebookAccessToken(User.Identity.Name);
-                    _facebookContext = new Facebook(accessToken);
+                        expiresIn = FacebookMembershipProvider.GetFacebookExpiresIn(User.Identity.Name);
+                    }
+                    _facebookContext = new Facebook(accessToken,expiresIn);
                 }
                 return _facebookContext;
             }

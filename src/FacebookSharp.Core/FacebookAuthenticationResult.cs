@@ -135,7 +135,7 @@ namespace FacebookSharp
                     if (facebookSettings == null)
                         throw new ArgumentNullException("facebookSettings");
 
-                    int expiresIn;
+                    long expiresIn;
                     string accessToken = Facebook.ExchangeAccessTokenForCode(paramters["code"],
                                                                       facebookSettings.ApplicationKey,
                                                                       facebookSettings.ApplicationSecret,

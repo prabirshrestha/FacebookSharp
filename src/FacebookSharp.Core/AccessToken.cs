@@ -9,7 +9,7 @@ namespace FacebookSharp
 
 #if !SILVERLIGHT
 
-        public static string ExchangeAccessTokenForCode(string code, string applicationKey, string applicationSecret, string postAuthorizeUrl, string userAgent, out int expiresIn)
+        public static string ExchangeAccessTokenForCode(string code, string applicationKey, string applicationSecret, string postAuthorizeUrl, string userAgent, out long expiresIn)
         {
             if (string.IsNullOrEmpty(applicationKey))
                 throw new ArgumentNullException("applicationKey");
@@ -40,7 +40,7 @@ namespace FacebookSharp
                 // this allows us to make use of ParseUrlQueryString(string query) method.
                 var pars = FacebookUtils.ParseUrlQueryString(result);
 
-                expiresIn = pars.ContainsKey("expires_in") ? Convert.ToInt32(pars["expires_in"][0]) : 0;
+                expiresIn = pars.ContainsKey("expires_in") ? Convert.ToInt64(pars["expires_in"][0]) : 0;
 
                 return pars["access_token"][0];
             }
@@ -52,13 +52,13 @@ namespace FacebookSharp
 
 #if SILVERLIGHT
 
-        public static string ExchangeAccessTokenForCode(string code, string applicationKey, string applicationSecret, string postAuthorizeUrl, string userAgent, out int expiresIn)
+        public static string ExchangeAccessTokenForCode(string code, string applicationKey, string applicationSecret, string postAuthorizeUrl, string userAgent, out long expiresIn)
         {
             throw new NotImplementedException();
         }
 #endif
 
-        public string ExchangeAccessTokenForCode(string code, out int expiresIn)
+        public string ExchangeAccessTokenForCode(string code, out long expiresIn)
         {
             if (string.IsNullOrEmpty(Settings.ApplicationKey))
                 throw new ArgumentNullException("Settings.ApplicationKey missing.");
