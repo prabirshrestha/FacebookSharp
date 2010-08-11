@@ -43,6 +43,8 @@ namespace FacebookSharp
                 return DateTime.ParseExact(iso8601DateTime, "o", System.Globalization.CultureInfo.InvariantCulture);
             }
 
+            private static readonly DateTime EPOCH = DateTime.SpecifyKind(new DateTime(1970, 1, 1, 0, 0, 0, 0),DateTimeKind.Utc);
+
             /// <summary>
             /// Converts a UNIX timestamp to <see cref="DateTime"/>.
             /// </summary>
@@ -54,8 +56,7 @@ namespace FacebookSharp
             /// </returns>
             public static DateTime FromUnixTimestamp(long timestamp)
             {
-                DateTime origin = DateTime.SpecifyKind(new DateTime(1970, 1, 1, 0, 0, 0, 0),DateTimeKind.Utc);
-                return origin.AddSeconds(timestamp);
+                return EPOCH.AddSeconds(timestamp);
             }
 
             /// <summary>
@@ -69,8 +70,7 @@ namespace FacebookSharp
             /// </returns>
             public static long ToUnixTimestamp(DateTime date)
             {
-                DateTime origin = DateTime.SpecifyKind(new DateTime(1970, 1, 1, 0, 0, 0, 0),DateTimeKind.Utc);
-                TimeSpan diff = date - origin;
+                TimeSpan diff = date.ToUniversalTime() - EPOCH;
                 return (long)diff.TotalSeconds;
             }
 
