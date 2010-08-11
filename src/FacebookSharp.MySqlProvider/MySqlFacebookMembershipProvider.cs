@@ -98,7 +98,7 @@
             }
         }
 
-        public void LinkFacebook(string membershipUsername, string facebookId, string accessToken, int expiresIn)
+        public void LinkFacebook(string membershipUsername, string facebookId, string accessToken, long expiresIn)
         {
             // todo: add expires in
             LinkFacebook(membershipUsername, facebookId, accessToken);
@@ -113,7 +113,7 @@
             LinkFacebook(user.UserName, facebookId, accessToken);
         }
 
-        public void LinkFacebook(object membershipProviderUserKey, string facebookId, string accessToken, int expiresIn)
+        public void LinkFacebook(object membershipProviderUserKey, string facebookId, string accessToken, long expiresIn)
         {
             // todo: add expires in
             LinkFacebook(membershipProviderUserKey, facebookId, accessToken);

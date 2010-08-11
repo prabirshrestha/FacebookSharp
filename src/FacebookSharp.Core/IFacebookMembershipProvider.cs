@@ -68,7 +68,7 @@ namespace FacebookSharp
         /// If the specified membership user doesn't exist, it should not throw error.
         /// Incase the facebookId is not a Facebook User, it should it should not throw error.
         /// </remarks>
-        void LinkFacebook(string membershipUsername, string facebookId, string accessToken, int expiresIn);
+        void LinkFacebook(string membershipUsername, string facebookId, string accessToken, long expiresIn);
 
         /// <summary>
         /// Links the Facebook User with the Membership Provider.
@@ -95,7 +95,7 @@ namespace FacebookSharp
         /// If the specified membership user doesn't exist, it should not throw error.
         /// Incase the facebookId is not a Facebook User, it should it should not throw error.
         /// </remarks>
-        void LinkFacebook(object membershipProviderUserKey, string facebookId, string accessToken, int expiresIn);
+        void LinkFacebook(object membershipProviderUserKey, string facebookId, string accessToken, long expiresIn);
 
         /// <summary>
         /// Unlinks Facebook User from the Membership Provider.

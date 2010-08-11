@@ -497,7 +497,7 @@ namespace FacebookSharp.Extensions
         /// </summary>
         /// <param name="timestamp"></param>
         /// <returns>Returns <see cref="DateTime"/>.</returns>
-        public static DateTime FromUnixTimestamp(this double timestamp)
+        public static DateTime FromUnixTimestamp(this long timestamp)
         {
             return FacebookUtils.Date.FromUnixTimestamp(timestamp);
         }

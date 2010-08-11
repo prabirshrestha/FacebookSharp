@@ -41,7 +41,7 @@ namespace FacebookSharp
         /// <param name="expiresIn">
         /// The expires in.
         /// </param>
-        public Facebook(string accessToken, double expiresIn)
+        public Facebook(string accessToken, long expiresIn)
             : this(new FacebookSettings { AccessToken = accessToken, AccessExpires = expiresIn })
         {
         }
