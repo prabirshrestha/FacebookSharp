@@ -52,7 +52,7 @@ namespace FacebookSharp.Samples.Mvc.Controllers
         {
             get
             {
-                if (_facebookContext == null)
+                if (_facebookContext == null || !_facebookContext.IsSessionValid())
                 {
                     string accessToken = null;
                     long expiresIn = 0;

@@ -46,7 +46,7 @@ namespace FacebookSharp.Samples.CanvasIFrameApplication.Controllers
                     throw new ApplicationException("Please specify FacebookSharp.AppSecret in web.config AppSettings.");
                 if (ConfigurationManager.AppSettings["FacebookSharp.CanvasUrl"] == "CanvasUrl")
                     throw new ApplicationException("Please specify FacebookSharp.CanvasUrl in web.config AppSettings.");
-                if (_facebookContext == null)
+                if (_facebookContext == null || !_facebookContext.IsSessionValid())
                 {
                     FacebookSettings settings = new FacebookSettings();
                     settings.CanvasUrl = ConfigurationManager.AppSettings["FacebookSharp.CanvasUrl"];
