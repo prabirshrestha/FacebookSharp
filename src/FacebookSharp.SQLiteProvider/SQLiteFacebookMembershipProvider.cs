@@ -1,3 +1,5 @@
+using System;
+
 namespace FacebookSharp
 {
     using System.Data.SQLite;
@@ -193,6 +195,21 @@ namespace FacebookSharp
                 var result = cmd.ExecuteScalar();
                 return result == null ? "" : result.ToString();
             }
+        }
+
+        public long GetFacebookExpiresIn(string membershipUsername)
+        {
+            throw new NotImplementedException();
+        }
+
+        public long GetFacebookExpiresIn(object membershipProviderUserKey)
+        {
+            throw new NotImplementedException();
+        }
+
+        public long GetFacebookExpiresInByFacebookId(string facebookId)
+        {
+            throw new NotImplementedException();
         }
 
         public string GetFacebookId(string membershipUsername)

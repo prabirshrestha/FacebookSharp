@@ -40,41 +40,27 @@ namespace FacebookSharp.Samples.CanvasIFrameApplication.Controllers
         {
             get
             {
+                if (ConfigurationManager.AppSettings["FacebookSharp.AppKey"] == "AppKey")
+                    throw new ApplicationException("Please specify FacebookSharp.AppKey in web.config AppSettings.");
+                if (ConfigurationManager.AppSettings["FacebookSharp.AppSecret"] == "AppSecret")
+                    throw new ApplicationException("Please specify FacebookSharp.AppSecret in web.config AppSettings.");
+                if (ConfigurationManager.AppSettings["FacebookSharp.CanvasUrl"] == "CanvasUrl")
+                    throw new ApplicationException("Please specify FacebookSharp.CanvasUrl in web.config AppSettings.");
                 if (_facebookContext == null)
                 {
-                    _facebookContext = new Facebook();
+                    FacebookSettings settings = new FacebookSettings();
+                    settings.CanvasUrl = ConfigurationManager.AppSettings["FacebookSharp.CanvasUrl"];
+                    settings.ApplicationKey = ConfigurationManager.AppSettings["FacebookSharp.AppKey"];
+                    settings.ApplicationSecret = ConfigurationManager.AppSettings["FacebookSharp.AppSecret"];
 
-                    _facebookContext.Settings.ApplicationKey = ConfigurationManager.AppSettings["FacebookSharp.AppKey"];
-                    _facebookContext.Settings.ApplicationSecret = ConfigurationManager.AppSettings["FacebookSharp.AppSecret"];
-                    _facebookContext.Settings.CanvasUrl = ConfigurationManager.AppSettings["FacebookSharp.CanvasUrl"];
+                    var far = FacebookAuthenticationResult.Parse(Request.Url.ToString(), settings);
+                    if (far.IsSuccess)
+                    {
+                        settings.AccessExpires = far.ExpiresIn;
+                        settings.AccessToken = far.AccessToken;
+                    }
 
-                    if (_facebookContext.Settings.ApplicationKey == "AppKey")
-                        throw new ApplicationException("Please specify FacebookSharp.AppKey in web.config AppSettings.");
-                    if (_facebookContext.Settings.ApplicationSecret == "AppSecret")
-                        throw new ApplicationException("Please specify FacebookSharp.AppSecret in web.config AppSettings.");
-                    if (_facebookContext.Settings.CanvasUrl == "CanvasUrl")
-                        throw new ApplicationException("Please specify FacebookSharp.CanvasUrl in web.config AppSettings.");
-
-                    _facebookContext.Settings.DefaultApplicationPermissions =
-                        new[]
-                            {
-                                "offline_access", "publish_stream",
-                                "email", "user_about_me", "user_birthday", "user_education_history",
-                                "user_events", "user_groups", "user_hometown", "user_interests",
-                                "user_likes", "user_location",
-                                "user_photos", "user_relationships", "user_religion_politics", "user_status",
-                                "user_work_history"
-                            };
-
-                    // in case its canvas check the signed_request
-                    var far = FacebookAuthenticationResult.Parse(
-                        Request.Url.ToString(), FacebookContext.Settings);
-
-                    _facebookContext.Settings.AccessToken = far.AccessToken;
-                    _facebookContext.Settings.AccessExpires = far.ExpiresIn;
-
-                    // incase its offline_access, you mite want to save it using IFacebookMembershipProvider.
-
+                   _facebookContext = new Facebook(settings);
                 }
                 return _facebookContext;
             }
