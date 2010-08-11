@@ -43,36 +43,36 @@ namespace FacebookSharp
                 return DateTime.ParseExact(iso8601DateTime, "o", System.Globalization.CultureInfo.InvariantCulture);
             }
 
-            #region Unix timestamp/ Unix epoch helpers
-
-            // http://sigabrt.blogspot.com/2007/07/c-datetime-tofrom-unix-epoch.html
-            private static readonly DateTime JAN_01_1970 = DateTime.SpecifyKind(new DateTime(1970, 1, 1, 0, 0, 0),
-                                                                                DateTimeKind.Utc);
-
             /// <summary>
-            /// Get Unix Timestamp for the specified <see cref="DateTime"/>.
+            /// Converts a UNIX timestamp to <see cref="DateTime"/>.
             /// </summary>
-            /// <param name="date">Date Time.</param>
-            /// <returns>Returns Unix Timestamp.</returns>
-            public static long SecondsSinceEpoch(DateTime date)
+            /// <param name="timestamp">
+            /// The UNIX timestamp.
+            /// </param>
+            /// <returns>
+            /// Returns a <see cref="DateTime"/> equivelant to the timestamp.
+            /// </returns>
+            public static DateTime FromUnixTimestamp(double timestamp)
             {
-                var dt = date.ToUniversalTime();
-                var ts = dt.Subtract(JAN_01_1970);
-                return (long)ts.TotalSeconds;
+                DateTime origin = new DateTime(1970, 1, 1, 0, 0, 0, 0);
+                return origin.AddSeconds(timestamp);
             }
 
             /// <summary>
-            /// Get <see cref="DateTime"/> from the specified UnixTimestamp.
+            /// Converts a <see cref="DateTime"/> to a UNIX timestamp.
             /// </summary>
-            /// <param name="secondsSinceEpoch"></param>
-            /// <returns>Returns <see cref="DateTime"/>.</returns>
-            public static DateTime EpochToDate(long secondsSinceEpoch)
+            /// <param name="date">
+            /// The <see cref="DateTime"/> object.
+            /// </param>
+            /// <returns>
+            /// Returns a UNIX timestamp equivelant to the <see cref="DateTime"/>.
+            /// </returns>
+            public static double ToUnixTimestamp(DateTime date)
             {
-                return JAN_01_1970.AddSeconds(secondsSinceEpoch);
+                DateTime origin = new DateTime(1970, 1, 1, 0, 0, 0, 0);
+                TimeSpan diff = date - origin;
+                return Math.Floor(diff.TotalSeconds);
             }
-
-            #endregion
-
 
         }
     }

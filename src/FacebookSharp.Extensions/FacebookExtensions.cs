@@ -487,19 +487,19 @@ namespace FacebookSharp.Extensions
         /// </summary>
         /// <param name="date">Date Time.</param>
         /// <returns>Returns Unix Timestamp.</returns>
-        public static long SecondsSinceEpoch(this DateTime date)
+        public static double ToUnixTimestamp(this DateTime date)
         {
-            return FacebookUtils.Date.SecondsSinceEpoch(date);
+            return FacebookUtils.Date.ToUnixTimestamp(date);
         }
 
         /// <summary>
         /// Get <see cref="DateTime"/> from the specified UnixTimestamp.
         /// </summary>
-        /// <param name="secondsSinceEpoch"></param>
+        /// <param name="timestamp"></param>
         /// <returns>Returns <see cref="DateTime"/>.</returns>
-        public static DateTime EpochToDate(this long secondsSinceEpoch)
+        public static DateTime FromUnixTimestamp(this double timestamp)
         {
-            return FacebookUtils.Date.EpochToDate(secondsSinceEpoch);
+            return FacebookUtils.Date.FromUnixTimestamp(timestamp);
         }
     }
 }

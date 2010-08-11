@@ -28,6 +28,7 @@ namespace FacebookSharp.Samples.WebApplication
             {
                 pnlOK.Visible = true;
                 Session["access_token"] = FacebookAuthenticationResult.AccessToken;
+                Session["expires_in"] = FacebookAuthenticationResult.ExpiresIn;
                 lblAccessToken.Text = FacebookAuthenticationResult.AccessToken;
             }
             else

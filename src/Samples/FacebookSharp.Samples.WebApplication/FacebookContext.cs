@@ -14,23 +14,27 @@ namespace FacebookSharp.Samples.Website
         {
             get
             {
-                if (_facebookContext == null)
-                {
-                    _facebookContext = HttpContext.Current.Session["access_token"] != null
-                                    ? new Facebook(HttpContext.Current.Session["access_token"].ToString())
-                                    : new Facebook();
-                }
-                _facebookContext.Settings.PostAuthorizeUrl = ConfigurationManager.AppSettings["FacebookSharp.PostAuthorizeUrl"];
-                _facebookContext.Settings.ApplicationKey = ConfigurationManager.AppSettings["FacebookSharp.AppKey"];
-                _facebookContext.Settings.ApplicationSecret = ConfigurationManager.AppSettings["FacebookSharp.AppSecret"];
-
-
                 if (_facebookContext.Settings.ApplicationKey == "AppKey")
                     throw new ApplicationException("Please specify FacebookSharp.AppKey in web.config AppSettings.");
-                if(_facebookContext.Settings.ApplicationSecret=="AppSecret")
+                if (_facebookContext.Settings.ApplicationSecret == "AppSecret")
                     throw new ApplicationException("Please specify FacebookSharp.AppSecret in web.config AppSettings.");
                 if (_facebookContext.Settings.PostAuthorizeUrl == "PostAuthorizeUrl")
                     throw new ApplicationException("Please specify FacebookSharp.PostAuthorizeUrl in web.config AppSettings.");
+                if (_facebookContext == null)
+                {
+                    FacebookSettings settings = new FacebookSettings();
+                    settings.PostAuthorizeUrl = ConfigurationManager.AppSettings["FacebookSharp.PostAuthorizeUrl"];
+                    settings.ApplicationKey = ConfigurationManager.AppSettings["FacebookSharp.AppKey"];
+                    settings.ApplicationSecret = ConfigurationManager.AppSettings["FacebookSharp.AppSecret"];
+
+                    if (HttpContext.Current.Session["access_token"] != null)
+                    {
+                        settings.AccessExpires = Convert.ToDouble(HttpContext.Current.Session["expires_in"]);
+                        settings.AccessToken = HttpContext.Current.Session["access_token"].ToString();
+                    }
+
+                    _facebookContext = new Facebook(settings);
+                }
 
                 return _facebookContext;
             }
