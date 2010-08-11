@@ -110,7 +110,7 @@ namespace FacebookSharp
                 return false;
             if (AccessExpires == 0)
                 return true;
-            if (DateTime.Compare(FacebookUtils.Date.FromUnixTimestamp(AccessExpires),DateTime.UtcNow) > 0)
+            if (DateTime.Compare(FacebookUtils.Date.FromUnixTimestamp(AccessExpires), DateTime.UtcNow) > 0)
                 return true;
             return false;
         }
@@ -208,7 +208,7 @@ namespace FacebookSharp
                     paramList.Add(p.Key + "=" + p.Value);
             }
 
-            if (extendedPermissions.Length > 0)
+            if (extendedPermissions != null && extendedPermissions.Length > 0)
                 paramList.Add("req_perms=" + String.Join(",", extendedPermissions));
 
             loginUrl.Append(String.Join("&", paramList.ToArray()));
