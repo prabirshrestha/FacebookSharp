@@ -95,7 +95,7 @@ namespace FacebookSharp
         /// or 0 if the session doen't expire or doesn't exist.
         /// </summary>
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
-        public double AccessExpires
+        public long AccessExpires
         {
             get { return Settings.AccessExpires; }
         }

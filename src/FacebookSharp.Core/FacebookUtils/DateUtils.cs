@@ -52,7 +52,7 @@ namespace FacebookSharp
             /// <returns>
             /// Returns a <see cref="DateTime"/> equivelant to the timestamp.
             /// </returns>
-            public static DateTime FromUnixTimestamp(double timestamp)
+            public static DateTime FromUnixTimestamp(long timestamp)
             {
                 DateTime origin = new DateTime(1970, 1, 1, 0, 0, 0, 0);
                 return origin.AddSeconds(timestamp);
@@ -67,11 +67,11 @@ namespace FacebookSharp
             /// <returns>
             /// Returns a UNIX timestamp equivelant to the <see cref="DateTime"/>.
             /// </returns>
-            public static double ToUnixTimestamp(DateTime date)
+            public static long ToUnixTimestamp(DateTime date)
             {
                 DateTime origin = new DateTime(1970, 1, 1, 0, 0, 0, 0);
                 TimeSpan diff = date - origin;
-                return Math.Floor(diff.TotalSeconds);
+                return (long)diff.TotalSeconds;
             }
 
         }

@@ -29,7 +29,7 @@ namespace FacebookSharp.Samples.Website
 
                     if (HttpContext.Current.Session["access_token"] != null)
                     {
-                        settings.AccessExpires = Convert.ToDouble(HttpContext.Current.Session["expires_in"]);
+                        settings.AccessExpires = Convert.ToInt64(HttpContext.Current.Session["expires_in"]);
                         settings.AccessToken = HttpContext.Current.Session["access_token"].ToString();
                     }
 

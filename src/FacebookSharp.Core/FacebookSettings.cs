@@ -10,7 +10,7 @@ namespace FacebookSharp
         public string ApplicationSecret { get; set; }
         public string PostAuthorizeUrl { get; set; }
         public string CanvasUrl { get; set; }
-        public double AccessExpires { get; set; }
+        public long AccessExpires { get; set; }
         public string[] DefaultApplicationPermissions { get; set; }
         public string UserAgent { get; set; }
 
