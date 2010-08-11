@@ -24,7 +24,7 @@ namespace FacebookSharp.Samples.WebApplication
 
         private void DisplayAppropriateMesage()
         {
-            if (FacebookAuthenticationResult.IsSuccess)
+            if (FacebookAuthenticationResult != null && FacebookAuthenticationResult.IsSuccess)
             {
                 pnlOK.Visible = true;
                 Session["access_token"] = FacebookAuthenticationResult.AccessToken;
@@ -35,7 +35,9 @@ namespace FacebookSharp.Samples.WebApplication
             {
                 pnlKO.Visible = true;
                 Session["access_token"] = null;
-                lblErrorReason.Text = FacebookAuthenticationResult.ErrorReasonText;
+
+                if (FacebookAuthenticationResult != null)
+                    lblErrorReason.Text = FacebookAuthenticationResult.ErrorReasonText;
             }
         }
     }

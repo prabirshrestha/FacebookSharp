@@ -32,7 +32,7 @@ namespace FacebookSharp.Winforms
             if (fullPath.StartsWith("http://www.facebook.com/connect/login_success.html"))
             {
                 FacebookAuthenticationResult = FacebookAuthenticationResult.Parse(fullPath);
-                if (FacebookAuthenticationResult.IsSuccess)
+                if (FacebookAuthenticationResult != null && FacebookAuthenticationResult.IsSuccess)
                     DialogResult = DialogResult.OK;
                 else
                     DialogResult = DialogResult.Cancel;

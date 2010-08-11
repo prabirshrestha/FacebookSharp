@@ -66,11 +66,14 @@ namespace FacebookSharp
         }
 
 #if !SILVERLIGHT
+        
+        /// <remarks>Returns null, if it can't parse</remarks>
         public static FacebookAuthenticationResult Parse(string url)
         {
             return Parse(url, null);
         }
 
+        /// <remarks>Returns null, if it can't parse</remarks>
         public static FacebookAuthenticationResult Parse(string url, FacebookSettings facebookSettings)
         {
             IDictionary<string, string> paramters;

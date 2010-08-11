@@ -48,7 +48,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FacebookSharp.Samples.WebAp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FacebookSharp.Samples.Mvc", "Samples\FacebookSharp.Samples.Mvc\FacebookSharp.Samples.Mvc.csproj", "{3E6A68B9-FB88-4E54-8011-5508E63629C0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Facebooksharp.Web.Mvc", "DotNet4\Facebooksharp.Web.Mvc\Facebooksharp.Web.Mvc.csproj", "{CBA0FE71-1DD3-4190-A010-B4492248A1C3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FacebookSharp.Web.Mvc", "DotNet4\FacebookSharp.Web.Mvc\FacebookSharp.Web.Mvc.csproj", "{CBA0FE71-1DD3-4190-A010-B4492248A1C3}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FacebookSharp.Samples.CanvasIFrameApplication", "Samples\FacebookSharp.Samples.CanvasIFrameApplication\FacebookSharp.Samples.CanvasIFrameApplication.csproj", "{7BF83FA4-7D67-4C3E-BF73-734418F96101}"
 EndProject
