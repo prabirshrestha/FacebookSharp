@@ -14,11 +14,11 @@ namespace FacebookSharp.Samples.Website
         {
             get
             {
-                if (_facebookContext.Settings.ApplicationKey == "AppKey")
+                if (ConfigurationManager.AppSettings["FacebookSharp.AppKey"] == "AppKey")
                     throw new ApplicationException("Please specify FacebookSharp.AppKey in web.config AppSettings.");
-                if (_facebookContext.Settings.ApplicationSecret == "AppSecret")
+                if (ConfigurationManager.AppSettings["FacebookSharp.AppSecret"] == "AppSecret")
                     throw new ApplicationException("Please specify FacebookSharp.AppSecret in web.config AppSettings.");
-                if (_facebookContext.Settings.PostAuthorizeUrl == "PostAuthorizeUrl")
+                if (ConfigurationManager.AppSettings["FacebookSharp.PostAuthorizeUrl"] == "PostAuthorizeUrl")
                     throw new ApplicationException("Please specify FacebookSharp.PostAuthorizeUrl in web.config AppSettings.");
                 if (_facebookContext == null)
                 {
