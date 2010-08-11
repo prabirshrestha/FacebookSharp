@@ -110,7 +110,7 @@ namespace FacebookSharp
                 return false;
             if (AccessExpires == 0)
                 return true;
-            if (DateTime.Compare(FacebookUtils.Date.FromUnixTimestamp(AccessExpires), DateTime.Now) > 0)
+            if (DateTime.Compare(FacebookUtils.Date.FromUnixTimestamp(AccessExpires),DateTime.UtcNow) > 0)
                 return true;
             return false;
         }

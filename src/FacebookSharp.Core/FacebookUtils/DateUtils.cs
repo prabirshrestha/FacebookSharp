@@ -54,7 +54,7 @@ namespace FacebookSharp
             /// </returns>
             public static DateTime FromUnixTimestamp(long timestamp)
             {
-                DateTime origin = new DateTime(1970, 1, 1, 0, 0, 0, 0);
+                DateTime origin = DateTime.SpecifyKind(new DateTime(1970, 1, 1, 0, 0, 0, 0),DateTimeKind.Utc);
                 return origin.AddSeconds(timestamp);
             }
 
@@ -69,7 +69,7 @@ namespace FacebookSharp
             /// </returns>
             public static long ToUnixTimestamp(DateTime date)
             {
-                DateTime origin = new DateTime(1970, 1, 1, 0, 0, 0, 0);
+                DateTime origin = DateTime.SpecifyKind(new DateTime(1970, 1, 1, 0, 0, 0, 0),DateTimeKind.Utc);
                 TimeSpan diff = date - origin;
                 return (long)diff.TotalSeconds;
             }
