@@ -42,14 +42,30 @@ namespace FacebookSharp
                     DefaultApplicationPermissions);
             }
         }
+		
+		public string FacebookCanvasLoginStatusUrl
+		{
+		    get
+		    {
+		        return Facebook.GenerateFacebookLoginStatusUrl(
+		            new Dictionary<string, string>
+		                {
+		                    { "api_key", ApplicationKey },
+		                    { "no_session", FacebookCanvasLoginUrl },
+		                    { "no_user", FacebookCanvasLoginUrl },
+		                    { "ok_session", CanvasUrl },
+		                    { "session_version", "3" }
+		                });
+		    }
+		}
 
         public string FacebookCanvasLoginJavascript
         {
             get
             {
                 var jsredir = new StringBuilder();
-                jsredir.AppendLine("if (parent != self) { top.location.href = '" + FacebookCanvasLoginUrl + "'; }");
-                jsredir.AppendLine("else { self.location.href = '" + FacebookCanvasLoginUrl + "'; }");
+                jsredir.AppendLine("if (parent != self) { top.location.href = '" + FacebookCanvasLoginStatusUrl + "'; }");
+                jsredir.AppendLine("else { self.location.href = '" + FacebookCanvasLoginStatusUrl + "'; }");
                 return jsredir.ToString();
             }
         }
