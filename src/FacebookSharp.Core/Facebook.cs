@@ -205,7 +205,7 @@ namespace FacebookSharp
             foreach (KeyValuePair<string, string> p in parameters)
             {
                 if (allowedParams.Contains(p.Key))
-                    paramList.Add(p.Key + "=" + p.Value);
+                    paramList.Add(p.Key + "=" + FacebookUtils.UrlEncode(p.Value));
             }
 
             if (extendedPermissions != null && extendedPermissions.Length > 0)
@@ -236,7 +236,7 @@ namespace FacebookSharp
             foreach (KeyValuePair<string, string> p in parameters)
             {
                 if (allowedParams.Contains(p.Key))
-                    paramList.Add(p.Key + "=" + p.Value);
+                    paramList.Add(p.Key + "=" + FacebookUtils.UrlEncode(p.Value));
             }
 
             logoutUrl.Append(String.Join("&",paramList.ToArray()));
@@ -267,7 +267,7 @@ namespace FacebookSharp
             foreach (KeyValuePair<string, string> p in parameters)
             {
                 if (allowedParams.Contains(p.Key))
-                    paramList.Add(p.Key + "=" + p.Value);
+                    paramList.Add(p.Key + "=" + FacebookUtils.UrlEncode(p.Value));
             }
 
             statusUrl.Append(String.Join("&",paramList.ToArray()));

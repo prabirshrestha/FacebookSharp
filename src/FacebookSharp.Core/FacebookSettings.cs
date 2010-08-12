@@ -45,18 +45,18 @@ namespace FacebookSharp
 		
 		public string FacebookCanvasLoginStatusUrl
 		{
-		    get
-		    {
-		        return Facebook.GenerateFacebookLoginStatusUrl(
-		            new Dictionary<string, string>
-		                {
-		                    { "api_key", ApplicationKey },
-		                    { "no_session", FacebookCanvasLoginUrl },
-		                    { "no_user", FacebookCanvasLoginUrl },
-		                    { "ok_session", CanvasUrl },
-		                    { "session_version", "3" }
-		                });
-		    }
+			get
+			{
+				return Facebook.GenerateFacebookLoginStatusUrl(
+					new Dictionary<string, string>
+						{
+							{ "api_key", ApplicationKey },
+							{ "no_session", FacebookCanvasLoginUrl },
+							{ "no_user", FacebookCanvasLoginUrl },
+							{ "ok_session", CanvasUrl },
+							{ "session_version", "3" }
+						});
+			}
 		}
 
         public string FacebookCanvasLoginJavascript
