@@ -84,6 +84,7 @@ namespace FacebookSharp
             ExecuteAsync(
                 request,
                 addAccessToken,
+                Settings.UserAgent,
                 response =>
                 {
                     Exception exception;
