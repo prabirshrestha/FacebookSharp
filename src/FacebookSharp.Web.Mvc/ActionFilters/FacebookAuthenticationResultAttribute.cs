@@ -35,7 +35,7 @@ namespace FacebookSharp.Web.Mvc
                 else
                 {
                     var settings = fbContext.FacebookContext.Settings;
-                    int expiresIn;
+                    long expiresIn;
                     string accessToken = Facebook.ExchangeAccessTokenForCode(code, settings.ApplicationKey, settings.ApplicationSecret,
                                                                              settings.PostAuthorizeUrl, settings.UserAgent, out expiresIn);
                     far = new FacebookAuthenticationResult(accessToken, expiresIn, errorReason);

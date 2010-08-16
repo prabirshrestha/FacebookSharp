@@ -28,13 +28,16 @@ namespace FacebookSharp.Samples.WebApplication
             {
                 pnlOK.Visible = true;
                 Session["access_token"] = FacebookAuthenticationResult.AccessToken;
+                Session["expires_in"] = FacebookAuthenticationResult.ExpiresIn;
                 lblAccessToken.Text = FacebookAuthenticationResult.AccessToken;
             }
             else
             {
                 pnlKO.Visible = true;
                 Session["access_token"] = null;
-                lblErrorReason.Text = FacebookAuthenticationResult.ErrorReasonText;
+
+                if (FacebookAuthenticationResult != null)
+                    lblErrorReason.Text = FacebookAuthenticationResult.ErrorReasonText;
             }
         }
     }

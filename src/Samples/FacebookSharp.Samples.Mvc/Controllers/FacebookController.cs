@@ -52,12 +52,16 @@ namespace FacebookSharp.Samples.Mvc.Controllers
         {
             get
             {
-                if (_facebookContext == null)
+                if (_facebookContext == null || !_facebookContext.IsSessionValid())
                 {
                     string accessToken = null;
+                    long expiresIn = 0;
                     if (FacebookMembershipProvider != null)
+                    {
                         accessToken = FacebookMembershipProvider.GetFacebookAccessToken(User.Identity.Name);
-                    _facebookContext = new Facebook(accessToken);
+                        expiresIn = FacebookMembershipProvider.GetFacebookExpiresIn(User.Identity.Name);
+                    }
+                    _facebookContext = new Facebook(accessToken, expiresIn);
 
                     _facebookContext.Settings.PostAuthorizeUrl = ConfigurationManager.AppSettings["FacebookSharp.PostAuthorizeUrl"];
                     _facebookContext.Settings.ApplicationKey = ConfigurationManager.AppSettings["FacebookSharp.AppKey"];

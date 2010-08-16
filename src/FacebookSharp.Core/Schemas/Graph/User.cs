@@ -24,11 +24,11 @@ namespace FacebookSharp.Schemas.Graph
         [DataMember(Name = "birthday")]
         public string Birthday { get; set; }
 
-        [DataMember(Name = "homeTown")]
-        public HomeTownLocation HomeTown { get; set; }
-
         [DataMember(Name = "location")]
         public Location Location { get; set; }
+
+        [DataMember(Name = "locale")]
+        public string Locale { get; set; }
 
         [DataMember(Name = "work")]
         public List<Work> Work { get; set; }

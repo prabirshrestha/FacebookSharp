@@ -1,4 +1,6 @@
 
+using System;
+
 namespace FacebookSharp
 {
     using System.Data.SqlClient;
@@ -103,7 +105,7 @@ namespace FacebookSharp
             }
         }
 
-        public void LinkFacebook(string membershipUsername, string facebookId, string accessToken, int expiresIn)
+        public void LinkFacebook(string membershipUsername, string facebookId, string accessToken, long expiresIn)
         {
             // todo: add expires in
             LinkFacebook(membershipUsername, facebookId, accessToken);
@@ -118,7 +120,7 @@ namespace FacebookSharp
             LinkFacebook(user.UserName, facebookId, accessToken);
         }
 
-        public void LinkFacebook(object membershipProviderUserKey, string facebookId, string accessToken, int expiresIn)
+        public void LinkFacebook(object membershipProviderUserKey, string facebookId, string accessToken, long expiresIn)
         {
             // todo: add expires in
             LinkFacebook(membershipProviderUserKey, facebookId, accessToken);
@@ -199,6 +201,21 @@ namespace FacebookSharp
                 var result = cmd.ExecuteScalar();
                 return result == null ? "" : result.ToString();
             }
+        }
+
+        public long GetFacebookExpiresIn(string membershipUsername)
+        {
+            throw new NotImplementedException();
+        }
+
+        public long GetFacebookExpiresIn(object membershipProviderUserKey)
+        {
+            throw new NotImplementedException();
+        }
+
+        public long GetFacebookExpiresInByFacebookId(string facebookId)
+        {
+            throw new NotImplementedException();
         }
 
         public string GetFacebookId(string membershipUsername)

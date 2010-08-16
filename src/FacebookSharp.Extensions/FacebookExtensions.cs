@@ -371,7 +371,7 @@ namespace FacebookSharp.Extensions
             if (pictureSizeType != null)
                 request.AddParameter("type", FacebookUtils.ToString(pictureSizeType.Value));
 
-            var response = facebook.Execute(request, true);
+            var response = facebook.Execute(request, true, facebook.Settings.UserAgent);
 
             if (response.ResponseStatus == ResponseStatus.Completed)
             {
@@ -455,6 +455,7 @@ namespace FacebookSharp.Extensions
         /// </returns>
         /// <remarks>
         /// You might want to checkout http://frugalcoder.us/post/2010/01/07/EcmaScript-5s-Date-Extensions.aspx
+        /// and http://webreflection.blogspot.com/2009/07/ecmascript-iso-date-for-every-browser.html
         /// for Javascript ISO-8601 dates.
         /// </remarks>
         public static string ToIso8601FormattedDateTime(this DateTime dateTime)
@@ -473,6 +474,7 @@ namespace FacebookSharp.Extensions
         /// </returns>
         /// <remarks>
         /// You might want to checkout http://frugalcoder.us/post/2010/01/07/EcmaScript-5s-Date-Extensions.aspx
+        /// and http://webreflection.blogspot.com/2009/07/ecmascript-iso-date-for-every-browser.html
         /// for Javascript ISO-8601 dates.
         /// </remarks>
         public static DateTime FromIso8601FormattedDateTime(this string iso8601DateTime)
@@ -485,19 +487,19 @@ namespace FacebookSharp.Extensions
         /// </summary>
         /// <param name="date">Date Time.</param>
         /// <returns>Returns Unix Timestamp.</returns>
-        public static long SecondsSinceEpoch(this DateTime date)
+        public static double ToUnixTimestamp(this DateTime date)
         {
-            return FacebookUtils.Date.SecondsSinceEpoch(date);
+            return FacebookUtils.Date.ToUnixTimestamp(date);
         }
 
         /// <summary>
         /// Get <see cref="DateTime"/> from the specified UnixTimestamp.
         /// </summary>
-        /// <param name="secondsSinceEpoch"></param>
+        /// <param name="timestamp"></param>
         /// <returns>Returns <see cref="DateTime"/>.</returns>
-        public static DateTime EpochToDate(this long secondsSinceEpoch)
+        public static DateTime FromUnixTimestamp(this long timestamp)
         {
-            return FacebookUtils.Date.EpochToDate(secondsSinceEpoch);
+            return FacebookUtils.Date.FromUnixTimestamp(timestamp);
         }
     }
 }

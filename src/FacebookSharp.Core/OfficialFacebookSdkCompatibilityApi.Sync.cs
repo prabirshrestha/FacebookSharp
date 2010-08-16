@@ -93,7 +93,7 @@ namespace FacebookSharp
 
             var request = new RestRequest(graphPath, Method.DELETE);
 
-            var response = Execute(request, true);
+            var response = Execute(request, true, Settings.UserAgent);
 
             if (response.ResponseStatus == ResponseStatus.Completed)
             {
@@ -139,7 +139,7 @@ namespace FacebookSharp
                     request.AddParameter(keyValuePair.Key, keyValuePair.Value);
             }
 
-            var response = Execute(request, true);
+            var response = Execute(request, true, Settings.UserAgent);
 
             if (response.ResponseStatus == ResponseStatus.Completed)
             {
@@ -240,7 +240,7 @@ namespace FacebookSharp
 
             var request = new RestRequest(graphPath, Method.DELETE);
 
-            var response = Execute(request, true);
+            var response = Execute(request, true, Settings.UserAgent);
 
             if (response.ResponseStatus == ResponseStatus.Completed)
             {
@@ -287,7 +287,7 @@ namespace FacebookSharp
                     request.AddParameter(keyValuePair.Key, keyValuePair.Value);
             }
 
-            var response = Execute(request, true);
+            var response = Execute(request, true, Settings.UserAgent);
 
             if (response.ResponseStatus == ResponseStatus.Completed)
             {
@@ -339,7 +339,7 @@ namespace FacebookSharp
                     request.AddParameter(keyValuePair.Key, keyValuePair.Value);
             }
 
-            var response = Execute(request, addAccessToken);
+            var response = Execute(request, addAccessToken, Settings.UserAgent);
 
             if (response.ResponseStatus == ResponseStatus.Completed)
             {
@@ -387,7 +387,7 @@ namespace FacebookSharp
                     request.AddParameter(keyValuePair.Key, keyValuePair.Value);
             }
 
-            var response = Execute(request, addAccessToken);
+            var response = Execute(request, addAccessToken, Settings.UserAgent);
 
             if (response.ResponseStatus == ResponseStatus.Completed)
             {

@@ -17,7 +17,7 @@ namespace FacebookSharp
             // ugly hack :-(
         }
 
-        public FacebookAuthenticationResult(string accessToken, int expiresIn, string errorReasonText)
+        public FacebookAuthenticationResult(string accessToken, long expiresIn, string errorReasonText)
         {
             AccessToken = accessToken;
             ExpiresIn = expiresIn;
@@ -30,7 +30,7 @@ namespace FacebookSharp
             if (data.ContainsKey("access_token"))
                 AccessToken = data["access_token"];
             if (data.ContainsKey("expires_in"))
-                ExpiresIn = Convert.ToInt32(data["expires_in"]);
+                ExpiresIn = Convert.ToInt64(data["expires_in"]);
             if (data.ContainsKey("user_id"))
                 UserId = data["user_id"];
             if (data.ContainsKey("error_reason"))
@@ -42,7 +42,7 @@ namespace FacebookSharp
             if (data.ContainsKey("oauth_token"))
                 AccessToken = data["oauth_token"].ToString();
             if (data.ContainsKey("expires"))
-                ExpiresIn = Convert.ToInt32(data["expires"]);
+                ExpiresIn = Convert.ToInt64(data["expires"]);
             if (data.ContainsKey("user_id"))
                 UserId = data["user_id"].ToString();
             if (data.ContainsKey("error_reason"))
@@ -50,7 +50,7 @@ namespace FacebookSharp
         }
 
         public string AccessToken { get; private set; }
-        public int ExpiresIn { get; private set; }
+        public long ExpiresIn { get; private set; }
         public string ErrorReasonText { get; private set; }
         public string UserId { get; private set; }
 
@@ -66,6 +66,7 @@ namespace FacebookSharp
         }
 
 #if !SILVERLIGHT
+
         public static FacebookAuthenticationResult Parse(string url)
         {
             return Parse(url, null);
@@ -135,7 +136,7 @@ namespace FacebookSharp
                     if (facebookSettings == null)
                         throw new ArgumentNullException("facebookSettings");
 
-                    int expiresIn;
+                    long expiresIn;
                     string accessToken = Facebook.ExchangeAccessTokenForCode(paramters["code"],
                                                                       facebookSettings.ApplicationKey,
                                                                       facebookSettings.ApplicationSecret,
@@ -145,7 +146,8 @@ namespace FacebookSharp
                     return new FacebookAuthenticationResult(accessToken, expiresIn, null);
                 }
 
-                return null;
+                // if its parse error
+                return new FacebookAuthenticationResult(string.Empty, 0, string.Empty);
             }
         }
 #endif
