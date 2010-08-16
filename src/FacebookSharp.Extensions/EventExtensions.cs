@@ -46,5 +46,35 @@ namespace FacebookSharp.Extensions
         {
             return facebook.GetEvent(eventId, null);
         }
+
+        // note: there's a problem with facebook graph api, so till then will just comment this.
+        ///// <summary>
+        ///// Creates a new event.
+        ///// </summary>
+        ///// <param name="facebook">
+        ///// The facebook.
+        ///// </param>
+        ///// <param name="event">
+        ///// The event.
+        ///// </param>
+        ///// <returns>
+        ///// </returns>
+        //public static string CreateEvent(this Facebook facebook, Event @event)
+        //{
+        //    return facebook.CreateEvent(@event, null);
+        //}
+
+        //public static string CreateEvent(this Facebook facebook, Event @event, IDictionary<string, string> parameters)
+        //{
+        //    var p = parameters ?? new Dictionary<string, string>();
+
+        //    p.Add("name", @event.Name);
+        //    p.Add("location", @event.Location);
+        //    p.Add("start_time", @event.StartTime);
+        //    p.Add("end_time", @event.EndTime);
+
+        //    var result = facebook.Post("/events", p);
+        //    return FacebookUtils.FromJson(result)["id"].ToString();
+        //}
     }
 }
