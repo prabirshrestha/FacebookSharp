@@ -64,6 +64,18 @@ namespace FacebookSharp.Samples.WinForms
             // example for deleting
             //string resultDelete = fb.Delete("/id");
             //MessageBox.Show(resultDelete);
+
+            // you can also use Parameter Extensions
+            // (make sure you add -> using FacebookSharp.Extensions; )
+            // https://graph.facebook.com/?fields=id,picture&ids=123741737666932,100001241534829&oauth_token=your_oauth_token.
+            // var result = fb.Get(string.Empty,
+            //                    new Dictionary<string, string>()
+            //                        .SelectFields(new[] { "picture" })
+            //                        .SelectIds(new[] { "123741737666932", "100001241534829" })
+            //                        .SelectField("id"));
+            // You can also do things like .Offset(2).LimitTo(3) and much more.
+            // checkout ParameterExtensions.cs file
+
         }
     }
 }

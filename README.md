@@ -19,7 +19,7 @@ For more easy access FacebookSharp.Extensions has also been created.
 
 	using FacebookSharp.Extensions;
 	string profilePictureUrl = facebook.GetMyProfilePictureUrl();
-	facebook.PutComment("id","some comment message");
+	facebook.PostComment("id","some comment message");
 	facebook.DeleteObject("id");
 	facebook.PutLike("id");
 	facebook.PostToWall("message",null);
@@ -161,6 +161,20 @@ p.Add("offset",5");
 
 Instead of doing that there are extensions methods which is in FacebookSharp.Extensions namespace. So now you will just need to call them.
 var p = new Dictionary<string,string>().LimitTo(10).Offset(5);
+
+Facebook# also contains more selections as described http://developers.facebook.com/docs/api#selection
+
+In order to make a request to facebok such as https://graph.facebook.com/?fields=id,picture&ids=123741737666932,100001241534829&oauth_token=your_oauth_token. You could easily do so using FacebookSharp.Extensions.
+
+var result = fb.Get(
+					string.Empty,
+                    new Dictionary<string, string>()
+						.SelectFields(new[] { "picture" })
+						.SelectIds(new[] { "123741737666932", "100001241534829" })
+						.SelectField("id"));
+
+You can either use the array by calling SelectFields or SelectIds or can pass single value using the SelectField or SelectId. Facebook# is smart enough to append if the fields already exists.
+
 
 #### Date and Time Helpers
 

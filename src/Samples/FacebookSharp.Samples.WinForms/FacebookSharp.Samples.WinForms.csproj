@@ -81,6 +81,10 @@
       <Project>{F80CA490-7E13-417A-99D8-63A557BF7D38}</Project>
       <Name>FacebookSharp.Core %28DotNet4\FacebookSharp.Core%29</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\DotNet4\FacebookSharp.Extensions\FacebookSharp.Extensions.csproj">
+      <Project>{CE43F528-C493-4676-B4E2-869C2349577B}</Project>
+      <Name>FacebookSharp.Extensions %28DotNet4\FacebookSharp.Extensions%29</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\DotNet4\FacebookSharp.Winforms\FacebookSharp.Winforms.csproj">
       <Project>{F171C7E2-EE78-45B5-9571-29379CBBB7D5}</Project>
       <Name>FacebookSharp.Winforms %28DotNet4\FacebookSharp.Winforms%29</Name>
