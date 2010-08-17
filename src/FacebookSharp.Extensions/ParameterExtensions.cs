@@ -60,36 +60,7 @@ namespace FacebookSharp.Extensions
         /// </returns>
         public static IDictionary<string, string> SelectFields(this IDictionary<string, string> parameters, string[] fieldNames)
         {
-            if (fieldNames == null || fieldNames.Length == 0) // don't do anything
-                return parameters;
-
-            if (parameters == null)
-                parameters = new Dictionary<string, string>();
-
-            StringBuilder oldFields;
-
-            if (parameters.ContainsKey("fields"))
-            {
-                oldFields = new StringBuilder(parameters["fields"]);
-                parameters.Remove("fields");
-            }
-            else
-                oldFields = new StringBuilder();
-
-            if (oldFields.Length > 0)
-                oldFields.Append(',');
-
-            foreach (var field in fieldNames)
-            {
-                oldFields.Append(field);
-                oldFields.Append(',');
-            }
-
-            oldFields.Remove(oldFields.Length - 1, 1); // remove the last comma
-
-            parameters.Add("fields", oldFields.ToString());
-
-            return parameters;
+            return parameters.Select("fields", fieldNames);
         }
 
         /// <summary>
@@ -101,7 +72,41 @@ namespace FacebookSharp.Extensions
         /// </returns>
         public static IDictionary<string, string> SelectField(this IDictionary<string, string> parameters, string fieldName)
         {
-            return parameters.SelectFields(new[] { fieldName });
+            return parameters.Select("fields", new[] { fieldName });
+        }
+
+        private static IDictionary<string, string> Select(this IDictionary<string, string> parameters, string key, string[] values)
+        {
+            if (values == null || values.Length == 0) // don't do anything
+                return parameters;
+
+            if (parameters == null)
+                parameters = new Dictionary<string, string>();
+
+            StringBuilder oldValues;
+
+            if (parameters.ContainsKey(key))
+            {
+                oldValues = new StringBuilder(parameters[key]);
+                parameters.Remove(key);
+            }
+            else
+                oldValues = new StringBuilder();
+
+            if (oldValues.Length > 0)
+                oldValues.Append(',');
+
+            foreach (var field in values)
+            {
+                oldValues.Append(field);
+                oldValues.Append(',');
+            }
+
+            oldValues.Remove(oldValues.Length - 1, 1); // remove the last comma
+
+            parameters.Add(key, oldValues.ToString());
+
+            return parameters;
         }
     }
 }
