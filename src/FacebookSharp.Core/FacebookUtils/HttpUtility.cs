@@ -2,14 +2,7 @@ namespace FacebookSharp
 {
     using System;
     using System.Collections.Generic;
-    using System.Text;
-
-#if !SILVERLIGHT
-    using RestSharp.Contrib;
-#endif
-#if SILVERLIGHT
-    using System.Windows.Browser;
-#endif
+    using RestSharp.Extensions;
 
     public static partial class FacebookUtils
     {
@@ -17,12 +10,12 @@ namespace FacebookSharp
 
         public static string UrlDecode(string str)
         {
-            return HttpUtility.UrlDecode(str);
+            return str.UrlDecode();
         }
 
         public static string UrlEncode(string str)
         {
-            return HttpUtility.UrlEncode(str);
+            return str.UrlEncode();
         }
 
         #endregion
@@ -31,18 +24,18 @@ namespace FacebookSharp
 
         public static string HtmlDecode(string s)
         {
-            return HttpUtility.HtmlDecode(s);
+            return s.HtmlDecode();
         }
 
         public static string HtmlEncode(string s)
         {
-            return HttpUtility.HtmlEncode(s);
+            return s.HtmlEncode();
         }
 
         #endregion
 
         #region FacebookSharp Helper methods for parsing QueryString
-        
+
         /// <summary>
         /// Parse a URL query and fragment parameters into a key-value bundle.
         /// </summary>
