@@ -52,7 +52,7 @@ namespace FacebookSharp.Extensions
         }
 
         /// <summary>
-        /// Add's fields parameter, if fields already exisits appends it.
+        /// Add fields parameter, if fields already exisits appends it.
         /// </summary>
         /// <param name="parameters">The parameters.</param>
         /// <param name="fieldNames">The field names.</param>
@@ -64,7 +64,7 @@ namespace FacebookSharp.Extensions
         }
 
         /// <summary>
-        /// Add's fields parameter, if fields already exisits appends it.
+        /// Add fields parameter, if fields already exisits appends it.
         /// </summary>
         /// <param name="parameters">The parameters.</param>
         /// <param name="fieldName">The field name.</param>
@@ -73,6 +73,38 @@ namespace FacebookSharp.Extensions
         public static IDictionary<string, string> SelectField(this IDictionary<string, string> parameters, string fieldName)
         {
             return parameters.Select("fields", new[] { fieldName });
+        }
+
+        /// <summary>
+        /// Add ids parameters, if ids already exists appends it.
+        /// </summary>
+        /// <param name="parameters">
+        /// The parameters.
+        /// </param>
+        /// <param name="ids">
+        /// The ids.
+        /// </param>
+        /// <returns>
+        /// </returns>
+        public static IDictionary<string, string> SelectIds(this IDictionary<string, string> parameters, string[] ids)
+        {
+            return parameters.Select("ids", ids);
+        }
+
+        /// <summary>
+        /// Add ids parameters, if ids already exists appends it.
+        /// </summary>
+        /// <param name="parameters">
+        /// The parameters.
+        /// </param>
+        /// <param name="id">
+        /// The id.
+        /// </param>
+        /// <returns>
+        /// </returns>
+        public static IDictionary<string, string> SelectId(this IDictionary<string, string> parameters, string id)
+        {
+            return parameters.Select("ids", new[] { id });
         }
 
         private static IDictionary<string, string> Select(this IDictionary<string, string> parameters, string key, string[] values)
