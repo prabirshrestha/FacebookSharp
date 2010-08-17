@@ -17,6 +17,8 @@ namespace FacebookSharp.Extensions
         /// </remarks>
         public static IDictionary<string, string> LimitTo(this IDictionary<string, string> parameters, int limit)
         {
+            if (parameters == null)
+                parameters = new Dictionary<string, string>();
             parameters.Add("limit", limit.ToString());
             return parameters;
         }
@@ -34,12 +36,16 @@ namespace FacebookSharp.Extensions
         /// </remarks>
         public static IDictionary<string, string> Offset(this IDictionary<string, string> parameters, int offset)
         {
+            if (parameters == null)
+                parameters = new Dictionary<string, string>();
             parameters.Add("offset", offset.ToString());
             return parameters;
         }
 
         public static IDictionary<string, string> Until(this IDictionary<string, string> parameters, string until)
         {
+            if (parameters == null)
+                parameters = new Dictionary<string, string>();
             parameters.Add("until", until);
             return parameters;
         }
