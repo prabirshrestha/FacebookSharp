@@ -60,8 +60,11 @@ namespace FacebookSharp.Samples.CanvasIFrameApplication.Controllers
                         Session["FB_AccessToken"] = far.AccessToken;
                         Session["FB_AccessExpires"] = far.ExpiresIn;
                     }
-                    settings.AccessToken = (string)Session["FB_AccessToken"];
-                    settings.AccessExpires = (long)Session["FB_AccessExpires"];
+                    if (Session["FB_AccessToken"] != null)
+                    {
+                        settings.AccessToken = (string)Session["FB_AccessToken"];
+                        settings.AccessExpires = (long)Session["FB_AccessExpires"];
+                    }
 
                     _facebookContext = new Facebook(settings);
                 }
