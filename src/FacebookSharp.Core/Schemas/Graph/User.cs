@@ -59,7 +59,7 @@ namespace FacebookSharp.Schemas.Graph
         public string UpdatedTime { get; set; }
 
         [DataMember(Name = "hometown")]
-        public string Hometown { get; set; }
+        public HomeTownLocation Hometown { get; set; }
 
         [DataMember(Name = "interested_in")]
         public List<string> InterestedIn { get; set; }
