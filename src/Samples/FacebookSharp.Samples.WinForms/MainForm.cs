@@ -47,15 +47,33 @@ namespace FacebookSharp.Samples.WinForms
         {
             Facebook fb = new Facebook(txtAccessToken.Text);
 
-            fb.GetAsync("/me", null, result =>
-                                         {
-                                             if (result.IsSuccessful)
-                                                 MessageBox.Show(result.Response);
-                                             else
-                                             {
-                                                 MessageBox.Show("Error: " + Environment.NewLine + result.Response);
-                                             }
-                                         });
+            // using async method
+            fb.GetAsync("/me", null,
+                        result =>
+                            {
+                                // incase you are using async,
+                                // always check if it was successful.
+                                if (result.IsSuccessful)
+                                {
+                                    // this prints out the raw json
+                                    MessageBox.Show(result.Response);
+
+                                    // this mite be preferable - the generic version of the result
+                                    var user = result.GetResponseAs<User>();
+                                    MessageBox.Show("Hi " + user.Name);
+                                }
+                                else
+                                {
+                                    // exception is stored in result.Exception
+                                    // u can extract the message using result.Exception.Message
+                                    // or u can get raw facebook json exception using result.Response.
+                                    MessageBox.Show("Error: " + Environment.NewLine + result.Exception.Message);
+                                }
+                            });
+
+            // you can also use synchronous version like below
+            // Methods not containing Async are treated as synchronous.
+
             // you can either use generic version or non generic version
             //var user = fb.Get<User>("/me");
             //MessageBox.Show("Hi " + user.Name);
