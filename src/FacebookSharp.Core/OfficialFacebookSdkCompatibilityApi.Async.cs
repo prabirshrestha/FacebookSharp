@@ -99,34 +99,7 @@ namespace FacebookSharp
         /// </remarks>
         public void GetAsync(string graphPath, IDictionary<string, string> parameters, bool addAccessToken, Action<FacebookAsyncResult> callback)
         {
-            var request = new RestRequest(graphPath, Method.GET);
-
-            if (parameters != null)
-            {
-                foreach (var keyValuePair in parameters)
-                    request.AddParameter(keyValuePair.Key, keyValuePair.Value);
-            }
-
-            ExecuteAsync(
-                request,
-                addAccessToken,
-                Settings.UserAgent,
-                response =>
-                {
-                    Exception exception;
-
-                    if (response.ResponseStatus == ResponseStatus.Completed)
-                    {
-                        exception = (FacebookException)response.Content;
-                    }
-                    else
-                    {
-                        exception = new FacebookRequestException(response);
-                    }
-
-                    callback(new FacebookAsyncResult(response.Content, exception));
-                });
-
+            ExecuteAsync(Method.GET, graphPath, parameters, addAccessToken, callback);
         }
 
         #endregion
