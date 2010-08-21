@@ -153,7 +153,7 @@ namespace FacebookSharp.Extensions
         /// <param name="facebook"></param>
         /// <param name="message">The message to put on the wall.</param>
         /// <param name="parameters">Optional parameters for the message.</param>
-        /// <returns>Result of the operation.</returns>
+        /// <returns>Returns ID of the new post.</returns>
         /// <remarks>
         /// Default to writing to the authenticated user's wall if no
         /// profile_id is specified.
@@ -169,9 +169,7 @@ namespace FacebookSharp.Extensions
         /// </remarks>
         public static string PostToWall(this Facebook facebook, string message, IDictionary<string, string> parameters)
         {
-            if (parameters != null)
-                parameters.Add("message", "message");
-            return facebook.PutObject("/me", "feed", parameters);
+            return facebook.PostToWall(message, parameters, "me");
         }
 
         [Obsolete("This method is marked for deletion in future releases. Use PostToWall.")]
@@ -200,14 +198,21 @@ namespace FacebookSharp.Extensions
         ///      "caption": "{*actor*} posted a new review",
         ///      "description": "This is a longer description of the attachment",
         ///      "picture": "http://www.example.com/thumbnail.jpg"}
+        /// 
+        /// Incase profileId is null, it will set to me
         /// </remarks>
         public static string PostToWall(this Facebook facebook, string message, IDictionary<string, string> parameters,
                                         string profileId)
         {
             if (parameters == null)
                 parameters = new Dictionary<string, string>();
+
             parameters.Add("message", message);
-            return facebook.PutObject(profileId, "feed", parameters);
+
+            var result = facebook.PutObject(profileId ?? "me", "feed", parameters);
+
+            var jsonObj = FacebookUtils.FromJson(result);
+            return jsonObj["id"].ToString();
         }
 
         [Obsolete("This method is marked for deletion in future releases. Use PostToWall.")]
