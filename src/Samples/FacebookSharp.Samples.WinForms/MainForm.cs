@@ -48,28 +48,28 @@ namespace FacebookSharp.Samples.WinForms
             Facebook fb = new Facebook(txtAccessToken.Text);
 
             // using async method
-            fb.GetAsync("/me", null,
+            fb.GetAsync("/me",
                         result =>
+                        {
+                            // incase you are using async,
+                            // always check if it was successful.
+                            if (result.IsSuccessful)
                             {
-                                // incase you are using async,
-                                // always check if it was successful.
-                                if (result.IsSuccessful)
-                                {
-                                    // this prints out the raw json
-                                    MessageBox.Show(result.RawResponse);
+                                // this prints out the raw json
+                                MessageBox.Show(result.RawResponse);
 
-                                    // this mite be preferable - the generic version of the result
-                                    var user = result.GetResponseAs<User>();
-                                    MessageBox.Show("Hi " + user.Name);
-                                }
-                                else
-                                {
-                                    // exception is stored in result.Exception
-                                    // u can extract the message using result.Exception.Message
-                                    // or u can get raw facebook json exception using result.Response.
-                                    MessageBox.Show("Error: " + Environment.NewLine + result.Exception.Message);
-                                }
-                            });
+                                // this mite be preferable - the generic version of the result
+                                var user = result.GetResponseAs<User>();
+                                MessageBox.Show("Hi " + user.Name);
+                            }
+                            else
+                            {
+                                // exception is stored in result.Exception
+                                // u can extract the message using result.Exception.Message
+                                // or u can get raw facebook json exception using result.Response.
+                                MessageBox.Show("Error: " + Environment.NewLine + result.Exception.Message);
+                            }
+                        });
 
             // you can also use synchronous version like below
             // Methods not containing Async are treated as synchronous.

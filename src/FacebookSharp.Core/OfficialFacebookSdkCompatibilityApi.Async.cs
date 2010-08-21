@@ -12,6 +12,32 @@ namespace FacebookSharp
         // the only major difference is that it returns string rather than JSONObject and is async.
 
         /// <summary>
+        /// Make an asynchronous request to the Facebook Graph API.
+        /// </summary>
+        /// <param name="graphPath">
+        /// Path to the resource in the Facebook graph.
+        /// </param>
+        /// <param name="callback">
+        /// The callback.
+        /// </param>
+        /// <remarks>
+        /// See http://developers.facebook.com/docs/api
+        /// 
+        /// Note that this method is asynchronous.
+        /// This method will not block waiting for a network reponse.
+        /// 
+        /// To fetch data about the currently logged authenticated user,
+        /// provide "/me", which will fetch http://graph.facebook.com/me
+        /// 
+        /// To fetch data about the currently logged authenticated user,
+        /// provide "/me", which will fetch http://graph.facebook.com/me
+        /// </remarks>
+        public void GetAsync(string graphPath, Action<FacebookAsyncResult> callback)
+        {
+            GetAsync(graphPath, null, callback);
+        }
+
+        /// <summary>
         /// Make an asynchronous request to the Facebook Graph API with the given string parameters.
         /// </summary>
         /// <param name="graphPath">
