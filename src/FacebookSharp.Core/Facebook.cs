@@ -205,7 +205,7 @@ namespace FacebookSharp
             foreach (KeyValuePair<string, string> p in parameters)
             {
                 if (allowedParams.Contains(p.Key))
-                    paramList.Add(p.Key + "=" + p.Value);
+                    paramList.Add(p.Key + "=" + FacebookUtils.UrlEncode(p.Value));
             }
 
             if (extendedPermissions != null && extendedPermissions.Length > 0)
@@ -214,6 +214,65 @@ namespace FacebookSharp
             loginUrl.Append(String.Join("&", paramList.ToArray()));
 
             return loginUrl.ToString();
+        }
+		
+		/// <summary>
+        /// Returns the url to logout of Facebook.
+        /// </summary>
+        /// <param name="parameters"></param>
+        /// <returns></returns>
+        public static string GenerateFacebookLogoutUrl(IDictionary<string, string> parameters)
+        {
+            // todo: make these static somewhere else... (maybe setup defaults somewhere too)
+            List<string> allowedParams = new List<string>();
+            allowedParams.Add("next");
+            allowedParams.Add("access_token");
+            
+            StringBuilder logoutUrl = new StringBuilder();
+            logoutUrl.Append("http://www.facebook.com/logout.php?");
+            List<string> paramList = new List<string>();
+            
+            // todo: encode parameter values
+            foreach (KeyValuePair<string, string> p in parameters)
+            {
+                if (allowedParams.Contains(p.Key))
+                    paramList.Add(p.Key + "=" + FacebookUtils.UrlEncode(p.Value));
+            }
+
+            logoutUrl.Append(String.Join("&",paramList.ToArray()));
+
+            return logoutUrl.ToString();
+        }
+
+        /// <summary>
+        /// Returns the url to check the login status of Facebook.
+        /// </summary>
+        /// <param name="parameters"></param>
+        /// <returns></returns>
+        public static string GenerateFacebookLoginStatusUrl(IDictionary<string, string> parameters)
+        {
+            // todo: make these static somewhere else... (maybe setup defaults somewhere too)
+            List<string> allowedParams = new List<string>();
+            allowedParams.Add("api_key");
+            allowedParams.Add("ok_session");
+            allowedParams.Add("no_session");
+            allowedParams.Add("no_user");
+            allowedParams.Add("session_version"); // typically '3'
+
+            StringBuilder statusUrl = new StringBuilder();
+            statusUrl.Append("http://www.facebook.com/extern/login_status.php?");
+            List<string> paramList = new List<string>();
+            
+            // todo: encode parameter values
+            foreach (KeyValuePair<string, string> p in parameters)
+            {
+                if (allowedParams.Contains(p.Key))
+                    paramList.Add(p.Key + "=" + FacebookUtils.UrlEncode(p.Value));
+            }
+
+            statusUrl.Append(String.Join("&",paramList.ToArray()));
+
+            return statusUrl.ToString();
         }
     }
 }

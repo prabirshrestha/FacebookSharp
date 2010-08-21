@@ -20,7 +20,7 @@ namespace FacebookSharp.Samples.Website
                     throw new ApplicationException("Please specify FacebookSharp.AppSecret in web.config AppSettings.");
                 if (ConfigurationManager.AppSettings["FacebookSharp.PostAuthorizeUrl"] == "PostAuthorizeUrl")
                     throw new ApplicationException("Please specify FacebookSharp.PostAuthorizeUrl in web.config AppSettings.");
-                if (_facebookContext == null || !_facebookContext.IsSessionValid())
+                if (_facebookContext == null)
                 {
                     FacebookSettings settings = new FacebookSettings();
                     settings.PostAuthorizeUrl = ConfigurationManager.AppSettings["FacebookSharp.PostAuthorizeUrl"];

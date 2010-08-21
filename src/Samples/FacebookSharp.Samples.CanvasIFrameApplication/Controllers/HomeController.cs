@@ -46,7 +46,7 @@ namespace FacebookSharp.Samples.CanvasIFrameApplication.Controllers
                     throw new ApplicationException("Please specify FacebookSharp.AppSecret in web.config AppSettings.");
                 if (ConfigurationManager.AppSettings["FacebookSharp.CanvasUrl"] == "CanvasUrl")
                     throw new ApplicationException("Please specify FacebookSharp.CanvasUrl in web.config AppSettings.");
-                if (_facebookContext == null || !_facebookContext.IsSessionValid())
+                if (_facebookContext == null)
                 {
                     FacebookSettings settings = new FacebookSettings();
                     settings.CanvasUrl = ConfigurationManager.AppSettings["FacebookSharp.CanvasUrl"];
@@ -56,8 +56,14 @@ namespace FacebookSharp.Samples.CanvasIFrameApplication.Controllers
                     var far = FacebookAuthenticationResult.Parse(Request.Url.ToString(), settings);
                     if (far.IsSuccess)
                     {
-                        settings.AccessExpires = far.ExpiresIn;
-                        settings.AccessToken = far.AccessToken;
+                        // Needs to persist across pages
+                        Session["FB_AccessToken"] = far.AccessToken;
+                        Session["FB_AccessExpires"] = far.ExpiresIn;
+                    }
+                    if (Session["FB_AccessToken"] != null)
+                    {
+                        settings.AccessToken = (string)Session["FB_AccessToken"];
+                        settings.AccessExpires = (long)Session["FB_AccessExpires"];
                     }
 
                     _facebookContext = new Facebook(settings);
