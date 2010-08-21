@@ -56,7 +56,7 @@ namespace FacebookSharp.Samples.WinForms
                                 if (result.IsSuccessful)
                                 {
                                     // this prints out the raw json
-                                    MessageBox.Show(result.Response);
+                                    MessageBox.Show(result.RawResponse);
 
                                     // this mite be preferable - the generic version of the result
                                     var user = result.GetResponseAs<User>();

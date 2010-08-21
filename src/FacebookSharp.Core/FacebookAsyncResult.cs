@@ -7,16 +7,16 @@ namespace FacebookSharp
         public FacebookAsyncResult(string result, Exception exception)
         {
             Exception = exception;
-            Response = result;
+            RawResponse = result;
         }
 
         public Exception Exception { get; private set; }
 
-        public string Response { get; private set; }
+        public string RawResponse { get; private set; }
 
         public T GetResponseAs<T>()
         {
-            return FacebookUtils.DeserializeObject<T>(Response);
+            return FacebookUtils.DeserializeObject<T>(RawResponse);
         }
 
         public bool IsSuccessful
