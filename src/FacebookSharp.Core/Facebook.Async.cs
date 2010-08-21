@@ -19,7 +19,8 @@ namespace FacebookSharp
                 request,
                 response =>
                 {
-                    callback(response);
+                    if (callback != null)
+                        callback(response);
                 });
         }
 
@@ -42,15 +43,12 @@ namespace FacebookSharp
                     Exception exception;
 
                     if (response.ResponseStatus == ResponseStatus.Completed)
-                    {
-                        exception = (FacebookException)response.Content;
-                    }
+                        exception = (FacebookException) response.Content;
                     else
-                    {
                         exception = new FacebookRequestException(response);
-                    }
 
-                    callback(new FacebookAsyncResult(response.Content, exception));
+                    if (callback != null)
+                        callback(new FacebookAsyncResult(response.Content, exception));
                 });
         }
     }
