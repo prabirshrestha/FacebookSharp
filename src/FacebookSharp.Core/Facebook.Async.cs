@@ -7,7 +7,7 @@ namespace FacebookSharp
 
     public partial class Facebook
     {
-        private void ExecuteAsync(RestRequest request, bool addAccessToken, string userAgent, Action<RestResponse> callback)
+        internal void ExecuteAsync(RestRequest request, bool addAccessToken, string userAgent, Action<RestResponse> callback)
         {
             var client = new RestClient(GraphBaseUrl);
             client.UserAgent = userAgent;
@@ -24,7 +24,7 @@ namespace FacebookSharp
                 });
         }
 
-        private void ExecuteAsync(Method httpMethod, string graphPath, IDictionary<string, string> parameters, bool addAccessToken, Action<FacebookAsyncResult> callback)
+        internal void ExecuteAsync(Method httpMethod, string graphPath, IDictionary<string, string> parameters, bool addAccessToken, Action<FacebookAsyncResult> callback)
         {
             var request = new RestRequest(graphPath, httpMethod);
 
