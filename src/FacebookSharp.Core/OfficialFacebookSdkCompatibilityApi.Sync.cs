@@ -78,33 +78,7 @@ namespace FacebookSharp
         /// </remarks>
         public string Delete(string graphPath)
         {
-            // temporary hack for restsharp delete method
-            // in the official facebook c# sdk it expects to add / in the path,
-            // but seems like in restsharp adds it automatically, 
-            // so inorder to stick with the official facebook c# sdk,
-            // we excpect the user to pass /, and remove it if it exsits.
-            // have to file this issue to restsharp to double check if that is actually the expected behavior.
-            // submitted it as an issue http://github.com/johnsheehan/RestSharp/issues#issue/44
-            // 
-            // **this issue has been fixed**
-            // 
-            // if (graphPath.StartsWith("/") && graphPath.Length > 1)
-            //    graphPath = graphPath.Substring(1);
-
-            var request = new RestRequest(graphPath, Method.DELETE);
-
-            var response = Execute(request, true, Settings.UserAgent);
-
-            if (response.ResponseStatus == ResponseStatus.Completed)
-            {
-                var fbException = (FacebookException)response.Content;
-                if (fbException != null)
-                    throw fbException;
-
-                return response.Content;
-            }
-
-            throw new FacebookRequestException(response);
+            return Execute(Method.DELETE, graphPath, null, true, Settings.UserAgent);
         }
 
         /// <summary>
@@ -131,26 +105,7 @@ namespace FacebookSharp
         /// </remarks>
         public string Post(string graphPath, IDictionary<string, string> parameters)
         {
-            var request = new RestRequest(graphPath, Method.POST);
-
-            if (parameters != null)
-            {
-                foreach (var keyValuePair in parameters)
-                    request.AddParameter(keyValuePair.Key, keyValuePair.Value);
-            }
-
-            var response = Execute(request, true, Settings.UserAgent);
-
-            if (response.ResponseStatus == ResponseStatus.Completed)
-            {
-                var fbException = (FacebookException)response.Content;
-                if (fbException != null)
-                    throw fbException;
-
-                return response.Content;
-            }
-
-            throw new FacebookRequestException(response);
+            return Execute(Method.POST, graphPath, parameters, true, Settings.UserAgent);
         }
 
         #endregion
@@ -227,31 +182,8 @@ namespace FacebookSharp
         public T Delete<T>(string graphPath)
             where T : new()
         {
-            // note: temporary hack for restsharp delete method
-            // in the official facebook c# sdk it expects to add / in the path,
-            // but seems like in restsharp adds it automatically, 
-            // so inorder to stick with the official facebook c# sdk,
-            // we excpect the user to pass /, and remove it if it exsits.
-            // have to file this issue to restsharp to double check if that is actually the expected behavior.
-            // submitted it as an issue http://github.com/johnsheehan/RestSharp/issues#issue/44
-
-            if (graphPath.StartsWith("/") && graphPath.Length > 1)
-                graphPath = graphPath.Substring(1);
-
-            var request = new RestRequest(graphPath, Method.DELETE);
-
-            var response = Execute(request, true, Settings.UserAgent);
-
-            if (response.ResponseStatus == ResponseStatus.Completed)
-            {
-                var fbException = (FacebookException)response.Content;
-                if (fbException != null)
-                    throw fbException;
-
-                return FacebookUtils.DeserializeObject<T>(response.Content);
-            }
-
-            throw new FacebookRequestException(response);
+            var response = Execute(Method.DELETE, graphPath, null, true, Settings.UserAgent);
+            return FacebookUtils.DeserializeObject<T>(response);
         }
 
         /// <summary>
@@ -279,26 +211,8 @@ namespace FacebookSharp
         public T Post<T>(string graphPath, IDictionary<string, string> parameters)
             where T : new()
         {
-            var request = new RestRequest(graphPath, Method.POST);
-
-            if (parameters != null)
-            {
-                foreach (var keyValuePair in parameters)
-                    request.AddParameter(keyValuePair.Key, keyValuePair.Value);
-            }
-
-            var response = Execute(request, true, Settings.UserAgent);
-
-            if (response.ResponseStatus == ResponseStatus.Completed)
-            {
-                var fbException = (FacebookException)response.Content;
-                if (fbException != null)
-                    throw fbException;
-
-                return FacebookUtils.DeserializeObject<T>(response.Content);
-            }
-
-            throw new FacebookRequestException(response);
+            var response = Execute(Method.POST, graphPath, parameters, true, Settings.UserAgent);
+            return FacebookUtils.DeserializeObject<T>(response);
         }
 
 
@@ -331,26 +245,7 @@ namespace FacebookSharp
         /// </remarks>
         public string Get(string graphPath, IDictionary<string, string> parameters, bool addAccessToken)
         {
-            var request = new RestRequest(graphPath, Method.GET);
-
-            if (parameters != null)
-            {
-                foreach (var keyValuePair in parameters)
-                    request.AddParameter(keyValuePair.Key, keyValuePair.Value);
-            }
-
-            var response = Execute(request, addAccessToken, Settings.UserAgent);
-
-            if (response.ResponseStatus == ResponseStatus.Completed)
-            {
-                var fbException = (FacebookException)response.Content;
-                if (fbException != null)
-                    throw fbException;
-
-                return response.Content;
-            }
-
-            throw new FacebookRequestException(response);
+            return Execute(Method.GET, graphPath, parameters, addAccessToken, Settings.UserAgent);
         }
 
         /// <summary>
@@ -379,25 +274,8 @@ namespace FacebookSharp
         public T Get<T>(string graphPath, IDictionary<string, string> parameters, bool addAccessToken)
             where T : new()
         {
-            var request = new RestRequest(graphPath, Method.GET);
-
-            if (parameters != null)
-            {
-                foreach (var keyValuePair in parameters)
-                    request.AddParameter(keyValuePair.Key, keyValuePair.Value);
-            }
-
-            var response = Execute(request, addAccessToken, Settings.UserAgent);
-
-            if (response.ResponseStatus == ResponseStatus.Completed)
-            {
-                var fbException = (FacebookException)response.Content;
-                if (fbException != null)
-                    throw fbException;
-                return FacebookUtils.DeserializeObject<T>(response.Content);
-            }
-
-            throw new FacebookRequestException(response);
+            var response = Execute(Method.GET, graphPath, parameters, addAccessToken, Settings.UserAgent);
+            return FacebookUtils.DeserializeObject<T>(response);
         }
 
         #endregion
