@@ -77,6 +77,13 @@ namespace FacebookSharp
             get { return _graphBaseUrl; }
         }
 
+        protected static string _apiBaseUrl = "https://api.facebook.com";
+
+        public static string ApiBaseUrl
+        {
+            get { return _apiBaseUrl; }
+        }
+
         #endregion
 
         /// <summary>
