@@ -12,6 +12,12 @@ namespace FacebookSharp
         {
             var client = new RestClient(GraphBaseUrl) { UserAgent = userAgent };
 
+            if (request.Method == Method.DELETE)
+            {
+                request.AddHeader("Content-Type", "application/x-www-form-urlencoded");
+                request.AddHeader("Content-Length", "0");
+            }
+
             if (addAccessToken && !string.IsNullOrEmpty(Settings.AccessToken)) // todo: check if acces_token already added.
                 client.Authenticator = new OAuth2UriQueryParameterAuthenticator(Settings.AccessToken);
 

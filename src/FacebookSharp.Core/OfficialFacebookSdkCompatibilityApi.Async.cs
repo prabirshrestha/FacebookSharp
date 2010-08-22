@@ -40,8 +40,12 @@ namespace FacebookSharp
         /// <summary>
         /// Makes an asynchronous request to the Facebook Graph API to delete a graph object.
         /// </summary>
-        /// <param name="graphPath">Path to the resource in the Facebook graph.</param>
-        /// <returns>Returns result.</returns>
+        /// <param name="graphPath">
+        /// Path to the resource in the Facebook graph.
+        /// </param>
+        /// <param name="callback">
+        /// The callback.
+        /// </param>
         /// <remarks>
         /// See http://developers.facebook.com/docs/api
         /// 
@@ -55,7 +59,35 @@ namespace FacebookSharp
         /// </remarks>
         public void DeleteAsync(string graphPath, Action<FacebookAsyncResult> callback)
         {
-            ExecuteAsync(Method.DELETE, graphPath, null, true, callback);
+            DeleteAsync(graphPath, null, callback);
+        }
+
+        /// <summary>
+        /// Makes an asynchronous request to the Facebook Graph API to delete a graph object.
+        /// </summary>
+        /// <param name="graphPath">
+        /// Path to the resource in the Facebook graph.
+        /// </param>
+        /// <param name="parameters">
+        /// key-value string parameters.
+        /// </param>
+        /// <param name="callback">
+        /// The callback.
+        /// </param>
+        /// <remarks>
+        /// See http://developers.facebook.com/docs/api
+        /// 
+        /// Note that this method is asynchronous.
+        /// This method will not block waiting for a network reponse.
+        /// 
+        /// To delete objects in the graph,
+        /// provide "/id", which will delete http://graph.facebook.com/id
+        /// 
+        /// You can delete a like by providing /POST_ID/likes (since likes don't have an ID).
+        /// </remarks>
+        public void DeleteAsync(string graphPath, IDictionary<string, string> parameters, Action<FacebookAsyncResult> callback)
+        {
+            ExecuteAsync(Method.DELETE, graphPath, parameters, true, callback);
         }
 
         /// <summary>

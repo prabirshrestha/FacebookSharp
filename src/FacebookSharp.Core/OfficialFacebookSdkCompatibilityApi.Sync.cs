@@ -62,8 +62,40 @@ namespace FacebookSharp
         /// <summary>
         /// Make a request to the Facebook Graph API to delete a graph object.
         /// </summary>
-        /// <param name="graphPath">Path to the resource in the Facebook graph.</param>
-        /// <returns>Returns result.</returns>
+        /// <param name="graphPath">
+        /// Path to the resource in the Facebook graph.
+        /// </param>
+        /// <param name="parameters">key-value string parameters.</param>
+        /// <returns>
+        /// Returns result.
+        /// </returns>
+        /// <remarks>
+        /// See http://developers.facebook.com/docs/api
+        /// 
+        /// Note that this method is synchronous.
+        /// This method blocks waiting for a network reponse,
+        /// so do not call it in a UI thread.
+        /// 
+        /// To delete objects in the graph,
+        /// provide "/id", which will delete http://graph.facebook.com/id
+        /// 
+        /// You can delete a like by providing /POST_ID/likes (since likes don't have an ID).
+        /// </remarks>
+        public string Delete(string graphPath, IDictionary<string, string> parameters)
+        {
+            return Execute(Method.DELETE, graphPath, parameters, true, Settings.UserAgent);
+        }
+
+
+        /// <summary>
+        /// Make a request to the Facebook Graph API to delete a graph object.
+        /// </summary>
+        /// <param name="graphPath">
+        /// Path to the resource in the Facebook graph.
+        /// </param>
+        /// <returns>
+        /// Returns result.
+        /// </returns>
         /// <remarks>
         /// See http://developers.facebook.com/docs/api
         /// 
@@ -78,7 +110,7 @@ namespace FacebookSharp
         /// </remarks>
         public string Delete(string graphPath)
         {
-            return Execute(Method.DELETE, graphPath, null, true, Settings.UserAgent);
+            return Delete(graphPath, null);
         }
 
         /// <summary>
