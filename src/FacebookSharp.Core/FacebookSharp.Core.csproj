@@ -19,7 +19,7 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>..\..\bin\DotNet35\Debug\</OutputPath>
-    <DefineConstants>TRACE;DEBUG;DOTNET_3_5</DefineConstants>
+    <DefineConstants>TRACE;DEBUG;FRAMEWORK DOTNET_3_5</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <DocumentationFile>..\..\bin\DotNet35\Debug\FacebookSharp.Core.XML</DocumentationFile>
@@ -62,6 +62,7 @@
     <Compile Include="Facebook.Sync.cs" />
     <Compile Include="FacebookAsyncResult.cs" />
     <Compile Include="FacebookAuthenticationResult.cs" />
+    <Compile Include="RestSharp.cs" />
     <Compile Include="FacebookSettings.cs" />
     <Compile Include="FacebookUtils\Expando.cs" />
     <Compile Include="FacebookUtils\ExceptionHelpers.cs" />

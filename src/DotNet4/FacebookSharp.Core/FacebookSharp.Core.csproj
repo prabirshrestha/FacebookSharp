@@ -19,7 +19,7 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>..\..\..\bin\DotNet4\Debug\</OutputPath>
-    <DefineConstants>TRACE;DEBUG</DefineConstants>
+    <DefineConstants>TRACE;DEBUG;FRAMEWORK</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <DocumentationFile>..\..\..\bin\DotNet4\Debug\FacebookSharp.Core.XML</DocumentationFile>
@@ -130,6 +130,9 @@
     </Compile>
     <Compile Include="..\..\FacebookSharp.Core\Properties\AssemblyInfo.cs">
       <Link>Properties\AssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\..\FacebookSharp.Core\RestSharp.cs">
+      <Link>RestSharp.cs</Link>
     </Compile>
     <Compile Include="..\..\FacebookSharp.Core\Schemas\extended_permissions.cs">
       <Link>Schemas\extended_permissions.cs</Link>
