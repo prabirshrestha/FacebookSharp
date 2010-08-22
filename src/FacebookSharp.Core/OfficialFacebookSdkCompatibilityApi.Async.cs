@@ -152,7 +152,9 @@ namespace FacebookSharp
         /// </remarks>
         public void GetAsync(string graphPath, IDictionary<string, string> parameters, bool addAccessToken, Action<FacebookAsyncResult> callback)
         {
-            ExecuteGraphApiAsync(Method.GET, graphPath, parameters, addAccessToken, callback);
+            GraphContext.ExecuteAsync(
+                new FacebookRestSharpMessage(this) { Resource = graphPath, Parameters = parameters, AddAccessToken = addAccessToken },
+                Method.GET, callback);
         }
 
         #endregion

@@ -277,7 +277,10 @@ namespace FacebookSharp
         /// </remarks>
         public string Get(string graphPath, IDictionary<string, string> parameters, bool addAccessToken)
         {
-            return ExecuteGraphApi(Method.GET, graphPath, parameters, addAccessToken, Settings.UserAgent);
+            return
+                GraphContext.Execute(
+                    new FacebookRestSharpMessage(this) { Resource = graphPath, Parameters = parameters, AddAccessToken = addAccessToken },
+                    Method.GET);
         }
 
         /// <summary>

@@ -6,40 +6,147 @@ namespace FacebookSharp
     using System.Net;
     using RestSharp;
 
+    internal class RestSharpContext<TMessage, TSyncResult, TAsyncResult>
+    {
+        private readonly Func<TMessage, RestRequest, RestClient> _prepareRestSharpClient;
+        private readonly Func<TMessage, Method, RestRequest> _prepareRestSharpRequest;
+        private readonly Func<TMessage, RestResponse, TSyncResult> _processSyncRestSharpResponse;
+        private readonly Func<TMessage, RestResponse, TAsyncResult> _processAsyncRestSharpResponse;
+
+        public RestSharpContext(
+            Func<TMessage, RestRequest, RestClient> prepareRestSharpClient,
+            Func<TMessage, Method, RestRequest> prepareRestSharpRequest,
+            Func<TMessage, RestResponse, TSyncResult> processSyncRestSharpResponse,
+            Func<TMessage, RestResponse, TAsyncResult> processAsyncRestSharpResponse)
+        {
+            _prepareRestSharpClient = prepareRestSharpClient;
+            _prepareRestSharpRequest = prepareRestSharpRequest;
+            _processSyncRestSharpResponse = processSyncRestSharpResponse;
+            _processAsyncRestSharpResponse = processAsyncRestSharpResponse;
+        }
+
+#if FRAMEWORK
+
+        #region Synchronous Helpers
+
+        public RestResponse Execute(TMessage data, RestRequest request)
+        {
+            var client = _prepareRestSharpClient(data, request);
+            return client.Execute(request);
+        }
+
+        public TSyncResult Execute(TMessage data, Method httpMethod)
+        {
+            var request = _prepareRestSharpRequest(data, httpMethod);
+
+            var response = Execute(data, request);
+
+            return _processSyncRestSharpResponse(data, response);
+        }
+
+        #endregion
+
+#endif
+
+        #region Asynchronous Helpers
+
+        public void ExecuteAsync(TMessage data, RestRequest request, Action<RestResponse> callback)
+        {
+            var client = _prepareRestSharpClient(data, request);
+
+            client.ExecuteAsync(
+                request,
+                response =>
+                {
+                    if (callback != null)
+                        callback(response);
+                });
+        }
+
+        public void ExecuteAsync(TMessage data, Method httpMethod, Action<TAsyncResult> callback)
+        {
+            var request = _prepareRestSharpRequest(data, httpMethod);
+
+            ExecuteAsync(
+                data,
+                request,
+                response =>
+                {
+                    var asyncResult = _processAsyncRestSharpResponse(data, response);
+                    if (callback != null)
+                        callback(asyncResult);
+                });
+        }
+
+        #endregion
+    }
+
     public partial class Facebook
     {
-        internal class FacebookRestSharpSettings
+        internal class FacebookRestSharpMessage
         {
-            private string _baseUrl;
-            public string BaseUrl
+            public FacebookRestSharpMessage(Facebook fb)
             {
-                get { return _baseUrl ?? (_baseUrl = GraphBaseUrl); }
-                set { _baseUrl = value; }
+                Facebook = fb;
+
+                BaseUrl = GraphBaseUrl;
+                AddAccessToken = true;
             }
 
-            public string UserAgent { get; set; }
-            public IAuthenticator Authenticator { get; set; }
+            public string Resource { get; set; }
+            public string BaseUrl { get; set; }
 
-            public FacebookSettings FacebookSettings { get; set; }
-
+            public Facebook Facebook { get; private set; }
             public bool AddAccessToken { get; set; }
             public IDictionary<string, string> Parameters { get; set; }
+
+            public OAuth2Authenticator GetAuthenticator()
+            {
+                if (!string.IsNullOrEmpty(Facebook.Settings.AccessToken))
+                    return new OAuth2UriQueryParameterAuthenticator(Facebook.Settings.AccessToken);
+
+                return null;
+            }
+        }
+
+        private static RestSharpContext<FacebookRestSharpMessage, string, FacebookAsyncResult> _graphContext;
+        internal static RestSharpContext<FacebookRestSharpMessage, string, FacebookAsyncResult> GraphContext
+        {
+            get
+            {
+                return _graphContext ??
+                       (_graphContext =
+                        new RestSharpContext<FacebookRestSharpMessage, string, FacebookAsyncResult>(
+                            PrepareRestSharpClient,
+                            PrepareRestSharpRequest,
+                            ProcessSyncRestSharpResponse,
+                            ProcessAsyncRestSharpResponse));
+            }
         }
 
         #region Helpers
 
-        private static RestRequest PrepareRestSharpRequest(Method httpMethod, FacebookRestSharpSettings restSharpSettings)
+        private static RestClient PrepareRestSharpClient(FacebookRestSharpMessage restSharpSettings, RestRequest request)
         {
-            var request = new RestRequest(restSharpSettings.BaseUrl, httpMethod);
+            var client = new RestClient(restSharpSettings.BaseUrl);
+
+            client.UserAgent = restSharpSettings.Facebook.Settings.UserAgent;
+
+            if (restSharpSettings.AddAccessToken)
+                client.Authenticator = restSharpSettings.GetAuthenticator();
+
+            return client;
+        }
+
+        private static RestRequest PrepareRestSharpRequest(FacebookRestSharpMessage restSharpSettings, Method httpMethod)
+        {
+            var request = new RestRequest(restSharpSettings.Resource, httpMethod);
 
             if (restSharpSettings.Parameters != null)
             {
                 foreach (var keyValuePair in restSharpSettings.Parameters)
                     request.AddParameter(keyValuePair.Key, keyValuePair.Value);
             }
-
-            if (restSharpSettings.AddAccessToken && !string.IsNullOrEmpty(restSharpSettings.FacebookSettings.AccessToken))
-                restSharpSettings.Authenticator = new OAuth2UriQueryParameterAuthenticator(restSharpSettings.FacebookSettings.AccessToken);
 
             if (httpMethod == Method.DELETE)
             {
@@ -50,17 +157,7 @@ namespace FacebookSharp
             return request;
         }
 
-        private static RestClient PrepareRestSharpClient(RestRequest request, FacebookRestSharpSettings restSharpSettings)
-        {
-            var client = new RestClient(restSharpSettings.BaseUrl);
-
-            client.UserAgent = restSharpSettings.UserAgent;
-            client.Authenticator = restSharpSettings.Authenticator;
-
-            return client;
-        }
-
-        private static string ProcessRestSharpResponse(RestResponse response, FacebookRestSharpSettings restSharpSettings)
+        private static string ProcessSyncRestSharpResponse(FacebookRestSharpMessage restSharpSettings, RestResponse response)
         {
             Exception exception;
             var result = ProcessRestSharpResponse(response, restSharpSettings, out exception);
@@ -71,7 +168,7 @@ namespace FacebookSharp
             return result;
         }
 
-        private static FacebookAsyncResult ProcessAsyncRestSharpResponse(RestResponse response, FacebookRestSharpSettings restSharpSettings)
+        private static FacebookAsyncResult ProcessAsyncRestSharpResponse(FacebookRestSharpMessage restSharpSettings, RestResponse response)
         {
             Exception exception;
             var result = ProcessRestSharpResponse(response, restSharpSettings, out exception);
@@ -79,7 +176,7 @@ namespace FacebookSharp
             return new FacebookAsyncResult(result, exception);
         }
 
-        private static string ProcessRestSharpResponse(RestResponse response, FacebookRestSharpSettings restSharpSettings, out Exception exception)
+        private static string ProcessRestSharpResponse(RestResponse response, FacebookRestSharpMessage restSharpSettings, out Exception exception)
         {
             string result = string.Empty;
 
@@ -94,68 +191,11 @@ namespace FacebookSharp
             }
             else
             {
+                // incase the net is not connected or some other exception
                 exception = new FacebookRequestException(response);
             }
 
             return result;
-        }
-
-
-        #endregion
-
-#if FRAMEWORK
-
-        #region Synchronous Helpers
-
-        internal static RestResponse Execute(RestRequest request, FacebookRestSharpSettings restSharpSettings)
-        {
-            var client = PrepareRestSharpClient(request, restSharpSettings);
-
-            return client.Execute(request);
-        }
-
-        internal static string Execute(Method httpMethod, FacebookRestSharpSettings restSharpSettings)
-        {
-            var request = PrepareRestSharpRequest(httpMethod, restSharpSettings);
-
-            var response = Execute(request, restSharpSettings);
-
-            return ProcessRestSharpResponse(response, restSharpSettings);
-        }
-
-        #endregion
-
-#endif
-
-        #region Asynchronous Helpers
-
-        internal static void ExecuteAsync(RestRequest request, FacebookRestSharpSettings restSharpSettings, Action<RestResponse> callback)
-        {
-            var client = PrepareRestSharpClient(request, restSharpSettings);
-
-            client.ExecuteAsync(
-                request,
-                response =>
-                {
-                    if (callback != null)
-                        callback(response);
-                });
-        }
-
-        internal static void ExecuteAsync(Method httpMethod, FacebookRestSharpSettings restSharpSettings, Action<FacebookAsyncResult> callback)
-        {
-            var request = PrepareRestSharpRequest(httpMethod, restSharpSettings);
-
-            ExecuteAsync(
-                request,
-                restSharpSettings,
-                response =>
-                {
-                    var asyncResult = ProcessAsyncRestSharpResponse(response, restSharpSettings);
-
-                    if (callback != null)
-                        callback(asyncResult);
-                });
         }
 
         #endregion
