@@ -83,7 +83,7 @@ namespace FacebookSharp
         /// </remarks>
         public string Delete(string graphPath, IDictionary<string, string> parameters)
         {
-            return Execute(Method.DELETE, graphPath, parameters, true, Settings.UserAgent);
+            return ExecuteGraphApi(Method.DELETE, graphPath, parameters, true, Settings.UserAgent);
         }
 
 
@@ -137,7 +137,7 @@ namespace FacebookSharp
         /// </remarks>
         public string Post(string graphPath, IDictionary<string, string> parameters)
         {
-            return Execute(Method.POST, graphPath, parameters, true, Settings.UserAgent);
+            return ExecuteGraphApi(Method.POST, graphPath, parameters, true, Settings.UserAgent);
         }
 
         #endregion
@@ -214,7 +214,7 @@ namespace FacebookSharp
         public T Delete<T>(string graphPath)
             where T : new()
         {
-            var response = Execute(Method.DELETE, graphPath, null, true, Settings.UserAgent);
+            var response = ExecuteGraphApi(Method.DELETE, graphPath, null, true, Settings.UserAgent);
             return FacebookUtils.DeserializeObject<T>(response);
         }
 
@@ -243,7 +243,7 @@ namespace FacebookSharp
         public T Post<T>(string graphPath, IDictionary<string, string> parameters)
             where T : new()
         {
-            var response = Execute(Method.POST, graphPath, parameters, true, Settings.UserAgent);
+            var response = ExecuteGraphApi(Method.POST, graphPath, parameters, true, Settings.UserAgent);
             return FacebookUtils.DeserializeObject<T>(response);
         }
 
@@ -277,7 +277,7 @@ namespace FacebookSharp
         /// </remarks>
         public string Get(string graphPath, IDictionary<string, string> parameters, bool addAccessToken)
         {
-            return Execute(Method.GET, graphPath, parameters, addAccessToken, Settings.UserAgent);
+            return ExecuteGraphApi(Method.GET, graphPath, parameters, addAccessToken, Settings.UserAgent);
         }
 
         /// <summary>
@@ -306,7 +306,7 @@ namespace FacebookSharp
         public T Get<T>(string graphPath, IDictionary<string, string> parameters, bool addAccessToken)
             where T : new()
         {
-            var response = Execute(Method.GET, graphPath, parameters, addAccessToken, Settings.UserAgent);
+            var response = ExecuteGraphApi(Method.GET, graphPath, parameters, addAccessToken, Settings.UserAgent);
             return FacebookUtils.DeserializeObject<T>(response);
         }
 

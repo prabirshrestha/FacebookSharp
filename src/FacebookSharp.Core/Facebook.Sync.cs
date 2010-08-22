@@ -8,7 +8,7 @@ namespace FacebookSharp
     {
 #if !SILVERLIGHT
 
-        internal RestResponse Execute(RestRequest request, bool addAccessToken, string userAgent)
+        internal RestResponse ExecuteGraphApi(RestRequest request, bool addAccessToken, string userAgent)
         {
             var client = new RestClient(GraphBaseUrl) { UserAgent = userAgent };
 
@@ -24,7 +24,7 @@ namespace FacebookSharp
             return client.Execute(request);
         }
 
-        internal string Execute(Method httpMethod, string graphPath, IDictionary<string, string> parameters, bool addAccessToken, string userAgent)
+        internal string ExecuteGraphApi(Method httpMethod, string graphPath, IDictionary<string, string> parameters, bool addAccessToken, string userAgent)
         {
             var request = new RestRequest(graphPath, httpMethod);
 
@@ -34,7 +34,7 @@ namespace FacebookSharp
                     request.AddParameter(keyValuePair.Key, keyValuePair.Value);
             }
 
-            var response = Execute(request, addAccessToken, Settings.UserAgent);
+            var response = ExecuteGraphApi(request, addAccessToken, Settings.UserAgent);
 
             if (response.ResponseStatus == ResponseStatus.Completed)
             {

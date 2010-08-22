@@ -376,7 +376,7 @@ namespace FacebookSharp.Extensions
             if (pictureSizeType != null)
                 request.AddParameter("type", FacebookUtils.ToString(pictureSizeType.Value));
 
-            var response = facebook.Execute(request, true, facebook.Settings.UserAgent);
+            var response = facebook.ExecuteGraphApi(request, true, facebook.Settings.UserAgent);
 
             if (response.ResponseStatus == ResponseStatus.Completed)
             {

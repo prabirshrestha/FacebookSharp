@@ -87,7 +87,7 @@ namespace FacebookSharp
         /// </remarks>
         public void DeleteAsync(string graphPath, IDictionary<string, string> parameters, Action<FacebookAsyncResult> callback)
         {
-            ExecuteAsync(Method.DELETE, graphPath, parameters, true, callback);
+            ExecuteGraphApiAsync(Method.DELETE, graphPath, parameters, true, callback);
         }
 
         /// <summary>
@@ -152,7 +152,7 @@ namespace FacebookSharp
         /// </remarks>
         public void GetAsync(string graphPath, IDictionary<string, string> parameters, bool addAccessToken, Action<FacebookAsyncResult> callback)
         {
-            ExecuteAsync(Method.GET, graphPath, parameters, addAccessToken, callback);
+            ExecuteGraphApiAsync(Method.GET, graphPath, parameters, addAccessToken, callback);
         }
 
         #endregion
