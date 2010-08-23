@@ -51,6 +51,9 @@
     <Compile Include="..\..\Facebooksharp.Web.Mvc\ActionFilters\FacebookAuthorizeAttribute.cs">
       <Link>ActionFilters\FacebookAuthorizeAttribute.cs</Link>
     </Compile>
+    <Compile Include="..\..\FacebookSharp.Web.Mvc\ActionFilters\P3PHeaderAttribute.cs">
+      <Link>ActionFilters\P3PHeaderAttribute.cs</Link>
+    </Compile>
     <Compile Include="..\..\Facebooksharp.Web.Mvc\ActionResults\FacebookHttpUnauthorizedResult.cs">
       <Link>ActionResults\FacebookHttpUnauthorizedResult.cs</Link>
     </Compile>
