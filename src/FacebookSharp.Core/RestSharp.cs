@@ -206,10 +206,7 @@ namespace FacebookSharp
 
             if (response.ResponseStatus == ResponseStatus.Completed)
             {
-                if (response.StatusCode == HttpStatusCode.OK)
-                    exception = null;
-                else
-                    exception = (FacebookException)response.Content;
+                exception = (FacebookException)response.Content;
 
                 result = response.Content;
             }
