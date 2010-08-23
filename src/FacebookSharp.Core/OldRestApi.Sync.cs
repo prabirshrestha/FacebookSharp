@@ -8,6 +8,10 @@ namespace FacebookSharp
 
     public partial class Facebook
     {
+
+        internal const string OldRestApiWarningMessage =
+            "This method uses Old Rest api to make the request. It may be removed by facebook anytime soon.";
+
         #region Helper methods
 
         /// <summary>
@@ -28,6 +32,12 @@ namespace FacebookSharp
         [Obsolete("Use the graph api Get() if possible.")]
         public string GetUsingRestApi(string methodName, IDictionary<string, string> parameters, bool addAccessToken)
         {
+            if (parameters == null)
+                parameters = new Dictionary<string, string>();
+
+            if (!parameters.ContainsKey("format"))
+                parameters.Add("format", "json");
+
             return
                 RestApiContext.Execute(
                     new FacebookApiRestSharpMessage(this) { Resource = "/method/" + methodName, Parameters = parameters, AddAccessToken = addAccessToken },
