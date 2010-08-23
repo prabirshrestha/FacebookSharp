@@ -109,6 +109,10 @@
       <Project>{CE43F528-C493-4676-B4E2-869C2349577B}</Project>
       <Name>FacebookSharp.Extensions %28DotNet4\FacebookSharp.Extensions%29</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\DotNet4\FacebookSharp.Web.Mvc\FacebookSharp.Web.Mvc.csproj">
+      <Project>{CBA0FE71-1DD3-4190-A010-B4492248A1C3}</Project>
+      <Name>FacebookSharp.Web.Mvc %28DotNet4\FacebookSharp.Web.Mvc%29</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

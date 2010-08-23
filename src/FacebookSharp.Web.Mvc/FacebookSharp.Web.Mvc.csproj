@@ -49,6 +49,7 @@
   <ItemGroup>
     <Compile Include="ActionFilters\FacebookAuthenticationResultAttribute.cs" />
     <Compile Include="ActionFilters\FacebookAuthorizeAttribute.cs" />
+    <Compile Include="ActionFilters\P3PHeaderAttribute.cs" />
     <Compile Include="ActionResults\FacebookHttpUnauthorizedResult.cs" />
     <Compile Include="BaseFacebookController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
