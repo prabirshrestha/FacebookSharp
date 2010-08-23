@@ -126,25 +126,25 @@ namespace FacebookSharp
 
         #region Helpers
 
-        private static RestClient PrepareRestSharpClient(FacebookRestSharpMessage restSharpSettings, RestRequest request)
+        private static RestClient PrepareRestSharpClient(FacebookRestSharpMessage message, RestRequest request)
         {
-            var client = new RestClient(restSharpSettings.BaseUrl);
+            var client = new RestClient(message.BaseUrl);
 
-            client.UserAgent = restSharpSettings.Facebook.Settings.UserAgent;
+            client.UserAgent = message.Facebook.Settings.UserAgent;
 
-            if (restSharpSettings.AddAccessToken)
-                client.Authenticator = restSharpSettings.GetAuthenticator();
+            if (message.AddAccessToken)
+                client.Authenticator = message.GetAuthenticator();
 
             return client;
         }
 
-        private static RestRequest PrepareRestSharpRequest(FacebookRestSharpMessage restSharpSettings, Method httpMethod)
+        private static RestRequest PrepareRestSharpRequest(FacebookRestSharpMessage message, Method httpMethod)
         {
-            var request = new RestRequest(restSharpSettings.Resource, httpMethod);
+            var request = new RestRequest(message.Resource, httpMethod);
 
-            if (restSharpSettings.Parameters != null)
+            if (message.Parameters != null)
             {
-                foreach (var keyValuePair in restSharpSettings.Parameters)
+                foreach (var keyValuePair in message.Parameters)
                     request.AddParameter(keyValuePair.Key, keyValuePair.Value);
             }
 
@@ -157,10 +157,10 @@ namespace FacebookSharp
             return request;
         }
 
-        private static string ProcessSyncRestSharpResponse(FacebookRestSharpMessage restSharpSettings, RestResponse response)
+        private static string ProcessSyncRestSharpResponse(FacebookRestSharpMessage message, RestResponse response)
         {
             Exception exception;
-            var result = ProcessRestSharpResponse(response, restSharpSettings, out exception);
+            var result = ProcessRestSharpResponse(message, response, out exception);
 
             if (exception != null)
                 throw exception;
@@ -168,15 +168,15 @@ namespace FacebookSharp
             return result;
         }
 
-        private static FacebookAsyncResult ProcessAsyncRestSharpResponse(FacebookRestSharpMessage restSharpSettings, RestResponse response)
+        private static FacebookAsyncResult ProcessAsyncRestSharpResponse(FacebookRestSharpMessage message, RestResponse response)
         {
             Exception exception;
-            var result = ProcessRestSharpResponse(response, restSharpSettings, out exception);
+            var result = ProcessRestSharpResponse(message, response, out exception);
 
             return new FacebookAsyncResult(result, exception);
         }
 
-        private static string ProcessRestSharpResponse(RestResponse response, FacebookRestSharpMessage restSharpSettings, out Exception exception)
+        private static string ProcessRestSharpResponse(FacebookRestSharpMessage message, RestResponse response, out Exception exception)
         {
             string result = string.Empty;
 
