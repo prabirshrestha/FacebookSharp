@@ -38,6 +38,38 @@ namespace FacebookSharp
         }
 
         /// <summary>
+        /// Make an asynchronous request to the Facebook Graph API with the given string parameters.
+        /// </summary>
+        /// <param name="graphPath">
+        /// Path to the resource in the Facebook graph.
+        /// </param>
+        /// <param name="parameters">
+        /// key-value string parameters.
+        /// </param>
+        /// <param name="callback">
+        /// The callback.
+        /// </param>
+        /// <remarks>
+        /// See http://developers.facebook.com/docs/api
+        /// 
+        /// Note that this method is asynchronous.
+        /// This method will not block waiting for a network reponse.
+        /// 
+        /// To fetch data about the currently logged authenticated user,
+        /// provide "/me", which will fetch http://graph.facebook.com/me
+        /// 
+        /// For parameters:
+        ///     key-value string parameters, e.g. the path "search" with
+        /// parameters "q" : "facebook" would produce a query for the
+        /// following graph resource:
+        /// https://graph.facebook.com/search?q=facebook
+        /// </remarks>
+        public void GetAsync(string graphPath, IDictionary<string, string> parameters, Action<FacebookAsyncResult> callback)
+        {
+            GetAsync(graphPath, parameters, true, response => { if (callback != null) callback(response); });
+        }
+
+        /// <summary>
         /// Makes an asynchronous request to the Facebook Graph API to delete a graph object.
         /// </summary>
         /// <param name="graphPath">
@@ -87,11 +119,13 @@ namespace FacebookSharp
         /// </remarks>
         public void DeleteAsync(string graphPath, IDictionary<string, string> parameters, Action<FacebookAsyncResult> callback)
         {
-            ExecuteGraphApiAsync(Method.DELETE, graphPath, parameters, true, callback);
+            GraphContext.ExecuteAsync(
+               new FacebookRestSharpMessage(this) { Resource = graphPath, Parameters = parameters, AddAccessToken = true },
+               Method.DELETE, callback);
         }
 
         /// <summary>
-        /// Make an asynchronous request to the Facebook Graph API with the given string parameters.
+        /// Publish to the Facebook Graph API.
         /// </summary>
         /// <param name="graphPath">
         /// Path to the resource in the Facebook graph.
@@ -108,18 +142,21 @@ namespace FacebookSharp
         /// Note that this method is asynchronous.
         /// This method will not block waiting for a network reponse.
         /// 
-        /// To fetch data about the currently logged authenticated user,
-        /// provide "/me", which will fetch http://graph.facebook.com/me
+        /// To post to the wall of the currently logged authenticated user,
+        /// provide "/me/feed", which will make a request to
+        /// http://graph.facebook.com/me/feed
         /// 
         /// For parameters:
-        ///     key-value string parameters, e.g. the path "search" with
-        /// parameters "q" : "facebook" would produce a query for the
-        /// following graph resource:
-        /// https://graph.facebook.com/search?q=facebook
+        ///     key-value string parameters, e.g. 
+        /// parameters "message" : "this is a message" would produce the 
+        /// follwing parameters
+        /// message=this is a message
         /// </remarks>
-        public void GetAsync(string graphPath, IDictionary<string, string> parameters, Action<FacebookAsyncResult> callback)
+        public void PostAsync(string graphPath, IDictionary<string, string> parameters, Action<FacebookAsyncResult> callback)
         {
-            GetAsync(graphPath, parameters, true, response => { if (callback != null) callback(response); });
+            GraphContext.ExecuteAsync(
+                new FacebookRestSharpMessage(this) { Resource = graphPath, Parameters = parameters, AddAccessToken = true },
+                Method.PUT, callback);
         }
 
         #endregion
