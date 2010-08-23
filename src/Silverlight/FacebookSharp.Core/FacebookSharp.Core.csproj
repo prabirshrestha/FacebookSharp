@@ -127,6 +127,9 @@
     <Compile Include="..\..\FacebookSharp.Core\FacebookUtils\_FacebookUtils.cs">
       <Link>FacebookUtils\_FacebookUtils.cs</Link>
     </Compile>
+    <Compile Include="..\..\FacebookSharp.Core\FQL.cs">
+      <Link>FQL.cs</Link>
+    </Compile>
     <Compile Include="..\..\FacebookSharp.Core\IFacebookContext.cs">
       <Link>IFacebookContext.cs</Link>
     </Compile>

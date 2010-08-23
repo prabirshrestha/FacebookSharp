@@ -62,6 +62,7 @@
     <Compile Include="Facebook.Sync.cs" />
     <Compile Include="FacebookAsyncResult.cs" />
     <Compile Include="FacebookAuthenticationResult.cs" />
+    <Compile Include="FQL.cs" />
     <Compile Include="OldRestApi.Sync.cs" />
     <Compile Include="RestSharp.cs" />
     <Compile Include="FacebookSettings.cs" />
