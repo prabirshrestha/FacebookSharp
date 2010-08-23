@@ -1,3 +1,6 @@
+using System;
+using System.Text;
+
 namespace FacebookSharp.Extensions
 {
     using System.Collections.Generic;
@@ -33,15 +36,54 @@ namespace FacebookSharp.Extensions
             return GetMyPages(facebook, null);
         }
 
+        /// <summary>
+        /// Checks whether the current user is an admin of the sepcified page.
+        /// </summary>
+        /// <param name="facebook">
+        /// The facebook.
+        /// </param>
+        /// <param name="pageId">
+        /// The page id.
+        /// </param>
+        /// <returns>
+        /// </returns>
+        [Obsolete(Facebook.OldRestApiWarningMessage)]
         public static bool AmIAdminOfPage(this Facebook facebook, string pageId)
         {
+            return facebook.IsAdminOfPage(string.Empty, pageId);
+        }
+
+        /// <summary>
+        /// Checkes whether the sepcified user is the admin of the page.
+        /// </summary>
+        /// <param name="facebook">
+        /// The facebook.
+        /// </param>
+        /// <param name="userId">
+        /// The user id.
+        /// </param>
+        /// <param name="pageId">
+        /// The page id.
+        /// </param>
+        /// <returns>
+        /// </returns>
+        [Obsolete(Facebook.OldRestApiWarningMessage)]
+        public static bool IsAdminOfPage(this Facebook facebook, string userId, string pageId)
+        {
             AssertRequireAccessToken(facebook);
-            var pages = facebook.GetMyPages();
 
-            if (pages == null)
-                return false;
+            var parameters = new Dictionary<string, string>
+                                 {
+                                     {"page_id", pageId}
+                                 };
 
-            return pages.Data.Find(p => p.ID == pageId) != null;
+            // http://developers.facebook.com/docs/reference/rest/pages.isAdmin
+            if (!string.IsNullOrEmpty(userId))
+                parameters.Add("uid", userId);
+
+            var result = facebook.GetUsingRestApi("pages.isAdmin", parameters);
+
+            return result.Equals("true", StringComparison.OrdinalIgnoreCase);
         }
 
         /// <summary>

@@ -8,6 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using FacebookSharp.Winforms;
 using FacebookSharp.Schemas.Graph;
+using FacebookSharp.Extensions;
 
 namespace FacebookSharp.Samples.WinForms
 {
