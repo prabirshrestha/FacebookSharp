@@ -10,6 +10,30 @@ namespace FacebookSharp
             UserAgent = "FacebookSharp";
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="FacebookSettings"/> class.
+        /// </summary>
+        /// <param name="facebookSettings">
+        /// The facebook settings.
+        /// </param>
+        /// <remarks>
+        /// Copy constructor
+        /// </remarks>
+        public FacebookSettings(FacebookSettings facebookSettings)
+        {
+            if (facebookSettings == null)
+                return;
+
+            AccessToken = facebookSettings.AccessToken;
+            ApplicationKey = facebookSettings.ApplicationKey;
+            ApplicationSecret = facebookSettings.ApplicationSecret;
+            PostAuthorizeUrl = facebookSettings.PostAuthorizeUrl;
+            CanvasUrl = facebookSettings.CanvasUrl;
+            AccessExpires = facebookSettings.AccessExpires;
+            DefaultApplicationPermissions = facebookSettings.DefaultApplicationPermissions;
+            UserAgent = facebookSettings.UserAgent;
+        }
+
         public string AccessToken { get; set; }
         public string ApplicationKey { get; set; }
         public string ApplicationSecret { get; set; }
@@ -42,13 +66,13 @@ namespace FacebookSharp
                     DefaultApplicationPermissions);
             }
         }
-		
-		public string FacebookCanvasLoginStatusUrl
-		{
-			get
-			{
-				return Facebook.GenerateFacebookLoginStatusUrl(
-					new Dictionary<string, string>
+
+        public string FacebookCanvasLoginStatusUrl
+        {
+            get
+            {
+                return Facebook.GenerateFacebookLoginStatusUrl(
+                    new Dictionary<string, string>
 						{
 							{ "api_key", ApplicationKey },
 							{ "no_session", FacebookCanvasLoginUrl },
@@ -56,8 +80,8 @@ namespace FacebookSharp
 							{ "ok_session", CanvasUrl },
 							{ "session_version", "3" }
 						});
-			}
-		}
+            }
+        }
 
         public string FacebookCanvasLoginJavascript
         {
