@@ -83,7 +83,10 @@ namespace FacebookSharp
         /// </remarks>
         public string Delete(string graphPath, IDictionary<string, string> parameters)
         {
-            return ExecuteGraphApi(Method.DELETE, graphPath, parameters, true, Settings.UserAgent);
+            return
+                GraphContext.Execute(
+                    new FacebookRestSharpMessage(this) { Resource = graphPath, Parameters = parameters, AddAccessToken = true },
+                    Method.DELETE);
         }
 
 
@@ -119,6 +122,7 @@ namespace FacebookSharp
         /// <param name="graphPath">Path to the resource in the Facebook graph.</param>
         /// <param name="parameters">key-value string parameters.</param>
         /// <returns>JSON string represnetation of the response.</returns>
+        /// <remarks>
         /// See http://developers.facebook.com/docs/api
         /// 
         /// Note that this method is synchronous.
@@ -137,7 +141,10 @@ namespace FacebookSharp
         /// </remarks>
         public string Post(string graphPath, IDictionary<string, string> parameters)
         {
-            return ExecuteGraphApi(Method.POST, graphPath, parameters, true, Settings.UserAgent);
+            return
+                GraphContext.Execute(
+                    new FacebookRestSharpMessage(this) { Resource = graphPath, Parameters = parameters, AddAccessToken = true },
+                    Method.POST);
         }
 
         #endregion
@@ -214,7 +221,7 @@ namespace FacebookSharp
         public T Delete<T>(string graphPath)
             where T : new()
         {
-            var response = ExecuteGraphApi(Method.DELETE, graphPath, null, true, Settings.UserAgent);
+            var response = Delete(graphPath);
             return FacebookUtils.DeserializeObject<T>(response);
         }
 
@@ -224,6 +231,7 @@ namespace FacebookSharp
         /// <param name="graphPath">Path to the resource in the Facebook graph.</param>
         /// <param name="parameters">key-value string parameters.</param>
         /// <returns>JSON string represnetation of the response.</returns>
+        /// <remarks>
         /// See http://developers.facebook.com/docs/api
         /// 
         /// Note that this method is synchronous.
@@ -243,7 +251,7 @@ namespace FacebookSharp
         public T Post<T>(string graphPath, IDictionary<string, string> parameters)
             where T : new()
         {
-            var response = ExecuteGraphApi(Method.POST, graphPath, parameters, true, Settings.UserAgent);
+            var response = Post(graphPath, parameters);
             return FacebookUtils.DeserializeObject<T>(response);
         }
 
@@ -309,8 +317,8 @@ namespace FacebookSharp
         public T Get<T>(string graphPath, IDictionary<string, string> parameters, bool addAccessToken)
             where T : new()
         {
-            var response = ExecuteGraphApi(Method.GET, graphPath, parameters, addAccessToken, Settings.UserAgent);
-            return FacebookUtils.DeserializeObject<T>(response);
+            var result = Get(graphPath, parameters, addAccessToken);
+            return FacebookUtils.DeserializeObject<T>(result);
         }
 
         #endregion
