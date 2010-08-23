@@ -67,10 +67,10 @@ namespace FacebookSharp
 
             // edge case: when sending a POST request to /[post_id]/likes
             // the return value is 'true' or 'false'.
-            // just throw normal FacebookException.
+            // don't throw normal FacebookException.
             if (jsonString.Equals("false", StringComparison.OrdinalIgnoreCase))
-                throw new FacebookException("request failed.");
-            if (jsonString.Equals("true", StringComparison.OrdinalIgnoreCase))
+                jsonString = "{value:false}";
+            else if (jsonString.Equals("true", StringComparison.OrdinalIgnoreCase))
                 jsonString = "{value:true}";
 
             JToken error = json.SelectToken("error", false);
