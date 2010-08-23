@@ -85,7 +85,7 @@ namespace FacebookSharp
         {
             return
                 GraphContext.Execute(
-                    new FacebookRestSharpMessage(this) { Resource = graphPath, Parameters = parameters, AddAccessToken = true },
+                    new FacebookGraphRestSharpMessage(this) { Resource = graphPath, Parameters = parameters, AddAccessToken = true },
                     Method.DELETE);
         }
 
@@ -143,7 +143,7 @@ namespace FacebookSharp
         {
             return
                 GraphContext.Execute(
-                    new FacebookRestSharpMessage(this) { Resource = graphPath, Parameters = parameters, AddAccessToken = true },
+                    new FacebookGraphRestSharpMessage(this) { Resource = graphPath, Parameters = parameters, AddAccessToken = true },
                     Method.POST);
         }
 
@@ -287,7 +287,7 @@ namespace FacebookSharp
         {
             return
                 GraphContext.Execute(
-                    new FacebookRestSharpMessage(this) { Resource = graphPath, Parameters = parameters, AddAccessToken = addAccessToken },
+                    new FacebookGraphRestSharpMessage(this) { Resource = graphPath, Parameters = parameters, AddAccessToken = addAccessToken },
                     Method.GET);
         }
 

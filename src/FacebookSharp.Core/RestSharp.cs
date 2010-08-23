@@ -83,9 +83,9 @@ namespace FacebookSharp
 
     public partial class Facebook
     {
-        internal class FacebookRestSharpMessage
+        internal class FacebookGraphRestSharpMessage
         {
-            public FacebookRestSharpMessage(Facebook fb)
+            public FacebookGraphRestSharpMessage(Facebook fb)
             {
                 Facebook = fb;
 
@@ -109,14 +109,38 @@ namespace FacebookSharp
             }
         }
 
-        private static RestSharpContext<FacebookRestSharpMessage, string, FacebookAsyncResult> _graphContext;
-        internal static RestSharpContext<FacebookRestSharpMessage, string, FacebookAsyncResult> GraphContext
+        internal class FacebookApiRestSharpMessage : FacebookGraphRestSharpMessage
+        {
+            public FacebookApiRestSharpMessage(Facebook fb)
+                : base(fb)
+            {
+                BaseUrl = ApiBaseUrl;
+            }
+        }
+
+        private static RestSharpContext<FacebookGraphRestSharpMessage, string, FacebookAsyncResult> _graphContext;
+        internal static RestSharpContext<FacebookGraphRestSharpMessage, string, FacebookAsyncResult> GraphContext
         {
             get
             {
                 return _graphContext ??
                        (_graphContext =
-                        new RestSharpContext<FacebookRestSharpMessage, string, FacebookAsyncResult>(
+                        new RestSharpContext<FacebookGraphRestSharpMessage, string, FacebookAsyncResult>(
+                            PrepareRestSharpClient,
+                            PrepareRestSharpRequest,
+                            ProcessSyncRestSharpResponse,
+                            ProcessAsyncRestSharpResponse));
+            }
+        }
+
+        private static RestSharpContext<FacebookApiRestSharpMessage, string, FacebookAsyncResult> _restApiContext;
+        internal static RestSharpContext<FacebookApiRestSharpMessage, string, FacebookAsyncResult> RestApiContext
+        {
+            get
+            {
+                return _restApiContext ??
+                       (_restApiContext =
+                        new RestSharpContext<FacebookApiRestSharpMessage, string, FacebookAsyncResult>(
                             PrepareRestSharpClient,
                             PrepareRestSharpRequest,
                             ProcessSyncRestSharpResponse,
@@ -126,7 +150,7 @@ namespace FacebookSharp
 
         #region Helpers
 
-        private static RestClient PrepareRestSharpClient(FacebookRestSharpMessage message, RestRequest request)
+        private static RestClient PrepareRestSharpClient(FacebookGraphRestSharpMessage message, RestRequest request)
         {
             var client = new RestClient(message.BaseUrl);
 
@@ -138,7 +162,7 @@ namespace FacebookSharp
             return client;
         }
 
-        private static RestRequest PrepareRestSharpRequest(FacebookRestSharpMessage message, Method httpMethod)
+        private static RestRequest PrepareRestSharpRequest(FacebookGraphRestSharpMessage message, Method httpMethod)
         {
             var request = new RestRequest(message.Resource, httpMethod);
 
@@ -157,7 +181,7 @@ namespace FacebookSharp
             return request;
         }
 
-        private static string ProcessSyncRestSharpResponse(FacebookRestSharpMessage message, RestResponse response)
+        private static string ProcessSyncRestSharpResponse(FacebookGraphRestSharpMessage message, RestResponse response)
         {
             Exception exception;
             var result = ProcessRestSharpResponse(message, response, out exception);
@@ -168,7 +192,7 @@ namespace FacebookSharp
             return result;
         }
 
-        private static FacebookAsyncResult ProcessAsyncRestSharpResponse(FacebookRestSharpMessage message, RestResponse response)
+        private static FacebookAsyncResult ProcessAsyncRestSharpResponse(FacebookGraphRestSharpMessage message, RestResponse response)
         {
             Exception exception;
             var result = ProcessRestSharpResponse(message, response, out exception);
@@ -176,7 +200,7 @@ namespace FacebookSharp
             return new FacebookAsyncResult(result, exception);
         }
 
-        private static string ProcessRestSharpResponse(FacebookRestSharpMessage message, RestResponse response, out Exception exception)
+        private static string ProcessRestSharpResponse(FacebookGraphRestSharpMessage message, RestResponse response, out Exception exception)
         {
             string result = string.Empty;
 

@@ -120,7 +120,7 @@ namespace FacebookSharp
         public void DeleteAsync(string graphPath, IDictionary<string, string> parameters, Action<FacebookAsyncResult> callback)
         {
             GraphContext.ExecuteAsync(
-               new FacebookRestSharpMessage(this) { Resource = graphPath, Parameters = parameters, AddAccessToken = true },
+               new FacebookGraphRestSharpMessage(this) { Resource = graphPath, Parameters = parameters, AddAccessToken = true },
                Method.DELETE, callback);
         }
 
@@ -155,7 +155,7 @@ namespace FacebookSharp
         public void PostAsync(string graphPath, IDictionary<string, string> parameters, Action<FacebookAsyncResult> callback)
         {
             GraphContext.ExecuteAsync(
-                new FacebookRestSharpMessage(this) { Resource = graphPath, Parameters = parameters, AddAccessToken = true },
+                new FacebookGraphRestSharpMessage(this) { Resource = graphPath, Parameters = parameters, AddAccessToken = true },
                 Method.PUT, callback);
         }
 
@@ -190,7 +190,7 @@ namespace FacebookSharp
         public void GetAsync(string graphPath, IDictionary<string, string> parameters, bool addAccessToken, Action<FacebookAsyncResult> callback)
         {
             GraphContext.ExecuteAsync(
-                new FacebookRestSharpMessage(this) { Resource = graphPath, Parameters = parameters, AddAccessToken = addAccessToken },
+                new FacebookGraphRestSharpMessage(this) { Resource = graphPath, Parameters = parameters, AddAccessToken = addAccessToken },
                 Method.GET, callback);
         }
 
