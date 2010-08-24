@@ -6,6 +6,7 @@ namespace FacebookSharp
     using Newtonsoft.Json;
     using Schemas.Graph;
     using System.Text;
+    using FacebookSharp.Schemas;
 
     public static partial class FacebookUtils
     {
@@ -55,6 +56,23 @@ namespace FacebookSharp
                     return "large";
                 default:
                     throw new ArgumentOutOfRangeException("pictureSizeType");
+            }
+        }
+
+        public static string ToString(RsvpStatus rsvpStatus)
+        {
+            switch (rsvpStatus)
+            {
+                case RsvpStatus.Attending:
+                    return "attending";
+                case RsvpStatus.Unsure:
+                    return "unsure";
+                case RsvpStatus.Declined:
+                    return "declined";
+                case RsvpStatus.NotReplied:
+                    return "not_replied";
+                default:
+                    throw new ArgumentOutOfRangeException("rsvpStatus");
             }
         }
 
