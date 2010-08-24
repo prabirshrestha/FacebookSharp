@@ -238,6 +238,9 @@
     <Compile Include="..\..\FacebookSharp.Core\Schemas\Graph\_Paging.cs">
       <Link>Schemas\Graph\_Paging.cs</Link>
     </Compile>
+    <Compile Include="..\..\FacebookSharp.Core\Schemas\RsvpStatus.cs">
+      <Link>Schemas\RsvpStatus.cs</Link>
+    </Compile>
     <Compile Include="..\..\FacebookSharp.Core\Schemas\StringValue.cs">
       <Link>Schemas\StringValue.cs</Link>
     </Compile>

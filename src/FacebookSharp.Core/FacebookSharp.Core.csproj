@@ -107,6 +107,7 @@
     <Compile Include="IFacebookMembershipProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Schemas\extended_permissions.cs" />
+    <Compile Include="Schemas\RsvpStatus.cs" />
     <Compile Include="Schemas\schemas.cs" />
     <Compile Include="Schemas\StringValue.cs" />
     <Compile Include="FacebookPostCallback.cs" />
