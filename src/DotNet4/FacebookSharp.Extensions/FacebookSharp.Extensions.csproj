@@ -62,6 +62,9 @@
     <Compile Include="..\..\FacebookSharp.Extensions\FeedExtensions.cs">
       <Link>FeedExtensions.cs</Link>
     </Compile>
+    <Compile Include="..\..\FacebookSharp.Extensions\Likes.cs">
+      <Link>Likes.cs</Link>
+    </Compile>
     <Compile Include="..\..\FacebookSharp.Extensions\PageExtensions.cs">
       <Link>PageExtensions.cs</Link>
     </Compile>
