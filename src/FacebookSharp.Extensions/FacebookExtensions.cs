@@ -492,7 +492,7 @@ namespace FacebookSharp.Extensions
         /// </summary>
         /// <param name="date">Date Time.</param>
         /// <returns>Returns Unix Timestamp.</returns>
-        public static double ToUnixTimestamp(this DateTime date)
+        public static long ToUnixTimestamp(this DateTime date)
         {
             return FacebookUtils.Date.ToUnixTimestamp(date);
         }
