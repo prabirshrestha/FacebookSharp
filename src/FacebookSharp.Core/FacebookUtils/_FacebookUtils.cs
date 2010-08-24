@@ -5,6 +5,7 @@ namespace FacebookSharp
     using System.Reflection;
     using Newtonsoft.Json;
     using Schemas.Graph;
+    using System.Text;
 
     public static partial class FacebookUtils
     {
@@ -57,6 +58,27 @@ namespace FacebookSharp
             }
         }
 
+        /// <summary>
+        /// Converts array of strings to comma seperated values
+        /// </summary>
+        /// <param name="str">
+        /// List of strings
+        /// </param>
+        /// <returns>
+        /// </returns>
+        public static string ToCommaSeperatedValues(string[] str)
+        {
+            if (str == null || str.Length == 0)
+                return string.Empty;
+
+            var sb = new StringBuilder();
+
+            foreach (var s in str)
+                sb.AppendFormat("{0},", s);
+
+            return sb.ToString(0, sb.Length - 1);
+        }
+
         #region Json Converter Utils
 
         /// <summary>
@@ -79,7 +101,7 @@ namespace FacebookSharp
         {
             IDictionary<string, object> jsonBag = FromJson(json);
 
-            FacebookException ex = (FacebookException) json;
+            FacebookException ex = (FacebookException)json;
 
             if (!throwFacebookException)    // i think sometimes, it shouldn't throw error,
                 return jsonBag;             // rather user should have more control over the behavior.
@@ -103,7 +125,7 @@ namespace FacebookSharp
 
 
         #endregion
-      
+
 
         /// <summary>
         /// Deserializes the specified object to JSON object.
