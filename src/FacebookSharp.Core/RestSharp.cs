@@ -172,12 +172,6 @@ namespace FacebookSharp
                     request.AddParameter(keyValuePair.Key, keyValuePair.Value);
             }
 
-            if (httpMethod == Method.DELETE)
-            {
-                request.AddHeader("Content-Type", "application/x-www-form-urlencoded");
-                request.AddHeader("Content-Length", "0");
-            }
-
             return request;
         }
 
