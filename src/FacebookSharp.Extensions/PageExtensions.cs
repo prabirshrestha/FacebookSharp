@@ -70,6 +70,33 @@ namespace FacebookSharp.Extensions
         [Obsolete(Facebook.OldRestApiWarningMessage)]
         public static bool IsAdminOfPage(this Facebook facebook, string userId, string pageId)
         {
+            return facebook.IsAdminOfPage(userId, pageId, false);
+        }
+
+        /// <summary>
+        /// Checks if the specified user is the admin of the page or not.
+        /// </summary>
+        /// <param name="facebook">
+        /// The facebook.
+        /// </param>
+        /// <param name="userId">
+        /// The user id.
+        /// </param>
+        /// <param name="pageId">
+        /// The page id.
+        /// </param>
+        /// <param name="ignoreAccessTokenException">
+        /// The ignore access token exception.
+        /// </param>
+        /// <returns>
+        /// </returns>
+        /// <remarks>
+        ///     ignoreAccessTokenException is true, it will not throw OAuthException if the user doesn't have enough permission,
+        /// rather it will return false.
+        /// </remarks>
+        [Obsolete(Facebook.OldRestApiWarningMessage)]
+        public static bool IsAdminOfPage(this Facebook facebook, string userId, string pageId, bool ignoreAccessTokenException)
+        {
             AssertRequireAccessToken(facebook);
 
             var parameters = new Dictionary<string, string>
@@ -81,9 +108,26 @@ namespace FacebookSharp.Extensions
             if (!string.IsNullOrEmpty(userId))
                 parameters.Add("uid", userId);
 
-            var result = facebook.GetUsingRestApi("pages.isAdmin", parameters);
+            if (ignoreAccessTokenException)
+            {
+                try
+                {
+                    var result = facebook.GetUsingRestApi("pages.isAdmin", parameters);
 
-            return result.Equals("true", StringComparison.OrdinalIgnoreCase);
+                    return result.Equals("true", StringComparison.OrdinalIgnoreCase);
+                }
+                catch (OAuthException)
+                {
+                    return false;
+                }
+
+            }
+            else
+            {
+                var result = facebook.GetUsingRestApi("pages.isAdmin", parameters);
+
+                return result.Equals("true", StringComparison.OrdinalIgnoreCase);
+            }
         }
 
         /// <summary>
