@@ -114,6 +114,15 @@ namespace FacebookSharp.Samples.WinForms
                                             MessageBox.Show(callback.RawResponse);
                                         }
                                     });
+            // You can also use the Facebook Query Language by calling Query or QueryAsync methods.
+            fb.QueryAsync("SELECT name FROM user WHERE uid = me()",
+                          result =>
+                          {
+                              if (result.IsSuccessful)
+                              {
+                                  MessageBox.Show("Response using FQL: " + result.RawResponse);
+                              }
+                          });
         }
     }
 }
