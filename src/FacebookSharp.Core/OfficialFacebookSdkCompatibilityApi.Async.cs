@@ -24,7 +24,7 @@ namespace FacebookSharp
         /// See http://developers.facebook.com/docs/api
         /// 
         /// Note that this method is asynchronous.
-        /// This method will not block waiting for a network reponse.
+        /// This method will not block waiting for a network response.
         /// 
         /// To fetch data about the currently logged authenticated user,
         /// provide "/me", which will fetch http://graph.facebook.com/me
@@ -53,7 +53,7 @@ namespace FacebookSharp
         /// See http://developers.facebook.com/docs/api
         /// 
         /// Note that this method is asynchronous.
-        /// This method will not block waiting for a network reponse.
+        /// This method will not block waiting for a network response.
         /// 
         /// To fetch data about the currently logged authenticated user,
         /// provide "/me", which will fetch http://graph.facebook.com/me
@@ -82,7 +82,7 @@ namespace FacebookSharp
         /// See http://developers.facebook.com/docs/api
         /// 
         /// Note that this method is asynchronous.
-        /// This method will not block waiting for a network reponse.
+        /// This method will not block waiting for a network response.
         /// 
         /// To delete objects in the graph,
         /// provide "/id", which will delete http://graph.facebook.com/id
@@ -110,7 +110,7 @@ namespace FacebookSharp
         /// See http://developers.facebook.com/docs/api
         /// 
         /// Note that this method is asynchronous.
-        /// This method will not block waiting for a network reponse.
+        /// This method will not block waiting for a network response.
         /// 
         /// To delete objects in the graph,
         /// provide "/id", which will delete http://graph.facebook.com/id
@@ -140,7 +140,7 @@ namespace FacebookSharp
         /// See http://developers.facebook.com/docs/api
         /// 
         /// Note that this method is asynchronous.
-        /// This method will not block waiting for a network reponse.
+        /// This method will not block waiting for a network response.
         /// 
         /// To post to the wall of the currently logged authenticated user,
         /// provide "/me/feed", which will make a request to
@@ -176,7 +176,7 @@ namespace FacebookSharp
         /// See http://developers.facebook.com/docs/api
         /// 
         /// Note that this method is asynchronous.
-        /// This method will not block waiting for a network reponse.
+        /// This method will not block waiting for a network response.
         /// 
         /// To fetch data about the currently logged authenticated user,
         /// provide "/me", which will fetch http://graph.facebook.com/me

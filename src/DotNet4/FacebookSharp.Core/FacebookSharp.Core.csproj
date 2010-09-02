@@ -133,6 +133,9 @@
     <Compile Include="..\..\FacebookSharp.Core\OfficialFacebookSdkCompatibilityApi.Sync.cs">
       <Link>OfficialFacebookSdkCompatibilityApi.Sync.cs</Link>
     </Compile>
+    <Compile Include="..\..\FacebookSharp.Core\OldRestApi.ASync.cs">
+      <Link>OldRestApi.ASync.cs</Link>
+    </Compile>
     <Compile Include="..\..\FacebookSharp.Core\OldRestApi.Sync.cs">
       <Link>OldRestApi.Sync.cs</Link>
     </Compile>
