@@ -8,10 +8,6 @@ namespace FacebookSharp
 
     public partial class Facebook
     {
-
-        internal const string OldRestApiWarningMessage =
-            "This method uses Old Rest api to make the request. It may be removed by facebook anytime soon.";
-
         #region Helper methods
 
         /// <summary>

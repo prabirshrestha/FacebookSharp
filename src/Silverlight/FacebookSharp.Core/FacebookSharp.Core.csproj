@@ -114,6 +114,9 @@
     <Compile Include="..\..\FacebookSharp.Core\FacebookUtils\ExceptionHelpers.cs">
       <Link>FacebookUtils\ExceptionHelpers.cs</Link>
     </Compile>
+    <Compile Include="..\..\FacebookSharp.Core\FacebookUtils\Expando.cs">
+      <Link>FacebookUtils\Expando.cs</Link>
+    </Compile>
     <Compile Include="..\..\FacebookSharp.Core\FacebookUtils\HttpUtility.cs">
       <Link>FacebookUtils\HttpUtility.cs</Link>
     </Compile>
@@ -140,6 +143,9 @@
     </Compile>
     <Compile Include="..\..\FacebookSharp.Core\OldRestApi.Sync.cs">
       <Link>OldRestApi.Sync.cs</Link>
+    </Compile>
+    <Compile Include="..\..\FacebookSharp.Core\Properties\AssemblyInfo.cs">
+      <Link>Properties\AssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="..\..\FacebookSharp.Core\RestSharp.cs">
       <Link>RestSharp.cs</Link>
@@ -240,7 +246,6 @@
     <Compile Include="..\..\FacebookSharp.Core\Schemas\StringValue.cs">
       <Link>Schemas\StringValue.cs</Link>
     </Compile>
-    <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\FacebookSharp.Core\Schemas\enum_flags_generator.rb">

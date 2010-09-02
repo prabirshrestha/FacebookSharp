@@ -47,6 +47,8 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="mscorlib" />
+    <Reference Include="Newtonsoft.Json.Silverlight, Version=3.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL" />
+    <Reference Include="RestSharp.Silverlight, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL" />
     <Reference Include="System.Windows" />
     <Reference Include="system" />
     <Reference Include="System.Core" />
@@ -55,7 +57,40 @@
     <Reference Include="System.Windows.Browser" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\..\FacebookSharp.Extensions\CommentsExtensions.cs">
+      <Link>CommentsExtensions.cs</Link>
+    </Compile>
+    <Compile Include="..\..\FacebookSharp.Extensions\EventExtensions.cs">
+      <Link>EventExtensions.cs</Link>
+    </Compile>
+    <Compile Include="..\..\FacebookSharp.Extensions\Expando.cs">
+      <Link>Expando.cs</Link>
+    </Compile>
+    <Compile Include="..\..\FacebookSharp.Extensions\FacebookExtensions.cs">
+      <Link>FacebookExtensions.cs</Link>
+    </Compile>
+    <Compile Include="..\..\FacebookSharp.Extensions\FeedExtensions.cs">
+      <Link>FeedExtensions.cs</Link>
+    </Compile>
+    <Compile Include="..\..\FacebookSharp.Extensions\Likes.cs">
+      <Link>Likes.cs</Link>
+    </Compile>
+    <Compile Include="..\..\FacebookSharp.Extensions\PageExtensions.cs">
+      <Link>PageExtensions.cs</Link>
+    </Compile>
+    <Compile Include="..\..\FacebookSharp.Extensions\ParameterExtensions.cs">
+      <Link>ParameterExtensions.cs</Link>
+    </Compile>
+    <Compile Include="..\..\FacebookSharp.Extensions\PostExtensions.cs">
+      <Link>PostExtensions.cs</Link>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\FacebookSharp.Core\FacebookSharp.Core.csproj">
+      <Project>{6BB3B07C-90A3-41AB-8965-8783CA5CF052}</Project>
+      <Name>FacebookSharp.Core %28Silverlight\FacebookSharp.Core%29</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Silverlight\$(SilverlightVersion)\Microsoft.Silverlight.CSharp.targets" />
   <ProjectExtensions>
