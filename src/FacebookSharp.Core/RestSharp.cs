@@ -3,7 +3,6 @@ namespace FacebookSharp
 {
     using System;
     using System.Collections.Generic;
-    using System.Net;
     using RestSharp;
 
     internal class RestSharpContext<TMessage, TSyncResult, TAsyncResult>
@@ -25,7 +24,7 @@ namespace FacebookSharp
             _processAsyncRestSharpResponse = processAsyncRestSharpResponse;
         }
 
-#if FRAMEWORK
+#if !(SILVERLIGHT || WINDOWS_PHONE)  // NOR logic !(A+B) : if its running on desktop version
 
         #region Synchronous Helpers
 

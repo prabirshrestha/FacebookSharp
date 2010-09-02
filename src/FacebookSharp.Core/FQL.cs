@@ -5,7 +5,7 @@ namespace FacebookSharp
     public partial class Facebook
     {
 
-#if FRAMEWORK
+#if !(SILVERLIGHT || WINDOWS_PHONE)  // NOR logic !(A+B) : if its running on desktop version
 
         /// <summary>
         /// Query Facebook using Facebook Query Language
