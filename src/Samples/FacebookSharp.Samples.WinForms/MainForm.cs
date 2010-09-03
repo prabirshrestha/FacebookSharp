@@ -104,6 +104,25 @@ namespace FacebookSharp.Samples.WinForms
             // You can also do things like .Offset(2).LimitTo(3) and much more.
             // checkout ParameterExtensions.cs file
 
+
+            // You can also use the old RestApi by calling GetUsingRestApi or GetUsingRestApiAsync
+            fb.GetUsingRestApiAsync("status.get", new Dictionary<string, string>().LimitTo(1),
+                                    callback =>
+                                    {
+                                        if (callback.IsSuccessful)
+                                        {
+                                            MessageBox.Show(callback.RawResponse);
+                                        }
+                                    });
+            // You can also use the Facebook Query Language by calling Query or QueryAsync methods.
+            fb.QueryAsync("SELECT name FROM user WHERE uid = me()",
+                          result =>
+                          {
+                              if (result.IsSuccessful)
+                              {
+                                  MessageBox.Show("Response using FQL: " + result.RawResponse);
+                              }
+                          });
         }
     }
 }

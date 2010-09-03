@@ -8,6 +8,7 @@ namespace FacebookSharp.Extensions
 
     public static partial class FacebookExtensions
     {
+#if !(SILVERLIGHT || WINDOWS_PHONE)
         /// <summary>
         /// Gets the specified event as plain json string.
         /// </summary>
@@ -208,5 +209,6 @@ namespace FacebookSharp.Extensions
         //{
         //    return facebook.CreateEventForPage(pageId, eventName, startTime.ToUnixTimestamp(), eventInfoParameters, parameters);
         //}
+#endif
     }
 }

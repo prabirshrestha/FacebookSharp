@@ -19,7 +19,7 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>..\..\bin\DotNet35\Debug\</OutputPath>
-    <DefineConstants>TRACE;DEBUG;FRAMEWORK DOTNET_3_5</DefineConstants>
+    <DefineConstants>TRACE;DEBUG;DOTNET_3_5</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <DocumentationFile>..\..\bin\DotNet35\Debug\FacebookSharp.Core.XML</DocumentationFile>
@@ -49,6 +49,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AccessToken.cs" />
+    <Compile Include="OldRestApi.ASync.cs" />
     <Compile Include="Facebook.Async.cs" />
     <Compile Include="Exceptions\DuplicateStatusMessageException.cs" />
     <Compile Include="DialogFormFactors.cs" />

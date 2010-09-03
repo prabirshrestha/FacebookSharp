@@ -6,6 +6,7 @@ namespace FacebookSharp.Extensions
 
     public static partial class FacebookExtensions
     {
+#if !(SILVERLIGHT || WINDOWS_PHONE)
         /// <summary>
         /// Check if the user likes a Facebook object.
         /// </summary>
@@ -186,6 +187,6 @@ namespace FacebookSharp.Extensions
 
             return new string[] { };
         }
-
+#endif
     }
 }

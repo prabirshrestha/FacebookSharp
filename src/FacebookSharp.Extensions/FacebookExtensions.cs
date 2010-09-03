@@ -32,6 +32,8 @@ namespace FacebookSharp.Extensions
 
     public static partial class FacebookExtensions
     {
+        #if !(SILVERLIGHT || WINDOWS_PHONE)
+
         /// <summary>
         /// Fetches the give object from the graph.
         /// </summary>
@@ -409,6 +411,8 @@ namespace FacebookSharp.Extensions
                                  facebook.Settings.AccessToken);
         }
 
+#endif
+
         private static void AssertRequireAccessToken(Facebook facebook)
         {
             if (string.IsNullOrEmpty(facebook.Settings.AccessToken))
@@ -508,3 +512,4 @@ namespace FacebookSharp.Extensions
         }
     }
 }
+

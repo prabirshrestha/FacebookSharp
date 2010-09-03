@@ -5,6 +5,7 @@ namespace FacebookSharp.Extensions
 
     public static partial class FacebookExtensions
     {
+#if !(SILVERLIGHT || WINDOWS_PHONE)
         #region Post specifics
 
         /// <summary>
@@ -71,6 +72,6 @@ namespace FacebookSharp.Extensions
         }
 
         #endregion
-
+#endif
     }
 }

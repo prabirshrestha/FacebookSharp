@@ -1,5 +1,3 @@
-#if !SILVERLIGHT
-
 namespace FacebookSharp
 {
     using System;
@@ -20,13 +18,12 @@ namespace FacebookSharp
         /// <remarks>
         /// See http://developers.facebook.com/docs/api
         /// 
-        /// Note that this method is synchronous.
-        /// This method blocks waiting for a network reponse,
-        /// so do not call it in a UI thread.
+        /// Note that this method is asynchronous.
+        /// This method will not block waiting for a network response.
         /// 
         /// </remarks>
-        [Obsolete("Use the graph api Get() if possible.")]
-        public string GetUsingRestApi(string methodName, IDictionary<string, string> parameters, bool addAccessToken)
+        [Obsolete("Use the graph api GetAsync() if possible.")]
+        public void GetUsingRestApiAsync(string methodName, IDictionary<string, string> parameters, bool addAccessToken, Action<FacebookAsyncResult> callback)
         {
             if (parameters == null)
                 parameters = new Dictionary<string, string>();
@@ -34,10 +31,9 @@ namespace FacebookSharp
             if (!parameters.ContainsKey("format"))
                 parameters.Add("format", "json");
 
-            return
-                RestApiContext.Execute(
-                    new FacebookApiRestSharpMessage(this) { Resource = "/method/" + methodName, Parameters = parameters, AddAccessToken = addAccessToken },
-                    Method.GET);
+            RestApiContext.ExecuteAsync(
+                new FacebookApiRestSharpMessage(this) { Resource = "/method/" + methodName, Parameters = parameters, AddAccessToken = addAccessToken },
+                Method.GET, callback);
         }
 
         #endregion
@@ -51,17 +47,14 @@ namespace FacebookSharp
         /// <remarks>
         /// See http://developers.facebook.com/docs/api
         /// 
-        /// Note that this method is synchronous.
-        /// This method blocks waiting for a network reponse,
-        /// so do not call it in a UI thread.
+        /// Note that this method is asynchronous.
+        /// This method will not block waiting for a network response.
         /// 
-        [Obsolete("Use the graph api Get() if possible.")]
-        public string GetUsingRestApi(string methodName, IDictionary<string, string> parameters)
+        [Obsolete("Use the graph api GetAsync() if possible.")]
+        public void GetUsingRestApiAsync(string methodName, IDictionary<string, string> parameters, Action<FacebookAsyncResult> callback)
         {
             // by default facebook c# sdk tends to add access token, so we do the same here.
-            return GetUsingRestApi(methodName, parameters, true);
+            GetUsingRestApiAsync(methodName, parameters, true, callback);
         }
     }
 }
-
-#endif

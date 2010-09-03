@@ -6,6 +6,7 @@ namespace FacebookSharp.Extensions
 
     public static partial class FacebookExtensions
     {
+#if !(SILVERLIGHT || WINDOWS_PHONE)
         /// <summary>
         /// Writes the given comment on the given post.
         /// </summary>
@@ -80,5 +81,7 @@ namespace FacebookSharp.Extensions
             parameters = AppendPagingParameters(parameters, limit, offset, until);
             return facebook.GetComments(objectId, parameters);
         }
+
+#endif
     }
 }

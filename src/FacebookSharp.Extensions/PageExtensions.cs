@@ -1,13 +1,13 @@
-using System;
-using System.Text;
-
 namespace FacebookSharp.Extensions
 {
+    using System;
+    using System.Text;
     using System.Collections.Generic;
     using FacebookSharp.Schemas.Graph;
 
     public static partial class FacebookExtensions
     {
+#if !(SILVERLIGHT || WINDOWS_PHONE)
         /// <summary>
         /// Get list of pages for the current Facebook User
         /// </summary>
@@ -177,5 +177,6 @@ namespace FacebookSharp.Extensions
             parameters = AppendPagingParameters(parameters, limit, offset, until);
             return facebook.GetPageMembers(pageId, parameters);
         }
+#endif
     }
 }
