@@ -77,7 +77,7 @@ namespace FacebookSharp.Extensions
 
             return result;
         }
-        
+
         public static string CreateEvent(this Facebook facebook, Event @event, IDictionary<string, string> parameters)
         {
             IDictionary<string, string> pars = parameters != null
@@ -123,6 +123,28 @@ namespace FacebookSharp.Extensions
             pars.Add("page_id", pageId);
 
             return facebook.CreateEvent(@event, pars);
+        }
+
+        public static bool UpdateEvent(this Facebook facebook, Event @event, IDictionary<string, string> parameters)
+        {
+            AssertRequireAccessToken(facebook);
+
+            if (string.IsNullOrEmpty(@event.ID))
+                throw new ArgumentNullException("Event ID cannot be null or empty");
+
+            IDictionary<string, string> pars = parameters != null
+                                                  ? new Dictionary<string, string>(parameters)
+                                                  : new Dictionary<string, string>();
+
+            pars.Add("name", @event.Name);
+            pars.Add("location", @event.Location);
+            pars.Add("start_time", @event.StartTime);
+            pars.Add("end_time", @event.EndTime);
+            pars.Add("description", @event.Description);
+            //pars.Add("privacy", @event.Privacy);
+
+            var result = facebook.Post("/" + @event.ID, pars);
+            return result.Equals("true", StringComparison.OrdinalIgnoreCase);
         }
 
         ///// <summary>
