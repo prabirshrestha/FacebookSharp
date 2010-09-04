@@ -18,6 +18,7 @@ task :prepare do
 	cp "LICENSE.txt", OUTPUT_PATH
 	cp "README.md" , OUTPUT_PATH
 	cp LIBS_PATH + "RestSharp/RestSharp.License.txt", OUTPUT_PATH
+	cp LIBS_PATH + "RestSharp/Newtonsoft.Json.License.txt", OUTPUT_PATH
 end
 
 desc "Clean build outputs"
