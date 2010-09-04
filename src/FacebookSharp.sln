@@ -19,6 +19,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FacebookSharp.SQLiteProvide
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FacebookSharp.SqlProvider", "FacebookSharp.SqlProvider\FacebookSharp.SqlProvider.csproj", "{89233FEE-D1B9-4362-A8E7-AB4CDF3DF8F5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FacebookSharp.Web.JavascriptSdk", "FacebookSharp.Web.JavascriptSdk\FacebookSharp.Web.JavascriptSdk.csproj", "{CF8E1346-32E6-4A22-83E8-DF781009248E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +47,10 @@ Global
 		{89233FEE-D1B9-4362-A8E7-AB4CDF3DF8F5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{89233FEE-D1B9-4362-A8E7-AB4CDF3DF8F5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{89233FEE-D1B9-4362-A8E7-AB4CDF3DF8F5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CF8E1346-32E6-4A22-83E8-DF781009248E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CF8E1346-32E6-4A22-83E8-DF781009248E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CF8E1346-32E6-4A22-83E8-DF781009248E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CF8E1346-32E6-4A22-83E8-DF781009248E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -55,5 +61,6 @@ Global
 		{AF07862D-1427-4C2C-BD30-2264E7AE3FF6} = {3EE1C986-ADBF-4E87-951E-4DECDC685FF3}
 		{721BE9E7-0BF8-410C-B116-016118C9E5B9} = {3EE1C986-ADBF-4E87-951E-4DECDC685FF3}
 		{89233FEE-D1B9-4362-A8E7-AB4CDF3DF8F5} = {3EE1C986-ADBF-4E87-951E-4DECDC685FF3}
+		{CF8E1346-32E6-4A22-83E8-DF781009248E} = {3EE1C986-ADBF-4E87-951E-4DECDC685FF3}
 	EndGlobalSection
 EndGlobal
