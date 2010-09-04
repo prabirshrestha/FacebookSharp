@@ -17,6 +17,7 @@ task :prepare do
 	mkdir DIST_PATH unless File.exists?(DIST_PATH)
 	cp "LICENSE.txt", OUTPUT_PATH
 	cp "README.md" , OUTPUT_PATH
+	cp LIBS_PATH + "RestSharp/LICENSE.txt", OUTPUT_PATH + "RestSharp.License.txt"
 end
 
 desc "Clean build outputs"
