@@ -9,7 +9,7 @@ DIST_PATH		= "dist/"
 
 task :default => :full
 
-task :full => [:zip_binaries]
+task :full => [:package_binaries]
 
 desc "Prepare build"
 task :prepare do
@@ -41,8 +41,8 @@ msbuild :build_release => [:clean,:prepare] do |msb|
 	msb.targets	:Build
 end
 
-desc "Zip release binaries"
-zip :zip_binaries => [:build_release] do |zip|
+desc "Create a zip package for the release binaries"
+zip :package_binaries => [:build_release] do |zip|
 	zip.directories_to_zip OUTPUT_PATH
     zip.output_file = 'dist.binaries.zip'
     zip.output_path = DIST_PATH
