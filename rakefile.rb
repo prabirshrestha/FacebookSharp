@@ -47,3 +47,8 @@ zip :package_binaries => [:build_release] do |zip|
     zip.output_file = 'dist.binaries.zip'
     zip.output_path = DIST_PATH
 end
+
+desc "Create a source package (requires git in PATH)"
+task :package_source do
+	sh "git archive HEAD --format=zip > " + DIST_PATH + "dist.src.zip"
+end
