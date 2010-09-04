@@ -1,4 +1,5 @@
 require 'albacore'
+require 'open3'    # required for capturing standard output
 
 CONFIGURATION = "Release"
 
@@ -12,7 +13,7 @@ task :default => :full
 task :full => [:package_binaries]
 
 desc "Prepare build"
-task :prepare do
+task :prepare => [:clean] do
 	mkdir OUTPUT_PATH unless File.exists?(OUTPUT_PATH)
 	mkdir DIST_PATH unless File.exists?(DIST_PATH)
 	cp "LICENSE.txt", OUTPUT_PATH
@@ -35,7 +36,7 @@ msbuild :clean_msbuild do |msb|
 end
 
 desc "Build solution (default)"
-msbuild :build_release => [:clean,:prepare] do |msb|
+msbuild :build_release => [:prepare] do |msb|
 	msb.properties :configuration => :Release
 	msb.solution = SRC_PATH + "FacebookSharp.sln"
 	msb.targets	:Build
@@ -50,5 +51,22 @@ end
 
 desc "Create a source package (requires git in PATH)"
 task :package_source do
-	sh "git archive HEAD --format=zip > " + DIST_PATH + "dist.src.zip"
+	mkdir DIST_PATH unless File.exists?(DIST_PATH)
+	sh "git archive HEAD --format=zip > dist/dist.source-" + getGitLastCommit + ".zip"
+	#git archive HEAD --format=zip > dist/dist.source-`git reflog | grep 'HEAD@{0}' | cut -d " " -f1 | sed 's/[.]*//g'`.zip
+end
+
+def getGitLastCommit
+
+	buffer = [] 
+	Open3::popen3("git reflog | grep 'HEAD@{0}' | cut -d \" \" -f1 | sed 's/[.]*//g'") do |stdin,stdout,stderr| 
+	  begin 
+		while line = stdout.readline 
+		  buffer << line 
+		end 
+	  rescue 
+	  end 
+	end
+
+	return buffer[0].chop # get the first line and chop the \n
 end
