@@ -20,7 +20,7 @@ _ReSharper.*/
 
 # Misc Ignores
 Thumbs.db
-!libs/*/Bin/
+!libs/*/[Bb]in/
 
 # StyleCop Cache ignores
 *StyleCop.Cache
@@ -30,3 +30,5 @@ Thumbs.db
 
 .vs10x
 *.vs10x
+
+dist/
