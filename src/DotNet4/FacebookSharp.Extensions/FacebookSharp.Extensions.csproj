@@ -27,11 +27,11 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>..\..\..\bin\DotNet4\Debug\</OutputPath>
+    <OutputPath>..\..\..\bin\DotNet4\Release\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>..\..\..\bin\DotNet4\Debug\FacebookSharp.Extensions.XML</DocumentationFile>
+    <DocumentationFile>..\..\..\bin\DotNet4\Release\FacebookSharp.Extensions.XML</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="RestSharp, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
