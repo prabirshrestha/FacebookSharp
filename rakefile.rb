@@ -8,7 +8,7 @@ OUTPUT_PATH = "bin/"
 
 task :default => :full
 
-task :full => [:clean, :build_release]
+task :full => [:build_release]
 
 desc "Clean"
 task :clean do
@@ -16,7 +16,7 @@ task :clean do
 end
 
 desc "Build solution using MSBuild"
-msbuild :build_release do |msb|
+msbuild :build_release => [:clean] do |msb|
 	msb.properties :configuration => :release	
 	msb.solution = SRC_PATH + "FacebookSharp.sln"
 	msb.targets	:Build
