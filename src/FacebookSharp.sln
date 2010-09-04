@@ -54,6 +54,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FacebookSharp.Samples.Canva
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FacebookSharp.Samples.Mvc", "Samples\FacebookSharp.Samples.Mvc\FacebookSharp.Samples.Mvc.csproj", "{3E6A68B9-FB88-4E54-8011-5508E63629C0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FacebookSharp.Samples.WebApplication", "Samples\FacebookSharp.Samples.WebApplication\FacebookSharp.Samples.WebApplication.csproj", "{74441934-2B6A-45E8-A12D-FF9C5CB23925}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -132,6 +134,10 @@ Global
 		{3E6A68B9-FB88-4E54-8011-5508E63629C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3E6A68B9-FB88-4E54-8011-5508E63629C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3E6A68B9-FB88-4E54-8011-5508E63629C0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{74441934-2B6A-45E8-A12D-FF9C5CB23925}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{74441934-2B6A-45E8-A12D-FF9C5CB23925}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{74441934-2B6A-45E8-A12D-FF9C5CB23925}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{74441934-2B6A-45E8-A12D-FF9C5CB23925}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -155,5 +161,6 @@ Global
 		{026FE6B3-3686-4C7E-8F7F-82631A23FA74} = {7E642DAD-BC94-45A3-B7F2-7C6CF750648D}
 		{7BF83FA4-7D67-4C3E-BF73-734418F96101} = {1E747C70-0D19-4DE7-AFD0-5C3DDF2DB590}
 		{3E6A68B9-FB88-4E54-8011-5508E63629C0} = {1E747C70-0D19-4DE7-AFD0-5C3DDF2DB590}
+		{74441934-2B6A-45E8-A12D-FF9C5CB23925} = {1E747C70-0D19-4DE7-AFD0-5C3DDF2DB590}
 	EndGlobalSection
 EndGlobal
