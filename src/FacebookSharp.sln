@@ -37,6 +37,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FacebookSharp.Web.Mvc", "Do
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FacebookSharp.Winforms", "DotNet4\FacebookSharp.Winforms\FacebookSharp.Winforms.csproj", "{F171C7E2-EE78-45B5-9571-29379CBBB7D5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FacebookSharp.Core", "Silverlight\FacebookSharp.Core\FacebookSharp.Core.csproj", "{6BB3B07C-90A3-41AB-8965-8783CA5CF052}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -99,6 +101,10 @@ Global
 		{F171C7E2-EE78-45B5-9571-29379CBBB7D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F171C7E2-EE78-45B5-9571-29379CBBB7D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F171C7E2-EE78-45B5-9571-29379CBBB7D5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6BB3B07C-90A3-41AB-8965-8783CA5CF052}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6BB3B07C-90A3-41AB-8965-8783CA5CF052}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6BB3B07C-90A3-41AB-8965-8783CA5CF052}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6BB3B07C-90A3-41AB-8965-8783CA5CF052}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -118,5 +124,6 @@ Global
 		{511D990E-AEF0-40FE-9DA8-40557F8C93E2} = {1795AA90-6144-4A68-A538-4623B5653D67}
 		{CBA0FE71-1DD3-4190-A010-B4492248A1C3} = {1795AA90-6144-4A68-A538-4623B5653D67}
 		{F171C7E2-EE78-45B5-9571-29379CBBB7D5} = {1795AA90-6144-4A68-A538-4623B5653D67}
+		{6BB3B07C-90A3-41AB-8965-8783CA5CF052} = {7E642DAD-BC94-45A3-B7F2-7C6CF750648D}
 	EndGlobalSection
 EndGlobal
