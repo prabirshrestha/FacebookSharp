@@ -3,19 +3,25 @@ require 'open3'    # required for capturing standard output
 
 CONFIGURATION = "Release"
 
-SRC_PATH		= "src/"
-LIBS_PATH		= "libs/"
-OUTPUT_PATH		= "bin/"
-DIST_PATH		= "dist/"
+SRC_PATH				= "src/"
+LIBS_PATH				= "libs/"
+OUTPUT_PATH				= "bin/"
+DIST_PATH				= "dist/"
+TEST_OUTPUT_PATH		= "bin/Tests/"
+XUNIT32_CONSOLE_PATH	= LIBS_PATH + "xunit-1.6.1/xunit.console.clr4.x86.exe"
 
 task :default => :full
 
-task :full => [:package_binaries]
+task :full => [:package_binaries,:test]
+
+desc "Run Tests"
+task :test => [:main_test]
 
 desc "Prepare build"
 task :prepare => [:clean] do
 	mkdir OUTPUT_PATH unless File.exists?(OUTPUT_PATH)
 	mkdir DIST_PATH unless File.exists?(DIST_PATH)
+	mkdir TEST_OUTPUT_PATH unless File.exists?(TEST_OUTPUT_PATH)
 	cp "LICENSE.txt", OUTPUT_PATH
 	cp "README.md" , OUTPUT_PATH
 	cp LIBS_PATH + "RestSharp/RestSharp.License.txt", OUTPUT_PATH
@@ -69,4 +75,10 @@ def getGitLastCommit
 	end
 
 	return buffer[0].chop # get the first line and chop the \n
+end
+
+xunit :main_test => [:build_release] do |xunit|
+	xunit.command = XUNIT32_CONSOLE_PATH
+	xunit.assembly = SRC_PATH + "Tests/FacebookSharp.Tests/bin/Release/FacebookSharp.Tests.dll"
+	xunit.html_output = TEST_OUTPUT_PATH
 end
