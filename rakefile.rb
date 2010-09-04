@@ -22,6 +22,7 @@ end
 desc "Clean build outputs"
 task :clean => [:clean_msbuild] do
 	FileUtils.rm_rf OUTPUT_PATH
+	FileUtils.rm_rf DIST_PATH
 end
 
 desc "Clean solution outputs"
