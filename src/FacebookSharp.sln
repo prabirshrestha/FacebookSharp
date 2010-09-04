@@ -17,6 +17,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FacebookSharp.MySqlProvider
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FacebookSharp.SQLiteProvider", "FacebookSharp.SQLiteProvider\FacebookSharp.SQLiteProvider.csproj", "{721BE9E7-0BF8-410C-B116-016118C9E5B9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FacebookSharp.SqlProvider", "FacebookSharp.SqlProvider\FacebookSharp.SqlProvider.csproj", "{89233FEE-D1B9-4362-A8E7-AB4CDF3DF8F5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{721BE9E7-0BF8-410C-B116-016118C9E5B9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{721BE9E7-0BF8-410C-B116-016118C9E5B9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{721BE9E7-0BF8-410C-B116-016118C9E5B9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{89233FEE-D1B9-4362-A8E7-AB4CDF3DF8F5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{89233FEE-D1B9-4362-A8E7-AB4CDF3DF8F5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{89233FEE-D1B9-4362-A8E7-AB4CDF3DF8F5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{89233FEE-D1B9-4362-A8E7-AB4CDF3DF8F5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -48,5 +54,6 @@ Global
 		{CEF9D393-79A7-4FFC-9A6E-E415E57FFAEE} = {3EE1C986-ADBF-4E87-951E-4DECDC685FF3}
 		{AF07862D-1427-4C2C-BD30-2264E7AE3FF6} = {3EE1C986-ADBF-4E87-951E-4DECDC685FF3}
 		{721BE9E7-0BF8-410C-B116-016118C9E5B9} = {3EE1C986-ADBF-4E87-951E-4DECDC685FF3}
+		{89233FEE-D1B9-4362-A8E7-AB4CDF3DF8F5} = {3EE1C986-ADBF-4E87-951E-4DECDC685FF3}
 	EndGlobalSection
 EndGlobal
