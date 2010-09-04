@@ -21,6 +21,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FacebookSharp.SqlProvider",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FacebookSharp.Web.JavascriptSdk", "FacebookSharp.Web.JavascriptSdk\FacebookSharp.Web.JavascriptSdk.csproj", "{CF8E1346-32E6-4A22-83E8-DF781009248E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FacebookSharp.Web.Mvc", "FacebookSharp.Web.Mvc\FacebookSharp.Web.Mvc.csproj", "{64CF34EB-40BB-4462-8523-DE40D1997246}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +53,10 @@ Global
 		{CF8E1346-32E6-4A22-83E8-DF781009248E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CF8E1346-32E6-4A22-83E8-DF781009248E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CF8E1346-32E6-4A22-83E8-DF781009248E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{64CF34EB-40BB-4462-8523-DE40D1997246}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{64CF34EB-40BB-4462-8523-DE40D1997246}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{64CF34EB-40BB-4462-8523-DE40D1997246}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{64CF34EB-40BB-4462-8523-DE40D1997246}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -62,5 +68,6 @@ Global
 		{721BE9E7-0BF8-410C-B116-016118C9E5B9} = {3EE1C986-ADBF-4E87-951E-4DECDC685FF3}
 		{89233FEE-D1B9-4362-A8E7-AB4CDF3DF8F5} = {3EE1C986-ADBF-4E87-951E-4DECDC685FF3}
 		{CF8E1346-32E6-4A22-83E8-DF781009248E} = {3EE1C986-ADBF-4E87-951E-4DECDC685FF3}
+		{64CF34EB-40BB-4462-8523-DE40D1997246} = {3EE1C986-ADBF-4E87-951E-4DECDC685FF3}
 	EndGlobalSection
 EndGlobal
