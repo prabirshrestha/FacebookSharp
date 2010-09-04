@@ -9,8 +9,23 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Silverlight", "Silverlight"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WindowsPhone", "WindowsPhone", "{0052E037-6878-4A0C-A397-4E53AA92962E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FacebookSharp.Core", "FacebookSharp.Core\FacebookSharp.Core.csproj", "{4E7E4294-219E-457A-B092-D1283A7B28BE}"
+EndProject
 Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4E7E4294-219E-457A-B092-D1283A7B28BE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4E7E4294-219E-457A-B092-D1283A7B28BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4E7E4294-219E-457A-B092-D1283A7B28BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4E7E4294-219E-457A-B092-D1283A7B28BE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{4E7E4294-219E-457A-B092-D1283A7B28BE} = {3EE1C986-ADBF-4E87-951E-4DECDC685FF3}
 	EndGlobalSection
 EndGlobal
