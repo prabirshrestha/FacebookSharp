@@ -1,10 +1,11 @@
 http://www.prabir.me
-http://github.com/prabirshrestha/FacebookSharp
+http://github.com/prabirshrestha/FacebookSharp (http://bit.ly/facebooksharp)
 
 =====================================================================================
 FacebookSharp is intended to be used in both open-source and commercial environments.
 =====================================================================================
 3-clause license ("New BSD License")
+
 
 Copyright (c) 2010, Prabir Shrestha
 All rights reserved.
@@ -17,8 +18,8 @@ modification, are permitted provided that the following conditions are met:
     * Redistributions in binary form must reproduce the above copyright
       notice, this list of conditions and the following disclaimer in the
       documentation and/or other materials provided with the distribution.
-    * Neither the name of the FacebookSharp nor the names of its 
-	  contributors may be used to endorse or promote products
+    * Neither the name of the FacebookSharp nor the names of its
+      contributors may be used to endorse or promote products
       derived from this software without specific prior written permission.
 
 THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
