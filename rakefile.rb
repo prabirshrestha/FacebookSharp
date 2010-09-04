@@ -3,16 +3,17 @@ require 'open3'    # required for capturing standard output
 
 CONFIGURATION = "Release"
 
-SRC_PATH				= "src/"
-LIBS_PATH				= "libs/"
-OUTPUT_PATH				= "bin/"
-DIST_PATH				= "dist/"
-TEST_OUTPUT_PATH		= "bin/Tests/"
+ROOT_DIR				= File.dirname(__FILE__) + "/"
+SRC_PATH				= ROOT_DIR + "src/"
+LIBS_PATH				= ROOT_DIR + "libs/"
+OUTPUT_PATH				= ROOT_DIR + "bin/"
+DIST_PATH				= ROOT_DIR + "dist/"
+TEST_OUTPUT_PATH		= ROOT_DIR + "bin/Tests/"
 XUNIT32_CONSOLE_PATH	= LIBS_PATH + "xunit-1.6.1/xunit.console.clr4.x86.exe"
 
 task :default => :full
 
-task :full => [:package_binaries,:test]
+task :full => [:build_release,:test,:package_binaries]
 
 desc "Run Tests"
 task :test => [:main_test]
@@ -81,4 +82,5 @@ xunit :main_test => [:build_release] do |xunit|
 	xunit.command = XUNIT32_CONSOLE_PATH
 	xunit.assembly = SRC_PATH + "Tests/FacebookSharp.Tests/bin/Release/FacebookSharp.Tests.dll"
 	xunit.html_output = TEST_OUTPUT_PATH
+	xunit.options '/nunit ' + TEST_OUTPUT_PATH + 'FacebookSharp.Tests.nUnit.xml', '/xml ' + TEST_OUTPUT_PATH + 'FacebookSharp.Tests.xUnit.xml'
 end
