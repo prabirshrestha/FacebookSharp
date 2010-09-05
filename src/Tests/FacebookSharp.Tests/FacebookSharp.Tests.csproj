@@ -46,6 +46,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Extensions\ParameterExtensions\OffsetTests.cs" />
     <Compile Include="Extensions\ParameterExtensions\LimitToTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
