@@ -70,6 +70,32 @@ namespace FacebookSharp.Extensions
         }
 
         /// <summary>
+        /// Adds 'since' parameter.
+        /// </summary>
+        /// <param name="parameters">
+        /// The parameters.
+        /// </param>
+        /// <param name="since">
+        /// A unix timestamp or any date accepted by strtotime
+        /// </param>
+        /// <returns>
+        /// </returns>
+        /// <remarks>
+        /// http://developers.facebook.com/docs/api#paging
+        /// 
+        /// https://graph.facebook.com/search?since=yesterday
+        /// 
+        /// strtotime: http://php.net/manual/en/function.strtotime.php)
+        /// </remarks>
+        public static IDictionary<string, string> Since(this IDictionary<string, string> parameters, string since)
+        {
+            if (parameters == null)
+                parameters = new Dictionary<string, string>();
+            parameters.Add("since", since);
+            return parameters;
+        }
+
+        /// <summary>
         /// Add fields parameter, if fields already exisits appends it.
         /// </summary>
         /// <param name="parameters">The parameters.</param>
