@@ -30,7 +30,7 @@ namespace FacebookSharp.Extensions
         /// <param name="parameters"></param>
         /// <param name="offset"></param>
         /// <returns></returns>
-        /// /// <remarks>
+        /// <remarks>
         /// http://developers.facebook.com/docs/api#paging
         /// 
         /// https://graph.facebook.com/me/likes?offset=3
@@ -43,6 +43,24 @@ namespace FacebookSharp.Extensions
             return parameters;
         }
 
+        /// <summary>
+        /// Adds 'until' parameter.
+        /// </summary>
+        /// <param name="parameters">
+        /// The parameters.
+        /// </param>
+        /// <param name="until">
+        /// A unix timestamp or any date accepted by strtotime
+        /// </param>
+        /// <returns>
+        /// </returns>
+        /// <remarks>
+        /// http://developers.facebook.com/docs/api#paging
+        /// 
+        /// https://graph.facebook.com/search?until=yesterday
+        /// 
+        /// strtotime: http://php.net/manual/en/function.strtotime.php)
+        /// </remarks>
         public static IDictionary<string, string> Until(this IDictionary<string, string> parameters, string until)
         {
             if (parameters == null)
