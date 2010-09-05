@@ -18,6 +18,7 @@ namespace FacebookSharp.Tests.Extensions
                 });
 
             Assert.Equal(1, parameters.Count);
+            Assert.Equal("1", parameters["ids"]);
         }
 
         [Fact]
