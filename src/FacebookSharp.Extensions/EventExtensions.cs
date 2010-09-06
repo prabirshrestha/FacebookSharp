@@ -1,4 +1,6 @@
 
+
+
 namespace FacebookSharp.Extensions
 {
     using System;
@@ -51,7 +53,7 @@ namespace FacebookSharp.Extensions
         }
 
         [Obsolete(Facebook.OldRestApiWarningMessage)]
-        public static string GetEvents(this Facebook facebook, string userId, string[] eventIds, int? startTime, int? endTime, RsvpStatus? rsvpStatus, IDictionary<string, string> parameters)
+        public static List<Schemas.Rest.@event> GetEvents(this Facebook facebook, string userId, string[] eventIds, int? startTime, int? endTime, RsvpStatus? rsvpStatus, IDictionary<string, string> parameters)
         {
             if (parameters == null)
                 parameters = new Dictionary<string, string>();
@@ -75,7 +77,9 @@ namespace FacebookSharp.Extensions
 
             var result = facebook.GetUsingRestApi("events.get", parameters);
 
-            return result;
+            return result.Equals("{}", StringComparison.OrdinalIgnoreCase)
+                       ? new List<Schemas.Rest.@event>()
+                       : FacebookUtils.DeserializeObject<List<Schemas.Rest.@event>>(result);
         }
 
         public static string CreateEvent(this Facebook facebook, Event @event, IDictionary<string, string> parameters)
