@@ -8,6 +8,43 @@ namespace FacebookSharp.Extensions
     public static partial class FacebookExtensions
     {
 #if !(SILVERLIGHT || WINDOWS_PHONE)
+
+        /// <summary>
+        /// Gets the page with specified id.
+        /// </summary>
+        /// <param name="facebook">
+        /// The facebook.
+        /// </param>
+        /// <param name="pageId">
+        /// The page id.
+        /// </param>
+        /// <param name="parameters">
+        /// The parameters.
+        /// </param>
+        /// <returns>
+        /// </returns>
+        public static Page GetPage(this Facebook facebook, string pageId, IDictionary<string, string> parameters)
+        {
+            var result = facebook.GetObject(pageId, parameters);
+            return FacebookUtils.DeserializeObject<Page>(result);
+        }
+
+        /// <summary>
+        /// Gets the page with specified id.
+        /// </summary>
+        /// <param name="facebook">
+        /// The facebook.
+        /// </param>
+        /// <param name="pageId">
+        /// The page id.
+        /// </param>
+        /// <returns>
+        /// </returns>
+        public static Page GetPage(this Facebook facebook, string pageId)
+        {
+            return facebook.GetPage(pageId, null);
+        }
+
         /// <summary>
         /// Get list of pages for the current Facebook User
         /// </summary>
