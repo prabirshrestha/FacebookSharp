@@ -1,4 +1,4 @@
-require 'albacore'
+require_relative 'libs/albacore/albacore.rb'
 require 'open3'    # required for capturing standard output
 
 CONFIGURATION = "Release"
