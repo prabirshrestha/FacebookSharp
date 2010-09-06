@@ -1,4 +1,5 @@
-require_relative 'libs/albacore/albacore.rb'
+require File.join(File.dirname(__FILE__), 'libs/albacore/albacore.rb')
+#require_relative 'libs/albacore/albacore.rb'
 require 'open3'    # required for capturing standard output
 
 CONFIGURATION = "Release"
