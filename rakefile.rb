@@ -2,7 +2,7 @@ require File.join(File.dirname(__FILE__), 'libs/albacore/albacore.rb')
 #require_relative 'libs/albacore/albacore.rb'
 require 'open3'    # required for capturing standard output
 
-CONFIGURATION = "Release"
+CONFIGURATION = :Release
 
 ROOT_DIR				= File.dirname(__FILE__) + "/"
 SRC_PATH				= ROOT_DIR + "src/"
@@ -38,14 +38,14 @@ end
 
 desc "Clean solution outputs"
 msbuild :clean_msbuild do |msb|
-	msb.properties :configuration => :Release
+	msb.properties :configuration => CONFIGURATION
 	msb.solution = SRC_PATH + "FacebookSharp.sln"
 	msb.targets	:Clean
 end
 
 desc "Build solution (default)"
 msbuild :build_release => [:prepare] do |msb|
-	msb.properties :configuration => :Release
+	msb.properties :configuration => CONFIGURATION
 	msb.solution = SRC_PATH + "FacebookSharp.sln"
 	msb.targets	:Build
 end
