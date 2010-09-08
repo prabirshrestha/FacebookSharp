@@ -11,10 +11,11 @@ OUTPUT_PATH				= ROOT_DIR + "bin/"
 DIST_PATH				= ROOT_DIR + "dist/"
 TEST_OUTPUT_PATH		= ROOT_DIR + "bin/Tests/"
 XUNIT32_CONSOLE_PATH	= LIBS_PATH + "xunit-1.6.1/xunit.console.clr4.x86.exe"
+DOTNET_VERSION			= :net40
 
 task :default => :full
 
-task :full => [:build_release,:test,:package_binaries]
+task :full => [:build_release,:test,:package_binaries,:precompile_samples_webapplication]
 
 desc "Run Tests"
 task :test => [:main_test]
@@ -84,4 +85,23 @@ xunit :main_test => [:build_release] do |xunit|
 	xunit.assembly = SRC_PATH + "Tests/FacebookSharp.Tests/bin/Release/FacebookSharp.Tests.dll"
 	xunit.html_output = TEST_OUTPUT_PATH
 	xunit.options '/nunit ' + TEST_OUTPUT_PATH + 'FacebookSharp.Tests.nUnit.xml', '/xml ' + TEST_OUTPUT_PATH + 'FacebookSharp.Tests.xUnit.xml'
+end
+
+exec :precompile_samples_webapplication_task do |exec|
+	include Configuration::NetVersion
+	exec.command = dotnet_path + '/aspnet_compiler.exe'
+	exec.parameters = ['-f','-u','-p','src/Samples/FacebookSharp.Samples.WebApplication','-v','/','bin/Samples/FacebookSharp.Samples.WebApplication']
+end
+
+task :precompile_samples_webapplication => [:build_release,:precompile_samples_webapplication_task] do
+	files_to_remove = 
+				[OUTPUT_PATH + 'Samples/FacebookSharp.Samples.WebApplication/FacebookSharp.Samples.WebApplication.csproj',
+				 OUTPUT_PATH + 'Samples/FacebookSharp.Samples.WebApplication/FacebookSharp.Samples.WebApplication.csproj.user']
+	files_to_remove.each{|file| File.delete(file) if File.exist?(file)}
+	FileUtils.rm_rf OUTPUT_PATH + 'Samples/FacebookSharp.Samples.WebApplication/obj'
+end
+
+def dotnet_path
+	include Configuration::NetVersion
+	return get_net_version DOTNET_VERSION
 end
