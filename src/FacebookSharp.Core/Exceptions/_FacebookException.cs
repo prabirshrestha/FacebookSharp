@@ -78,11 +78,12 @@ namespace FacebookSharp
             {
                 string type = error.Value<string>("type");
                 string message = error.Value<string>("message");
-
-                switch (type)
+                
+				if (message.Equals(DuplicateStatusMessageException.MESSAGE, StringComparison.OrdinalIgnoreCase))
+                    return new DuplicateStatusMessageException(message); // facebook just changed their error type to OAuthException {"error":{"type":"OAuthException","message":"(#506) Duplicate status message"}}
+                
+				switch (type)
                 {
-                    if (message.Equals(DuplicateStatusMessageException.MESSAGE, StringComparison.OrdinalIgnoreCase))
-                        return new DuplicateStatusMessageException(message); // facebook just changed their error type to OAuthException {"error":{"type":"OAuthException","message":"(#506) Duplicate status message"}}
                     case "OAuthException":
                         return new OAuthException(message);
                     case "QueryParseException":
