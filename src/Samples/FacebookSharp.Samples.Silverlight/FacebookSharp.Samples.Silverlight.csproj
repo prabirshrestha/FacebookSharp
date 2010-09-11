@@ -91,6 +91,12 @@
   <ItemGroup>
     <None Include="Properties\AppManifest.xml" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Silverlight\FacebookSharp.Core\FacebookSharp.Core.csproj">
+      <Project>{6BB3B07C-90A3-41AB-8965-8783CA5CF052}</Project>
+      <Name>FacebookSharp.Core %28Silverlight\FacebookSharp.Core%29</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Silverlight\$(SilverlightVersion)\Microsoft.Silverlight.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
