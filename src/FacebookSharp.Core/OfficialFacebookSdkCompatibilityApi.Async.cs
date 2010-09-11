@@ -156,7 +156,7 @@ namespace FacebookSharp
         {
             GraphContext.ExecuteAsync(
                 new FacebookGraphRestSharpMessage(this) { Resource = graphPath, Parameters = parameters, AddAccessToken = true },
-                Method.PUT, callback);
+                Method.POST, callback);
         }
 
         #endregion
