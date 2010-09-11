@@ -62,6 +62,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{BDAB6C80
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FacebookSharp.Tests", "Tests\FacebookSharp.Tests\FacebookSharp.Tests.csproj", "{203DC59D-78A1-4DE1-994F-6B900F541EF9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FacebookSharp.Samples.Silverlight", "Samples\FacebookSharp.Samples.Silverlight\FacebookSharp.Samples.Silverlight.csproj", "{41FDB927-98FC-475E-AF0D-4EC2711A38E4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -282,6 +284,16 @@ Global
 		{203DC59D-78A1-4DE1-994F-6B900F541EF9}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{203DC59D-78A1-4DE1-994F-6B900F541EF9}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{203DC59D-78A1-4DE1-994F-6B900F541EF9}.Release|x86.ActiveCfg = Release|Any CPU
+		{41FDB927-98FC-475E-AF0D-4EC2711A38E4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{41FDB927-98FC-475E-AF0D-4EC2711A38E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{41FDB927-98FC-475E-AF0D-4EC2711A38E4}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{41FDB927-98FC-475E-AF0D-4EC2711A38E4}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{41FDB927-98FC-475E-AF0D-4EC2711A38E4}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{41FDB927-98FC-475E-AF0D-4EC2711A38E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{41FDB927-98FC-475E-AF0D-4EC2711A38E4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{41FDB927-98FC-475E-AF0D-4EC2711A38E4}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{41FDB927-98FC-475E-AF0D-4EC2711A38E4}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{41FDB927-98FC-475E-AF0D-4EC2711A38E4}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -307,6 +319,7 @@ Global
 		{3E6A68B9-FB88-4E54-8011-5508E63629C0} = {1E747C70-0D19-4DE7-AFD0-5C3DDF2DB590}
 		{74441934-2B6A-45E8-A12D-FF9C5CB23925} = {1E747C70-0D19-4DE7-AFD0-5C3DDF2DB590}
 		{0752A78A-DE20-4F59-A09C-08FF4243DADE} = {1E747C70-0D19-4DE7-AFD0-5C3DDF2DB590}
+		{41FDB927-98FC-475E-AF0D-4EC2711A38E4} = {1E747C70-0D19-4DE7-AFD0-5C3DDF2DB590}
 		{203DC59D-78A1-4DE1-994F-6B900F541EF9} = {BDAB6C80-E2A0-4304-9DF6-D68C8876AB36}
 	EndGlobalSection
 EndGlobal
