@@ -75,6 +75,20 @@ namespace FacebookSharp.Samples.Silverlight
             //                     WriteLine("Error: " + "\n" + result.Exception.Message + "\n");
             //                 }
             //             });
+
+            //// example for deleting
+            //fb.DeleteAsync("/id",
+            //               result =>
+            //               {
+            //                   if (result.IsSuccessful)
+            //                   {
+            //                       WriteLine(result.RawResponse);
+            //                   }
+            //                   else
+            //                   {
+            //                       WriteLine("Error: \n" + result.Exception.Message);
+            //                   }
+            //               });
         }
 
     }
