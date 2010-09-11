@@ -49,6 +49,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AccessToken.cs" />
+    <Compile Include="Exceptions\ClientAccessPolicyException.cs" />
     <Compile Include="OldRestApi.ASync.cs" />
     <Compile Include="Facebook.Async.cs" />
     <Compile Include="Exceptions\DuplicateStatusMessageException.cs" />
