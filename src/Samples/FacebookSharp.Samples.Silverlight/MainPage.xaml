@@ -4,7 +4,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    d:DesignHeight="300" d:DesignWidth="400" xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk">
+    d:DesignHeight="300" d:DesignWidth="400">
 
     <Grid x:Name="LayoutRoot" Background="White" Margin="4">
         <Grid.ColumnDefinitions>
@@ -16,7 +16,8 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="226*" />
         </Grid.RowDefinitions>
-        <sdk:Label Grid.Column="0" Grid.Row="0" Content="Access Token:" />
+        <TextBlock TextWrapping="Wrap" TextAlignment="Left" VerticalAlignment="Center">Access Token:</TextBlock>
+        
         <TextBox Name="txtAccessToken" Grid.Column="1" Grid.ColumnSpan="2" />
         
         <Button Click="btnGetMyInfo_Click" Name="btnGetMyInfo" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Left" Content="Get My Info"/>
