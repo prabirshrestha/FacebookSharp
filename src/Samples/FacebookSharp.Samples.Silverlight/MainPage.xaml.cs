@@ -42,7 +42,7 @@ namespace FacebookSharp.Samples.Silverlight
                     // always check if it was successful.
                     if (result.IsSuccessful)
                     {
-                        // this prints out the raw json
+                        // this prints out the raw json, // make sure u write on the appropriate thread
                         WriteLine(result.RawResponse + "\n");
 
                         // this mite be preferable - the generic version of the result
@@ -58,6 +58,23 @@ namespace FacebookSharp.Samples.Silverlight
                     }
                 });
 
+            //// example for posting on the wall:
+            //fb.PostAsync("/me/feed",
+            //             new Dictionary<string, string>
+            //                 {
+            //                     { "message", "testing form Silverlight FacebookSharp" }
+            //                 },
+            //             result =>
+            //             {
+            //                 if (result.IsSuccessful)
+            //                 {
+            //                     WriteLine("New post id" + result.RawResponse);
+            //                 }
+            //                 else
+            //                 {
+            //                     WriteLine("Error: " + "\n" + result.Exception.Message + "\n");
+            //                 }
+            //             });
         }
 
     }

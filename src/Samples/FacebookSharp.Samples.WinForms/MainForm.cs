@@ -85,7 +85,7 @@ namespace FacebookSharp.Samples.WinForms
             // example for posting on the wall:
             //string resultPost = fb.Post("/me/feed", new Dictionary<string, string>
             //                        {
-            //                            {"message", "testing from FB# restsharp."}
+            //                            {"message", "testing from FacebookSharp."}
             //                        });
             //MessageBox.Show(resultPost); // this result is the id of the new post
 
