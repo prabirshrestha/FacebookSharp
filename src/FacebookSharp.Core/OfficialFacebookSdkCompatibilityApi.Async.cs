@@ -119,9 +119,13 @@ namespace FacebookSharp
         /// </remarks>
         public void DeleteAsync(string graphPath, IDictionary<string, string> parameters, Action<FacebookAsyncResult> callback)
         {
+            if (parameters == null)
+                parameters = new Dictionary<string, string>();
+            parameters.Add("method", "DELETE"); // silverlight doesn't seem to support DELETE method and fb allows to use this alternative
+
             GraphContext.ExecuteAsync(
                new FacebookGraphRestSharpMessage(this) { Resource = graphPath, Parameters = parameters, AddAccessToken = true },
-               Method.DELETE, callback);
+               Method.POST, callback);
         }
 
         /// <summary>
