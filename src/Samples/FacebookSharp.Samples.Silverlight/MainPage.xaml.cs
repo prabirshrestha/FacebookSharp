@@ -19,5 +19,9 @@ namespace FacebookSharp.Samples.Silverlight
             InitializeComponent();
         }
 
+        private void btnGetMyInfo_Click(object sender, RoutedEventArgs e)
+        {
+        }
+
     }
 }

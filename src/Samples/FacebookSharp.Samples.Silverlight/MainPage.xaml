@@ -6,5 +6,20 @@
     mc:Ignorable="d"
     d:DesignHeight="300" d:DesignWidth="400" xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk">
 
-    <Grid x:Name="LayoutRoot" Background="White"></Grid>
+    <Grid x:Name="LayoutRoot" Background="White" Margin="4">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="100" />
+            <ColumnDefinition Width="300" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="226*" />
+        </Grid.RowDefinitions>
+        <sdk:Label Grid.Column="0" Grid.Row="0" Content="Access Token:" />
+        <TextBox Grid.Column="1" Grid.ColumnSpan="2" />
+        
+        <Button Click="btnGetMyInfo_Click" Name="btnGetMyInfo" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Left" Content="Get My Info"/>
+        <TextBlock Name="txtInfo" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" />
+    </Grid>
 </UserControl>
