@@ -202,7 +202,7 @@ Supported. (Client profile supported too.)
 Contains MVC Action filters for easing the development.
 
 ### Silverlight
-Comming soon
+Supported
 
 ### Windows Phone
 Comming soon
