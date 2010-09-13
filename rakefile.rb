@@ -2,6 +2,8 @@ require File.join(File.dirname(__FILE__), 'libs/albacore/albacore.rb')
 #require_relative 'libs/albacore/albacore.rb'
 require 'open3'    # required for capturing standard output
 
+MAJOR_VERSION_NO = "0.1"
+
 CONFIGURATION = :Release
 
 ROOT_DIR				= File.dirname(__FILE__) + "/"
@@ -12,6 +14,10 @@ DIST_PATH				= ROOT_DIR + "dist/"
 TEST_OUTPUT_PATH		= ROOT_DIR + "bin/Tests/"
 XUNIT32_CONSOLE_PATH	= LIBS_PATH + "xunit-1.6.1/xunit.console.clr4.x86.exe"
 DOTNET_VERSION			= :net40
+
+if ENV['build.number'].nil? then ENV['build.number'] = '0000' end
+VERSION_NO = MAJOR_VERSION_NO + '.' + ENV['build.number']
+puts 'Version Number: ' + VERSION_NO
 
 task :default => :full
 
@@ -54,7 +60,7 @@ end
 desc "Create a zip package for the release binaries"
 zip :package_binaries => [:build_release] do |zip|
 	zip.directories_to_zip OUTPUT_PATH
-    zip.output_file = 'dist.binaries.zip'
+    zip.output_file = "FacebookSharp-#{VERSION_NO}.zip"
     zip.output_path = DIST_PATH
 end
 
