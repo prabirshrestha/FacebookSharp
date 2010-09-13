@@ -15,8 +15,8 @@ TEST_OUTPUT_PATH		= ROOT_DIR + "bin/Tests/"
 XUNIT32_CONSOLE_PATH	= LIBS_PATH + "xunit-1.6.1/xunit.console.clr4.x86.exe"
 DOTNET_VERSION			= :net40
 
-if ENV['build.number'].nil? then ENV['build.number'] = '0000' end
-VERSION_NO = MAJOR_VERSION_NO + '.' + ENV['build.number']
+if ENV['BUILD_NUMBER'].nil? then ENV['BUILD_NUMBER'] = '0000' end
+VERSION_NO = MAJOR_VERSION_NO + '.' + ENV['BUILD_NUMBER']
 puts 'Version Number: ' + VERSION_NO
 
 task :default => :full
