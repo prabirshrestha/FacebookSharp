@@ -2,7 +2,7 @@ require File.join(File.dirname(__FILE__), 'libs/albacore/albacore.rb')
 #require_relative 'libs/albacore/albacore.rb'
 require 'open3'    # required for capturing standard output
 
-VERSION_NO = "0.1.0.0"
+LAST_VERSION = "0.1.0.0"
 
 CONFIGURATION = :Release
 
@@ -15,7 +15,8 @@ TEST_OUTPUT_PATH		= ROOT_DIR + "bin/Tests/"
 XUNIT32_CONSOLE_PATH	= LIBS_PATH + "xunit-1.6.1/xunit.console.clr4.x86.exe"
 DOTNET_VERSION			= :net40
 
-if ENV['BUILD_NUMBER'].nil? then ENV['BUILD_NUMBER'] = VERSION_NO end
+if ENV['BUILD_NUMBER'].nil? then ENV['BUILD_NUMBER'] = LAST_VERSION end
+VERSION_NO = ENV['BUILD_NUMBER']
 puts 'Version Number: ' + VERSION_NO
 
 task :default => :full
