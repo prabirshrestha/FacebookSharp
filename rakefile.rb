@@ -2,6 +2,8 @@ require File.join(File.dirname(__FILE__), 'libs/albacore/albacore.rb')
 #require_relative 'libs/albacore/albacore.rb'
 require 'open3'    # required for capturing standard output
 
+LAST_VERSION = "0.1.0.0"
+
 CONFIGURATION = :Release
 
 ROOT_DIR				= File.dirname(__FILE__) + "/"
@@ -13,9 +15,13 @@ TEST_OUTPUT_PATH		= ROOT_DIR + "bin/Tests/"
 XUNIT32_CONSOLE_PATH	= LIBS_PATH + "xunit-1.6.1/xunit.console.clr4.x86.exe"
 DOTNET_VERSION			= :net40
 
+if ENV['BUILD_NUMBER'].nil? then ENV['BUILD_NUMBER'] = LAST_VERSION end
+VERSION_NO = ENV['BUILD_NUMBER']
+puts 'Version Number: ' + VERSION_NO
+
 task :default => :full
 
-task :full => [:build_release,:test,:package_binaries,:precompile_samples_webapplication]
+task :full => [:build_release,:test,:precompile_samples_webapplication,:package_binaries]
 
 desc "Run Tests"
 task :test => [:main_test]
@@ -54,14 +60,14 @@ end
 desc "Create a zip package for the release binaries"
 zip :package_binaries => [:build_release] do |zip|
 	zip.directories_to_zip OUTPUT_PATH
-    zip.output_file = 'dist.binaries.zip'
+    zip.output_file = "FacebookSharp-#{VERSION_NO}.zip"
     zip.output_path = DIST_PATH
 end
 
 desc "Create a source package (requires git in PATH)"
 task :package_source do
 	mkdir DIST_PATH unless File.exists?(DIST_PATH)
-	sh "git archive HEAD --format=zip > dist/dist.source-" + getGitLastCommit + ".zip"
+	sh "git archive HEAD --format=zip > dist/FacebookSharp-#{VERSION_NO}-" + getGitLastCommit + ".zip"
 	#git archive HEAD --format=zip > dist/dist.source-`git reflog | grep 'HEAD@{0}' | cut -d " " -f1 | sed 's/[.]*//g'`.zip
 end
 
@@ -94,11 +100,13 @@ exec :precompile_samples_webapplication_task do |exec|
 end
 
 task :precompile_samples_webapplication => [:build_release,:precompile_samples_webapplication_task] do
+	root_path = OUTPUT_PATH + 'Samples/FacebookSharp.Samples.WebApplication/'
 	files_to_remove = 
-				[OUTPUT_PATH + 'Samples/FacebookSharp.Samples.WebApplication/FacebookSharp.Samples.WebApplication.csproj',
-				 OUTPUT_PATH + 'Samples/FacebookSharp.Samples.WebApplication/FacebookSharp.Samples.WebApplication.csproj.user']
+				[root_path + 'FacebookSharp.Samples.WebApplication.csproj',
+				 root_path + 'FacebookSharp.Samples.WebApplication.csproj.user']
 	files_to_remove.each{|file| File.delete(file) if File.exist?(file)}
-	FileUtils.rm_rf OUTPUT_PATH + 'Samples/FacebookSharp.Samples.WebApplication/obj'
+	FileUtils.rm_rf root_path + 'obj'
+	FileUtils.rm_rf root_path + 'Properties'
 end
 
 def dotnet_path
