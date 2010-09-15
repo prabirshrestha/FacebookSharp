@@ -45,7 +45,12 @@ namespace FacebookSharp.Extensions
         /// </remarks>
         public static PostCollection GetPosts(this Facebook facebook, string id, IDictionary<string, string> parameters)
         {
-            return FacebookUtils.DeserializeObject<PostCollection>(facebook.GetPostAsJson(id, parameters));
+            var json = facebook.GetPostAsJson(id, parameters);
+
+            // Facebook seemed to have changed the api on 9/15/2010. small hack to DeserializeObject properly.
+            json = json.Replace("\"comments\":[]", "\"comments\":{data:null,count:0}");
+
+            return FacebookUtils.DeserializeObject<PostCollection>(json);
         }
 
         /// <summary>
