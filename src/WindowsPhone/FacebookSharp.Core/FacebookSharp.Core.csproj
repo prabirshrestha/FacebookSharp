@@ -49,16 +49,208 @@
     <Reference Include="RestSharp.WindowsPhone">
       <HintPath>..\..\..\libs\RestSharp\WindowsPhone\RestSharp.WindowsPhone.dll</HintPath>
     </Reference>
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Windows" />
     <Reference Include="system" />
-    <Reference Include="System.Core" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Net" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\..\FacebookSharp.Core\AccessToken.cs">
+      <Link>AccessToken.cs</Link>
+    </Compile>
+    <Compile Include="..\..\FacebookSharp.Core\DialogFormFactors.cs">
+      <Link>DialogFormFactors.cs</Link>
+    </Compile>
+    <Compile Include="..\..\FacebookSharp.Core\Exceptions\ClientAccessPolicyException.cs">
+      <Link>Exceptions\ClientAccessPolicyException.cs</Link>
+    </Compile>
+    <Compile Include="..\..\FacebookSharp.Core\Exceptions\DuplicateStatusMessageException.cs">
+      <Link>Exceptions\DuplicateStatusMessageException.cs</Link>
+    </Compile>
+    <Compile Include="..\..\FacebookSharp.Core\Exceptions\InvalidSignedRequestException.cs">
+      <Link>Exceptions\InvalidSignedRequestException.cs</Link>
+    </Compile>
+    <Compile Include="..\..\FacebookSharp.Core\Exceptions\OAuthException.cs">
+      <Link>Exceptions\OAuthException.cs</Link>
+    </Compile>
+    <Compile Include="..\..\FacebookSharp.Core\Exceptions\QueryParseException.cs">
+      <Link>Exceptions\QueryParseException.cs</Link>
+    </Compile>
+    <Compile Include="..\..\FacebookSharp.Core\Exceptions\_FacebookException.cs">
+      <Link>Exceptions\_FacebookException.cs</Link>
+    </Compile>
+    <Compile Include="..\..\FacebookSharp.Core\Exceptions\_FacebookRequestException.cs">
+      <Link>Exceptions\_FacebookRequestException.cs</Link>
+    </Compile>
+    <Compile Include="..\..\FacebookSharp.Core\Exceptions\__FacebookSharpException.cs">
+      <Link>Exceptions\__FacebookSharpException.cs</Link>
+    </Compile>
+    <Compile Include="..\..\FacebookSharp.Core\Facebook.Async.cs">
+      <Link>Facebook.Async.cs</Link>
+    </Compile>
+    <Compile Include="..\..\FacebookSharp.Core\Facebook.cs">
+      <Link>Facebook.cs</Link>
+    </Compile>
+    <Compile Include="..\..\FacebookSharp.Core\Facebook.Sync.cs">
+      <Link>Facebook.Sync.cs</Link>
+    </Compile>
+    <Compile Include="..\..\FacebookSharp.Core\FacebookAsyncResult.cs">
+      <Link>FacebookAsyncResult.cs</Link>
+    </Compile>
+    <Compile Include="..\..\FacebookSharp.Core\FacebookAuthenticationResult.cs">
+      <Link>FacebookAuthenticationResult.cs</Link>
+    </Compile>
+    <Compile Include="..\..\FacebookSharp.Core\FacebookPostCallback.cs">
+      <Link>FacebookPostCallback.cs</Link>
+    </Compile>
+    <Compile Include="..\..\FacebookSharp.Core\FacebookSettings.cs">
+      <Link>FacebookSettings.cs</Link>
+    </Compile>
+    <Compile Include="..\..\FacebookSharp.Core\FacebookUtils\DateUtils.cs">
+      <Link>FacebookUtils\DateUtils.cs</Link>
+    </Compile>
+    <Compile Include="..\..\FacebookSharp.Core\FacebookUtils\ExceptionHelpers.cs">
+      <Link>FacebookUtils\ExceptionHelpers.cs</Link>
+    </Compile>
+    <Compile Include="..\..\FacebookSharp.Core\FacebookUtils\Expando.cs">
+      <Link>FacebookUtils\Expando.cs</Link>
+    </Compile>
+    <Compile Include="..\..\FacebookSharp.Core\FacebookUtils\HttpUtility.cs">
+      <Link>FacebookUtils\HttpUtility.cs</Link>
+    </Compile>
+    <Compile Include="..\..\FacebookSharp.Core\FacebookUtils\JsonUtils.cs">
+      <Link>FacebookUtils\JsonUtils.cs</Link>
+    </Compile>
+    <Compile Include="..\..\FacebookSharp.Core\FacebookUtils\_FacebookUtils.cs">
+      <Link>FacebookUtils\_FacebookUtils.cs</Link>
+    </Compile>
+    <Compile Include="..\..\FacebookSharp.Core\FQL.cs">
+      <Link>FQL.cs</Link>
+    </Compile>
+    <Compile Include="..\..\FacebookSharp.Core\IFacebookContext.cs">
+      <Link>IFacebookContext.cs</Link>
+    </Compile>
+    <Compile Include="..\..\FacebookSharp.Core\IFacebookMembershipProvider.cs">
+      <Link>IFacebookMembershipProvider.cs</Link>
+    </Compile>
+    <Compile Include="..\..\FacebookSharp.Core\OfficialFacebookSdkCompatibilityApi.Async.cs">
+      <Link>OfficialFacebookSdkCompatibilityApi.Async.cs</Link>
+    </Compile>
+    <Compile Include="..\..\FacebookSharp.Core\OfficialFacebookSdkCompatibilityApi.Sync.cs">
+      <Link>OfficialFacebookSdkCompatibilityApi.Sync.cs</Link>
+    </Compile>
+    <Compile Include="..\..\FacebookSharp.Core\OldRestApi.ASync.cs">
+      <Link>OldRestApi.ASync.cs</Link>
+    </Compile>
+    <Compile Include="..\..\FacebookSharp.Core\OldRestApi.Sync.cs">
+      <Link>OldRestApi.Sync.cs</Link>
+    </Compile>
     <Compile Include="..\..\FacebookSharp.Core\Properties\AssemblyInfo.cs">
       <Link>Properties\AssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="..\..\FacebookSharp.Core\RestSharp.cs">
+      <Link>RestSharp.cs</Link>
+    </Compile>
+    <Compile Include="..\..\FacebookSharp.Core\Schemas\Graph\Account.cs">
+      <Link>Schemas\Graph\Account.cs</Link>
+    </Compile>
+    <Compile Include="..\..\FacebookSharp.Core\Schemas\Graph\Album.cs">
+      <Link>Schemas\Graph\Album.cs</Link>
+    </Compile>
+    <Compile Include="..\..\FacebookSharp.Core\Schemas\Graph\Comment.cs">
+      <Link>Schemas\Graph\Comment.cs</Link>
+    </Compile>
+    <Compile Include="..\..\FacebookSharp.Core\Schemas\Graph\Event.cs">
+      <Link>Schemas\Graph\Event.cs</Link>
+    </Compile>
+    <Compile Include="..\..\FacebookSharp.Core\Schemas\Graph\From.cs">
+      <Link>Schemas\Graph\From.cs</Link>
+    </Compile>
+    <Compile Include="..\..\FacebookSharp.Core\Schemas\Graph\Group.cs">
+      <Link>Schemas\Graph\Group.cs</Link>
+    </Compile>
+    <Compile Include="..\..\FacebookSharp.Core\Schemas\Graph\HomeTownLocation.cs">
+      <Link>Schemas\Graph\HomeTownLocation.cs</Link>
+    </Compile>
+    <Compile Include="..\..\FacebookSharp.Core\Schemas\Graph\Link.cs">
+      <Link>Schemas\Graph\Link.cs</Link>
+    </Compile>
+    <Compile Include="..\..\FacebookSharp.Core\Schemas\Graph\Location.cs">
+      <Link>Schemas\Graph\Location.cs</Link>
+    </Compile>
+    <Compile Include="..\..\FacebookSharp.Core\Schemas\Graph\Note.cs">
+      <Link>Schemas\Graph\Note.cs</Link>
+    </Compile>
+    <Compile Include="..\..\FacebookSharp.Core\Schemas\Graph\Owner.cs">
+      <Link>Schemas\Graph\Owner.cs</Link>
+    </Compile>
+    <Compile Include="..\..\FacebookSharp.Core\Schemas\Graph\Page.cs">
+      <Link>Schemas\Graph\Page.cs</Link>
+    </Compile>
+    <Compile Include="..\..\FacebookSharp.Core\Schemas\Graph\Photo.cs">
+      <Link>Schemas\Graph\Photo.cs</Link>
+    </Compile>
+    <Compile Include="..\..\FacebookSharp.Core\Schemas\Graph\Post.cs">
+      <Link>Schemas\Graph\Post.cs</Link>
+    </Compile>
+    <Compile Include="..\..\FacebookSharp.Core\Schemas\Graph\PostAction.cs">
+      <Link>Schemas\Graph\PostAction.cs</Link>
+    </Compile>
+    <Compile Include="..\..\FacebookSharp.Core\Schemas\Graph\Privacy.cs">
+      <Link>Schemas\Graph\Privacy.cs</Link>
+    </Compile>
+    <Compile Include="..\..\FacebookSharp.Core\Schemas\Graph\ProfileSizeType.cs">
+      <Link>Schemas\Graph\ProfileSizeType.cs</Link>
+    </Compile>
+    <Compile Include="..\..\FacebookSharp.Core\Schemas\Graph\Tag.cs">
+      <Link>Schemas\Graph\Tag.cs</Link>
+    </Compile>
+    <Compile Include="..\..\FacebookSharp.Core\Schemas\Graph\Url.cs">
+      <Link>Schemas\Graph\Url.cs</Link>
+    </Compile>
+    <Compile Include="..\..\FacebookSharp.Core\Schemas\Graph\User.cs">
+      <Link>Schemas\Graph\User.cs</Link>
+    </Compile>
+    <Compile Include="..\..\FacebookSharp.Core\Schemas\Graph\Video.cs">
+      <Link>Schemas\Graph\Video.cs</Link>
+    </Compile>
+    <Compile Include="..\..\FacebookSharp.Core\Schemas\Graph\Work.cs">
+      <Link>Schemas\Graph\Work.cs</Link>
+    </Compile>
+    <Compile Include="..\..\FacebookSharp.Core\Schemas\Graph\_CategorizedGraphObject.cs">
+      <Link>Schemas\Graph\_CategorizedGraphObject.cs</Link>
+    </Compile>
+    <Compile Include="..\..\FacebookSharp.Core\Schemas\Graph\_Connection.cs">
+      <Link>Schemas\Graph\_Connection.cs</Link>
+    </Compile>
+    <Compile Include="..\..\FacebookSharp.Core\Schemas\Graph\_Connections.cs">
+      <Link>Schemas\Graph\_Connections.cs</Link>
+    </Compile>
+    <Compile Include="..\..\FacebookSharp.Core\Schemas\Graph\_GraphObject.cs">
+      <Link>Schemas\Graph\_GraphObject.cs</Link>
+    </Compile>
+    <Compile Include="..\..\FacebookSharp.Core\Schemas\Graph\_Metadata.cs">
+      <Link>Schemas\Graph\_Metadata.cs</Link>
+    </Compile>
+    <Compile Include="..\..\FacebookSharp.Core\Schemas\Graph\_NamedGraphObject.cs">
+      <Link>Schemas\Graph\_NamedGraphObject.cs</Link>
+    </Compile>
+    <Compile Include="..\..\FacebookSharp.Core\Schemas\Graph\_Paging.cs">
+      <Link>Schemas\Graph\_Paging.cs</Link>
+    </Compile>
+    <Compile Include="..\..\FacebookSharp.Core\Schemas\RsvpStatus.cs">
+      <Link>Schemas\RsvpStatus.cs</Link>
+    </Compile>
+    <Compile Include="..\..\FacebookSharp.Core\Schemas\schemas.cs">
+      <Link>Schemas\schemas.cs</Link>
+    </Compile>
+    <Compile Include="..\..\FacebookSharp.Core\Schemas\StringValue.cs">
+      <Link>Schemas\StringValue.cs</Link>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.$(TargetFrameworkProfile).Overrides.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.CSharp.targets" />
