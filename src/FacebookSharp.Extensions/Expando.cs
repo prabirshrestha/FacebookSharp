@@ -1,4 +1,4 @@
-#if !DOTNET_3_5
+#if !(DOTNET_3_5 || WINDOWS_PHONE)
 
 namespace FacebookSharp.Extensions.Dynamic
 {
