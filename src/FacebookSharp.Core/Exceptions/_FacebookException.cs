@@ -78,11 +78,13 @@ namespace FacebookSharp
             {
                 string type = error.Value<string>("type");
                 string message = error.Value<string>("message");
-                
-				if (message.Equals(DuplicateStatusMessageException.MESSAGE, StringComparison.OrdinalIgnoreCase))
+
+                if (message.Equals(DuplicateStatusMessageException.MESSAGE, StringComparison.OrdinalIgnoreCase))
                     return new DuplicateStatusMessageException(message); // facebook just changed their error type to OAuthException {"error":{"type":"OAuthException","message":"(#506) Duplicate status message"}}
-                
-				switch (type)
+                if (message.Equals("(#100) link URL is not properly formatted", StringComparison.OrdinalIgnoreCase))
+                    return new UrlNotProperlyFormattedException(message, type, 100);
+
+                switch (type)
                 {
                     case "OAuthException":
                         return new OAuthException(message);

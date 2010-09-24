@@ -7,9 +7,16 @@ namespace FacebookSharp
         {
 
         }
+
         public OAuthException(string message)
-            : base(message, "OAuthException", 0)
+            : this(message, 0)
         {
+        }
+
+        public OAuthException(string message, int code)
+            : base(message, "OAuthException", code)
+        {
+
         }
     }
 }

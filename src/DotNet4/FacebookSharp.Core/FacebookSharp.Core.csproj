@@ -74,6 +74,9 @@
     <Compile Include="..\..\FacebookSharp.Core\Exceptions\QueryParseException.cs">
       <Link>Exceptions\QueryParseException.cs</Link>
     </Compile>
+    <Compile Include="..\..\FacebookSharp.Core\Exceptions\UrlNotProperlyFormattedException.cs">
+      <Link>Exceptions\UrlNotProperlyFormattedException.cs</Link>
+    </Compile>
     <Compile Include="..\..\FacebookSharp.Core\Exceptions\_FacebookException.cs">
       <Link>Exceptions\_FacebookException.cs</Link>
     </Compile>
