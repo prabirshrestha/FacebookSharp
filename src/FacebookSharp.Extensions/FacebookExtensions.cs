@@ -206,12 +206,13 @@ namespace FacebookSharp.Extensions
         public static string PostToWall(this Facebook facebook, string message, IDictionary<string, string> parameters,
                                         string profileId)
         {
-            if (parameters == null)
-                parameters = new Dictionary<string, string>();
+            IDictionary<string, string> pars = parameters != null
+                                                  ? new Dictionary<string, string>(parameters)
+                                                  : new Dictionary<string, string>();
 
-            parameters.Add("message", message);
+            pars.Add("message", message);
 
-            var result = facebook.PutObject(profileId ?? "me", "feed", parameters);
+            var result = facebook.PutObject(profileId ?? "me", "feed", pars);
 
             var jsonObj = FacebookUtils.FromJson(result);
             return jsonObj["id"].ToString();
