@@ -205,7 +205,7 @@ Contains MVC Action filters for easing the development.
 Supported
 
 ### Windows Phone
-Comming soon
+Supported
 
 ## Download the latest binaries
 
