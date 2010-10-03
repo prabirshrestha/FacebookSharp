@@ -102,7 +102,21 @@ namespace FacebookSharp
             public OAuth2Authenticator GetAuthenticator()
             {
                 if (!string.IsNullOrEmpty(Facebook.Settings.AccessToken))
+                {
+                    // Note: OAuth2 Authorization Request Header is preferred.
+                    // but for now since Facebook doesn't have clientaccesspolicy.xml file,
+                    // we need to use the QueryString to pass oauth_token to Facebook.
+                    // I have requested Facebook to add clientaccesspolicy.xml at
+                    // http://bugs.developers.facebook.net/show_bug.cgi?id=12818
+                    // Please vote up.
+                    // If it is a silverlight or windows phone app, it uses querystring to 
+                    // pass oauth_token, if it is a desktop app it uses Authorization header
+#if (SILVERLIGHT || WINDOWS_PHONE)
                     return new OAuth2UriQueryParameterAuthenticator(Facebook.Settings.AccessToken);
+#else
+                    return new OAuth2AuthorizationRequestHeaderAuthenticator(Facebook.Settings.AccessToken);
+#endif
+                }
 
                 return null;
             }
@@ -209,8 +223,8 @@ namespace FacebookSharp
                 //    exception = new ClientAccessPolicyException();
                 //else
                 //{
-                    // incase the net is not connected or some other exception
-                    exception = new FacebookRequestException(response);
+                // incase the net is not connected or some other exception
+                exception = new FacebookRequestException(response);
                 //}
             }
 
