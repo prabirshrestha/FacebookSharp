@@ -219,13 +219,13 @@ namespace FacebookSharp
             }
             else
             {
-                //if (response.ErrorException is System.Security.SecurityException)
-                //    exception = new ClientAccessPolicyException();
-                //else
-                //{
-                // incase the net is not connected or some other exception
-                exception = new FacebookRequestException(response);
-                //}
+                if (response.ErrorException is System.Security.SecurityException)
+                    exception = new ClientAccessPolicyException();
+                else
+                {
+                    // incase the net is not connected or some other exception
+                    exception = new FacebookRequestException(response);
+                }
             }
 
             return result;

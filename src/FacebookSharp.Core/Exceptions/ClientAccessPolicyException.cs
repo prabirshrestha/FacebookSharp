@@ -3,7 +3,7 @@ namespace FacebookSharp
     public class ClientAccessPolicyException : OAuthException
     {
         public ClientAccessPolicyException()
-            : base("Some of the aliases you requested do not exist: clientaccesspolicy.xml")
+            : base("clientaccesspolicy.xml or crossdomain.xml does not exist.")
         {
         }
     }
