@@ -109,6 +109,11 @@ task :precompile_samples_webapplication => [:build_release,:precompile_samples_w
 	FileUtils.rm_rf root_path + 'Properties'
 end
 
+exec :nupack do |exec|
+	exec.command = LIBS_PATH + 'NuPack/NuPack.exe'
+	exec.parameters = [SRC_PATH + 'nupack/FacebookSharp.nuspec']
+end
+
 def dotnet_path
 	include Configuration::NetVersion
 	return get_net_version DOTNET_VERSION

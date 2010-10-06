@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package>
+	<metadata>
+		<id>FacebookSharp.Core-dotnet35</id>
+		<version>0.1</version>
+		<authors>
+			<author>Prabir Shrestha</author>
+		</authors>
+		<description>Facebook graph api and old rest api wrapper for desktop/web applications.</description>
+		<language>en-US</language>
+		<!--
+		<keywords></keywords>
+		<category>Social Networking</category>
+		<modified></modified>
+		<licenseUrl></licenseUrl>
+		<requireLicenseAcceptance></requireLicenseAcceptance>
+		-->
+	</metadata>
+	<!--
+	<dependencies>
+			<dependency id="RestSharp" version="1.0" />
+			<dependency id="Newtonsoft.Json" minversion="3.5" />
+	</dependencies>
+	-->
+	<files src="..\..\bin\DotNet35\Release\FacebookSharp.Core.*" target="lib/Net20"/>
+	<files src="..\..\bin\DotNet4\Release\FacebookSharp.Core.*" target="lib/Net40"/>
+	<files src="..\..\bin\Silverlight\Release\FacebookSharp.Core.*" target="lib/SL4" />
+</package>
