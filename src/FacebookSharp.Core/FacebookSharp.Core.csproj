@@ -80,6 +80,7 @@
     <Compile Include="OfficialFacebookSdkCompatibilityApi.Sync.cs" />
     <Compile Include="Schemas\Graph\Account.cs" />
     <Compile Include="Schemas\Graph\Album.cs" />
+    <Compile Include="Schemas\Graph\SignificantOther.cs" />
     <Compile Include="Schemas\Graph\Group.cs" />
     <Compile Include="Schemas\Graph\Link.cs" />
     <Compile Include="Schemas\Graph\Note.cs" />

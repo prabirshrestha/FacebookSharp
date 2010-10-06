@@ -226,6 +226,9 @@
     <Compile Include="..\..\FacebookSharp.Core\Schemas\Graph\User.cs">
       <Link>Schemas\Graph\User.cs</Link>
     </Compile>
+    <Compile Include="..\..\FacebookSharp.Core\Schemas\Graph\SignificantOther.cs">
+      <Link>Schemas\Graph\SignificantOther.cs</Link>
+    </Compile>
     <Compile Include="..\..\FacebookSharp.Core\Schemas\Graph\Video.cs">
       <Link>Schemas\Graph\Video.cs</Link>
     </Compile>

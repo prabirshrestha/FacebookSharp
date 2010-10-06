@@ -44,7 +44,7 @@ namespace FacebookSharp.Schemas.Graph
         public string RelationshipStatus { get; set; }
 
         [DataMember(Name = "significant_other")]
-        public string SignificantOther { get; set; }
+        public SignificantOther SignificantOther { get; set; }
 
         [DataMember(Name = "email")]
         public string Email { get; set; }
