@@ -45,6 +45,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_Solution Items", "_Solutio
 	ProjectSection(SolutionItems) = preProject
 		nupack\FacebookSharp.nuspec = nupack\FacebookSharp.nuspec
 		..\LICENSE.txt = ..\LICENSE.txt
+		nupack\nuspec.xsd = nupack\nuspec.xsd
 		..\rakefile.rb = ..\rakefile.rb
 		..\README.md = ..\README.md
 	EndProjectSection
