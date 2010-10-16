@@ -27,8 +27,18 @@ rescue
 end
 
 CI_BUILD_NUMBER = ENV[CI_BUILD_NUMBER_PARAM_NAME] || 0
-VERSION_NO = "#{BASE_VERSION}.#{CI_BUILD_NUMBER}"
-VERSION_LONG = "#{VERSION_NO}-#{gitcommit[0..5]}"
+
+if ENV['BUILD_NUMBER'] == nil then
+	# if we are not running under teamcity or someother CI like hudson.
+	# generate the version number based on VERSION file.
+	VERSION_NO = "#{BASE_VERSION}.#{CI_BUILD_NUMBER}"
+	VERSION_LONG = "#{VERSION_NO}-#{gitcommit[0..5]}"
+else
+	# if we are running inside teamcity, then it passes the full version
+	# so ignore the VERSION file and overwrite the VERSION_NO and VERSION_LONG
+	VERSION_NO = ENV['BUILD_NUMBER']
+	VERSION_LONG = "#{VERSION_NO}-#{gitcommit[0..5]}"
+end
 
 puts
 puts "Base Version: #{BASE_VERSION}"
@@ -118,4 +128,3 @@ def dotnet_path
 	include Configuration::NetVersion
 	return get_net_version DOTNET_VERSION
 end
-
