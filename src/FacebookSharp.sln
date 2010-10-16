@@ -306,7 +306,6 @@ Global
 		{09FA6601-8263-46B1-9E6D-AE2221F29600}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{09FA6601-8263-46B1-9E6D-AE2221F29600}.Release|Any CPU.Build.0 = Release|Any CPU
 		{09FA6601-8263-46B1-9E6D-AE2221F29600}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{09FA6601-8263-46B1-9E6D-AE2221F29600}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{09FA6601-8263-46B1-9E6D-AE2221F29600}.Release|x86.ActiveCfg = Release|Any CPU
 		{F378C7CD-E5C9-436F-B4A1-AEE5B5BA5229}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{F378C7CD-E5C9-436F-B4A1-AEE5B5BA5229}.Debug|Any CPU.Build.0 = Debug|Any CPU
@@ -316,7 +315,6 @@ Global
 		{F378C7CD-E5C9-436F-B4A1-AEE5B5BA5229}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F378C7CD-E5C9-436F-B4A1-AEE5B5BA5229}.Release|Any CPU.Build.0 = Release|Any CPU
 		{F378C7CD-E5C9-436F-B4A1-AEE5B5BA5229}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{F378C7CD-E5C9-436F-B4A1-AEE5B5BA5229}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{F378C7CD-E5C9-436F-B4A1-AEE5B5BA5229}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
