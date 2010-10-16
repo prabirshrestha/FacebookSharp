@@ -28,9 +28,9 @@ rescue
 	gitcommit = "nogit"
 end
 
-CI_BUILD_NUMBER = ENV[CI_BUILD_NUMBER_PARAM_NAME] || 0
-VERSION_NO = "#{BASE_VERSION}.#{CI_BUILD_NUMBER}"
-VERSION_LONG = "#{VERSION_NO}-#{gitcommit[0..5]}"
+CI_BUILD_NUMBER = ENV[CI_BUILD_NUMBER_PARAM_NAME] || "0"
+VERSION_NO = BASE_VERSION + "." + CI_BUILD_NUMBER
+VERSION_LONG = VERSION_NO + "-" + gitcommit[0..5]
 
 puts
 puts "Base Version: #{BASE_VERSION}"
