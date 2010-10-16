@@ -35,22 +35,21 @@ if ENV[CI_BUILD_NUMBER_PARAM_NAME] == nil || NIGHTLY then
 	# or if nightly is true.
 	# generate the version number based on VERSION file.
 	VERSION_NO = "#{BASE_VERSION}.#{CI_BUILD_NUMBER}"
-	puts 1
 else
-	puts 2
 	# if we are running inside teamcity, then it passes the full version
 	# so ignore the VERSION file and overwrite the VERSION_NO and VERSION_LONG
 	VERSION_NO = ENV['BUILD_NUMBER']
 end
 
-VERSION_LONG = "#{VERSION_NO}-#{gitcommit[0..5]}"
-
+if NIGHTLY then
+	VERSION_LONG = "#{VERSION_NO}-nightly-#{gitcommit[0..5]}" 
+else
+	VERSION_LONG = "#{VERSION_NO}-#{gitcommit[0..5]}" 
+end
 
 puts
 puts "Base Version: #{BASE_VERSION}"
-print "Version Number: #{VERSION_NO}   :  #{VERSION_LONG} "
-print 'nightly' if NIGHTLY
-puts
+puts "Version Number: #{VERSION_NO}   :  #{VERSION_LONG} "
 print "CI Build Number: "
 print CI_BUILD_NUMBER
 print " (not running under CI mode)" if CI_BUILD_NUMBER == 0
