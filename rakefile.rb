@@ -26,6 +26,8 @@ rescue
 	gitcommit = "nogit"
 end
 
+puts gitcommit
+
 NIGHTLY = ENV['NIGHTLY'].nil? ? true : ENV[NIGHTLY]
 
 CI_BUILD_NUMBER = ENV[CI_BUILD_NUMBER_PARAM_NAME] || 0
