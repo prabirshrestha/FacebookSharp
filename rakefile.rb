@@ -26,10 +26,13 @@ rescue
 	gitcommit = "nogit"
 end
 
+NIGHTLY = ENV['NIGHTLY'].nil? ? true : ENV[NIGHTLY]
+
 CI_BUILD_NUMBER = ENV[CI_BUILD_NUMBER_PARAM_NAME] || 0
 
-if ENV['BUILD_NUMBER'] == nil then
+if ENV['BUILD_NUMBER'] == nil || !NIGHTLY then
 	# if we are not running under teamcity or someother CI like hudson.
+	# or if nightly is true.
 	# generate the version number based on VERSION file.
 	VERSION_NO = "#{BASE_VERSION}.#{CI_BUILD_NUMBER}"
 else
@@ -43,7 +46,9 @@ VERSION_LONG = "#{VERSION_NO}-#{gitcommit[0..5]}"
 
 puts
 puts "Base Version: #{BASE_VERSION}"
-puts "Version Number: #{VERSION_NO}   (#{VERSION_LONG})"
+print "Version Number: #{VERSION_NO}   :  #{VERSION_LONG} "
+print 'nightly' if NIGHTLY
+puts
 print "CI Build Number: "
 print CI_BUILD_NUMBER
 print " (not running under CI mode)" if CI_BUILD_NUMBER == 0
