@@ -3,9 +3,7 @@ require File.join(File.dirname(__FILE__), 'libs/albacore/albacore.rb')
 
 def get_version_from_file
 	file = File.new('VERSION','r')
-	while (line = file.gets)
-		return line if line[0] != '#'
-	end
+	return file.gets[0]
 end
 
 BASE_VERSION = get_version_from_file
@@ -28,18 +26,18 @@ rescue
 	gitcommit = "nogit"
 end
 
-CI_BUILD_NUMBER = ENV[CI_BUILD_NUMBER_PARAM_NAME] || "0"
-VERSION_NO = BASE_VERSION + "." + CI_BUILD_NUMBER
-VERSION_LONG = VERSION_NO + "-" + gitcommit[0..5]
+CI_BUILD_NUMBER = ENV[CI_BUILD_NUMBER_PARAM_NAME] || 0
+VERSION_NO = "#{BASE_VERSION}.#{CI_BUILD_NUMBER}"
+VERSION_LONG = "#{VERSION_NO}-#{gitcommit[0..5]}"
 
 puts
-puts "Base Version: " + BASE_VERSION
-puts "Version Number: " + VERSION_NO + "     " + VERSION_LONG
+puts "Base Version: #{BASE_VERSION}"
+puts "Version Number: #{VERSION_NO}   (#{VERSION_LONG})"
 print "CI Build Number: "
 print CI_BUILD_NUMBER
 print " (not running under CI mode)" if CI_BUILD_NUMBER == 0
 puts
-puts "Git Commit Hash: " + gitcommit
+puts "Git Commit Hash: #{gitcommit}"
 puts
 
 task :default => :full
@@ -83,14 +81,14 @@ end
 desc "Create a zip package for the release binaries"
 zip :package_binaries => [:build_release] do |zip|
 	zip.directories_to_zip OUTPUT_PATH
-    zip.output_file = "FacebookSharp" + VERSION_LONG + "-bin.zip"
+    zip.output_file = "FacebookSharp-#{VERSION_LONG}-bin.zip"
     zip.output_path = DIST_PATH
 end
 
 desc "Create a source package (requires git in PATH)"
 task :package_source do
 	mkdir DIST_PATH unless File.exists?(DIST_PATH)
-	sh "git archive HEAD --format=zip > dist/FacebookSharp-" + VERSION_LONG + "-src.zip"
+	sh "git archive HEAD --format=zip > dist/FacebookSharp-#{VERSION_LONG}-src.zip"
 end
 
 xunit :main_test => [:build_release] do |xunit|
