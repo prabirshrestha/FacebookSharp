@@ -1,10 +1,16 @@
 require File.join(File.dirname(__FILE__), 'libs/albacore/albacore.rb')
 #require_relative 'libs/albacore/albacore.rb'
-require 'open3'    # required for capturing standard output
 
-LAST_VERSION = "0.1.0.0"
+def get_version_from_file
+	file = File.new('VERSION','r')
+	while (line = file.gets)
+		return line if line[0] != '#'
+	end
+end
 
-CONFIGURATION = :Release
+BASE_VERSION = get_version_from_file
+
+CONFIGURATION			= :Release
 
 ROOT_DIR				= File.dirname(__FILE__) + "/"
 SRC_PATH				= ROOT_DIR + "src/"
@@ -14,10 +20,27 @@ DIST_PATH				= ROOT_DIR + "dist/"
 TEST_OUTPUT_PATH		= ROOT_DIR + "bin/Tests/"
 XUNIT32_CONSOLE_PATH	= LIBS_PATH + "xunit-1.6.1/xunit.console.clr4.x86.exe"
 DOTNET_VERSION			= :net40
+CI_BUILD_NUMBER_PARAM_NAME = 'BUILD_NUMBER'
 
-if ENV['BUILD_NUMBER'].nil? then ENV['BUILD_NUMBER'] = LAST_VERSION end
-VERSION_NO = ENV['BUILD_NUMBER']
-puts 'Version Number: ' + VERSION_NO
+begin
+	gitcommit = (ENV[CI_BUILD_NUMBER_PARAM_NAME].nil? ? `git log -1 --pretty=format:%H` : ENV[CI_BUILD_NUMBER_PARAM_NAME])  
+rescue
+	gitcommit = "nogit"
+end
+
+CI_BUILD_NUMBER = ENV[CI_BUILD_NUMBER_PARAM_NAME] || 0
+VERSION_NO = "#{BASE_VERSION}.#{CI_BUILD_NUMBER}"
+VERSION_LONG = "#{VERSION_NO}-#{gitcommit[0..5]}"
+
+puts
+puts "Base Version: #{BASE_VERSION}"
+puts "Version Number: #{VERSION_NO}   (#{VERSION_LONG})"
+print "CI Build Number: "
+print CI_BUILD_NUMBER
+print " (not running under CI mode)" if CI_BUILD_NUMBER == 0
+puts
+puts "Git Commit Hash: #{gitcommit}"
+puts
 
 task :default => :full
 
@@ -60,30 +83,14 @@ end
 desc "Create a zip package for the release binaries"
 zip :package_binaries => [:build_release] do |zip|
 	zip.directories_to_zip OUTPUT_PATH
-    zip.output_file = "FacebookSharp-#{VERSION_NO}.zip"
+    zip.output_file = "FacebookSharp-#{VERSION_LONG}-bin.zip"
     zip.output_path = DIST_PATH
 end
 
 desc "Create a source package (requires git in PATH)"
 task :package_source do
 	mkdir DIST_PATH unless File.exists?(DIST_PATH)
-	sh "git archive HEAD --format=zip > dist/FacebookSharp-#{VERSION_NO}-" + getGitLastCommit + ".zip"
-	#git archive HEAD --format=zip > dist/dist.source-`git reflog | grep 'HEAD@{0}' | cut -d " " -f1 | sed 's/[.]*//g'`.zip
-end
-
-def getGitLastCommit
-
-	buffer = [] 
-	Open3::popen3("git reflog | grep 'HEAD@{0}' | cut -d \" \" -f1 | sed 's/[.]*//g'") do |stdin,stdout,stderr| 
-	  begin 
-		while line = stdout.readline 
-		  buffer << line 
-		end 
-	  rescue 
-	  end 
-	end
-
-	return buffer[0].chop # get the first line and chop the \n
+	sh "git archive HEAD --format=zip > dist/FacebookSharp-#{VERSION_LONG}-src.zip"
 end
 
 xunit :main_test => [:build_release] do |xunit|
@@ -113,3 +120,4 @@ def dotnet_path
 	include Configuration::NetVersion
 	return get_net_version DOTNET_VERSION
 end
+
