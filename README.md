@@ -209,7 +209,7 @@ Supported
 
 ## Download the latest binaries
 
-You can download the latest binaries from the [Continuous Integration Server](http://teamcity.codebetter.com/viewType.html?buildTypeId=bt235&tab=buildTypeStatusDiv) by selecting to download the Artifacts.
+You can download the latest binaries from the [Continuous Integration Server](http://teamcity.codebetter.com/viewType.html?buildTypeId=bt262&tab=buildTypeStatusDiv) by selecting to download the Artifacts.
 If you require the Windows Phone 7 binaries you will need to download the source and build by yourself. (Note: Remember to enable to build Windows Phone projects when selecting the Release mode from the Build>Configuration Manager menu).
 
 ## License
