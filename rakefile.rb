@@ -83,14 +83,14 @@ end
 desc "Create a zip package for the release binaries"
 zip :package_binaries => [:build_release] do |zip|
 	zip.directories_to_zip OUTPUT_PATH
-    zip.output_file = "FacebookSharp-#{VERSION_LONG}-bin.zip"
+    zip.output_file = "FacebookSharp" + VERSION_LONG + "-bin.zip"
     zip.output_path = DIST_PATH
 end
 
 desc "Create a source package (requires git in PATH)"
 task :package_source do
 	mkdir DIST_PATH unless File.exists?(DIST_PATH)
-	sh "git archive HEAD --format=zip > dist/FacebookSharp-#{VERSION_LONG}-src.zip"
+	sh "git archive HEAD --format=zip > dist/FacebookSharp-" + VERSION_LONG + "-src.zip"
 end
 
 xunit :main_test => [:build_release] do |xunit|
