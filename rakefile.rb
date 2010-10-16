@@ -30,12 +30,14 @@ NIGHTLY = ENV['NIGHTLY'].nil? ? true : ENV[NIGHTLY]
 
 CI_BUILD_NUMBER = ENV[CI_BUILD_NUMBER_PARAM_NAME] || 0
 
-if ENV['BUILD_NUMBER'] == nil || !NIGHTLY then
+if ENV[CI_BUILD_NUMBER_PARAM_NAME] == nil || !NIGHTLY then
 	# if we are not running under teamcity or someother CI like hudson.
 	# or if nightly is true.
 	# generate the version number based on VERSION file.
 	VERSION_NO = "#{BASE_VERSION}.#{CI_BUILD_NUMBER}"
+	puts 1
 else
+	puts 2
 	# if we are running inside teamcity, then it passes the full version
 	# so ignore the VERSION file and overwrite the VERSION_NO and VERSION_LONG
 	VERSION_NO = ENV['BUILD_NUMBER']
