@@ -33,13 +33,13 @@ VERSION_NO = BASE_VERSION + "." + CI_BUILD_NUMBER
 VERSION_LONG = VERSION_NO + "-" + gitcommit[0..5]
 
 puts
-puts "Base Version: #{BASE_VERSION}"
-puts "Version Number: #{VERSION_NO}   (#{VERSION_LONG})"
+puts "Base Version: " + BASE_VERSION
+puts "Version Number: " + VERSION_NO + "     " + VERSION_LONG
 print "CI Build Number: "
 print CI_BUILD_NUMBER
 print " (not running under CI mode)" if CI_BUILD_NUMBER == 0
 puts
-puts "Git Commit Hash: #{gitcommit}"
+puts "Git Commit Hash: " + gitcommit
 puts
 
 task :default => :full
