@@ -1,6 +1,4 @@
 require File.join(File.dirname(__FILE__), 'libs/albacore/albacore.rb')
-#require_relative 'libs/albacore/albacore.rb'
-require 'open3'    # required for capturing standard output
 
 def get_version_from_file
 	file = File.new('VERSION','r')
@@ -21,23 +19,8 @@ XUNIT32_CONSOLE_PATH	= LIBS_PATH + "xunit-1.6.1/xunit.console.clr4.x86.exe"
 DOTNET_VERSION			= :net40
 CI_BUILD_NUMBER_PARAM_NAME = 'BUILD_NUMBER'
 
-def getGitLastCommit
-
-	buffer = [] 
-	Open3::popen3("git reflog | grep 'HEAD@{0}' | cut -d \" \" -f1 | sed 's/[.]*//g'") do |stdin,stdout,stderr| 
-	  begin 
-		while line = stdout.readline 
-		  buffer << line 
-		end 
-	  rescue 
-	  end 
-	end
-
-	return buffer[0].chop # get the first line and chop the \n
-end
-
 begin
-	gitcommit = getGitLastCommit  #`git log -1 --pretty=format:%H`
+	gitcommit = `git log -1 --pretty=format:%H`
 rescue
 	gitcommit = "nogit"
 end
@@ -151,4 +134,3 @@ def dotnet_path
 	include Configuration::NetVersion
 	return get_net_version DOTNET_VERSION
 end
-
