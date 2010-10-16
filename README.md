@@ -209,7 +209,7 @@ Supported
 
 ## Download the latest binaries
 
-You can download the latest binaries at [http://github.com/prabirshrestha/FacebookSharp/downloads](http://github.com/prabirshrestha/FacebookSharp/downloads)
+You can download the latest binaries from the [Continuous Integration Server](http://teamcity.codebetter.com/viewType.html?buildTypeId=bt235&tab=buildTypeStatusDiv) by selecting to download the Artifacts.
 
 ## License
 
