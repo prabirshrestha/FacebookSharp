@@ -21,7 +21,7 @@ DOTNET_VERSION			= :net40
 CI_BUILD_NUMBER_PARAM_NAME = 'BUILD_NUMBER'
 
 begin
-	gitcommit = (ENV[CI_BUILD_NUMBER_PARAM_NAME].nil? ? `git log -1 --pretty=format:%H` : ENV[CI_BUILD_NUMBER_PARAM_NAME])  
+	gitcommit = `git log -1 --pretty=format:%H`
 rescue
 	gitcommit = "nogit"
 end
