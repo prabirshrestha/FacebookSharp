@@ -114,10 +114,11 @@ xunit :main_test => [:build_release] do |xunit|
 	xunit.options '/nunit ' + TEST_OUTPUT_PATH + 'FacebookSharp.Tests.nUnit.xml', '/xml ' + TEST_OUTPUT_PATH + 'FacebookSharp.Tests.xUnit.xml'
 end
 
-exec :precompile_samples_webapplication_task do |exec|
-	include Configuration::NetVersion
-	exec.command = dotnet_path + '/aspnet_compiler.exe'
-	exec.parameters = ['-f','-u','-p','src/Samples/FacebookSharp.Samples.WebApplication','-v','/','bin/Samples/FacebookSharp.Samples.WebApplication']
+aspnetcompiler :precompile_samples_webapplication_task => [:build_release] do |c|
+    c.physical_path = "src/Samples/FacebookSharp.Samples.WebApplication"
+    c.target_path = "bin/Samples/FacebookSharp.Samples.WebApplication"
+    c.updateable = true
+    c.force = true
 end
 
 task :precompile_samples_webapplication => [:build_release,:precompile_samples_webapplication_task] do
