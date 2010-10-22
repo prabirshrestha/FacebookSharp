@@ -62,7 +62,7 @@ for website authentication, facebook returns the ?code=some_code
 FacebookAuthenticationResult is smart enough to recognize it and return you the access token transparently in the background.
 You don't have to create any request or ask for anything.
 
-Incase you are using FacebookAuthenticationResult.Parse method inside IFrame canvas, you need to enable Canvas Session Parameter and OAuth 2.0 for Canvas (beta) in Migration Tab in application settings. Incase the validation  of signed_request fails, InvalidSignedRequest exception will be thrown. Incase you want to manually extract the information from signed_request you can call FacebookAuthenticationResult.ValidateSignedRequest(string signedRequest, string applicationSecret, out IDictionary<string, object> jsonObject). signedRequest parameter is the same one you get from facebook.
+Incase you are using FacebookAuthenticationResult.Parse method inside IFrame canvas, you need to enable Canvas Session Parameter and OAuth 2.0 for Canvas (beta) in Advanced Tab in application settings. Incase the validation  of signed_request fails, InvalidSignedRequest exception will be thrown. Incase you want to manually extract the information from signed_request you can call FacebookAuthenticationResult.ValidateSignedRequest(string signedRequest, string applicationSecret, out IDictionary<string, object> jsonObject). signedRequest parameter is the same one you get from facebook.
 
 Incase you are developing desktop applications. You can also use the same concept. But for easy access, a Facebook Login Dialog has been created.
 Due to the nature of Facebook Authentication, you will need to provide only ApplicationKey for Desktop applications, but for web application you will need to provide PostAuthorizeUrl,ApplicationKey and ApplicationSecret.
@@ -209,7 +209,8 @@ Supported
 
 ## Download the latest binaries
 
-You can download the latest binaries at [http://github.com/prabirshrestha/FacebookSharp/downloads](http://github.com/prabirshrestha/FacebookSharp/downloads)
+You can download the latest binaries from the [Continuous Integration Server](http://teamcity.codebetter.com/viewType.html?buildTypeId=bt262&tab=buildTypeStatusDiv) by selecting to download the Artifacts.
+If you require the Windows Phone 7 binaries you will need to download the source and build by yourself. (Note: Remember to enable to build Windows Phone projects when selecting the Release mode from the Build>Configuration Manager menu).
 
 ## License
 
