@@ -175,6 +175,15 @@
     <Compile Include="..\..\FacebookSharp.Core\Schemas\Graph\Comment.cs">
       <Link>Schemas\Graph\Comment.cs</Link>
     </Compile>
+    <Compile Include="..\..\FacebookSharp.Core\Schemas\Graph\Employer.cs">
+      <Link>Schemas\Employer.cs</Link>
+    </Compile>
+    <Compile Include="..\..\FacebookSharp.Core\Schemas\Graph\EmployerLocation.cs">
+      <Link>Schemas\Graph\EmployerLocation.cs</Link>
+    </Compile>
+    <Compile Include="..\..\FacebookSharp.Core\Schemas\Graph\EmployerPosition.cs">
+      <Link>Schemas\Graph\EmployerPosition.cs</Link>
+    </Compile>
     <Compile Include="..\..\FacebookSharp.Core\Schemas\Graph\Event.cs">
       <Link>Schemas\Graph\Event.cs</Link>
     </Compile>
