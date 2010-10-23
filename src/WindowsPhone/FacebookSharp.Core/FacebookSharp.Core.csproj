@@ -164,6 +164,12 @@
     <Compile Include="..\..\FacebookSharp.Core\Schemas\Graph\Comment.cs">
       <Link>Schemas\Graph\Comment.cs</Link>
     </Compile>
+    <Compile Include="..\..\FacebookSharp.Core\Schemas\Graph\Degree.cs">
+      <Link>Schemas\Graph\Degree.cs</Link>
+    </Compile>
+    <Compile Include="..\..\FacebookSharp.Core\Schemas\Graph\Education.cs">
+      <Link>Schemas\Graph\Education.cs</Link>
+    </Compile>
     <Compile Include="..\..\FacebookSharp.Core\Schemas\Graph\Employer.cs">
       <Link>Schemas\Employer.cs</Link>
     </Compile>
@@ -214,6 +220,15 @@
     </Compile>
     <Compile Include="..\..\FacebookSharp.Core\Schemas\Graph\ProfileSizeType.cs">
       <Link>Schemas\Graph\ProfileSizeType.cs</Link>
+    </Compile>
+    <Compile Include="..\..\FacebookSharp.Core\Schemas\Graph\School.cs">
+      <Link>Schemas\Graph\School.cs</Link>
+    </Compile>
+    <Compile Include="..\..\FacebookSharp.Core\Schemas\Graph\SchoolConcentration.cs">
+      <Link>Schemas\Graph\SchoolConcentration.cs</Link>
+    </Compile>
+    <Compile Include="..\..\FacebookSharp.Core\Schemas\Graph\SchoolYear.cs">
+      <Link>Schemas\Graph\SchoolYear.cs</Link>
     </Compile>
     <Compile Include="..\..\FacebookSharp.Core\Schemas\Graph\Tag.cs">
       <Link>Schemas\Graph\Tag.cs</Link>

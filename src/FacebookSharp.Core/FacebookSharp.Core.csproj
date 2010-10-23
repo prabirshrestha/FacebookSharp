@@ -80,9 +80,14 @@
     <Compile Include="OfficialFacebookSdkCompatibilityApi.Sync.cs" />
     <Compile Include="Schemas\Graph\Account.cs" />
     <Compile Include="Schemas\Graph\Album.cs" />
+    <Compile Include="Schemas\Graph\Degree.cs" />
+    <Compile Include="Schemas\Graph\Education.cs" />
     <Compile Include="Schemas\Graph\Employer.cs" />
     <Compile Include="Schemas\Graph\EmployerLocation.cs" />
     <Compile Include="Schemas\Graph\EmployerPosition.cs" />
+    <Compile Include="Schemas\Graph\School.cs" />
+    <Compile Include="Schemas\Graph\SchoolConcentration.cs" />
+    <Compile Include="Schemas\Graph\SchoolYear.cs" />
     <Compile Include="Schemas\Graph\SignificantOther.cs" />
     <Compile Include="Schemas\Graph\Group.cs" />
     <Compile Include="Schemas\Graph\Link.cs" />

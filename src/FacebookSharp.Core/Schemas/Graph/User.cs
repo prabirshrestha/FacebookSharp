@@ -33,9 +33,8 @@ namespace FacebookSharp.Schemas.Graph
         [DataMember(Name = "work")]
         public List<Work> Work { get; set; }
 
-        // todo education
-        //[DataMember(Name = "educations")]
-        //public List<Education> Educations { get; set; }
+        [DataMember(Name = "education")]
+        public List<Education> Education { get; set; }
 
         [DataMember(Name = "gender")]
         public string Gender { get; set; }
