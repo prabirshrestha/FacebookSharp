@@ -144,8 +144,8 @@ namespace FacebookSharp.Extensions
         public static string PutObject(this Facebook facebook, string parentObject, string connectionName,
                                        IDictionary<string, string> parameters)
         {
-            if (!facebook.IsSessionValid())
-                throw new FacebookSharpException("AccessToken required.");
+            //if (!facebook.IsSessionValid())
+            //    throw new FacebookSharpException("AccessToken required.");
             return facebook.Post("/" + parentObject + "/" + connectionName, parameters);
         }
 
