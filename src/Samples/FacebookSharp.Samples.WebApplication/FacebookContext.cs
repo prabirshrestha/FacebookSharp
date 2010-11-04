@@ -26,6 +26,7 @@ namespace FacebookSharp.Samples.Website
                     settings.PostAuthorizeUrl = ConfigurationManager.AppSettings["FacebookSharp.PostAuthorizeUrl"];
                     settings.ApplicationKey = ConfigurationManager.AppSettings["FacebookSharp.AppKey"];
                     settings.ApplicationSecret = ConfigurationManager.AppSettings["FacebookSharp.AppSecret"];
+                    settings.DefaultApplicationPermissions = new[] { "publish_stream", "read_stream" };
 
                     if (HttpContext.Current.Session["access_token"] != null)
                     {
