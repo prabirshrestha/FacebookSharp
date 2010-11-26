@@ -65,8 +65,6 @@ namespace FacebookSharp
             }
         }
 
-#if !SILVERLIGHT
-
         public static FacebookAuthenticationResult Parse(string url)
         {
             return Parse(url, null);
@@ -103,8 +101,12 @@ namespace FacebookSharp
 
                 return new FacebookAuthenticationResult(paramters);
             }
+            // for now don't allow to parse silverlight and windows phone web,
+            // coz ExchangeAccessTokenForCode needs to have async version.
+#if !(SILVERLIGHT || WINDOWS_PHONE)
             else
-            {   // its from web
+            {
+                // its from web
                 var uri = new Uri(url);
                 var pars = FacebookUtils.ParseUrlQueryString(uri.Query);
 
@@ -145,12 +147,11 @@ namespace FacebookSharp
                                                                       out expiresIn);
                     return new FacebookAuthenticationResult(accessToken, expiresIn, null);
                 }
-
-                // if its parse error
-                return new FacebookAuthenticationResult(string.Empty, 0, string.Empty);
             }
-        }
 #endif
+            // if its parse error
+            return new FacebookAuthenticationResult(string.Empty, 0, string.Empty);
+        }
 
         #region signed_request helpers
 
