@@ -100,7 +100,12 @@ namespace FacebookSharp
             {
                 return Facebook.GenerateFacebookAuthorizeUrl(ApplicationKey,
                                                              "http://www.facebook.com/connect/login_success.html",
-                                                             DefaultApplicationPermissions) + "&display=popup&type=user_agent";
+                                                             DefaultApplicationPermissions) + "&type=user_agent" +
+#if WINDOWS_PHONE
+                                                             "&display=touch";
+#else
+                                                             "&display=popup";
+#endif
             }
         }
     }
