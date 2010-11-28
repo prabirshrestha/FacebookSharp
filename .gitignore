@@ -12,6 +12,9 @@ obj/
 _ReSharper.*/
 *.resharper.user
 
+# Ignore TypeMock TestLint Cache
+lint.db
+
 # vim Ignore
 *.swp
 
