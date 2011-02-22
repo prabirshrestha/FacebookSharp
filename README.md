@@ -1,3 +1,5 @@
+FacebookSharp has now merged with Facebook C# SDK. All further developments will go to Facebook C# SDK which can be found at [http://facebooksdk.codeplex.com/](http://facebooksdk.codeplex.com/)
+
 Facebook#
 =========
 Facebook Graph API for .Net
