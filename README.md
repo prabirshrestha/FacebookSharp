@@ -1,4 +1,4 @@
-FacebookSharp has now merged with Facebook C# SDK. All further developments will go to Facebook C# SDK which can be found at [http://facebooksdk.codeplex.com/](http://facebooksdk.codeplex.com/)
+FacebookSharp has now merged with Facebook C# SDK. All further developments will go to Facebook C# SDK which can be found at [https://github.com/facebook-csharp-sdk/facebook-csharp-sdk](https://github.com/facebook-csharp-sdk/facebook-csharp-sdk)
 
 Facebook#
 =========
